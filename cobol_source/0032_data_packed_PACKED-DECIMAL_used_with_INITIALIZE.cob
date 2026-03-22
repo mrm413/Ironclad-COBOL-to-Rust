@@ -1,0 +1,18 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01 X-99          PIC 99   USAGE PACKED-DECIMAL.
+       01 X-S99         PIC S99  USAGE PACKED-DECIMAL.
+       01 X-999         PIC 999  USAGE PACKED-DECIMAL.
+       01 X-S999        PIC S999 USAGE PACKED-DECIMAL.
+       PROCEDURE        DIVISION.
+           INITIALIZE X-99
+           DISPLAY X-99.
+           INITIALIZE X-S99
+           DISPLAY X-S99.
+           INITIALIZE X-999
+           DISPLAY X-999.
+           INITIALIZE X-S999
+           DISPLAY X-S999.
+           STOP RUN.

@@ -1,0 +1,6 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+
+       DATA DIVISION.
+       SCREEN SECTION.
+       78 const VALUE "x".

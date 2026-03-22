@@ -1,0 +1,23 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       ENVIRONMENT      DIVISION.
+       INPUT-OUTPUT     SECTION.
+       FILE-CONTROL.
+       SELECT TEST-FILE  ASSIGN       "./TEST-FILE"
+                         ORGANIZATION IS SEQUENTIAL.
+       SELECT TEST-FILE2 ASSIGN       "./TEST-FILE"
+                         ORGANIZATION IS LINE SEQUENTIAL.
+       DATA             DIVISION.
+       FILE             SECTION.
+       FD TEST-FILE.
+       01 TEST-REC      PIC X(4).
+       FD TEST-FILE2.
+       01 TEST-REC2     PIC X(4).
+       PROCEDURE        DIVISION.
+           OPEN  INPUT TEST-FILE TEST-FILE2
+           START TEST-FILE  KEY EQUAL TEST-REC
+           END-START
+           START TEST-FILE2 KEY EQUAL TEST-REC2
+           END-START
+           CLOSE TEST-FILE TEST-FILE2
+           STOP RUN.

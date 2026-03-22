@@ -1,0 +1,18 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      sub.
+       ENVIRONMENT      DIVISION.
+       INPUT-OUTPUT     SECTION.
+       FILE-CONTROL.
+           SELECT TEST-FILE ASSIGN "NOTEXIST"
+           FILE STATUS IS TEST-STATUS.
+       DATA             DIVISION.
+       FILE             SECTION.
+       FD  TEST-FILE.
+       01  TEST-REC      PIC X(4).
+       WORKING-STORAGE SECTION.
+       01  TEST-STATUS  PIC XX.
+       PROCEDURE        DIVISION.
+       A00-MAIN SECTION.
+       A00.
+           OPEN INPUT TEST-FILE.
+           GOBACK.

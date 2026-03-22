@@ -1,0 +1,22 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. charset.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           ALPHABET ALPHA IS ASCII.
+           ALPHABET BETA  IS EBCDIC.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 TESTHEX PIC X(10) VALUE X'C17BD6F2F0F1F8406A5A'.
+
+       procedure division.
+       sample-main.
+
+           INSPECT testhex CONVERTING BETA TO ALPHA
+           DISPLAY 'Converted: "' TESTHEX '"' WITH NO ADVANCING
+
+           GOBACK.
+       END PROGRAM charset.

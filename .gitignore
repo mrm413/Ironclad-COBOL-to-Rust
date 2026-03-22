@@ -1,0 +1,13 @@
+# Binaries
+*.exe
+*.obj
+*.o
+target/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

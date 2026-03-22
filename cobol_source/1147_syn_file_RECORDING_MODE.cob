@@ -1,0 +1,17 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT f ASSIGN "f.dat" LINE SEQUENTIAL.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  f RECORDING MODE IS U.
+       01  x PIC X.
+
+       PROCEDURE DIVISION.
+           OPEN INPUT f
+           CLOSE f
+           .

@@ -1,0 +1,9 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       ENVIRONMENT      DIVISION.
+       DATA             DIVISION.
+       WORKING-STORAGE SECTION.
+       PROCEDURE        DIVISION.
+           DISPLAY FUNCTION MODULE-ID NO ADVANCING
+           END-DISPLAY.
+           STOP RUN.

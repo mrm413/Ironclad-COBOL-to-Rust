@@ -1,0 +1,22 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01  Z   PIC   S9V9(35).
+       01  P   PIC   S9V9(35) PACKED-DECIMAL.
+       01  S   PIC    9V9(35) COMP-6.
+      *01  N   PIC   S9V9(35) COMP-5.  big binary support pending
+       PROCEDURE        DIVISION.
+           MOVE FUNCTION ACOS ( -0.2345 ) TO Z.
+           IF Z NOT = 1.80750052110824343510150043852321026
+              DISPLAY "DISPLAY: " Z.
+           MOVE FUNCTION ACOS ( -0.2345 ) TO P.
+           IF P NOT = 1.80750052110824343510150043852321026
+              DISPLAY "PACKED: " P.
+           MOVE FUNCTION ACOS ( -0.2345 ) TO S.
+           IF S NOT = 1.80750052110824343510150043852321026
+              DISPLAY "COMP-6: " S.
+      *    MOVE FUNCTION ACOS ( -0.2345 ) TO N.
+      *    IF N NOT = 1.80750052110824343510150043852321026
+      *       DISPLAY "PACKED: " N.
+           STOP RUN.

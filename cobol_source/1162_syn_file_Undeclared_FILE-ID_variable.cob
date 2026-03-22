@@ -1,0 +1,12 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT file1 ASSIGN DISK.
+       DATA DIVISION.
+       FILE SECTION.
+       FD  file1 VALUE OF FILE-ID fid-file1.
+       01  file1-rec PIC X.
+       PROCEDURE DIVISION.
+           STOP RUN.

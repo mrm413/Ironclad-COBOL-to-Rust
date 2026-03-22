@@ -1,0 +1,14 @@
+CONTROL		DIVISION.
+       DEFAULT		SECTION.
+           ACCEPT ALTERNATE CONSOLE
+           DISPLAY IS TERMINAL
+	   .
+       IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01 VAR PIC X(2) VALUE "OK".
+       PROCEDURE        DIVISION.
+           DISPLAY VAR NO ADVANCING
+           END-DISPLAY.
+           STOP RUN.

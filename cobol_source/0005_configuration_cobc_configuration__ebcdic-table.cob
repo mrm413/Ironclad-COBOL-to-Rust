@@ -1,0 +1,10 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+           OBJECT-COMPUTER.
+             PROGRAM COLLATING SEQUENCE IS an-ebcdic.
+       SPECIAL-NAMES.
+           ALPHABET an-ebcdic IS EBCDIC.
+       PROCEDURE        DIVISION.
+           STOP RUN.

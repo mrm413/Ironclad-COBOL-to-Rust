@@ -1,0 +1,10 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01  Z   PIC   S9V9(35).
+       PROCEDURE        DIVISION.
+           MOVE FUNCTION ANNUITY ( 3, 5 ) TO Z.
+           IF Z NOT = 3.00293255131964809384164222873900293
+              DISPLAY Z.
+           STOP RUN.

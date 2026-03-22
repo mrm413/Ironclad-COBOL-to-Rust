@@ -1,0 +1,11 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       PROCEDURE        DIVISION.
+           PERFORM 2 TIMES
+             DISPLAY "X" NO ADVANCING
+             END-DISPLAY
+             PERFORM 2 TIMES
+               DISPLAY "Y" NO ADVANCING
+             END-PERFORM
+           END-PERFORM.
+           STOP RUN.

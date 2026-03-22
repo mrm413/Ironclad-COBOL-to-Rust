@@ -1,0 +1,26 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+           SOURCE-COMPUTER. mine WITH DEBUGGING MODE.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01  DATA-FIELD   PIC X(40) VALUE "ABCD".
+       PROCEDURE        DIVISION.
+       DECLARATIVES.
+       TEST-DEBUG SECTION.
+           USE FOR DEBUGGING ON ALL REFERENCES OF DATA-FIELD.
+           DISPLAY DEBUG-ITEM "|".
+           MOVE "ABCD" TO DATA-FIELD.
+       END DECLARATIVES.
+       SOME-PAR.
+           MOVE QUOTE TO DATA-FIELD.
+           IF DATA-FIELD = QUOTE
+              DISPLAY "NO DEBUG"
+           ELSE
+              DISPLAY "DEBUG"
+              MOVE SPACES TO DATA-FIELD
+              CALL "NOTHERE" USING DATA-FIELD
+                 ON OVERFLOW
+                    DISPLAY "THIS IS FINE".
+           STOP RUN.

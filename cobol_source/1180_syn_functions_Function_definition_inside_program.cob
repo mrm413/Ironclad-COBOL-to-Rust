@@ -1,0 +1,10 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+
+       PROCEDURE DIVISION.
+           CONTINUE
+           .
+
+       IDENTIFICATION DIVISION.
+       FUNCTION-ID. f.
+       END FUNCTION f.

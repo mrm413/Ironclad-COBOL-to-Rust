@@ -1,0 +1,26 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+           SOURCE-COMPUTER. mine WITH DEBUGGING MODE.
+       INPUT-OUTPUT     SECTION.
+       FILE-CONTROL.
+       SELECT TEST-FILE ASSIGN "./TEST-FILE".
+       DATA             DIVISION.
+       FILE             SECTION.
+       FD  TEST-FILE.
+       01  TEST-REC     PIC X(40).
+       PROCEDURE        DIVISION.
+       DECLARATIVES.
+       TEST-DEBUG SECTION.
+           USE FOR DEBUGGING ON TEST-FILE.
+           DISPLAY DEBUG-ITEM "|" END-DISPLAY.
+       END DECLARATIVES.
+       SOME-PAR.
+           OPEN  OUTPUT TEST-FILE.
+           WRITE TEST-REC FROM "DEF".
+           CLOSE TEST-FILE.
+           OPEN  INPUT TEST-FILE.
+           READ TEST-FILE.
+           CLOSE TEST-FILE.
+           STOP RUN.

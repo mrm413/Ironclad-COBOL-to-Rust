@@ -1,0 +1,9 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID.    prog.
+       PROCEDURE      DIVISION.
+           DISPLAY N"UTF-16 string".
+           DISPLAY N'0123456789ABCDEF'.
+           DISPLAY N"0123456789ABCDEF"-
+                   N"0123456789ABCDEF".
+           DISPLAY NC"0123456789ABCDEF"-
+                   NC'0123456789ABCDEF'.

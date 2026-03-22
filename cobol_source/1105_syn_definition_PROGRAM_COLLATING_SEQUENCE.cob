@@ -1,0 +1,11 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. GNU-LINUX.
+       OBJECT-COMPUTER. GC-MACHINE,
+                        PROGRAM COLLATING SEQUENCE IS TESTME.
+       SPECIAL-NAMES.
+           ALPHABET TESTME IS
+                    x'00' thru x'05', 'A' THROUGH 'Z';
+                    x'41' ALSO x'42', ALSO x'00', x'C1' ALSO x'C2'.

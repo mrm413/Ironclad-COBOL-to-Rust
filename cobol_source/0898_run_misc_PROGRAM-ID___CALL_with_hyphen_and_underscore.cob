@@ -1,0 +1,11 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. "_SUB-PROG_NOW".
+
+       DATA DIVISION.
+       LINKAGE SECTION.
+       01  x  PIC X.
+
+       PROCEDURE DIVISION USING x.
+       MAIN.
+            DISPLAY "SUB GOT " X.
+            GOBACK.

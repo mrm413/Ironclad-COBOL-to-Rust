@@ -1,0 +1,5 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      callee.
+       PROCEDURE        DIVISION.
+           MOVE 43 TO RETURN-CODE
+           EXIT PROGRAM.

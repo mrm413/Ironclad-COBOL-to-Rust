@@ -1,0 +1,13 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       ENVIRONMENT      DIVISION.
+       DATA             DIVISION.
+       WORKING-STORAGE SECTION.
+       01  TEST-DATE    PIC X(16) VALUE SPACES.
+       PROCEDURE        DIVISION.
+           MOVE FUNCTION MODULE-FORMATTED-DATE TO TEST-DATE.
+           IF   TEST-DATE NOT = SPACES
+             DISPLAY "OK" NO ADVANCING
+             END-DISPLAY
+           END-IF.
+           STOP RUN.

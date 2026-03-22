@@ -1,0 +1,9 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog1.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       77 display-out   pic x(10).
+       PROCEDURE        DIVISION.
+           MOVE CURRENT-DATE TO DISPLAY-OUT
+           MOVE TIME-OF-DAY  TO DISPLAY-OUT
+           STOP RUN.

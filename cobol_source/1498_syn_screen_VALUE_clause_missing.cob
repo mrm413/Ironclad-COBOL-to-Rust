@@ -1,0 +1,11 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       SCREEN  SECTION.
+       01 SG.
+          05 LINE 21 COL 1 VALUE "TESTING".
+          05 " IMPLICIT VALUE " HIGHLIGHT.
+       PROCEDURE        DIVISION.
+           DISPLAY SG END-DISPLAY.
+           STOP RUN.

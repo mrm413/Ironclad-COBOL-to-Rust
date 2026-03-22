@@ -1,0 +1,12 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. subprog.
+
+       DATA DIVISION.
+       LINKAGE SECTION.
+       01 str1 PIC X ANY LENGTH.
+       01 str2 PIC X ANY LENGTH.
+
+       PROCEDURE DIVISION USING OPTIONAL str1 OPTIONAL str2.
+           DISPLAY 'IN' WITH NO ADVANCING
+           .
+       END PROGRAM subprog.

@@ -1,0 +1,18 @@
+IDENTIFICATION DIVISION.
+        PROGRAM-ID. prog1.
+
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+
+        01 VAR2 PIC X(2) VALUE '55'.
+        01 VAR3 PIC X(5) VALUE 'xxxxx'.
+
+        PROCEDURE DIVISION.
+
+        ENTRY 'ent2'.
+        DISPLAY VAR2 END-DISPLAY
+        GOBACK.
+
+        ENTRY 'ent3'.
+        DISPLAY VAR3 END-DISPLAY
+        GOBACK.

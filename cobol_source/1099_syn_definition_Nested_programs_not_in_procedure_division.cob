@@ -1,0 +1,7 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog-2.
+
+       END PROGRAM prog.

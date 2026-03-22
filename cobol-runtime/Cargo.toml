@@ -1,0 +1,8 @@
+[package]
+name = "cobol-runtime"
+version = "0.1.0"
+edition = "2021"
+description = "Runtime types for Ironclad-generated Rust: FixedString, Decimal, PackedDecimal, FileStatus"
+authors = ["Torsova LLC"]
+
+[dependencies]

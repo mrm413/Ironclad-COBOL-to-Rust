@@ -1,0 +1,19 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       PROCEDURE        DIVISION.
+           DISPLAY "abc".
+           DISPLAY  123.
+           DISPLAY +123.
+           DISPLAY -123.
+           DISPLAY  12.3.
+           DISPLAY +12.3.
+           DISPLAY -12.3.
+           DISPLAY 1.23E0.
+           DISPLAY +1.23E0.
+           DISPLAY -1.23E0.
+           DISPLAY 12.3E-2.
+           DISPLAY +12.3E-2.
+           DISPLAY -12.3E-2.
+           DISPLAY B'0101'.
+           DISPLAY BX'EC'.
+           STOP RUN.

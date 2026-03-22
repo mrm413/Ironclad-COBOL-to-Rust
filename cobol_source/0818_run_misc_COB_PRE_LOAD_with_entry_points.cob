@@ -1,0 +1,11 @@
+IDENTIFICATION DIVISION.
+        PROGRAM-ID. main-prog.
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+        PROCEDURE DIVISION.
+
+        CALL 'ent1' END-CALL
+        CALL 'ent2' END-CALL
+        CALL 'ent3' END-CALL
+
+        STOP RUN.

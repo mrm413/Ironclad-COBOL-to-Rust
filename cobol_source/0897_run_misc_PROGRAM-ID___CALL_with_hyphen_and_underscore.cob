@@ -1,0 +1,7 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+
+       PROCEDURE DIVISION.
+       MAIN.
+           CALL "_SUB-PROG_NOW" USING 'X'.
+           STOP RUN.

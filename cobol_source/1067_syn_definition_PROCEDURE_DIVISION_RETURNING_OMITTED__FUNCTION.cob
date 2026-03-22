@@ -1,0 +1,6 @@
+IDENTIFICATION   DIVISION.
+       FUNCTION-ID.     func.
+       PROCEDURE        DIVISION RETURNING OMITTED.
+           MOVE 42 TO RETURN-CODE
+           GOBACK.
+       END FUNCTION     func.
