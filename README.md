@@ -335,4 +335,8 @@ See also: [Lazarus COBOL-to-C++17 Showcase](https://github.com/mrm413/lazarus-co
 
 ## License
 
-The transpiled Rust output in this repository is provided for demonstration purposes. The original COBOL test programs are from the [GnuCOBOL](https://gnucobol.sourceforge.io/) project (GPL). The Ironclad transpilation engine is proprietary software owned by Torsova LLC.
+Licensed under the [Apache License, Version 2.0](LICENSE).
+
+The original GnuCOBOL test programs are from the [GnuCOBOL project](https://gnucobol.sourceforge.io/).
+
+All modifications and additions -- including the Rust transpiled programs, build system, and test harness -- are Copyright 2025 Michael R. Mull / Lazarus Systems. See [NOTICE](NOTICE) for details.
