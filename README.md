@@ -1,6 +1,6 @@
 # Ironclad: Deterministic COBOL-to-Rust Transpiler Output
 
-**1,314 Rust programs transpiled from 1,545 COBOL test programs | 100% compile | 100% runtime | Zero external dependencies**
+**1,539 Rust programs transpiled from 1,545 COBOL test programs | 100% compile | 100% runtime | Zero external dependencies**
 
 This repository contains the **output** of the Ironclad transpilation system — not the system itself. Every file here was generated automatically from legacy COBOL source code and compiled as idiomatic Rust.
 
@@ -15,11 +15,12 @@ Ironclad takes legacy COBOL programs and produces deterministic, idiomatic Rust.
 | Metric | Value |
 |--------|-------|
 | COBOL programs processed | 1,545 |
-| Rust programs generated | 1,314 |
+| Rust programs generated | 1,539 |
+| Transpile success rate | 99.6% |
 | Compile success rate | 100.0% |
 | Runtime validation rate | 100.0% |
-| Total transpiled Rust lines | 223,922 |
-| Runtime library lines | 5,900 (17 modules) |
+| Total transpiled Rust lines | 190,767 |
+| Runtime library lines | 6,000 (17 modules) |
 | Expansion ratio | ~2.5x (COBOL lines to Rust lines) |
 | Pipeline speed | ~1.64 seconds total |
 | External dependencies | 0 |
@@ -146,7 +147,7 @@ ironclad-showcase/
     packed_decimal_arithmetic/       # COMP-3 packed decimal math
     binary_64bit_compare/            # 64-bit unsigned binary comparison
   cobol_source/                      # All 1,545 original COBOL programs
-  rust_output/                       # All 1,314 transpiled Rust programs
+  rust_output/                       # All 1,539 transpiled Rust programs
 ```
 
 ---
@@ -208,7 +209,7 @@ The `cobol-runtime` crate is a pure Rust library with **zero external dependenci
 - **`cobol_helpers`** — Shared helper functions for intrinsic functions (`CURRENT-DATE`, `UPPER-CASE`, `ABS`, `NUMVAL`, etc.), reference modification, and INSPECT operations.
 - **`define_record!`** — Declarative macro that generates data record structs with all standard trait implementations (Display, From, helper methods) in a single invocation, reducing per-struct boilerplate from ~17 lines to ~5.
 
-The entire runtime is ~5,900 lines of Rust across 17 modules. No `unsafe` blocks. No FFI. No C dependencies.
+The entire runtime is ~6,000 lines of Rust across 17 modules. No `unsafe` blocks. No FFI. No C dependencies.
 
 ---
 
