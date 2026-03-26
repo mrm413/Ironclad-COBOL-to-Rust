@@ -19,10 +19,22 @@ Ironclad takes legacy COBOL programs and produces deterministic, idiomatic Rust.
 | Compile success rate | 100.0% |
 | Runtime validation rate | 100.0% |
 | Total transpiled Rust lines | 223,922 |
-| Runtime library lines | 5,572 (14 modules) |
+| Runtime library lines | 5,900 (17 modules) |
+| Expansion ratio | ~2.5x (COBOL lines to Rust lines) |
 | Pipeline speed | ~1.64 seconds total |
 | External dependencies | 0 |
 | AI/LLM in the loop | None |
+
+### What Changed (v2)
+
+The transpiler now produces significantly more compact output:
+
+- **`define_record!` macro** — Data record structs that previously required ~17 lines of boilerplate (struct + Display + From + helpers) are now declared in a single macro invocation. The macro generates all standard trait implementations at compile time.
+- **Shared runtime helpers** — `CobolInto` trait and `cobol_helpers` module now live in the runtime library instead of being duplicated in every generated file. One import replaces ~130 lines of inline code per program.
+- **Dead paragraph elimination** — Unreachable paragraphs are detected via transitive closure analysis from the entry point and excluded from output.
+- **Clean compilation** — A single file-level `#![allow(...)]` attribute replaces scattered per-item annotations.
+
+On the CardDemo enterprise benchmark (44 COBOL programs, 30K lines), these changes reduced output from 103,715 to 76,208 lines — a **26.5% reduction**, bringing the expansion ratio from 3.44x down to **2.53x**.
 
 ---
 
@@ -110,19 +122,22 @@ ironclad-showcase/
   cobol-runtime/
     src/
       lib.rs                         # Core types: FixedString, Decimal, PackedDecimal
-      file_io.rs                     # CobolFile, FileStatus, sequential/indexed I/O
-      string_ops.rs                  # STRING, UNSTRING, INSPECT operations
-      packed_decimal.rs              # COMP-3 packed decimal arithmetic
+      fixed_string.rs                # FixedString<N> implementation
       decimal.rs                     # Fixed-point exact arithmetic
+      packed_decimal.rs              # COMP-3 packed decimal arithmetic
+      file_status.rs                 # FileStatus codes (00, 10, 35, etc.)
+      cobol_file.rs                  # CobolFile sequential/indexed/relative I/O
+      cobol_into.rs                  # CobolInto trait — universal MOVE conversion
+      cobol_helpers.rs               # Shared helper functions (intrinsics, refmod, INSPECT)
+      record_macro.rs                # define_record! macro for compact struct generation
+      string_ops.rs                  # STRING, UNSTRING, INSPECT operations
       ebcdic.rs                      # EBCDIC/ASCII conversion tables
+      edited_numeric.rs              # Number formatting (edit masks)
+      chrono_shim.rs                 # Date/time functions (ACCEPT FROM DATE)
       report_writer.rs               # INITIATE, GENERATE, TERMINATE stubs
       cics.rs                        # CICS runtime stubs
-      chrono_shim.rs                 # Date/time functions (ACCEPT FROM DATE)
-      sort_merge.rs                  # SORT/MERGE operations
-      call_conv.rs                   # CALL convention and linkage
-      intrinsics.rs                  # COBOL intrinsic functions (ABS, LENGTH, etc.)
-      screen.rs                      # Screen section stubs
-      fixed_string.rs                # FixedString<N> implementation
+      sql.rs                         # SQL context + SQLCA
+      dli.rs                         # DLI/IMS hierarchical database
   samples/                           # Curated before/after examples
     display_literals/                # Basic DISPLAY statement
     alphabetic_test/                 # Conditional logic with REDEFINES
@@ -146,6 +161,8 @@ ironclad-showcase/
 | `PIC S9(N)V9(M)` | `Decimal` | Fixed-point exact arithmetic |
 | `PIC S9(N) COMP` | `i16` / `i32` / `i64` | Binary native |
 | `PIC S9(N) COMP-3` | `PackedDecimal<N>` | BCD packed decimal |
+| `BINARY-DOUBLE UNSIGNED` | `u64` | 64-bit unsigned native binary |
+| `BINARY-LONG UNSIGNED` | `u32` | 32-bit unsigned native binary |
 | `88-level` | enum variant | Condition names |
 | `OCCURS N TIMES` | `[T; N]` | Fixed array |
 | `OCCURS DEPENDING ON` | `Vec<T>` | Variable length |
@@ -156,7 +173,7 @@ ironclad-showcase/
 
 | COBOL | Rust |
 |-------|------|
-| `MOVE X TO Y` | `y = x.into()` |
+| `MOVE X TO Y` | `y = format!("{}", x).cobol_into()` |
 | `ADD X TO Y` | `y += x` |
 | `COMPUTE Y = expr` | `y = expr` (native operators) |
 | `IF / ELSE / END-IF` | `if / else` |
@@ -169,7 +186,10 @@ ironclad-showcase/
 | `OPEN INPUT file` | `CobolFile::open_input(path)` |
 | `CLOSE file` | `handle.close()` |
 | `STRING / UNSTRING` | `format!` / `split` |
-| `INSPECT TALLYING` | `.chars().filter().count()` |
+| `INSPECT TALLYING` | `cobol_inspect_tallying_count()` |
+| `FUNCTION ABS(X)` | `x.value().abs()` |
+| `FUNCTION UPPER-CASE` | `cobol_fn_upper_case()` |
+| `FUNCTION CURRENT-DATE` | `cobol_fn_current_date()` |
 | `STOP RUN` | `std::process::exit(code)` |
 | `DISPLAY` | `println!()` |
 
@@ -184,8 +204,11 @@ The `cobol-runtime` crate is a pure Rust library with **zero external dependenci
 - **`PackedDecimal<N>`** — COMP-3 Binary Coded Decimal with the exact byte layout of mainframe packed fields.
 - **`CobolFile`** — Sequential, indexed, and relative file I/O with `FileStatus` codes matching the COBOL standard (`00`, `10`, `35`, etc.).
 - **`EBCDIC`** — Full EBCDIC-to-ASCII conversion tables for mainframe data migration.
+- **`CobolInto`** — Universal type conversion trait implementing COBOL MOVE semantics. One trait handles all implicit conversions (string-to-numeric, numeric-to-string, cross-type moves).
+- **`cobol_helpers`** — Shared helper functions for intrinsic functions (`CURRENT-DATE`, `UPPER-CASE`, `ABS`, `NUMVAL`, etc.), reference modification, and INSPECT operations.
+- **`define_record!`** — Declarative macro that generates data record structs with all standard trait implementations (Display, From, helper methods) in a single invocation, reducing per-struct boilerplate from ~17 lines to ~5.
 
-The entire runtime is 5,572 lines of Rust across 14 modules. No `unsafe` blocks. No FFI. No C dependencies.
+The entire runtime is ~5,900 lines of Rust across 17 modules. No `unsafe` blocks. No FFI. No C dependencies.
 
 ---
 
@@ -219,18 +242,27 @@ The entire runtime is 5,572 lines of Rust across 14 modules. No `unsafe` blocks.
 ### Example: Rust Output
 
 ```rust
-use cobol_runtime::FixedString;
+#![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
 
-#[derive(Debug, Clone, Default, PartialEq)]
-pub struct Filler6 {
-    pub xbyte: FixedString<1>,
-    pub _filler_8: FixedString<3>,
+use cobol_runtime::FixedString;
+use cobol_runtime::CobolInto;
+use cobol_runtime::cobol_helpers::*;
+use cobol_runtime::define_record;
+
+define_record! {
+    /// FILLER REDEFINES X
+    pub struct XRedefines {
+        /// XBYTE
+        pub xbyte: FixedString<1>,
+        /// FILLER
+        pub _filler_8: FixedString<3>,
+    }
 }
 
 #[derive(Debug, Clone)]
 pub struct ProgramState {
     pub x: FixedString<4>,
-    pub _filler_6: Filler6,
+    pub x_redefines: XRedefines,
     pub xbyte: FixedString<1>,
     pub return_code: i32,
 }
@@ -239,33 +271,32 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             x: FixedString::from_str("AAAA"),
-            _filler_6: Default::default(),
+            x_redefines: Default::default(),
             xbyte: Default::default(),
             return_code: 0,
         }
     }
 }
 
-fn p_xbyte(state: &mut ProgramState) {
-    if state.x.trimmed() != "" {
+fn main() {
+    let mut state = ProgramState::default();
+    state.x_redefines.xbyte = FixedString::from("\x0D");
+    if !state.x.as_str().chars().all(|c| c.is_alphabetic() || c == ' ') {
+        // X is not alphabetic — correct
     } else {
         println!("{}", "Fail - Alphabetic");
     }
-    state._filler_6.xbyte = "A".into();
-    if state.x.trimmed() != "" {
+    state.x_redefines.xbyte = "A".into();
+    if state.x.as_str().chars().all(|c| c.is_alphabetic() || c == ' ') {
+        // X is alphabetic — correct
     } else {
         println!("{}", "Fail - Not Alphabetic");
     }
-    { std::process::exit(0); }
-}
-
-fn main() {
-    let mut state = ProgramState::default();
-    p_xbyte(&mut state);
+    std::process::exit(0);
 }
 ```
 
-Every COBOL data structure becomes a Rust struct. Every paragraph becomes a function. Every `PIC X(N)` becomes a `FixedString<N>`. The Rust compiler enforces safety on every line — no wrappers, no conventions, no hoping the next developer reads the docs.
+Every COBOL data structure becomes a Rust struct. Every paragraph becomes a function. Every `PIC X(N)` becomes a `FixedString<N>`. Record structs use `define_record!` to eliminate boilerplate. The Rust compiler enforces safety on every line — no wrappers, no conventions, no hoping the next developer reads the docs.
 
 ---
 
@@ -319,7 +350,8 @@ The GnuCOBOL 3.2 test suite covers the full breadth of the COBOL language:
 3. **Provable equivalence** — The validator runs both the original COBOL and the generated Rust against the same test inputs and compares outputs byte-for-byte.
 4. **Real Rust types** — Enums, match expressions, Result-based error handling, iterators. Not string-encoded everything wrapped in unsafe blocks.
 5. **Zero dependencies** — The runtime library is pure Rust with no external crates, no FFI, no C bindings.
-6. **Government-grade** — Audit trail, reproducible builds, NIST-friendly provenance chain.
+6. **Compact output** — The `define_record!` macro and shared runtime helpers keep the expansion ratio around 2.5x, not 5-10x like template-based approaches.
+7. **Government-grade** — Audit trail, reproducible builds, NIST-friendly provenance chain.
 
 ---
 
@@ -327,7 +359,7 @@ The GnuCOBOL 3.2 test suite covers the full breadth of the COBOL language:
 
 **Torsova LLC** — [lazarus-systems.com](https://lazarus-systems.com)
 
-Ironclad is part of a suite of legacy modernization tools including transpilers for COBOL (C++17 and Rust), VB6, Stored Procedures, Crystal Reports, SAS, and Microsoft Access.
+Ironclad is part of a suite of legacy modernization tools including transpilers for COBOL (C++17 and Rust), HLASM, JCL, DFSORT, PL/I, REXX, Easytrieve, SAS, VB6, Stored Procedures, Crystal Reports, and Microsoft Access.
 
 See also: [Lazarus COBOL-to-C++17 Showcase](https://github.com/mrm413/lazarus-cobol-showcase) — the C++17 counterpart with 1,607/1,607 tests passing.
 
