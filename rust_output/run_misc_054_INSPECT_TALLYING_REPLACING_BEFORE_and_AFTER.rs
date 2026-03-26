@@ -42,7 +42,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            insp_string: FixedString::from_str("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+            insp_string: FixedString::from_cobol_str("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
             exptd_result: Default::default(),
             res_idx: 100u32,
             res_idx_1: 0u32,

@@ -306,19 +306,19 @@ fn p_do_call(state: &mut ProgramState) {
         // AUTO-FIX SKIP: E0308: mismatched types: state.tstrec.tstx[(((3i64 - 1).max(0)) as usize).min(3)].tstx_2 = FixedString::high_values();
         // SKIP: unresolved ref
         { let _s = (1 - 1) as usize; let _l = (35) as usize; let _sv = String::from("Quicker grey fox jumped the cougar"); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
-        state.hexv = FixedString::from_str("17");
+        state.hexv = FixedString::from_cobol_str("17");
         { let _s = (39 - 1) as usize; let _l = (1) as usize; let _sv = state.hexc.as_str().to_string(); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
         { let _s = (2 - 1) as usize; let _l = (1) as usize; let _sv = state.hexc.as_str().to_string(); let _src = _sv.as_bytes(); let mut _dst_owned = format!("{}", state.tstrec.tsttail1).into_bytes(); let _cl = _l.min(_src.len()).min(_dst_owned.len().saturating_sub(_s)); _dst_owned[_s.._s+_cl].copy_from_slice(&_src[.._cl]); state.tstrec.tsttail1 = String::from_utf8_lossy(&_dst_owned).trim().parse().unwrap_or_default(); }
-        state.hexv = FixedString::from_str("7");
+        state.hexv = FixedString::from_cobol_str("7");
         { let _s = (47 - 1) as usize; let _l = (1) as usize; let _sv = state.hexc.as_str().to_string(); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
-        state.hexv = FixedString::from_str("13");
+        state.hexv = FixedString::from_cobol_str("13");
         { let _s = (59 - 1) as usize; let _l = (1) as usize; let _sv = state.hexc.as_str().to_string(); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
-        state.hexv = FixedString::from_str("0");
+        state.hexv = FixedString::from_cobol_str("0");
         // SKIP: unresolved ref
-        state.hexv = FixedString::from_str("9");
+        state.hexv = FixedString::from_cobol_str("9");
         { let _s = (47 - 1) as usize; let _l = (1) as usize; let _sv = state.hexc.as_str().to_string(); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex2.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
         { let _s = (32 - 1) as usize; let _l = (1) as usize; let _sv = String::from("\\"); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex2.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
-        state.hexv = FixedString::from_str("13");
+        state.hexv = FixedString::from_cobol_str("13");
         { let _s = (59 - 1) as usize; let _l = (1) as usize; let _sv = state.hexc.as_str().to_string(); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex2.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
         { let _s = (54 - 1) as usize; let _l = (1) as usize; let _sv = String::from("A"); let _src = _sv.as_bytes(); let _dst = state.tstrec.tsthex2.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
         state.tstrec.tsttailx = FixedString::low_values();

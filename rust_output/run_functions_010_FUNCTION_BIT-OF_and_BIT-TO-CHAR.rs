@@ -41,7 +41,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             pac: Default::default(),
-            txt: FixedString::from_str("HI."),
+            txt: FixedString::from_cobol_str("HI."),
             bitx: Default::default(),
             return_code: 0,
             tally: 0,

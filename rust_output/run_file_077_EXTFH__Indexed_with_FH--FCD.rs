@@ -1058,8 +1058,8 @@ fn p_mainfile(state: &mut ProgramState) {
     // SKIP: unresolved ref: state._unresolved_fcd_name_length = std::mem::size_of_val(&state._unresolved_out_file_name) as i64;
     println!("{}", "*** Dump FCD before changes");
     p_dump_fcd(state);
-    state.key_def.key_defs[((2 - 1) as usize).min(0)].key_flags = FixedString::from_str("64");
-    state.key_def.key_defs[((3 - 1) as usize).min(0)].key_flags = FixedString::from_str("66");
+    state.key_def.key_defs[((2 - 1) as usize).min(0)].key_flags = FixedString::from_cobol_str("64");
+    state.key_def.key_defs[((3 - 1) as usize).min(0)].key_flags = FixedString::from_cobol_str("66");
     state.key_def.key_defs[((3 - 1) as usize).min(0)].key_sparse = "*".into();
     println!("{}", "*** Dump FCD after changes");
     p_dump_fcd(state);
@@ -1115,8 +1115,8 @@ fn p_1000_load_record(state: &mut ProgramState) {
         state.cm_tape = "6250 BPI".into();
         state.cm_memory = "3MEG".into();
         if state.work_area.sub == "" {
-            state.cm_disk = FixedString::from_str(&format!("{}", "*"));
-            state.cm_tape = FixedString::from_str(&format!("{}", "*"));
+            state.cm_disk = FixedString::from_cobol_str(&format!("{}", "*"));
+            state.cm_tape = FixedString::from_cobol_str(&format!("{}", "*"));
             // SKIP: unresolved condition
         }
     }

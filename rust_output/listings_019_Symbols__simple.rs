@@ -49,8 +49,8 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             ws_one: 0,
-            ws_two: FixedString::from_str("HIGH"),
-            ws_three: FixedString::from_str("BAR"),
+            ws_two: FixedString::from_cobol_str("HIGH"),
+            ws_three: FixedString::from_cobol_str("BAR"),
             ws_four: 0.0f32,
             ws_five: 0.0f64,
             ws_six: Default::default(),

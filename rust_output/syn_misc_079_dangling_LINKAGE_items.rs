@@ -225,7 +225,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            nsize: FixedString::from_str(""),
+            nsize: FixedString::from_cobol_str(""),
             a: Default::default(),
             b: Default::default(),
             d: Default::default(),

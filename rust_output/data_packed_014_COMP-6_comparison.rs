@@ -66,7 +66,7 @@ impl Default for ProgramState {
             u2_32d: Decimal::from(48894655646195.555f64),
             u3_32d: Decimal::from(48894655646195.555f64),
             u4_32d: Decimal::from(48894655646195.555f64),
-            _filler_19: FixedString::from_str("0"),
+            _filler_19: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

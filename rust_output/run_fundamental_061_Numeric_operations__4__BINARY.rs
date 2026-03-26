@@ -48,7 +48,7 @@ impl Default for ProgramState {
             feld2: Default::default(),
             feld3: Default::default(),
             feld4: Default::default(),
-            _filler_9: FixedString::from_str("0"),
+            _filler_9: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

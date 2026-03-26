@@ -58,7 +58,7 @@ pub fn cobol_fn_mod(a: i64, b: i64) -> i64 {
 /// FUNCTION NUMVAL-C
 pub fn cobol_fn_numval_c(s: &str) -> Decimal {
     let cleaned: String = s.chars().filter(|c| c.is_ascii_digit() || *c == '.' || *c == '-').collect();
-    cleaned.parse::<f64>().map(|v| Decimal::from(v)).unwrap_or_default()
+    cleaned.parse::<f64>().map(Decimal::from).unwrap_or_default()
 }
 
 /// FUNCTION TEST-NUMVAL-C (returns 0 if valid, position of error otherwise)
@@ -75,7 +75,7 @@ pub fn cobol_fn_test_numval_c(s: &str) -> i64 {
 /// FUNCTION NUMVAL
 pub fn cobol_fn_numval(s: &str) -> Decimal {
     let trimmed = s.trim();
-    trimmed.parse::<f64>().map(|v| Decimal::from(v)).unwrap_or_default()
+    trimmed.parse::<f64>().map(Decimal::from).unwrap_or_default()
 }
 
 /// FUNCTION TEST-NUMVAL (returns 0 if valid)

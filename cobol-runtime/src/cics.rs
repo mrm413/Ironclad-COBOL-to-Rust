@@ -3,9 +3,9 @@
 // All EXEC CICS commands route through CicsContext::execute().
 
 use std::collections::{HashMap, VecDeque};
-use std::io::{self, Read, Write, BufRead, BufReader, BufWriter};
+use std::io::{self, Write, BufRead, BufReader};
 use std::fs::{File, OpenOptions};
-use std::sync::Mutex;
+
 
 // ── Response Codes ──────────────────────────────────────────────────
 
@@ -56,6 +56,7 @@ pub struct CicsContext {
     browse_cursors: HashMap<u32, BrowseCursor>,
     next_browse_token: u32,
     /// Program dispatch table: program name → function pointer
+    #[allow(clippy::type_complexity)]
     programs: HashMap<String, fn(&mut CicsContext, &[u8]) -> Vec<u8>>,
     /// Condition handlers: condition name → action
     handlers: HashMap<String, ConditionAction>,
@@ -68,12 +69,14 @@ pub struct CicsContext {
 }
 
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 enum ConditionAction {
     Label(String),    // GO TO label
     Ignore,           // HANDLE CONDITION ... IGNORE
     Default,          // Default system action
 }
 
+#[allow(dead_code)]
 struct BrowseCursor {
     reader: BufReader<File>,
     ridfld: String,
@@ -196,13 +199,11 @@ impl CicsContext {
             Err(_) => { self.set_resp(CicsResp::NotOpen); return None; }
         };
         let reader = BufReader::new(file);
-        for line in reader.lines() {
-            if let Ok(line) = line {
-                if let Some((key, data)) = line.split_once('\t') {
-                    if key == ridfld {
-                        self.set_resp(CicsResp::Normal);
-                        return Some(data.to_string());
-                    }
+        for line in reader.lines().map_while(Result::ok) {
+            if let Some((key, data)) = line.split_once('\t') {
+                if key == ridfld {
+                    self.set_resp(CicsResp::Normal);
+                    return Some(data.to_string());
                 }
             }
         }
@@ -465,7 +466,6 @@ impl CicsContext {
     pub fn check_handler(&self, condition: &str) -> Option<String> {
         match self.handlers.get(&condition.to_uppercase()) {
             Some(ConditionAction::Label(lbl)) => Some(lbl.clone()),
-            Some(ConditionAction::Ignore) => None,
             _ => None,
         }
     }
@@ -485,7 +485,7 @@ impl CicsContext {
             match entry.operation.as_str() {
                 "WRITE" => {
                     // Remove the written record
-                    let _ = self.delete_file_internal(&entry.file, &entry.key);
+                    self.delete_file_internal(&entry.file, &entry.key);
                 }
                 "REWRITE" => {
                     // Restore before image

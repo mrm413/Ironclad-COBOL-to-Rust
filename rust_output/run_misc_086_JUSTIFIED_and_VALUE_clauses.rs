@@ -242,7 +242,7 @@ fn p_1000_justify_is_right(state: &mut ProgramState) {
         println!("{}", "ARR-FLD5 (6,6) NOT INITIALIZED CORRECTLY");
     }
     state.arr_array = Default::default();
-    state.cntr2.ele = FixedString::from_str(&format!("{}", "X"));
+    state.cntr2.ele = FixedString::from_cobol_str(&format!("{}", "X"));
     state.cntr2.ele = Default::default();
     state.arr_array = Default::default();
     if &format!("{}", state.cntr2.ele) != &"     RIGHT".to_string() {
@@ -317,7 +317,7 @@ fn p_2000_justify_is_off(state: &mut ProgramState) {
         println!("{}", "ARR-FLD5 (6,6) NOT INITIALIZED CORRECTLY");
     }
     state.arr_array = Default::default();
-    state.cntr2.ele = FixedString::from_str(&format!("{}", "X"));
+    state.cntr2.ele = FixedString::from_cobol_str(&format!("{}", "X"));
     state.cntr2.ele = Default::default();
     state.arr_array = Default::default();
     if &format!("{}", state.cntr2.ele) != &"RIGHT     ".to_string() {

@@ -85,7 +85,7 @@ fn p_buffer(state: &mut ProgramState) {
         state.l1_3_s = _p5;
         state.l1_3_2_s = _p6;
     }
-    state.buffer = FixedString::from_str(&format!("{}", "0123456789"));
+    state.buffer = FixedString::from_cobol_str(&format!("{}", "0123456789"));
     state.l1_1_2_s = 2 as u32;
     state.l1_1_2_1_s = 3 as u32;
     state.l1_2_s = 1 as u32;

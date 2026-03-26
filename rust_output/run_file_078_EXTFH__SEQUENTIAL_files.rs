@@ -389,7 +389,7 @@ fn p_flatfile(state: &mut ProgramState) {
     }
     flatfile_close(state);
     flatfile_open_extend(state);
-    state.work_area.sub = FixedString::from_str("2");
+    state.work_area.sub = FixedString::from_cobol_str("2");
     p_load_record(state);
     flatfile_close(state);
     flatfile_open_input(state);

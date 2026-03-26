@@ -389,7 +389,7 @@ impl Default for ProgramState {
             c2_disk: Default::default(),
             c2_no_terminals: Default::default(),
             cust_stat: Default::default(),
-            rec_num: FixedString::from_str(""),
+            rec_num: FixedString::from_cobol_str(""),
             test_data: Default::default(),
             data_cust_num_tbl: Default::default(),
             data_company_tbl: Default::default(),
@@ -415,7 +415,7 @@ impl Default for ProgramState {
 /// LOADFILE
 fn p_loadfile(state: &mut ProgramState) {
     flatfile2_open_io(state);
-    state.rec_num = FixedString::from_str("2");
+    state.rec_num = FixedString::from_cobol_str("2");
     flatfile2_read(state);
     println!("{}{}{}{}{}{}", "Read    ", state.c2_cust_num, " Sts:", state.cust_stat, " Trms:", state.c2_no_terminals);
     state.c2_no_terminals += 1 as u32;

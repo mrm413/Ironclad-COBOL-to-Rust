@@ -93,7 +93,7 @@ fn p_test_file(state: &mut ProgramState) {
         { let _ = state._fh_test_file.close();
             return; }
     }
-    state.testkey = FixedString::from_str("99");
+    state.testkey = FixedString::from_cobol_str("99");
     // START TEST-FILE
     if &format!("{}", state.teststat) != &"23".to_string() {
         println!("{}{}", "START ", state.teststat);

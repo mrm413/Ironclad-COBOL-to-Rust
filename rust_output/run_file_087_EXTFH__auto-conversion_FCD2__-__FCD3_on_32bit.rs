@@ -575,7 +575,7 @@ impl Default for ProgramState {
         Self {
             i: Default::default(),
             ws_fcd_ddname: FixedString::new(),
-            ws_fcd_ptr: FixedString::from_str("NULL"),
+            ws_fcd_ptr: FixedString::from_cobol_str("NULL"),
             ws_fcd_size: 0u32,
             ws_fcd_flags: 0u32,
             display_byte: Default::default(),
@@ -585,7 +585,7 @@ impl Default for ProgramState {
             display_a1_zz9: Default::default(),
             display_a2_xxx: Default::default(),
             display_a2_zz9: Default::default(),
-            fcd_filename: FixedString::from_str("test.out"),
+            fcd_filename: FixedString::from_cobol_str("test.out"),
             fcd_record: FixedString::new(),
             fcd_map: Default::default(),
             return_code: 0,
@@ -606,7 +606,7 @@ fn p_000_main(state: &mut ProgramState) {
     while !(state.i.trimmed() > "10") {
         state.display_a1_zz9 = FixedString::copy_from(&state.i);
         state.fcd_record = FixedString::copy_from(&state.display_a1_zz9);
-        state.fcd_map.fcd_current_rec_len = FixedString::from_str("10");
+        state.fcd_map.fcd_current_rec_len = FixedString::from_cobol_str("10");
         /* TODO: complex stmt */
         /* TODO: complex stmt */
         p_300_write(state);

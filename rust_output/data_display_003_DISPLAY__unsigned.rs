@@ -69,55 +69,55 @@ impl Default for ProgramState {
 /// X-BCU
 fn p_x_bcu(state: &mut ProgramState) {
     println!("{}", state.x_bcu);
-    state.x_bcu = FixedString::from_str(&(state.x_bcu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_bcu = FixedString::from_cobol_str(&(state.x_bcu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD
 fn p_end_add(state: &mut ProgramState) {
     println!("{}", state.x_bcu);
-    state.x_bsu = FixedString::from_str("32767");
+    state.x_bsu = FixedString::from_cobol_str("32767");
     println!("{}", state.x_bsu);
-    state.x_bsu = FixedString::from_str(&(state.x_bsu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_bsu = FixedString::from_cobol_str(&(state.x_bsu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD
 fn p_end_add_2(state: &mut ProgramState) {
     println!("{}", state.x_bsu);
-    state.x_biu = FixedString::from_str("2147483647i64");
+    state.x_biu = FixedString::from_cobol_str("2147483647i64");
     println!("{}", state.x_biu);
-    state.x_biu = FixedString::from_str(&(state.x_biu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_biu = FixedString::from_cobol_str(&(state.x_biu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD
 fn p_end_add_3(state: &mut ProgramState) {
     println!("{}", state.x_biu);
-    state.x_blu = FixedString::from_str("2147483647i64");
+    state.x_blu = FixedString::from_cobol_str("2147483647i64");
     println!("{}", state.x_blu);
-    state.x_blu = FixedString::from_str(&(state.x_blu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_blu = FixedString::from_cobol_str(&(state.x_blu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD
 fn p_end_add_4(state: &mut ProgramState) {
     println!("{}", state.x_blu);
-    state.x_bdu = FixedString::from_str("9223372036854775807i64");
+    state.x_bdu = FixedString::from_cobol_str("9223372036854775807i64");
     println!("{}", state.x_bdu);
-    state.x_bdu = FixedString::from_str(&(state.x_bdu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_bdu = FixedString::from_cobol_str(&(state.x_bdu.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD
 fn p_end_add_5(state: &mut ProgramState) {
     println!("{}", state.x_bdu);
-    state.x_us = FixedString::from_str("32767");
+    state.x_us = FixedString::from_cobol_str("32767");
     println!("{}", state.x_us);
-    state.x_us = FixedString::from_str(&(state.x_us.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_us = FixedString::from_cobol_str(&(state.x_us.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD
 fn p_end_add_6(state: &mut ProgramState) {
     println!("{}", state.x_us);
-    state.x_ui = FixedString::from_str("2147483647i64");
+    state.x_ui = FixedString::from_cobol_str("2147483647i64");
     println!("{}", state.x_ui);
-    state.x_ui = FixedString::from_str(&(state.x_ui.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.x_ui = FixedString::from_cobol_str(&(state.x_ui.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// END-ADD

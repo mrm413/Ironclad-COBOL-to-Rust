@@ -260,7 +260,7 @@ impl Default for ProgramState {
             fcdopcode: Default::default(),
             extfh_opcode: Default::default(),
             fcd_parameter_block: Default::default(),
-            lseq_filename: FixedString::from_str("FCDLS"),
+            lseq_filename: FixedString::from_cobol_str("FCDLS"),
             lseq_recordarea: Default::default(),
             lseq_records: Default::default(),
             lseq_count: Default::default(),

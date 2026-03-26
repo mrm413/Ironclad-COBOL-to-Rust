@@ -462,7 +462,7 @@ impl Default for ProgramState {
             pz_05: Default::default(),
             pz_06_x: Default::default(),
             pz_06: Default::default(),
-            _filler_98: FixedString::from_str("0"),
+            _filler_98: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

@@ -103,7 +103,7 @@ impl Default for ProgramState {
             file1_date: Default::default(),
             file1_time: Default::default(),
             erc: Default::default(),
-            rec_size: FixedString::from_str(""),
+            rec_size: FixedString::from_cobol_str(""),
             _fs_file1: FileStatus::Success,
             _fh_file1: CobolFile::Closed,
             return_code: 0,

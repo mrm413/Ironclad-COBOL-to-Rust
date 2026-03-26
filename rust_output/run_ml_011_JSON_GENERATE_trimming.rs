@@ -89,7 +89,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            str: FixedString::from_str("ab"),
+            str: FixedString::from_cobol_str("ab"),
             num_edited: Default::default(),
             leading_zeroes: 0,
             decimal_nums: Default::default(),
@@ -98,8 +98,8 @@ impl Default for ProgramState {
             signed_decimal_num: -1i32,
             comp_5_item: 0,
             index_item: Default::default(),
-            float_short_item: FixedString::from_str("100"),
-            float_long_item: FixedString::from_str("0.00"),
+            float_short_item: FixedString::from_cobol_str("100"),
+            float_long_item: FixedString::from_cobol_str("0.00"),
             just_item: Default::default(),
             integer_with_p: 10000u32,
             decimal_with_p: Decimal::from(0.0004f64),

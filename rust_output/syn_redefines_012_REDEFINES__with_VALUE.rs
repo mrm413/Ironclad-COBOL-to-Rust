@@ -68,7 +68,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             x: Default::default(),
-            a: FixedString::from_str("A"),
+            a: FixedString::from_cobol_str("A"),
             g: Default::default(),
             b: Default::default(),
             y: Default::default(),

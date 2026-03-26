@@ -136,10 +136,10 @@ impl Default for ProgramState {
             fence_c: Default::default(),
             x_4: Default::default(),
             fence_d: Default::default(),
-            fence_1: FixedString::from_str("FENCE"),
+            fence_1: FixedString::from_cobol_str("FENCE"),
             d_1: 95000u32,
             d_2: 193000u32,
-            fence_2: FixedString::from_str("FENCE"),
+            fence_2: FixedString::from_cobol_str("FENCE"),
             wrk_ds_ls_1p17_1: -100000000000000000i64 as i32,
             wrk_ae_3: Default::default(),
             move72: 3344556677u64,
@@ -162,7 +162,7 @@ fn p_move72(state: &mut ProgramState) {
     state.move73 = (state.move72).into();
     if &format!("{}", state.move73) != &"33445 56677     0 ".to_string() {
         println!("{}{}{}", "MOVE X-EDIT failed: ", state.move73, ".");
-        state.grp_ae_0002.ae_0002 = FixedString::from_str("019823");
+        state.grp_ae_0002.ae_0002 = FixedString::from_cobol_str("019823");
         if { let _s = format!("{}", state.grp_ae_0002); _s.trim().to_string() } != "01098 23 ".to_string() {
             println!("{}{}{}", "MOVE AE-EDIT failed: ", state.grp_ae_0002, ".");
             state.wrk_ae_3 = (state.wrk_ds_ls_1p17_1).into();

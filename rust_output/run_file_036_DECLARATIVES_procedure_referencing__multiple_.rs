@@ -68,7 +68,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             test_rec: Default::default(),
-            z: FixedString::from_str("0"),
+            z: FixedString::from_cobol_str("0"),
             _fs_test_file: FileStatus::Success,
             _fh_test_file: CobolFile::Closed,
             return_code: 0,
@@ -96,7 +96,7 @@ fn p_test_file(state: &mut ProgramState) {
 
 /// P0101
 fn p_p0101(state: &mut ProgramState) {
-    state.z = FixedString::from_str(&(state.z.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.z = FixedString::from_cobol_str(&(state.z.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// SECTION
@@ -109,7 +109,7 @@ fn p_output(state: &mut ProgramState) {
 
 /// P0201
 fn p_p0201(state: &mut ProgramState) {
-    state.z = FixedString::from_str(&(state.z.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.z = FixedString::from_cobol_str(&(state.z.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
 }
 
 /// DECLARATIVES

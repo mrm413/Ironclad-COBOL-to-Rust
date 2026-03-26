@@ -69,7 +69,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            success_flag: FixedString::from_str("Y"),
+            success_flag: FixedString::from_cobol_str("Y"),
             screen_loc: 4004u32,
             scr: Default::default(),
             value: Default::default(),

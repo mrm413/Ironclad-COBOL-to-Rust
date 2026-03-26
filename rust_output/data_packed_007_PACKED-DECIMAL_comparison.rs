@@ -96,7 +96,7 @@ impl Default for ProgramState {
             s2_32d: Default::default(),
             s3_32d: Default::default(),
             s4_32d: Default::default(),
-            _filler_33: FixedString::from_str("0"),
+            _filler_33: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

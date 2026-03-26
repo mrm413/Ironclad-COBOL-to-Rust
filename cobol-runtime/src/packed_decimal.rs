@@ -288,14 +288,14 @@ impl<const N: usize> From<PackedDecimal<N>> for u32 {
 // From PackedDecimal for FixedString (numeric display)
 impl<const N: usize, const M: usize> From<PackedDecimal<N>> for crate::FixedString<M> {
     fn from(d: PackedDecimal<N>) -> Self {
-        Self::from_str(&d.value.to_string())
+        Self::from_cobol_str(&d.value.to_string())
     }
 }
 
 // From Decimal for FixedString
 impl<const N: usize> From<crate::Decimal> for crate::FixedString<N> {
     fn from(d: crate::Decimal) -> Self {
-        Self::from_str(&format!("{}", d))
+        Self::from_cobol_str(&format!("{}", d))
     }
 }
 

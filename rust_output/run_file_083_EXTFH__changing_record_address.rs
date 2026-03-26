@@ -101,7 +101,7 @@ impl Default for ProgramState {
             out_rec: Default::default(),
             prime_key: Default::default(),
             in_data: Default::default(),
-            out_stat: FixedString::from_str("00"),
+            out_stat: FixedString::from_cobol_str("00"),
             out_recnum: 0u32,
             _fs_outfile: FileStatus::Success,
             _fh_outfile: CobolFile::Closed,

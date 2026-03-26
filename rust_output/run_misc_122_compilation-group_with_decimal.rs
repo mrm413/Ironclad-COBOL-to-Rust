@@ -39,7 +39,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             pw: Default::default(),
-            px: FixedString::from_str("3"),
+            px: FixedString::from_cobol_str("3"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

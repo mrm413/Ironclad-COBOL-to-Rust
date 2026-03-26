@@ -67,8 +67,8 @@ impl Default for ProgramState {
         Self {
             data_field: Default::default(),
             ptr: Default::default(),
-            data_field3: FixedString::from_str("42"),
-            data_field2: FixedString::from_str("DEF"),
+            data_field3: FixedString::from_cobol_str("42"),
+            data_field2: FixedString::from_cobol_str("DEF"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

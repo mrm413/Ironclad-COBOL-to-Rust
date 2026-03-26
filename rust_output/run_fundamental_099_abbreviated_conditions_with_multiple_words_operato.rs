@@ -42,10 +42,10 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            var1: FixedString::from_str("#0001"),
-            var2: FixedString::from_str("#0002"),
-            var3: FixedString::from_str("#0003"),
-            var4: FixedString::from_str("#0004"),
+            var1: FixedString::from_cobol_str("#0001"),
+            var2: FixedString::from_cobol_str("#0002"),
+            var3: FixedString::from_cobol_str("#0003"),
+            var4: FixedString::from_cobol_str("#0004"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

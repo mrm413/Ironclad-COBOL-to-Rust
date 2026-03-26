@@ -108,7 +108,7 @@ impl Default for ProgramState {
         Self {
             ws_line_number: 0,
             ws_number: Decimal::from(0i64),
-            ws_text: FixedString::from_str("CAT"),
+            ws_text: FixedString::from_cobol_str("CAT"),
             pic_9_signed: 0,
             pic_9_signed_decimal: Default::default(),
             pic_9_not_signed: 0,

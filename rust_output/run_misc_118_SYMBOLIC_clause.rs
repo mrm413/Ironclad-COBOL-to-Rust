@@ -52,7 +52,7 @@ impl Default for ProgramState {
 fn p_z(state: &mut ProgramState) {
     if &format!("{}", state.z) != &"0".to_string() {
         println!("{}", state.z);
-        // SKIP: unresolved ref: state.z = FixedString::from_str(&format!("{}", state._unresolved_z_ebc));
+        // SKIP: unresolved ref: state.z = FixedString::from_cobol_str(&format!("{}", state._unresolved_z_ebc));
         if &format!("{}", state.z) != &"0".to_string() {
             println!("{}", state.z);
             { std::process::exit(0); }

@@ -97,9 +97,9 @@ fn p_default(state: &mut ProgramState) {
                         println!("{}", "INIT1 NOT = SPACES");
                         if state.init[((3 - 1) as usize).min(2)].trimmed() != " " {
                             println!("{}", "INIT3 NOT = SPACES");
-                            state.init[((1 - 1) as usize).min(2)] = FixedString::from_str(&format!("{}", "*"));
-                            state.init[((2 - 1) as usize).min(2)] = FixedString::from_str(&format!("{}", "*"));
-                            state.init[((3 - 1) as usize).min(2)] = FixedString::from_str(&format!("{}", "*"));
+                            state.init[((1 - 1) as usize).min(2)] = FixedString::from_cobol_str(&format!("{}", "*"));
+                            state.init[((2 - 1) as usize).min(2)] = FixedString::from_cobol_str(&format!("{}", "*"));
+                            state.init[((3 - 1) as usize).min(2)] = FixedString::from_cobol_str(&format!("{}", "*"));
                             if { let _rm_b = state.init[((2 - 1) as usize).min(2)].as_bytes().to_vec(); String::from_utf8(_rm_b[(50 - 1) as usize..(50 - 1 + 5) as usize].to_vec()).unwrap_or_default() } != "*****" {
                                 println!("{}", "INIT2 BADVAL");
                                 state.init[((2 - 1) as usize).min(2)] = Default::default();

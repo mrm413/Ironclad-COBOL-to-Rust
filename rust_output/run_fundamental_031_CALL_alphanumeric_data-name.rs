@@ -36,7 +36,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            prgm: FixedString::from_str("recursion-test"),
+            prgm: FixedString::from_cobol_str("recursion-test"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

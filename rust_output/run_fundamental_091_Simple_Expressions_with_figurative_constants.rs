@@ -50,14 +50,14 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            fldx: FixedString::from_str("X"),
+            fldx: FixedString::from_cobol_str("X"),
             fldxx: FixedString::new(),
-            fldx50: FixedString::from_str("X50"),
-            fldx500: FixedString::from_str("X500"),
-            fldx32k: FixedString::from_str("X"),
-            fld1: FixedString::from_str("1"),
-            fld1x: FixedString::from_str("1"),
-            _filler_13: FixedString::from_str("0"),
+            fldx50: FixedString::from_cobol_str("X50"),
+            fldx500: FixedString::from_cobol_str("X500"),
+            fldx32k: FixedString::from_cobol_str("X"),
+            fld1: FixedString::from_cobol_str("1"),
+            fld1x: FixedString::from_cobol_str("1"),
+            _filler_13: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,
@@ -423,7 +423,7 @@ fn p_do_check(state: &mut ProgramState) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     if &format!("{}", state.fldxx) == &"    ".to_string() {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         println!("{}", "! \"XX\" <> \"     \"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        state.fldxx = FixedString::from_str(&format!("{}", "A"));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        state.fldxx = FixedString::from_cobol_str(&format!("{}", "A"));
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         if &format!("{}", state.fldxx) == &"AA  ".to_string() {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             println!("{}", "! \"AA\" <> \"AA  \"");

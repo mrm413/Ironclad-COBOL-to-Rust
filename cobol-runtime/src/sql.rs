@@ -438,22 +438,10 @@ impl SqlContext {
         }
 
         // Route to appropriate handler
-        if sql_upper.starts_with("INSERT") {
-            self.sqlca.set_ok();
-        } else if sql_upper.starts_with("UPDATE") {
-            self.sqlca.set_ok();
-        } else if sql_upper.starts_with("DELETE") {
-            self.sqlca.set_ok();
-        } else if sql_upper.starts_with("SELECT") {
-            self.sqlca.set_ok();
-        } else if sql_upper.starts_with("COMMIT") {
-            self.sqlca.set_ok();
-        } else if sql_upper.starts_with("ROLLBACK") {
-            self.sqlca.set_ok();
-        } else {
-            // DDL or unknown — accept it
-            self.sqlca.set_ok();
-        }
+        // All known SQL commands (INSERT, UPDATE, DELETE, SELECT, COMMIT, ROLLBACK)
+        // and unknown DDL are accepted in standalone mode.
+        let _ = &sql_upper; // acknowledge parsed SQL
+        self.sqlca.set_ok();
     }
 }
 

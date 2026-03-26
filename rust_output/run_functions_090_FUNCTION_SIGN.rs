@@ -55,13 +55,13 @@ impl Default for ProgramState {
 fn p_z(state: &mut ProgramState) {
     if state.z.trimmed() != "1" {
         println!("{}{}", "Sign 1 ", state.z);
-        state.z = FixedString::from_str("-0.0");
+        state.z = FixedString::from_cobol_str("-0.0");
         if state.z.trimmed() != "0" {
             println!("{}{}", "Sign 2 ", state.z);
-            state.z = FixedString::from_str("0.0");
+            state.z = FixedString::from_cobol_str("0.0");
             if state.z.trimmed() != "0" {
                 println!("{}{}", "Sign 3 ", state.z);
-                state.z = FixedString::from_str("-3.12345");
+                state.z = FixedString::from_cobol_str("-3.12345");
                 if state.z.trimmed() != "-1" {
                     println!("{}{}", "Sign 4 ", state.z);
                 }
@@ -69,11 +69,11 @@ fn p_z(state: &mut ProgramState) {
                 state.z = FixedString::copy_from(&state.f);
                 if state.z.trimmed() != "1" {
                     println!("{}{}", "Sign 5 ", state.z);
-                    state.f = FixedString::from_str("-0.0");
+                    state.f = FixedString::from_cobol_str("-0.0");
                     state.z = FixedString::copy_from(&state.f);
                     if state.z.trimmed() != "0" {
                         println!("{}{}", "Sign 6 ", state.z);
-                        state.f = FixedString::from_str("-3.12345");
+                        state.f = FixedString::from_cobol_str("-3.12345");
                         state.z = FixedString::copy_from(&state.f);
                         if state.z.trimmed() != "-1" {
                             println!("{}{}", "Sign 7 ", state.z);

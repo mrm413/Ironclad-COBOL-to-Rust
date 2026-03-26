@@ -1,11 +1,11 @@
-/// EBCDIC CP037 (US/Canada) encoding support for mainframe COBOL transpilation.
-///
-/// IBM mainframes use EBCDIC (Extended Binary Coded Decimal Interchange Code)
-/// instead of ASCII. Key differences:
-///   - Space = 0x40 (not 0x20)
-///   - 'A' = 0xC1 (not 0x41)
-///   - Sort order: lowercase < uppercase < digits (opposite of ASCII)
-///   - Sign overpunch in zone bits for zoned decimal
+// EBCDIC CP037 (US/Canada) encoding support for mainframe COBOL transpilation.
+//
+// IBM mainframes use EBCDIC (Extended Binary Coded Decimal Interchange Code)
+// instead of ASCII. Key differences:
+//   - Space = 0x40 (not 0x20)
+//   - 'A' = 0xC1 (not 0x41)
+//   - Sort order: lowercase < uppercase < digits (opposite of ASCII)
+//   - Sign overpunch in zone bits for zoned decimal
 
 /// EBCDIC CP037 → ASCII translation table (256 bytes).
 /// Index = EBCDIC byte, Value = ASCII byte.
@@ -177,20 +177,15 @@ pub fn ascii_compare_ebcdic_order(a: &str, b: &str) -> std::cmp::Ordering {
 }
 
 /// Encoding mode for the transpiled program.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub enum EncodingMode {
     /// ASCII/UTF-8 — strings stored as ASCII, comparisons use ASCII order.
     /// Use for programs already converted to ASCII or running on open systems.
+    #[default]
     Ascii,
     /// EBCDIC CP037 — strings stored as ASCII internally but comparisons
     /// use EBCDIC collating sequence. Use for mainframe-faithful behavior.
     EbcdicCollation,
-}
-
-impl Default for EncodingMode {
-    fn default() -> Self {
-        EncodingMode::Ascii
-    }
 }
 
 #[cfg(test)]

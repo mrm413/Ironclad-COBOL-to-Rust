@@ -38,7 +38,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            hello: FixedString::from_str("Copytest"),
+            hello: FixedString::from_cobol_str("Copytest"),
             xx: Default::default(),
             return_code: 0,
             tally: 0,

@@ -104,7 +104,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            data_source: FixedString::from_str("data"),
+            data_source: FixedString::from_cobol_str("data"),
             rp_head: Default::default(),
             line: Default::default(),
             column: Default::default(),

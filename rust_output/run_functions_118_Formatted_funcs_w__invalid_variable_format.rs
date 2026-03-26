@@ -40,9 +40,9 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            invalid_date_format: FixedString::from_str("yyyymmdd"),
-            invalid_datetime_format: FixedString::from_str("yyyymmddtHHMMSS"),
-            invalid_time_format: FixedString::from_str("HHMMSS"),
+            invalid_date_format: FixedString::from_cobol_str("yyyymmdd"),
+            invalid_datetime_format: FixedString::from_cobol_str("yyyymmddtHHMMSS"),
+            invalid_time_format: FixedString::from_cobol_str("HHMMSS"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

@@ -50,7 +50,7 @@ impl Default for ProgramState {
 
 /// MAIN
 fn p_main(state: &mut ProgramState) {
-    // SKIP: unresolved ref: state.main_var = FixedString::from_str(&format!("{}", state._unresolved_main));
+    // SKIP: unresolved ref: state.main_var = FixedString::from_cobol_str(&format!("{}", state._unresolved_main));
     // SKIP: unresolved ref: state._unresolved_main = state._unresolved_repo_prog.clone();
     { std::process::exit(0); }
 }

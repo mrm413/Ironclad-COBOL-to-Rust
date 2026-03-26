@@ -88,7 +88,7 @@ impl Default for ProgramState {
             dummy_1: Default::default(),
             dummy_2: Default::default(),
             dummy_3: Default::default(),
-            success_flag: FixedString::from_str("Y"),
+            success_flag: FixedString::from_cobol_str("Y"),
             scr: Default::default(),
             pic: Default::default(),
             line: Default::default(),

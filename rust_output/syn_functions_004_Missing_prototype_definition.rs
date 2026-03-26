@@ -50,8 +50,8 @@ impl Default for ProgramState {
 
 /// RET
 fn p_ret(state: &mut ProgramState) {
-    state.ret = FixedString::from_str("0");
-    state.ret = FixedString::from_str("0");
+    state.ret = FixedString::from_cobol_str("0");
+    state.ret = FixedString::from_cobol_str("0");
 }
 
 /// BLAH

@@ -38,8 +38,8 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            x: FixedString::from_str("A#B.C%D+E$"),
-            test_fld: FixedString::from_str("ALL"),
+            x: FixedString::from_cobol_str("A#B.C%D+E$"),
+            test_fld: FixedString::from_cobol_str("ALL"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

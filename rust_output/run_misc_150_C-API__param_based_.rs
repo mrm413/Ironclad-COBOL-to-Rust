@@ -84,7 +84,7 @@ impl Default for ProgramState {
             comp3v99: Default::default(),
             pic9: 8192i32,
             ne: Default::default(),
-            chrx: FixedString::from_str("Hello"),
+            chrx: FixedString::from_cobol_str("Hello"),
             grpx: Default::default(),
             return_code: 0,
             tally: 0,
@@ -131,7 +131,7 @@ fn p_ne(state: &mut ProgramState) {
         capi(&mut _p1, &mut _p2, &mut _p3, &mut _p4);
         state.binfld9 = _p1;
     }
-    state.ne = FixedString::from_str("512.77");
+    state.ne = FixedString::from_cobol_str("512.77");
     {
         let mut _p1 = (state.comp3).clone();
         let mut _p2 = (state.ne).clone();

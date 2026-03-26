@@ -56,11 +56,11 @@ impl Default for ProgramState {
 
 /// DISP-1
 fn p_disp_1(state: &mut ProgramState) {
-    state.edit_1 = FixedString::from_str(&format!("{}", state.disp_1));
+    state.edit_1 = FixedString::from_cobol_str(&format!("{}", state.disp_1));
     if &format!("{}", state.edit_1_x) != &"******".to_string() {
         println!("{}{}{}", "Error EDIT-1-X <", state.edit_1_x, "> !=  <******>");
         state.disp_1 = 123 as u32;
-        state.edit_1 = FixedString::from_str(&format!("{}", state.disp_1));
+        state.edit_1 = FixedString::from_cobol_str(&format!("{}", state.disp_1));
         if &format!("{}", state.edit_1_x) != &"***123".to_string() {
             println!("{}{}{}", "Error EDIT-1-X <", state.edit_1_x, "> !=  <***123>");
             return;

@@ -95,9 +95,9 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             header: Default::default(),
-            textfile_1_ocfg: FixedString::from_str("C"),
+            textfile_1_ocfg: FixedString::from_cobol_str("C"),
             textfile_1_size: Default::default(),
-            textfile_2_ocfg: FixedString::from_str("C"),
+            textfile_2_ocfg: FixedString::from_cobol_str("C"),
             textfile_2_size: Default::default(),
             return_code: 0,
             tally: 0,

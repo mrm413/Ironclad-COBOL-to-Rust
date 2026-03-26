@@ -396,7 +396,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            digx: FixedString::from_str("123456789b123456789c123456789d123456789e123456789f"),
+            digx: FixedString::from_cobol_str("123456789b123456789c123456789d123456789e123456789f"),
             _filler_17: Default::default(),
             digs: Default::default(),
             error_messages: Default::default(),

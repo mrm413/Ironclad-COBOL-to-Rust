@@ -42,7 +42,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            format_str: FixedString::from_str("YYYYMMDD"),
+            format_str: FixedString::from_cobol_str("YYYYMMDD"),
             date_format: Default::default(),
             time_format: Default::default(),
             datetime_format: Default::default(),

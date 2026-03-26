@@ -148,17 +148,17 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            bcl_a: FixedString::from_str(""),
-            bcl_b: FixedString::from_str(""),
+            bcl_a: FixedString::from_cobol_str(""),
+            bcl_b: FixedString::from_cobol_str(""),
             bcl_res: Default::default(),
-            bc_a: FixedString::from_str(""),
-            bc_b: FixedString::from_str(""),
+            bc_a: FixedString::from_cobol_str(""),
+            bc_b: FixedString::from_cobol_str(""),
             bc_res: Default::default(),
-            bd_a: FixedString::from_str(""),
-            bd_b: FixedString::from_str(""),
+            bd_a: FixedString::from_cobol_str(""),
+            bd_b: FixedString::from_cobol_str(""),
             bd_res: Default::default(),
-            bl_a: FixedString::from_str(""),
-            bl_b: FixedString::from_str(""),
+            bl_a: FixedString::from_cobol_str(""),
+            bl_b: FixedString::from_cobol_str(""),
             bl_res: Default::default(),
             c_a: 0,
             c_b: 0,
@@ -181,29 +181,29 @@ impl Default for ProgramState {
             cn9_a: 0,
             cn9_b: 0,
             cn9_res: Default::default(),
-            cnx_a: FixedString::from_str(""),
-            cnx_b: FixedString::from_str(""),
+            cnx_a: FixedString::from_cobol_str(""),
+            cnx_b: FixedString::from_cobol_str(""),
             cnx_res: Default::default(),
             cx9_a: 0,
             cx9_b: 0,
             cx9_res: Default::default(),
-            cxx_a: FixedString::from_str(""),
-            cxx_b: FixedString::from_str(""),
+            cxx_a: FixedString::from_cobol_str(""),
+            cxx_b: FixedString::from_cobol_str(""),
             cxx_res: Default::default(),
             d_a: 0,
             d_b: 0,
             d_res: Default::default(),
-            fd16_a: FixedString::from_str(""),
-            fd16_b: FixedString::from_str(""),
+            fd16_a: FixedString::from_cobol_str(""),
+            fd16_b: FixedString::from_cobol_str(""),
             fd16_res: Default::default(),
-            fd34_a: FixedString::from_str(""),
-            fd34_b: FixedString::from_str(""),
+            fd34_a: FixedString::from_cobol_str(""),
+            fd34_b: FixedString::from_cobol_str(""),
             fd34_res: Default::default(),
-            fl_a: FixedString::from_str(""),
-            fl_b: FixedString::from_str(""),
+            fl_a: FixedString::from_cobol_str(""),
+            fl_b: FixedString::from_cobol_str(""),
             fl_res: Default::default(),
-            fs_a: FixedString::from_str(""),
-            fs_b: FixedString::from_str(""),
+            fs_a: FixedString::from_cobol_str(""),
+            fs_b: FixedString::from_cobol_str(""),
             fs_res: Default::default(),
             return_code: 0,
             tally: 0,
@@ -239,7 +239,7 @@ fn p_bcl_a_3(state: &mut ProgramState) {
 
 /// BCL-A
 fn p_bcl_a_4(state: &mut ProgramState) {
-    state.bcl_a = FixedString::from_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bcl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bcl_a = FixedString::from_cobol_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bcl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bcl_res = FixedString::copy_from(&state.bcl_a);
     if state.bcl_res.trimmed() != "1" {
     }
@@ -257,7 +257,7 @@ fn p_bcl_a_6(state: &mut ProgramState) {
     if state.bcl_res.trimmed() != "1" {
     }
     println!("{}", "ERROR BINARY-C-LONG - NUM");
-    state.bc_a = FixedString::from_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) + state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bc_a = FixedString::from_cobol_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) + state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bc_res = FixedString::copy_from(&state.bc_a);
     if state.bc_res.trimmed() != "11" {
     }
@@ -279,7 +279,7 @@ fn p_bc_a_2(state: &mut ProgramState) {
 
 /// BC-A
 fn p_bc_a_3(state: &mut ProgramState) {
-    state.bc_a = FixedString::from_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) - state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bc_a = FixedString::from_cobol_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) - state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bc_res = FixedString::copy_from(&state.bc_a);
     if state.bc_res.trimmed() != "1" {
     }
@@ -297,7 +297,7 @@ fn p_bc_a_5(state: &mut ProgramState) {
     if state.bc_res.trimmed() != "1" {
     }
     println!("{}", "ERROR BINARY-CHAR - NUM");
-    state.bd_a = FixedString::from_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) + state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bd_a = FixedString::from_cobol_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) + state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bd_res = FixedString::copy_from(&state.bd_a);
     if state.bd_res.trimmed() != "11" {
     }
@@ -319,7 +319,7 @@ fn p_bd_a_2(state: &mut ProgramState) {
 
 /// BD-A
 fn p_bd_a_3(state: &mut ProgramState) {
-    state.bd_a = FixedString::from_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) - state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bd_a = FixedString::from_cobol_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) - state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bd_res = FixedString::copy_from(&state.bd_a);
     if state.bd_res.trimmed() != "1" {
     }
@@ -337,7 +337,7 @@ fn p_bd_a_5(state: &mut ProgramState) {
     if state.bd_res.trimmed() != "1" {
     }
     println!("{}", "ERROR BINARY-DOUBLE - NUM");
-    state.bl_a = FixedString::from_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) + state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bl_a = FixedString::from_cobol_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) + state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bl_res = FixedString::copy_from(&state.bl_a);
     if state.bl_res.trimmed() != "11" {
     }
@@ -359,7 +359,7 @@ fn p_bl_a_2(state: &mut ProgramState) {
 
 /// BL-A
 fn p_bl_a_3(state: &mut ProgramState) {
-    state.bl_a = FixedString::from_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bl_a = FixedString::from_cobol_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bl_res = FixedString::copy_from(&state.bl_a);
     if state.bl_res.trimmed() != "1" {
     }
@@ -657,7 +657,7 @@ fn p_cn9_a_5(state: &mut ProgramState) {
     if state.cn9_res != 1 {
     }
     println!("{}", "ERROR COMP-N - NUM");
-    state.cnx_a = FixedString::from_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.cnx_a = FixedString::from_cobol_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.cnx_res = FixedString::copy_from(&state.cnx_a);
     if state.cnx_res.trimmed() != "11" {
     }
@@ -679,7 +679,7 @@ fn p_cnx_a_2(state: &mut ProgramState) {
 
 /// CNX-A
 fn p_cnx_a_3(state: &mut ProgramState) {
-    state.cnx_a = FixedString::from_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.cnx_a = FixedString::from_cobol_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.cnx_res = FixedString::copy_from(&state.cnx_a);
     if state.cnx_res.trimmed() != "1" {
     }
@@ -737,7 +737,7 @@ fn p_cx9_a_5(state: &mut ProgramState) {
     if state.cx9_res != 1 {
     }
     println!("{}", "ERROR COMP-X - NUM");
-    state.cxx_a = FixedString::from_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.cxx_a = FixedString::from_cobol_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.cxx_res = FixedString::copy_from(&state.cxx_a);
     if state.cxx_res.trimmed() != "11" {
     }
@@ -759,7 +759,7 @@ fn p_cxx_a_2(state: &mut ProgramState) {
 
 /// CXX-A
 fn p_cxx_a_3(state: &mut ProgramState) {
-    state.cxx_a = FixedString::from_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.cxx_a = FixedString::from_cobol_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.cxx_res = FixedString::copy_from(&state.cxx_a);
     if state.cxx_res.trimmed() != "1" {
     }
@@ -817,7 +817,7 @@ fn p_d_a_5(state: &mut ProgramState) {
     if state.d_res != 1 {
     }
     println!("{}", "ERROR DISPLAY - NUM");
-    state.fd16_a = FixedString::from_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fd16_a = FixedString::from_cobol_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fd16_res = FixedString::copy_from(&state.fd16_a);
     if state.fd16_res.trimmed() != "11" {
     }
@@ -839,7 +839,7 @@ fn p_fd16_a_2(state: &mut ProgramState) {
 
 /// FD16-A
 fn p_fd16_a_3(state: &mut ProgramState) {
-    state.fd16_a = FixedString::from_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fd16_a = FixedString::from_cobol_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fd16_res = FixedString::copy_from(&state.fd16_a);
     if state.fd16_res.trimmed() != "1" {
     }
@@ -857,7 +857,7 @@ fn p_fd16_a_5(state: &mut ProgramState) {
     if state.fd16_res.trimmed() != "1" {
     }
     println!("{}", "ERROR FLOAT-DECIMAL-16 - NUM");
-    state.fd34_a = FixedString::from_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fd34_a = FixedString::from_cobol_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fd34_res = FixedString::copy_from(&state.fd34_a);
     if state.fd34_res.trimmed() != "11" {
     }
@@ -879,7 +879,7 @@ fn p_fd34_a_2(state: &mut ProgramState) {
 
 /// FD34-A
 fn p_fd34_a_3(state: &mut ProgramState) {
-    state.fd34_a = FixedString::from_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fd34_a = FixedString::from_cobol_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fd34_res = FixedString::copy_from(&state.fd34_a);
     if state.fd34_res.trimmed() != "1" {
     }
@@ -897,7 +897,7 @@ fn p_fd34_a_5(state: &mut ProgramState) {
     if state.fd34_res.trimmed() != "1" {
     }
     println!("{}", "ERROR FLOAT-DECIMAL-34 - NUM");
-    state.fl_a = FixedString::from_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) + state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fl_a = FixedString::from_cobol_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) + state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fl_res = FixedString::copy_from(&state.fl_a);
     if state.fl_res.trimmed() != "11" {
     }
@@ -919,7 +919,7 @@ fn p_fl_a_2(state: &mut ProgramState) {
 
 /// FL-A
 fn p_fl_a_3(state: &mut ProgramState) {
-    state.fl_a = FixedString::from_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) - state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fl_a = FixedString::from_cobol_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) - state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fl_res = FixedString::copy_from(&state.fl_a);
     if state.fl_res.trimmed() != "1" {
     }
@@ -937,7 +937,7 @@ fn p_fl_a_5(state: &mut ProgramState) {
     if state.fl_res.trimmed() != "1" {
     }
     println!("{}", "ERROR FLOAT-LONG - NUM");
-    state.fs_a = FixedString::from_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) + state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fs_a = FixedString::from_cobol_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) + state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fs_res = FixedString::copy_from(&state.fs_a);
     if state.fs_res.trimmed() != "11" {
     }
@@ -959,7 +959,7 @@ fn p_fs_a_2(state: &mut ProgramState) {
 
 /// FS-A
 fn p_fs_a_3(state: &mut ProgramState) {
-    state.fs_a = FixedString::from_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) - state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.fs_a = FixedString::from_cobol_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) - state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.fs_res = FixedString::copy_from(&state.fs_a);
     if state.fs_res.trimmed() != "1" {
     }

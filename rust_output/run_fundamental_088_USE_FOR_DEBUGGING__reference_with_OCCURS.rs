@@ -136,7 +136,7 @@ fn p_declaratives_2(state: &mut ProgramState) {
 
 /// SOME-PAR
 fn p_some_par(state: &mut ProgramState) {
-    // SKIP: unresolved ref: state._unresolved_data_field[((4 - 1) as usize).min(1)][(2 - 1) as usize][(1 - 1) as usize] = FixedString::from_str(&format!("{}", "\""));
+    // SKIP: unresolved ref: state._unresolved_data_field[((4 - 1) as usize).min(1)][(2 - 1) as usize][(1 - 1) as usize] = FixedString::from_cobol_str(&format!("{}", "\""));
     { std::process::exit(0); }
 }
 

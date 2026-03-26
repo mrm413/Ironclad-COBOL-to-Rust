@@ -127,12 +127,12 @@ fn p_unup(state: &mut ProgramState) {
     state.tstrec.tsty[((state.ubin - 1) as usize).min(299)] = "yyy".into();
     state.ubin = 1 as u32;
     println!("{}{}{}{}{}", "UBIN: ", state.ubin, " is :", state.tstrec.tsty[((state.ubin - 1) as usize).min(299)], ":");
-    state.uchr = FixedString::from_str("0");
+    state.uchr = FixedString::from_cobol_str("0");
     println!("{}{}{}{}{}", "UCHR: ", state.uchr, " is :", state.tstrec.tsty[((state.uchr.trimmed().parse::<i64>().unwrap_or(1) - 1) as usize).min(299)], ":");
-    state.schr = FixedString::from_str("-1");
+    state.schr = FixedString::from_cobol_str("-1");
     println!("{}{}{}{}{}", "SCHR: ", state.schr, " is :", state.tstrec.tsty[((state.schr.trimmed().parse::<i64>().unwrap_or(1) - 1) as usize).min(299)], ":");
     state.tstrec.tsty[((129 - 1) as usize).min(299)] = "zzz".into();
-    state.uchr = FixedString::from_str("129");
+    state.uchr = FixedString::from_cobol_str("129");
     println!("{}{}{}{}{}", "UCHR: ", state.uchr, " is :", state.tstrec.tsty[((state.uchr.trimmed().parse::<i64>().unwrap_or(1) - 1) as usize).min(299)], ":");
     { std::process::exit(0); }
 }

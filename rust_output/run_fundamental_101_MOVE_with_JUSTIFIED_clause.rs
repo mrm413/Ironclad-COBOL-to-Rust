@@ -41,8 +41,8 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             ele: Default::default(),
-            short: FixedString::from_str("ABC "),
-            long: FixedString::from_str("ABCDEFGHIGKLMNOP"),
+            short: FixedString::from_cobol_str("ABC "),
+            long: FixedString::from_cobol_str("ABCDEFGHIGKLMNOP"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

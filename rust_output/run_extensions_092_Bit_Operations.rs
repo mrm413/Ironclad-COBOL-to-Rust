@@ -46,12 +46,12 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            x1: FixedString::from_str("0"),
-            x2: FixedString::from_str("0"),
-            x3: FixedString::from_str("0"),
-            xx1: FixedString::from_str("0"),
-            xx2: FixedString::from_str("0"),
-            xx3: FixedString::from_str("0"),
+            x1: FixedString::from_cobol_str("0"),
+            x2: FixedString::from_cobol_str("0"),
+            x3: FixedString::from_cobol_str("0"),
+            xx1: FixedString::from_cobol_str("0"),
+            xx2: FixedString::from_cobol_str("0"),
+            xx3: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,
@@ -68,11 +68,11 @@ fn p_x3(state: &mut ProgramState) {
     println!("{}", "Test using PIC XX COMP-X");
     state.xx1 = ((state.xx2)).clone().into();
     println!("{}{}{}{}{}", state.xx2, " B-OR  ", state.xx3, " is ", state.xx1);
-    state.xx3 = FixedString::from_str("3");
+    state.xx3 = FixedString::from_cobol_str("3");
     state.xx1 = ((state.xx2)).clone().into();
     println!("{}{}{}{}{}", state.xx2, " B-XOR ", state.xx3, " is ", state.xx1);
-    state.xx2 = FixedString::from_str("3");
-    state.xx1 = FixedString::from_str("1");
+    state.xx2 = FixedString::from_cobol_str("3");
+    state.xx1 = FixedString::from_cobol_str("1");
     // SKIP: unresolved condition
     println!("{}{}{}{}{}{}", state.xx2, " B-AND ", state.xx1, " = ", state.xx1, " TRUE");
     println!("{}{}{}{}{}{}", state.xx2, " B-AND ", state.xx1, " = ", state.xx1, " FALSE");
@@ -102,11 +102,11 @@ fn p_xx2(state: &mut ProgramState) {
     println!("{}", "Test using PIC X COMP-X");
     state.x1 = ((state.x2)).clone().into();
     println!("{}{}{}{}{}", state.x2, " B-OR  ", state.x3, " is ", state.x1);
-    state.x3 = FixedString::from_str("3");
+    state.x3 = FixedString::from_cobol_str("3");
     state.x1 = ((state.x2)).clone().into();
     println!("{}{}{}{}{}", state.x2, " B-XOR ", state.x3, " is ", state.x1);
-    state.x2 = FixedString::from_str("3");
-    state.x1 = FixedString::from_str("1");
+    state.x2 = FixedString::from_cobol_str("3");
+    state.x1 = FixedString::from_cobol_str("1");
     // SKIP: unresolved condition
     println!("{}{}{}{}{}{}", state.x2, " B-AND ", state.x1, " = ", state.x1, " TRUE");
     println!("{}{}{}{}{}{}", state.x2, " B-AND ", state.x1, " = ", state.x1, " FALSE");

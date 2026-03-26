@@ -79,7 +79,7 @@ impl Default for ProgramState {
 
 /// RESULT
 fn p_result(state: &mut ProgramState) {
-    state.arg_len = FixedString::from_str(&format!("{}", std::mem::size_of_val(&state.argument) as i64));
+    state.arg_len = FixedString::from_cobol_str(&format!("{}", std::mem::size_of_val(&state.argument) as i64));
     {
         let _bytes = state.argument.as_bytes();
         let _len = _bytes.len();

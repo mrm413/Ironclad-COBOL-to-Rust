@@ -104,8 +104,8 @@ impl Default for ProgramState {
         Self {
             input_rec: Default::default(),
             output_rec: Default::default(),
-            output_file: FixedString::from_str("TEST-FILE"),
-            input_file: FixedString::from_str("TEST-INP"),
+            output_file: FixedString::from_cobol_str("TEST-FILE"),
+            input_file: FixedString::from_cobol_str("TEST-INP"),
             input_status: Default::default(),
             input_len: 0,
             _fs_infile: FileStatus::Success,
@@ -150,7 +150,7 @@ fn p_a000_begin(state: &mut ProgramState) {
     output_rec_write(state);
     println!("{}{}{}{}", "Write 1: STATUS IS ", state.input_status, " LENGTH IS ", state.input_len);
     state.input_len = 64 as u32;
-    state.output_rec = FixedString::from_str(&format!("{}", "."));
+    state.output_rec = FixedString::from_cobol_str(&format!("{}", "."));
     { let _s = (1 - 1) as usize; let _l = (8) as usize; let _sv = String::from("Record 2"); let _src = _sv.as_bytes(); let _dst = state.output_rec.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
     output_rec_write(state);
     println!("{}{}{}{}", "Write 2: STATUS IS ", state.input_status, " LENGTH IS ", state.input_len);

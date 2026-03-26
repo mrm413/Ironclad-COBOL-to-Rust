@@ -48,8 +48,8 @@ impl Default for ProgramState {
         Self {
             int: Default::default(),
             ext_int: Default::default(),
-            int_val: FixedString::from_str(""),
-            somevar: FixedString::from_str(""),
+            int_val: FixedString::from_cobol_str(""),
+            somevar: FixedString::from_cobol_str(""),
             someval: Default::default(),
             someext: Default::default(),
             return_code: 0,

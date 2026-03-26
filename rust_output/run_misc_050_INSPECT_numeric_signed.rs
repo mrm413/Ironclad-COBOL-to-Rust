@@ -97,49 +97,49 @@ impl Default for ProgramState {
 
 /// CNT
 fn p_cnt(state: &mut ProgramState) {
-    state.trailing2.cnt = FixedString::from_str("0");
+    state.trailing2.cnt = FixedString::from_cobol_str("0");
     {
         let mut _ibuf = format!("{}", state.separate2).into_bytes();
         state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;
     }
     if state.trailing2.cnt.trimmed() != "2" {
         println!("{}{}", "T2 - ", state.trailing2.cnt);
-        state.trailing2.cnt = FixedString::from_str("0");
+        state.trailing2.cnt = FixedString::from_cobol_str("0");
         {
             let mut _ibuf = format!("{}", state.tseparate1).into_bytes();
             state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;
         }
         if state.trailing2.cnt.trimmed() != "2" {
             println!("{}{}", "T3 - ", state.trailing2.cnt);
-            state.trailing2.cnt = FixedString::from_str("0");
+            state.trailing2.cnt = FixedString::from_cobol_str("0");
             {
                 let mut _ibuf = format!("{}", state.tseparate2).into_bytes();
                 state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;
             }
             if state.trailing2.cnt.trimmed() != "2" {
                 println!("{}{}", "T4 - ", state.trailing2.cnt);
-                state.trailing2.cnt = FixedString::from_str("0");
+                state.trailing2.cnt = FixedString::from_cobol_str("0");
                 {
                     let mut _ibuf = format!("{}", state.nseparate1).into_bytes();
                     state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;
                 }
                 if state.trailing2.cnt.trimmed() != "2" {
                     println!("{}{}", "T5 - ", state.trailing2.cnt);
-                    state.trailing2.cnt = FixedString::from_str("0");
+                    state.trailing2.cnt = FixedString::from_cobol_str("0");
                     {
                         let mut _ibuf = format!("{}", state.nseparate2).into_bytes();
                         state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;
                     }
                     if state.trailing2.cnt.trimmed() != "2" {
                         println!("{}{}", "T6 - ", state.trailing2.cnt);
-                        state.trailing2.cnt = FixedString::from_str("0");
+                        state.trailing2.cnt = FixedString::from_cobol_str("0");
                         {
                             let mut _ibuf = format!("{}", state.trailing1).into_bytes();
                             state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;
                         }
                         if state.trailing2.cnt.trimmed() != "2" {
                             println!("{}{}", "T7 - ", state.trailing2.cnt);
-                            state.trailing2.cnt = FixedString::from_str("0");
+                            state.trailing2.cnt = FixedString::from_cobol_str("0");
                             {
                                 let mut _ibuf = format!("{}", state.trailing2).into_bytes();
                                 state.trailing2.cnt += inspect_tally_all(&_ibuf, b"1", None, None) as i32;

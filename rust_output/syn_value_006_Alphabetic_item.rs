@@ -44,11 +44,11 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            x_123: FixedString::from_str("123"),
-            x_zero: FixedString::from_str("000"),
-            x_ab1: FixedString::from_str("ab1"),
-            x_abc: FixedString::from_str("abc"),
-            x_abcd: FixedString::from_str("abcd"),
+            x_123: FixedString::from_cobol_str("123"),
+            x_zero: FixedString::from_cobol_str("000"),
+            x_ab1: FixedString::from_cobol_str("ab1"),
+            x_abc: FixedString::from_cobol_str("abc"),
+            x_abcd: FixedString::from_cobol_str("abcd"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

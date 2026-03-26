@@ -295,10 +295,10 @@ pub fn inspect_converting(
 ) {
     let (start, end) = inspect_region_bounds(data, before, after);
     let len = from.len().min(to.len());
-    for i in start..end {
+    for byte in &mut data[start..end] {
         for j in 0..len {
-            if data[i] == from[j] {
-                data[i] = to[j];
+            if *byte == from[j] {
+                *byte = to[j];
                 break;
             }
         }

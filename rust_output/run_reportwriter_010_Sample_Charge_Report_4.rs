@@ -429,7 +429,7 @@ impl Default for ProgramState {
             sr_salesman_number: Default::default(),
             sr_district_code: Default::default(),
             sr_sale_amount: Default::default(),
-            end_of_file_switch: FixedString::from_str("N"),
+            end_of_file_switch: FixedString::from_cobol_str("N"),
             commission_table: Default::default(),
             _filler_52: Default::default(),
             commission_entry: Default::default(),

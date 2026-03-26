@@ -46,7 +46,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            fname: FixedString::from_str("testtext.txt"),
+            fname: FixedString::from_cobol_str("testtext.txt"),
             ret: Default::default(),
             fhandle: Default::default(),
             offset: Default::default(),
@@ -65,8 +65,8 @@ impl Default for ProgramState {
 
 /// READ-BUFFER
 fn p_read_buffer(state: &mut ProgramState) {
-    state.offset = FixedString::from_str("2");
-    state.nbytes = FixedString::from_str("9");
+    state.offset = FixedString::from_cobol_str("2");
+    state.nbytes = FixedString::from_cobol_str("9");
     {
         let mut _p1 = (state.fhandle).clone();
         let mut _p2 = (state.offset).clone();

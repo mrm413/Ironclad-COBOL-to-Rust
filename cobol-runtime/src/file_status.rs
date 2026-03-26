@@ -99,7 +99,7 @@ impl fmt::Display for FileStatus {
 impl<const N: usize> From<FileStatus> for crate::FixedString<N> {
     fn from(fs: FileStatus) -> Self {
         let s = format!("{}", fs);
-        Self::from_str(&s)
+        Self::from_cobol_str(&s)
     }
 }
 

@@ -324,7 +324,7 @@ impl Default for ProgramState {
 fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst = Default::default();
     p_test_pass_2(state);
-    state.all_dst.field_02 = FixedString::from_str("3");
+    state.all_dst.field_02 = FixedString::from_cobol_str("3");
     state.exptd_result = 3 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_02);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_02);
@@ -359,7 +359,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_02.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_02.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_03 = FixedString::from_str("4");
+    state.all_dst.field_03 = FixedString::from_cobol_str("4");
     state.exptd_result = 4 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_03);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_03);
@@ -394,7 +394,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_03.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_03.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_04 = FixedString::from_str("5");
+    state.all_dst.field_04 = FixedString::from_cobol_str("5");
     state.exptd_result = 5 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_04);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_04);
@@ -429,7 +429,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_04.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_04.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_05 = FixedString::from_str("6");
+    state.all_dst.field_05 = FixedString::from_cobol_str("6");
     state.exptd_result = 6 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_05);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_05);
@@ -464,7 +464,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_05.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_05.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_06 = FixedString::from_str("7");
+    state.all_dst.field_06 = FixedString::from_cobol_str("7");
     state.exptd_result = 7 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_06);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_06);
@@ -499,7 +499,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_06.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_06.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_07 = FixedString::from_str("8");
+    state.all_dst.field_07 = FixedString::from_cobol_str("8");
     state.exptd_result = 8 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_07);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_07);
@@ -534,7 +534,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_07.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_07.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_08 = FixedString::from_str("9");
+    state.all_dst.field_08 = FixedString::from_cobol_str("9");
     state.exptd_result = 9 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_08);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_08);
@@ -569,7 +569,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_08.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_08.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_09 = FixedString::from_str("10");
+    state.all_dst.field_09 = FixedString::from_cobol_str("10");
     state.exptd_result = 10 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_09);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_09);
@@ -604,7 +604,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_09.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_09.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_10 = FixedString::from_str("11");
+    state.all_dst.field_10 = FixedString::from_cobol_str("11");
     state.exptd_result = 11 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_10);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_10);
@@ -639,7 +639,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_10.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_10.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_11 = FixedString::from_str("12");
+    state.all_dst.field_11 = FixedString::from_cobol_str("12");
     state.exptd_result = 12 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_11);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_11);
@@ -674,7 +674,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_11.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_11.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_12 = FixedString::from_str("13");
+    state.all_dst.field_12 = FixedString::from_cobol_str("13");
     state.exptd_result = 13 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_12);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_12);
@@ -709,7 +709,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_12.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_12.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_13 = FixedString::from_str("14");
+    state.all_dst.field_13 = FixedString::from_cobol_str("14");
     state.exptd_result = 14 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_13);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_13);
@@ -744,7 +744,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_13.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_13.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_14 = FixedString::from_str("15");
+    state.all_dst.field_14 = FixedString::from_cobol_str("15");
     state.exptd_result = 15 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_14);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_14);
@@ -779,7 +779,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_14.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_14.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_15 = FixedString::from_str("16");
+    state.all_dst.field_15 = FixedString::from_cobol_str("16");
     state.exptd_result = 16 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_15);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_15);
@@ -814,7 +814,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_15.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_15.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_16 = FixedString::from_str("17");
+    state.all_dst.field_16 = FixedString::from_cobol_str("17");
     state.exptd_result = 17 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_16);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_16);
@@ -849,7 +849,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_16.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_16.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_17 = FixedString::from_str("18");
+    state.all_dst.field_17 = FixedString::from_cobol_str("18");
     state.exptd_result = 18 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_17);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_17);
@@ -884,7 +884,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_17.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_17.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_18 = FixedString::from_str("19");
+    state.all_dst.field_18 = FixedString::from_cobol_str("19");
     state.exptd_result = 19 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_18);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_18);
@@ -919,7 +919,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_18.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_18.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_19 = FixedString::from_str("20");
+    state.all_dst.field_19 = FixedString::from_cobol_str("20");
     state.exptd_result = 20 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_19);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_19);
@@ -954,7 +954,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_19.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_19.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_20 = FixedString::from_str("21");
+    state.all_dst.field_20 = FixedString::from_cobol_str("21");
     state.exptd_result = 21 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_20);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_20);
@@ -989,7 +989,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_20.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_20.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_21 = FixedString::from_str("22");
+    state.all_dst.field_21 = FixedString::from_cobol_str("22");
     state.exptd_result = 22 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_21);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_21);
@@ -1024,7 +1024,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_21.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_21.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_22 = FixedString::from_str("23");
+    state.all_dst.field_22 = FixedString::from_cobol_str("23");
     state.exptd_result = 23 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_22);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_22);
@@ -1059,7 +1059,7 @@ fn p_test_pass_1(state: &mut ProgramState) {
     state.all_dst.field_55 = state.all_dst.field_22.trimmed().parse::<i32>().unwrap_or(0);
     state.all_dst.field_56 = Decimal::from(state.all_dst.field_22.trimmed().parse::<i64>().unwrap_or(0));
     p_test_pass_3(state);
-    state.all_dst.field_23 = FixedString::from_str("24");
+    state.all_dst.field_23 = FixedString::from_cobol_str("24");
     state.exptd_result = 24 as u32;
     state.all_dst.field_02 = FixedString::copy_from(&state.all_dst.field_23);
     state.all_dst.field_03 = FixedString::copy_from(&state.all_dst.field_23);

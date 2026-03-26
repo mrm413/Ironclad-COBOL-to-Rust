@@ -13,7 +13,7 @@ impl<const N: usize> FixedString<N> {
         Self { data: [b' '; N] }
     }
 
-    pub fn from_str(s: &str) -> Self {
+    pub fn from_cobol_str(s: &str) -> Self {
         let mut data = [b' '; N];
         let bytes = s.as_bytes();
         let copy_len = bytes.len().min(N);
@@ -30,6 +30,8 @@ impl<const N: usize> FixedString<N> {
     }
 
     pub fn len(&self) -> usize { N }
+
+    pub fn is_empty(&self) -> bool { N == 0 }
 
     pub fn at(&self, index: usize) -> u8 {
         self.data[index.min(N - 1)]
@@ -75,19 +77,19 @@ impl<const N: usize> Default for FixedString<N> {
 
 impl<const N: usize> From<String> for FixedString<N> {
     fn from(s: String) -> Self {
-        Self::from_str(&s)
+        Self::from_cobol_str(&s)
     }
 }
 
 impl<const N: usize> From<&str> for FixedString<N> {
     fn from(s: &str) -> Self {
-        Self::from_str(s)
+        Self::from_cobol_str(s)
     }
 }
 
 impl<const N: usize> From<std::borrow::Cow<'_, str>> for FixedString<N> {
     fn from(s: std::borrow::Cow<'_, str>) -> Self {
-        Self::from_str(&s)
+        Self::from_cobol_str(&s)
     }
 }
 
@@ -166,35 +168,35 @@ impl<const N: usize> PartialOrd<i64> for FixedString<N> {
 
 // From numeric types for FixedString
 impl<const N: usize> From<i32> for FixedString<N> {
-    fn from(n: i32) -> Self { Self::from_str(&n.to_string()) }
+    fn from(n: i32) -> Self { Self::from_cobol_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<i64> for FixedString<N> {
-    fn from(n: i64) -> Self { Self::from_str(&n.to_string()) }
+    fn from(n: i64) -> Self { Self::from_cobol_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<u32> for FixedString<N> {
-    fn from(n: u32) -> Self { Self::from_str(&n.to_string()) }
+    fn from(n: u32) -> Self { Self::from_cobol_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<u64> for FixedString<N> {
-    fn from(n: u64) -> Self { Self::from_str(&n.to_string()) }
+    fn from(n: u64) -> Self { Self::from_cobol_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<f32> for FixedString<N> {
-    fn from(n: f32) -> Self { Self::from_str(&format!("{}", n)) }
+    fn from(n: f32) -> Self { Self::from_cobol_str(&format!("{}", n)) }
 }
 
 impl<const N: usize> From<f64> for FixedString<N> {
-    fn from(n: f64) -> Self { Self::from_str(&format!("{}", n)) }
+    fn from(n: f64) -> Self { Self::from_cobol_str(&format!("{}", n)) }
 }
 
 impl<const N: usize> From<usize> for FixedString<N> {
-    fn from(n: usize) -> Self { Self::from_str(&format!("{}", n)) }
+    fn from(n: usize) -> Self { Self::from_cobol_str(&format!("{}", n)) }
 }
 
 impl<const N: usize> From<bool> for FixedString<N> {
-    fn from(b: bool) -> Self { Self::from_str(if b { "1" } else { "0" }) }
+    fn from(b: bool) -> Self { Self::from_cobol_str(if b { "1" } else { "0" }) }
 }
 
 // PartialEq<usize> for FixedString (COBOL numeric string comparison)
@@ -277,7 +279,7 @@ impl<const N: usize> PartialEq<FixedString<N>> for usize {
 impl<const N: usize> FixedString<N> {
     pub fn copy_from(other: &dyn std::fmt::Display) -> Self {
         let s = format!("{}", other);
-        Self::from_str(&s)
+        Self::from_cobol_str(&s)
     }
 }
 
@@ -305,20 +307,20 @@ mod tests {
 
     #[test]
     fn test_from_str_pads() {
-        let s: FixedString<10> = FixedString::from_str("HI");
+        let s: FixedString<10> = FixedString::from_cobol_str("HI");
         assert_eq!(s.as_str(), "HI        ");
         assert_eq!(s.trimmed(), "HI");
     }
 
     #[test]
     fn test_from_str_truncates() {
-        let s: FixedString<3> = FixedString::from_str("HELLO");
+        let s: FixedString<3> = FixedString::from_cobol_str("HELLO");
         assert_eq!(s.as_str(), "HEL");
     }
 
     #[test]
     fn test_substr() {
-        let s: FixedString<10> = FixedString::from_str("ABCDEFGHIJ");
+        let s: FixedString<10> = FixedString::from_cobol_str("ABCDEFGHIJ");
         assert_eq!(s.substr(2, 3), "CDE");
     }
 
@@ -333,27 +335,27 @@ mod tests {
 impl<const N: usize> std::ops::AddAssign<i32> for FixedString<N> {
     fn add_assign(&mut self, rhs: i32) {
         let val: i32 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_str(&format!("{}", val + rhs));
+        *self = FixedString::from_cobol_str(&format!("{}", val + rhs));
     }
 }
 
 impl<const N: usize> std::ops::SubAssign<i32> for FixedString<N> {
     fn sub_assign(&mut self, rhs: i32) {
         let val: i32 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_str(&format!("{}", val - rhs));
+        *self = FixedString::from_cobol_str(&format!("{}", val - rhs));
     }
 }
 
 impl<const N: usize> std::ops::AddAssign<i64> for FixedString<N> {
     fn add_assign(&mut self, rhs: i64) {
         let val: i64 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_str(&format!("{}", val + rhs));
+        *self = FixedString::from_cobol_str(&format!("{}", val + rhs));
     }
 }
 
 impl<const N: usize> std::ops::SubAssign<i64> for FixedString<N> {
     fn sub_assign(&mut self, rhs: i64) {
         let val: i64 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_str(&format!("{}", val - rhs));
+        *self = FixedString::from_cobol_str(&format!("{}", val - rhs));
     }
 }

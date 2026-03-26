@@ -71,7 +71,7 @@ impl Default for ProgramState {
         Self {
             test_rec: Default::default(),
             path: Default::default(),
-            test_stat: FixedString::from_str("XX"),
+            test_stat: FixedString::from_cobol_str("XX"),
             _fs_test_file: FileStatus::Success,
             _fh_test_file: CobolFile::Closed,
             return_code: 0,

@@ -88,7 +88,7 @@ impl Default for ProgramState {
 /// S1
 fn p_s1(state: &mut ProgramState) {
     println!("{}{}{}", "Program is starting", "", "");
-    // SKIP: unresolved ref: state.ext_proc_address = FixedString::from_str(&format!("{}", state._unresolved_entry));
+    // SKIP: unresolved ref: state.ext_proc_address = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     {
         let mut _p1: i64 = 0;
         let mut _p2 = (state.ext_proc_address).clone();
@@ -98,7 +98,7 @@ fn p_s1(state: &mut ProgramState) {
         state.ext_proc_address = _p2;
     }
     state.install_flag = "0".into();
-    // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_str(&format!("{}", state._unresolved_entry));
+    // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     {
         let mut _p1 = (state.install_flag).clone();
         let mut _p2 = (state.exit_params).clone();
@@ -108,7 +108,7 @@ fn p_s1(state: &mut ProgramState) {
         state.install_flag = _p1;
         state.exit_params = _p2;
     }
-    // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_str(&format!("{}", state._unresolved_entry));
+    // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     {
         let mut _p1 = (state.install_flag).clone();
         let mut _p2 = (state.exit_params).clone();
@@ -121,7 +121,7 @@ fn p_s1(state: &mut ProgramState) {
     if state.return_code == 0 {
         println!("{}{}", "Unexpected RETURN-CODE with subsequent call ", state.return_code);
         state.install_flag = "".into();
-        state.exit_params.ppriority = FixedString::from_str("127");
+        state.exit_params.ppriority = FixedString::from_cobol_str("127");
         {
             let mut _p1 = (state.install_flag).clone();
             let mut _p2 = (state.exit_params).clone();
@@ -133,7 +133,7 @@ fn p_s1(state: &mut ProgramState) {
         }
         if state.return_code != 0 {
             println!("{}{}{}", "Unexpected RETURN-CODE with subsequent call, ", "different priority ", state.return_code);
-            // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_str(&format!("{}", state._unresolved_entry));
+            // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
         } else {
             {
                 let mut _p1 = (state.install_flag).clone();
@@ -151,10 +151,10 @@ fn p_s1(state: &mut ProgramState) {
             }
         }
         println!("{}{}", "Exit procedure from ", 0);
-        // SKIP: unresolved ref: state.ext_proc_address = FixedString::from_str(&format!("{}", state._unresolved_entry));
+        // SKIP: unresolved ref: state.ext_proc_address = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     } else {
         state.install_flag = "".into();
-        state.exit_params.ppriority = FixedString::from_str("0");
+        state.exit_params.ppriority = FixedString::from_cobol_str("0");
         {
             let mut _p1 = (state.install_flag).clone();
             let mut _p2 = (state.exit_params).clone();
@@ -169,7 +169,7 @@ fn p_s1(state: &mut ProgramState) {
         } else {
             if state.exit_params.ppriority.trimmed() != "127" {
                 println!("{}{}", "Unexpected priority external ", state.exit_params.ppriority);
-                // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_str(&format!("{}", state._unresolved_entry));
+                // SKIP: unresolved ref: state.exit_params.proc_addrs = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
             } else {
                 {
                     let mut _p1 = (state.install_flag).clone();

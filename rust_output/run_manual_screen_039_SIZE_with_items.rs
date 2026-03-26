@@ -44,9 +44,9 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            success_flag: FixedString::from_str("Y"),
+            success_flag: FixedString::from_cobol_str("Y"),
             num_1: 12345u32,
-            num_2: FixedString::from_str("12345"),
+            num_2: FixedString::from_cobol_str("12345"),
             num_3: 1234u32,
             four: 0,
             return_code: 0,

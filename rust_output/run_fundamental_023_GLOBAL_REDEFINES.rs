@@ -38,7 +38,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            t0: FixedString::from_str("X"),
+            t0: FixedString::from_cobol_str("X"),
             t1: Default::default(),
             return_code: 0,
             tally: 0,

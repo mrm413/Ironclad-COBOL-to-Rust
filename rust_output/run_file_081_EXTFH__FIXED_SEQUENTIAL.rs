@@ -260,7 +260,7 @@ impl Default for ProgramState {
             fcdopcode: Default::default(),
             extfh_opcode: Default::default(),
             fcd_parameter_block: Default::default(),
-            fix_filename: FixedString::from_str("FCDFB"),
+            fix_filename: FixedString::from_cobol_str("FCDFB"),
             fix_recordarea: Default::default(),
             fix_records: Default::default(),
             fix_count: Default::default(),

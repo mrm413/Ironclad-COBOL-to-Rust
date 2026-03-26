@@ -178,7 +178,7 @@ impl Default for ProgramState {
 
 /// PTR
 fn p_ptr(state: &mut ProgramState) {
-    state.one.ptr = FixedString::from_str(&format!("{}", &state.one.seven as *const _ as usize));
+    state.one.ptr = FixedString::from_cobol_str(&format!("{}", &state.one.seven as *const _ as usize));
     return;
 }
 

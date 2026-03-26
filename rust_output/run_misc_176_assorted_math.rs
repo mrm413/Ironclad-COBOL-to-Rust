@@ -42,7 +42,7 @@ impl Default for ProgramState {
         Self {
             n: 89u32,
             m: 0u32,
-            variable: FixedString::from_str("0"),
+            variable: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

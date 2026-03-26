@@ -378,6 +378,7 @@ impl ReportContext {
 /// Global report registry for generated programs.
 static mut REPORTS: Option<HashMap<String, ReportContext>> = None;
 
+#[allow(static_mut_refs)]
 fn reports() -> &'static mut HashMap<String, ReportContext> {
     unsafe {
         REPORTS.get_or_insert_with(HashMap::new)

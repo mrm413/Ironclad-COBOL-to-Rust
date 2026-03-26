@@ -54,7 +54,7 @@ impl Default for ProgramState {
             num_b: 211u32,
             num_c: Decimal::from(212.34f64),
             numv1: Default::default(),
-            picx: FixedString::from_str("A"),
+            picx: FixedString::from_cobol_str("A"),
             rslt: Default::default(),
             rsltv1: Default::default(),
             rsltv2: Default::default(),

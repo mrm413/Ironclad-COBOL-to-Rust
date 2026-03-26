@@ -65,13 +65,13 @@ fn p_src_bin(state: &mut ProgramState) {
     state.dst_bin = state.src_bin as u32;
     if state.dst_bin != 12345678 {
         println!("{}{}{}", "1: DST-BIN <", state.dst_bin, ">!= <12345678>");
-        state.src_edit = FixedString::from_str("-3");
+        state.src_edit = FixedString::from_cobol_str("-3");
         state.dst_disp = state.src_edit.trimmed().parse::<u32>().unwrap_or(0);
         if &format!("{}", state.src_edit) != &"      $300-".to_string() {
             println!("{}{}{}", "2: SRC-EDIT <", state.src_edit, "> != <      $300->");
             if state.dst_disp != 3 {
                 println!("{}{}{}", "2.1: DST-DISP <", state.dst_disp, "> != <3>");
-                state.src_edit = FixedString::from_str("3");
+                state.src_edit = FixedString::from_cobol_str("3");
                 state.dst_field_1 = FixedString::copy_from(&state.src_edit);
                 if &format!("{}", state.dst_field_1) != &"  0  0  /".to_string() {
                     println!("{}{}{}", "3: DST-FIELD-1 <", state.dst_field_1, "> != <  0  0  />");

@@ -68,7 +68,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             f_rec: Default::default(),
-            whatever: FixedString::from_str("out.txt"),
+            whatever: FixedString::from_cobol_str("out.txt"),
             _fs_f: FileStatus::Success,
             _fh_f: CobolFile::Closed,
             return_code: 0,

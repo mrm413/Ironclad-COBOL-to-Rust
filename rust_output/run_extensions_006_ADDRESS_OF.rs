@@ -71,8 +71,8 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            x_1: FixedString::from_str("X-1"),
-            x_2: FixedString::from_str("X-2"),
+            x_1: FixedString::from_cobol_str("X-1"),
+            x_2: FixedString::from_cobol_str("X-2"),
             g: Default::default(),
             ptr_1: Default::default(),
             ptr_2: Default::default(),
@@ -93,7 +93,7 @@ fn p_x_1(state: &mut ProgramState) {
     if &format!("{}", state.y) != &"X-1".to_string() {
         println!("{}{}", "Test 1 ", state.y);
     }
-    state.g.ptr_1 = FixedString::from_str(&format!("{}", &state.x_2 as *const _ as usize));
+    state.g.ptr_1 = FixedString::from_cobol_str(&format!("{}", &state.x_2 as *const _ as usize));
     state.g.ptr_2 = FixedString::copy_from(&state.g.ptr_1);
     println!();
     if &format!("{}", state.y) != &"X-2".to_string() {

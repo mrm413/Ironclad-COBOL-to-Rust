@@ -36,7 +36,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            str: FixedString::from_str("ALL"),
+            str: FixedString::from_cobol_str("ALL"),
             return_code: 0,
             tally: 0,
             sort_return: 0,
@@ -86,7 +86,7 @@ fn p_str_2(state: &mut ProgramState) {
     println!("{}", state.str);
     { let _s = (5 - 1) as usize; let _l = (0usize) as usize; let _sv = String::from("abcd"); let _src = _sv.as_bytes(); let _dst = state.str.as_bytes_mut(); let _cl = _l.min(_src.len()).min(_dst.len() - _s); _dst[_s.._s+_cl].copy_from_slice(&_src[.._cl]); }
     println!("{}", state.str);
-    state.str = FixedString::from_str(&format!("{}", "a"));
+    state.str = FixedString::from_cobol_str(&format!("{}", "a"));
     println!("{}", state.str);
 }
 

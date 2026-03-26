@@ -46,12 +46,12 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            fldx50: FixedString::from_str("X50"),
-            fldx10j: FixedString::from_str("0123"),
+            fldx50: FixedString::from_cobol_str("X50"),
+            fldx10j: FixedString::from_cobol_str("0123"),
             fldnumd: -123i32,
             fldnumd4: -123i32,
             fldnumb: Decimal::from(-1.23f64),
-            _filler_11: FixedString::from_str("0"),
+            _filler_11: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

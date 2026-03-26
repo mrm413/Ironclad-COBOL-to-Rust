@@ -57,7 +57,7 @@ impl Default for ProgramState {
 /// S1
 fn p_s1(state: &mut ProgramState) {
     println!("{}{}{}{}", "Program is starting", "", "", "");
-    // SKIP: unresolved ref: state.err_proc_address = FixedString::from_str(&format!("{}", state._unresolved_entry));
+    // SKIP: unresolved ref: state.err_proc_address = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     {
         let mut _p1: i64 = 0;
         let mut _p2 = (state.err_proc_address).clone();
@@ -65,7 +65,7 @@ fn p_s1(state: &mut ProgramState) {
         cbl_error_proc(&mut _p1, &mut _p2, &mut _p3);
         state.err_proc_address = _p2;
     }
-    // SKIP: unresolved ref: state.err_proc_address = FixedString::from_str(&format!("{}", state._unresolved_entry));
+    // SKIP: unresolved ref: state.err_proc_address = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     {
         let mut _p1: i64 = 0;
         let mut _p2 = (state.err_proc_address).clone();
@@ -73,7 +73,7 @@ fn p_s1(state: &mut ProgramState) {
         cbl_error_proc(&mut _p1, &mut _p2, &mut _p3);
         state.err_proc_address = _p2;
     }
-    // SKIP: unresolved ref: state.err_proc_address = FixedString::from_str(&format!("{}", state._unresolved_entry));
+    // SKIP: unresolved ref: state.err_proc_address = FixedString::from_cobol_str(&format!("{}", state._unresolved_entry));
     {
         let mut _p1: i64 = 0;
         let mut _p2 = (state.err_proc_address).clone();
@@ -81,7 +81,7 @@ fn p_s1(state: &mut ProgramState) {
         cbl_error_proc(&mut _p1, &mut _p2, &mut _p3);
         state.err_proc_address = _p2;
     }
-    state.err_proc_address = FixedString::from_str(&format!("{}", 0usize));
+    state.err_proc_address = FixedString::from_cobol_str(&format!("{}", 0usize));
     tilt();
     println!("{}", "Program is stopping");
     { std::process::exit(0); }

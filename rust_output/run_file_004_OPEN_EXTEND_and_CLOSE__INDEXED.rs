@@ -116,7 +116,7 @@ impl Default for ProgramState {
 
 /// WSFS
 fn p_wsfs(state: &mut ProgramState) {
-    state.forec = FixedString::from_str(&format!("{}", "A"));
+    state.forec = FixedString::from_cobol_str(&format!("{}", "A"));
     forec_write(state);
     if &format!("{}", state.wsfs) != &"00".to_string() {
         println!("{}{}", "STATUS WRITE A:", state.wsfs);
@@ -126,7 +126,7 @@ fn p_wsfs(state: &mut ProgramState) {
             file0_open_extend(state);
             if &format!("{}", state.wsfs) != &"00".to_string() {
                 println!("{}{}", "STATUS EXTEND, empty file:", state.wsfs);
-                state.f0rec = FixedString::from_str(&format!("{}", "B"));
+                state.f0rec = FixedString::from_cobol_str(&format!("{}", "B"));
                 f0rec_write(state);
                 if &format!("{}", state.wsfs) != &"00".to_string() {
                     println!("{}{}", "STATUS WRITE B:", state.wsfs);
@@ -134,11 +134,11 @@ fn p_wsfs(state: &mut ProgramState) {
                     file_opt_open_input(state);
                     if &format!("{}", state.wsfs) != &"00".to_string() {
                         println!("{}{}", "STATUS INPUT:", state.wsfs);
-                        state.forec = FixedString::from_str(&format!("{}", "A"));
+                        state.forec = FixedString::from_cobol_str(&format!("{}", "A"));
                         file_opt_read(state);
                         if &format!("{}", state.wsfs) != &"00".to_string() {
                             println!("{}{}", "STATUS READ A:", state.wsfs);
-                            state.forec = FixedString::from_str(&format!("{}", "B"));
+                            state.forec = FixedString::from_cobol_str(&format!("{}", "B"));
                             file_opt_read(state);
                             if &format!("{}", state.wsfs) != &"00".to_string() {
                                 println!("{}{}", "STATUS READ B:", state.wsfs);

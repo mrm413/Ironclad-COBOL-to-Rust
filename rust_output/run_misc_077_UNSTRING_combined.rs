@@ -89,7 +89,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            inp_string: FixedString::from_str("ABC1|DEF--GHI"),
+            inp_string: FixedString::from_cobol_str("ABC1|DEF--GHI"),
             str_pointer: Default::default(),
             res_data: Default::default(),
             res_trgt_1: Default::default(),

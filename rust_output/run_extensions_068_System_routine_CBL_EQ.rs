@@ -39,7 +39,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             x: FixedString::high_values(),
-            z: FixedString::from_str("1111"),
+            z: FixedString::from_cobol_str("1111"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

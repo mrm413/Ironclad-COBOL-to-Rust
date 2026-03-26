@@ -137,15 +137,15 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            namespace_str: FixedString::from_str("http://www.w3.org/1999/xhtml"),
-            prefix_str: FixedString::from_str("pre"),
+            namespace_str: FixedString::from_cobol_str("http://www.w3.org/1999/xhtml"),
+            prefix_str: FixedString::from_cobol_str("pre"),
             out: Default::default(),
             rec: Default::default(),
             a: Default::default(),
             b: Default::default(),
             c: Default::default(),
             d: Default::default(),
-            p_0specialtagname: FixedString::from_str("abc"),
+            p_0specialtagname: FixedString::from_cobol_str("abc"),
             employee: Default::default(),
             id: Default::default(),
             name: Default::default(),
@@ -166,7 +166,7 @@ fn p_attributes(state: &mut ProgramState) {
     if &format!("{}", state.out) != &"<c d=\" \"/>".to_string() {
         println!("{}{}", "Test 3 failed: ", state.out);
     }
-    state.rec.a = FixedString::from_str(&format!("{}", "A"));
+    state.rec.a = FixedString::from_cobol_str(&format!("{}", "A"));
     // SKIP: unresolved ref
     if &format!("{}", state.out) != &"<rec>AAABBB<c>CCC</c></rec>".to_string() {
         println!("{}{}", "Test 4 failed: ", state.out);

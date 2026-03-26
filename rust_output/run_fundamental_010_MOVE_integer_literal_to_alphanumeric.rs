@@ -51,7 +51,7 @@ impl Default for ProgramState {
 /// X
 fn p_x(state: &mut ProgramState) {
     println!("{}", state.x);
-    state.x = FixedString::from_str("1000");
+    state.x = FixedString::from_cobol_str("1000");
     println!("{}", state.x);
     { std::process::exit(0); }
 }

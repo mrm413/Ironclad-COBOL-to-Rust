@@ -70,7 +70,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            thedog: FixedString::from_str("DOGGY"),
+            thedog: FixedString::from_cobol_str("DOGGY"),
             cnspony: Default::default(),
             horse: Default::default(),
             myhorse: Default::default(),

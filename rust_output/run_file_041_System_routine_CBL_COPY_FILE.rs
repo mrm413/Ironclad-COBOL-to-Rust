@@ -38,8 +38,8 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            file1: FixedString::from_str("prog.cob"),
-            file2: FixedString::from_str("prog3.cob"),
+            file1: FixedString::from_cobol_str("prog.cob"),
+            file2: FixedString::from_cobol_str("prog3.cob"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

@@ -157,7 +157,7 @@ fn p_result(state: &mut ProgramState) {
                                                                                                         state.result = "1.1 D".into();
                                                                                                         if state.result.trimmed() != "6" {
                                                                                                             println!("{}{}", "Test 27 fail: ", state.result);
-                                                                                                            state.result = FixedString::from_str("0");
+                                                                                                            state.result = FixedString::from_cobol_str("0");
                                                                                                             state.result = FixedString::copy_from(&state.empty);
                                                                                                             if state.result.trimmed() != "1" {
                                                                                                                 println!("{}{}", "Test 28 fail: ", state.result);

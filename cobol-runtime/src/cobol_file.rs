@@ -5,16 +5,12 @@ use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
 use crate::FileStatus;
 
+#[derive(Default)]
 pub enum CobolFile {
+    #[default]
     Closed,
     Reading(BufReader<File>),
     Writing(BufWriter<File>),
-}
-
-impl Default for CobolFile {
-    fn default() -> Self {
-        CobolFile::Closed
-    }
 }
 
 impl Clone for CobolFile {

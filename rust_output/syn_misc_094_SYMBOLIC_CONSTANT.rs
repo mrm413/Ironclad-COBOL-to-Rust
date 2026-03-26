@@ -54,7 +54,7 @@ impl Default for ProgramState {
 /// MAIN
 fn p_main(state: &mut ProgramState) {
     // SKIP: unresolved ref: state.num2 = format!("{}", state._unresolved_con_1).trim().parse::<u32>().unwrap_or(0);
-    // SKIP: unresolved ref: state.short_x = FixedString::from_str(&format!("{}", state._unresolved_p_25156c));
+    // SKIP: unresolved ref: state.short_x = FixedString::from_cobol_str(&format!("{}", state._unresolved_p_25156c));
     { std::process::exit(0); }
 }
 

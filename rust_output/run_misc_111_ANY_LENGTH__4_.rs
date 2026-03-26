@@ -36,7 +36,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            str: FixedString::from_str("ALL"),
+            str: FixedString::from_cobol_str("ALL"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

@@ -38,8 +38,8 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            p1: FixedString::from_str("A"),
-            p2: FixedString::from_str("NOT OK"),
+            p1: FixedString::from_cobol_str("A"),
+            p2: FixedString::from_cobol_str("NOT OK"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

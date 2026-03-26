@@ -394,7 +394,7 @@ impl Default for ProgramState {
             c2_no_terminals: Default::default(),
             c2_pk_date: Default::default(),
             cust_stat: Default::default(),
-            rec_num: FixedString::from_str(""),
+            rec_num: FixedString::from_cobol_str(""),
             test_data: Default::default(),
             data_cust_num_tbl: Default::default(),
             data_company_tbl: Default::default(),

@@ -333,8 +333,8 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             maxcol: 50u32,
-            mycode: FixedString::from_str("Hi-Q:"),
-            digx: FixedString::from_str("123456789b123456789c123456789d123456789e123456789f"),
+            mycode: FixedString::from_cobol_str("Hi-Q:"),
+            digx: FixedString::from_cobol_str("123456789b123456789c123456789d123456789e123456789f"),
             _filler_19: Default::default(),
             digs: Default::default(),
             lines: Default::default(),

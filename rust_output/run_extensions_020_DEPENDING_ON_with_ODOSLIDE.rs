@@ -570,10 +570,10 @@ impl Default for ProgramState {
             ix: Default::default(),
             iy: Default::default(),
             iz: Default::default(),
-            tstxxx: FixedString::from_str("Abcdefghijklmnopqrstuvwxyz"),
+            tstxxx: FixedString::from_cobol_str("Abcdefghijklmnopqrstuvwxyz"),
             tstalpha: Default::default(),
             alph_chr: Default::default(),
-            tsthex: FixedString::from_str("123456789ABCDEF"),
+            tsthex: FixedString::from_cobol_str("123456789ABCDEF"),
             _filler_54: Default::default(),
             hex_chr: Default::default(),
             tstrec2: Default::default(),
@@ -645,7 +645,7 @@ fn p_section(state: &mut ProgramState) {
     // SKIP: unresolved ref
     state.ix = 1;
     while !(state.ix > state.dep_x) {
-        // AUTO-FIX SKIP: index on non-array: state.tstg_1[((state.ix as i64).saturating_sub(1).max(0)) as usize] = FixedString::from_str(&format!("{}", state.ix));
+        // AUTO-FIX SKIP: index on non-array: state.tstg_1[((state.ix as i64).saturating_sub(1).max(0)) as usize] = FixedString::from_cobol_str(&format!("{}", state.ix));
         state.ix += 1;
     }
     state.ln = std::mem::size_of_val(&state.tstgrp1) as i64 as u32;
@@ -667,7 +667,7 @@ fn p_section(state: &mut ProgramState) {
     state.tstrec2.dep_x2 = state.dep_x as u32;
     state.ix = 1;
     while !(state.ix > state.tstrec2.dep_x2) {
-        state.tstrec2.tstgrp2.tstx2[((state.ix - 1) as usize).min(0)].tstg2_1 = FixedString::from_str(&format!("{}", state.ix));
+        state.tstrec2.tstgrp2.tstx2[((state.ix - 1) as usize).min(0)].tstg2_1 = FixedString::from_cobol_str(&format!("{}", state.ix));
         state.ix += 1;
     }
     state.tstrec2.tstgrp2.tst2tail1 = "<>".into();

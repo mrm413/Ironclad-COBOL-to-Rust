@@ -50,7 +50,7 @@ impl Default for ProgramState {
 
 /// R
 fn p_r(state: &mut ProgramState) {
-    state.r = FixedString::from_str("1");
+    state.r = FixedString::from_cobol_str("1");
     return;
 }
 

@@ -48,7 +48,7 @@ impl Default for ProgramState {
             random_target_b: Default::default(),
             random_origin_d: Default::default(),
             random_target_d: Default::default(),
-            _filler_10: FixedString::from_str("0"),
+            _filler_10: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

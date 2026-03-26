@@ -970,8 +970,8 @@ fn p_1000_load_record(state: &mut ProgramState) {
         state.cm_tape = "6250 BPI".into();
         state.cm_memory = "3MEG".into();
         if state.work_area.sub == "" {
-            state.cm_disk = FixedString::from_str(&format!("{}", "*"));
-            state.cm_tape = FixedString::from_str(&format!("{}", "*"));
+            state.cm_disk = FixedString::from_cobol_str(&format!("{}", "*"));
+            state.cm_tape = FixedString::from_cobol_str(&format!("{}", "*"));
             tspfl_record_write(state);
             if ({ let _s = format!("{}", state.cust_stat); _s.trim().to_string() } != "00".to_string()) && ({ let _s = format!("{}", state.cust_stat); _s.trim().to_string() } != "02".to_string()) {
                 println!("{}{}{}{}", "Key: ", state.work_area.tspfl_key, ", Status: ", state.cust_stat);
@@ -1012,7 +1012,7 @@ fn p_listfile(state: &mut ProgramState) {
         let _len = _bytes.len();
         if _len > 0 { let _end = _len.min(0+2); let _s = String::from_utf8_lossy(&_bytes[0.._end]).trim().to_string(); state.cust_stat.stat_1 = _s.parse().unwrap_or_default(); }
     }
-    state.work_area.rec_num = FixedString::from_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.work_area.rec_num = FixedString::from_cobol_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
     if { let _s = format!("{}", state.cust_stat); _s.trim().to_string() } == "99".to_string() {
         println!("{}", "Hit End of File");
     }
@@ -1033,7 +1033,7 @@ fn p_listfile(state: &mut ProgramState) {
         let _len = _bytes.len();
         if _len > 0 { let _end = _len.min(0+2); let _s = String::from_utf8_lossy(&_bytes[0.._end]).trim().to_string(); state.cust_stat.stat_1 = _s.parse().unwrap_or_default(); }
     }
-    state.work_area.rec_num = FixedString::from_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.work_area.rec_num = FixedString::from_cobol_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
     println!("{}", "LIST SAMPLE FILE BY KEY3");
     state.work_area.rec_num = Default::default();
     state.tspfl_record = Default::default();
@@ -1052,7 +1052,7 @@ fn p_listfile(state: &mut ProgramState) {
         let _len = _bytes.len();
         if _len > 0 { let _end = _len.min(0+2); let _s = String::from_utf8_lossy(&_bytes[0.._end]).trim().to_string(); state.cust_stat.stat_1 = _s.parse().unwrap_or_default(); }
     }
-    state.work_area.rec_num = FixedString::from_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.work_area.rec_num = FixedString::from_cobol_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
     state.tspfl_record = Default::default();
     state.cm_cust_num = FixedString::copy_from(&state.test_data.data_cust_num[((2 - 1) as usize).min(0)]);
     tspfile_read(state);

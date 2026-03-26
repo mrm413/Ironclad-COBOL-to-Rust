@@ -4057,7 +4057,7 @@ impl Default for ProgramState {
             fld0998b: Default::default(),
             fld0999a: Default::default(),
             fld0999b: Default::default(),
-            _filler_3517: FixedString::from_str("0"),
+            _filler_3517: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

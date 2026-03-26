@@ -39,7 +39,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             wrkn: 123i32,
-            wrkx: FixedString::from_str("House"),
+            wrkx: FixedString::from_cobol_str("House"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

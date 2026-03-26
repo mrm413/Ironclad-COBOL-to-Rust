@@ -41,7 +41,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             l: 0.0f32,
-            f_dat: FixedString::from_str("0123456789"),
+            f_dat: FixedString::from_cobol_str("0123456789"),
             f_dat2: Default::default(),
             return_code: 0,
             tally: 0,

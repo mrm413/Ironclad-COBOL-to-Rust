@@ -5,7 +5,7 @@ use std::fmt;
 
 /// Fixed-point decimal with P integer digits and S fractional digits.
 /// Internally stored as i64 scaled by 10^S.
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Decimal {
     /// Scaled integer value: actual = value / 10^scale
     pub value: i64,
@@ -67,16 +67,19 @@ impl Decimal {
         }
     }
 
+    #[allow(clippy::should_implement_trait)]
     pub fn add(self, other: Self) -> Self {
         assert_eq!(self.scale, other.scale, "Decimal scale mismatch");
         Self { value: self.value + other.value, scale: self.scale }
     }
 
+    #[allow(clippy::should_implement_trait)]
     pub fn sub(self, other: Self) -> Self {
         assert_eq!(self.scale, other.scale, "Decimal scale mismatch");
         Self { value: self.value - other.value, scale: self.scale }
     }
 
+    #[allow(clippy::should_implement_trait)]
     pub fn mul(self, other: Self) -> Self {
         let product = self.value * other.value;
         // Rescale to self.scale
@@ -84,6 +87,7 @@ impl Decimal {
         Self { value: product / factor, scale: self.scale }
     }
 
+    #[allow(clippy::should_implement_trait)]
     pub fn div(self, other: Self) -> Self {
         if other.value == 0 { return Self::zero(self.scale); }
         // Scale up numerator to preserve precision, then divide
@@ -148,15 +152,9 @@ impl std::ops::DivAssign<Decimal> for Decimal {
     }
 }
 
-impl Default for Decimal {
-    fn default() -> Self {
-        Self::zero(0)
-    }
-}
-
 impl From<i64> for Decimal {
     fn from(value: i64) -> Self {
-        Self { value: value, scale: 0 }
+        Self { value, scale: 0 }
     }
 }
 

@@ -61,19 +61,19 @@ impl Default for ProgramState {
 fn p_x_zzzn(state: &mut ProgramState) {
     if &format!("{}", state.xzn_red) != &"  1-".to_string() {
         println!("{}{}{}", "(", state.x_zzzn, ")");
-        state.x_zzzn = FixedString::from_str("0");
+        state.x_zzzn = FixedString::from_cobol_str("0");
         if &format!("{}", state.xzn_red) != &"    ".to_string() {
             println!("{}{}{}", "(", state.x_zzzn, ")");
-            state.x_zzzn = FixedString::from_str("1");
+            state.x_zzzn = FixedString::from_cobol_str("1");
             if &format!("{}", state.xzn_red) != &"  1 ".to_string() {
                 println!("{}{}{}", "(", state.x_zzzn, ")");
-                state.x_zzzp = FixedString::from_str("-1");
+                state.x_zzzp = FixedString::from_cobol_str("-1");
                 if &format!("{}", state.xzp_red) != &"  1-".to_string() {
                     println!("{}{}{}", "(", state.x_zzzp, ")");
-                    state.x_zzzp = FixedString::from_str("0");
+                    state.x_zzzp = FixedString::from_cobol_str("0");
                     if &format!("{}", state.xzp_red) != &"    ".to_string() {
                         println!("{}{}{}", "(", state.x_zzzp, ")");
-                        state.x_zzzp = FixedString::from_str("1");
+                        state.x_zzzp = FixedString::from_cobol_str("1");
                         if &format!("{}", state.xzp_red) != &"  1+".to_string() {
                             println!("{}{}{}", "(", state.x_zzzp, ")");
                             { std::process::exit(0); }

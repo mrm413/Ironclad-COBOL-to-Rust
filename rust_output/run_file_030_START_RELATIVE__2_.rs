@@ -92,15 +92,15 @@ fn p_test_file(state: &mut ProgramState) {
         { let _ = state._fh_test_file.close();
             return; }
     }
-    state.testkey = FixedString::from_str("3");
+    state.testkey = FixedString::from_cobol_str("3");
     state.test_rec = "0003".into();
     test_rec_write(state);
     println!("{}{}", "WRITE ", state.teststat);
-    state.testkey = FixedString::from_str("2");
+    state.testkey = FixedString::from_cobol_str("2");
     state.test_rec = "0002".into();
     test_rec_write(state);
     println!("{}{}", "WRITE ", state.teststat);
-    state.testkey = FixedString::from_str("99");
+    state.testkey = FixedString::from_cobol_str("99");
     // START TEST-FILE
     if !(state.teststat == "00") {
         println!("{}{}", "START ", state.teststat);

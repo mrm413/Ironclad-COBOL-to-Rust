@@ -134,7 +134,7 @@ impl Default for ProgramState {
             fld3: Default::default(),
             fld4: Default::default(),
             fld5: Default::default(),
-            picx: FixedString::from_str("Abc"),
+            picx: FixedString::from_cobol_str("Abc"),
             cat: Default::default(),
             dog: Default::default(),
             yard: Default::default(),

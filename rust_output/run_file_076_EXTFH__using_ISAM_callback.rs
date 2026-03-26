@@ -1243,7 +1243,7 @@ fn p_listfile(state: &mut ProgramState) {
         let _bytes = b"99";
         let _len = _bytes.len();
     }
-    state.work_area.rec_num = FixedString::from_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.work_area.rec_num = FixedString::from_cobol_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
     if { let _s = format!("{}", state.cust_stat); _s.trim().to_string() } == "99".to_string() {
         println!("{}", "Hit End of File");
     }
@@ -1265,7 +1265,7 @@ fn p_listfile(state: &mut ProgramState) {
         let _bytes = b"99";
         let _len = _bytes.len();
     }
-    state.work_area.rec_num = FixedString::from_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
+    state.work_area.rec_num = FixedString::from_cobol_str(&(state.work_area.rec_num.trimmed().parse::<i64>().unwrap_or(0) + 1 as i64).to_string());
     tspfile_close(state);
     tspfile_open_io(state);
     state.tspfl_record = Default::default();
@@ -1347,9 +1347,9 @@ fn p_loadflat(state: &mut ProgramState) {
     p_flat_record(state);
     flatfile_close(state);
     flatfile_open_input(state);
-    state.work_area.rec_num = FixedString::from_str("3");
+    state.work_area.rec_num = FixedString::from_cobol_str("3");
     flatfile_read(state);
-    state.work_area.rec_num = FixedString::from_str("999");
+    state.work_area.rec_num = FixedString::from_cobol_str("999");
     flatfile_read(state);
     flatfile_close(state);
 }

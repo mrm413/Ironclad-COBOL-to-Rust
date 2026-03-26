@@ -666,7 +666,7 @@ fn p_grp_2(state: &mut ProgramState) {
     state.grp_5.fld_5.fld_5_1[((5 - 1) as usize).min(0)].fld_5_4 = "$$".into();
     state.grp_1.fld_1[((5 - 1) as usize).min(9)].fld_1_x = "Something else!".into();
     // SKIP: unresolved ref: state._unresolved_tab_adr_ind = 1;
-    state.p2 = FixedString::from_str(&format!("{}", 0usize));
+    state.p2 = FixedString::from_cobol_str(&format!("{}", 0usize));
     println!();
     { std::process::exit(0); }
 }

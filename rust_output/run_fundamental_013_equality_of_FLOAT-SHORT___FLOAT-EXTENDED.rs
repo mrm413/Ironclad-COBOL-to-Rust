@@ -42,9 +42,9 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            src1: FixedString::from_str(""),
+            src1: FixedString::from_cobol_str(""),
             dst1: Default::default(),
-            src2: FixedString::from_str(""),
+            src2: FixedString::from_cobol_str(""),
             dst2: Default::default(),
             return_code: 0,
             tally: 0,
@@ -79,7 +79,7 @@ fn p_dst1(state: &mut ProgramState) {
     state.dst1 = Default::default();
     // SKIP: unresolved condition
     println!("{}{}", "Zero compare failed: ", state.dst1);
-    state.dst1 = FixedString::from_str("-0.0");
+    state.dst1 = FixedString::from_cobol_str("-0.0");
     // SKIP: unresolved condition
     println!("{}{}", "Negative Zero compare failed: ", state.dst1);
 }
@@ -105,7 +105,7 @@ fn p_dst2(state: &mut ProgramState) {
 
 /// DST1
 fn p_dst1_4(state: &mut ProgramState) {
-    state.dst2 = FixedString::from_str("0.1234568");
+    state.dst2 = FixedString::from_cobol_str("0.1234568");
     // SKIP: unresolved ref
 }
 
@@ -125,13 +125,13 @@ fn p_dst2_3(state: &mut ProgramState) {
     if state.dst1 == state.dst2 {
         println!("{}{}{}{}{}", "move/compare of near equal numbers failed (ident", "ical): ", state.dst1, " - ", state.dst2);
     }
-    state.dst1 = FixedString::from_str("0.0001");
-    state.dst2 = FixedString::from_str("0.0000");
+    state.dst1 = FixedString::from_cobol_str("0.0001");
+    state.dst2 = FixedString::from_cobol_str("0.0000");
     if state.dst1 == state.dst2 {
         println!("{}{}{}{}{}", "move/compare of nearly equal very small numbers ", "failed  (identical): ", state.dst1, " - ", state.dst2);
     }
-    state.dst1 = FixedString::from_str("1000001.0");
-    state.dst2 = FixedString::from_str("1000000.0");
+    state.dst1 = FixedString::from_cobol_str("1000001.0");
+    state.dst2 = FixedString::from_cobol_str("1000000.0");
     if state.dst1 == state.dst2 {
         println!("{}{}{}{}{}", "move/compare of nearly equal big numbers failed ", "(identical): ", state.dst1, " - ", state.dst2);
     }

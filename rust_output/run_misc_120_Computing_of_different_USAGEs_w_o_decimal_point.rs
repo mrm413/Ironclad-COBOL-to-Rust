@@ -150,17 +150,17 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            bcl_a: FixedString::from_str(""),
-            bcl_b: FixedString::from_str(""),
+            bcl_a: FixedString::from_cobol_str(""),
+            bcl_b: FixedString::from_cobol_str(""),
             bcl_res: Default::default(),
-            bc_a: FixedString::from_str(""),
-            bc_b: FixedString::from_str(""),
+            bc_a: FixedString::from_cobol_str(""),
+            bc_b: FixedString::from_cobol_str(""),
             bc_res: Default::default(),
-            bd_a: FixedString::from_str(""),
-            bd_b: FixedString::from_str(""),
+            bd_a: FixedString::from_cobol_str(""),
+            bd_b: FixedString::from_cobol_str(""),
             bd_res: Default::default(),
-            bl_a: FixedString::from_str(""),
-            bl_b: FixedString::from_str(""),
+            bl_a: FixedString::from_cobol_str(""),
+            bl_b: FixedString::from_cobol_str(""),
             bl_res: Default::default(),
             c_a: 0,
             c_b: 0,
@@ -183,31 +183,31 @@ impl Default for ProgramState {
             cn9_a: 0,
             cn9_b: 0,
             cn9_res: Default::default(),
-            cnx_a: FixedString::from_str(""),
-            cnx_b: FixedString::from_str(""),
+            cnx_a: FixedString::from_cobol_str(""),
+            cnx_b: FixedString::from_cobol_str(""),
             cnx_res: Default::default(),
             cx9_a: 0,
             cx9_b: 0,
             cx9_res: Default::default(),
-            cxx_a: FixedString::from_str(""),
-            cxx_b: FixedString::from_str(""),
+            cxx_a: FixedString::from_cobol_str(""),
+            cxx_b: FixedString::from_cobol_str(""),
             cxx_res: Default::default(),
             d_a: 0,
             d_b: 0,
             d_res: Default::default(),
-            fd16_a: FixedString::from_str(""),
-            fd16_b: FixedString::from_str(""),
+            fd16_a: FixedString::from_cobol_str(""),
+            fd16_b: FixedString::from_cobol_str(""),
             fd16_res: Default::default(),
-            fd34_a: FixedString::from_str(""),
-            fd34_b: FixedString::from_str(""),
+            fd34_a: FixedString::from_cobol_str(""),
+            fd34_b: FixedString::from_cobol_str(""),
             fd34_res: Default::default(),
-            fl_a: FixedString::from_str(""),
-            fl_b: FixedString::from_str(""),
+            fl_a: FixedString::from_cobol_str(""),
+            fl_b: FixedString::from_cobol_str(""),
             fl_res: Default::default(),
-            fs_a: FixedString::from_str(""),
-            fs_b: FixedString::from_str(""),
+            fs_a: FixedString::from_cobol_str(""),
+            fs_b: FixedString::from_cobol_str(""),
             fs_res: Default::default(),
-            _filler_83: FixedString::from_str("0"),
+            _filler_83: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,
@@ -267,79 +267,79 @@ fn p_do_check(state: &mut ProgramState) {
     state.fl_b = Default::default();
     state.fs_a = Default::default();
     state.fs_b = Default::default();
-    state.bcl_a = FixedString::from_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) + state.bcl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.bcl_a = FixedString::from_cobol_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) + state.bcl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.bcl_res = FixedString::copy_from(&state.bcl_a);
     if state.bcl_res.trimmed() != "11" {
         println!("{}", "ERROR BINARY-C-LONG + BINARY-C-LONG");
-        state.bcl_a = FixedString::from_str("1");
-        state.bcl_a = FixedString::from_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+        state.bcl_a = FixedString::from_cobol_str("1");
+        state.bcl_a = FixedString::from_cobol_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
         state.bcl_res = FixedString::copy_from(&state.bcl_a);
         if state.bcl_res.trimmed() != "11" {
             println!("{}", "ERROR BINARY-C-LONG + NUM");
-            state.bcl_a = FixedString::from_str("11");
-            state.bcl_a = FixedString::from_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bcl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+            state.bcl_a = FixedString::from_cobol_str("11");
+            state.bcl_a = FixedString::from_cobol_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bcl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
             state.bcl_res = FixedString::copy_from(&state.bcl_a);
             if state.bcl_res.trimmed() != "1" {
                 println!("{}", "ERROR BINARY-C-LONG - BINARY-C-LONG");
-                state.bcl_a = FixedString::from_str("11");
-                state.bcl_a = FixedString::from_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                state.bcl_a = FixedString::from_cobol_str("11");
+                state.bcl_a = FixedString::from_cobol_str(&(state.bcl_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                 state.bcl_res = FixedString::copy_from(&state.bcl_a);
                 if state.bcl_res.trimmed() != "1" {
                     println!("{}", "ERROR BINARY-C-LONG - NUM");
-                    state.bc_a = FixedString::from_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) + state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                    state.bc_a = FixedString::from_cobol_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) + state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                     state.bc_res = FixedString::copy_from(&state.bc_a);
                     if state.bc_res.trimmed() != "11" {
                         println!("{}", "ERROR BINARY-CHAR + BINARY-CHAR");
-                        state.bc_a = FixedString::from_str("1");
-                        state.bc_a = FixedString::from_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                        state.bc_a = FixedString::from_cobol_str("1");
+                        state.bc_a = FixedString::from_cobol_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                         state.bc_res = FixedString::copy_from(&state.bc_a);
                         if state.bc_res.trimmed() != "11" {
                             println!("{}", "ERROR BINARY-CHAR + NUM");
-                            state.bc_a = FixedString::from_str("11");
-                            state.bc_a = FixedString::from_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) - state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                            state.bc_a = FixedString::from_cobol_str("11");
+                            state.bc_a = FixedString::from_cobol_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) - state.bc_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                             state.bc_res = FixedString::copy_from(&state.bc_a);
                             if state.bc_res.trimmed() != "1" {
                                 println!("{}", "ERROR BINARY-CHAR - BINARY-CHAR");
-                                state.bc_a = FixedString::from_str("11");
-                                state.bc_a = FixedString::from_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                state.bc_a = FixedString::from_cobol_str("11");
+                                state.bc_a = FixedString::from_cobol_str(&(state.bc_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                 state.bc_res = FixedString::copy_from(&state.bc_a);
                                 if state.bc_res.trimmed() != "1" {
                                     println!("{}", "ERROR BINARY-CHAR - NUM");
-                                    state.bd_a = FixedString::from_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) + state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                    state.bd_a = FixedString::from_cobol_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) + state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                     state.bd_res = FixedString::copy_from(&state.bd_a);
                                     if state.bd_res.trimmed() != "11" {
                                         println!("{}", "ERROR BINARY-DOUBLE + BINARY-DOUBLE");
-                                        state.bd_a = FixedString::from_str("1");
-                                        state.bd_a = FixedString::from_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                        state.bd_a = FixedString::from_cobol_str("1");
+                                        state.bd_a = FixedString::from_cobol_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                         state.bd_res = FixedString::copy_from(&state.bd_a);
                                         if state.bd_res.trimmed() != "11" {
                                             println!("{}", "ERROR BINARY-DOUBLE + NUM");
-                                            state.bd_a = FixedString::from_str("11");
-                                            state.bd_a = FixedString::from_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) - state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                            state.bd_a = FixedString::from_cobol_str("11");
+                                            state.bd_a = FixedString::from_cobol_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) - state.bd_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                             state.bd_res = FixedString::copy_from(&state.bd_a);
                                             if state.bd_res.trimmed() != "1" {
                                                 println!("{}", "ERROR BINARY-DOUBLE - BINARY-DOUBLE");
-                                                state.bd_a = FixedString::from_str("11");
-                                                state.bd_a = FixedString::from_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                state.bd_a = FixedString::from_cobol_str("11");
+                                                state.bd_a = FixedString::from_cobol_str(&(state.bd_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                 state.bd_res = FixedString::copy_from(&state.bd_a);
                                                 if state.bd_res.trimmed() != "1" {
                                                     println!("{}", "ERROR BINARY-DOUBLE - NUM");
-                                                    state.bl_a = FixedString::from_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) + state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                    state.bl_a = FixedString::from_cobol_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) + state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                     state.bl_res = FixedString::copy_from(&state.bl_a);
                                                     if state.bl_res.trimmed() != "11" {
                                                         println!("{}", "ERROR BINARY-LONG + BINARY-LONG");
-                                                        state.bl_a = FixedString::from_str("1");
-                                                        state.bl_a = FixedString::from_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                        state.bl_a = FixedString::from_cobol_str("1");
+                                                        state.bl_a = FixedString::from_cobol_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                         state.bl_res = FixedString::copy_from(&state.bl_a);
                                                         if state.bl_res.trimmed() != "11" {
                                                             println!("{}", "ERROR BINARY-LONG + NUM");
-                                                            state.bl_a = FixedString::from_str("11");
-                                                            state.bl_a = FixedString::from_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                            state.bl_a = FixedString::from_cobol_str("11");
+                                                            state.bl_a = FixedString::from_cobol_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) - state.bl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                             state.bl_res = FixedString::copy_from(&state.bl_a);
                                                             if state.bl_res.trimmed() != "1" {
                                                                 println!("{}", "ERROR BINARY-LONG - BINARY-LONG");
-                                                                state.bl_a = FixedString::from_str("11");
-                                                                state.bl_a = FixedString::from_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                state.bl_a = FixedString::from_cobol_str("11");
+                                                                state.bl_a = FixedString::from_cobol_str(&(state.bl_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                 state.bl_res = FixedString::copy_from(&state.bl_a);
                                                                 if state.bl_res.trimmed() != "1" {
                                                                     println!("{}", "ERROR BINARY-LONG - NUM");
@@ -476,22 +476,22 @@ fn p_do_check(state: &mut ProgramState) {
                                                                                                                                                                                 state.cn9_res = state.cn9_a as u32;
                                                                                                                                                                                 if state.cn9_res != 1 {
                                                                                                                                                                                     println!("{}", "ERROR COMP-N - NUM");
-                                                                                                                                                                                    state.cnx_a = FixedString::from_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                    state.cnx_a = FixedString::from_cobol_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                     state.cnx_res = FixedString::copy_from(&state.cnx_a);
                                                                                                                                                                                     if state.cnx_res.trimmed() != "11" {
                                                                                                                                                                                         println!("{}", "ERROR COMP-N + COMP-N");
-                                                                                                                                                                                        state.cnx_a = FixedString::from_str("1");
-                                                                                                                                                                                        state.cnx_a = FixedString::from_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                                                                                                                                                        state.cnx_a = FixedString::from_cobol_str("1");
+                                                                                                                                                                                        state.cnx_a = FixedString::from_cobol_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                                                                                                                                                         state.cnx_res = FixedString::copy_from(&state.cnx_a);
                                                                                                                                                                                         if state.cnx_res.trimmed() != "11" {
                                                                                                                                                                                             println!("{}", "ERROR COMP-N + NUM");
-                                                                                                                                                                                            state.cnx_a = FixedString::from_str("11");
-                                                                                                                                                                                            state.cnx_a = FixedString::from_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                            state.cnx_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                            state.cnx_a = FixedString::from_cobol_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cnx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                             state.cnx_res = FixedString::copy_from(&state.cnx_a);
                                                                                                                                                                                             if state.cnx_res.trimmed() != "1" {
                                                                                                                                                                                                 println!("{}", "ERROR COMP-N - COMP-N");
-                                                                                                                                                                                                state.cnx_a = FixedString::from_str("11");
-                                                                                                                                                                                                state.cnx_a = FixedString::from_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                                                                                                                                                state.cnx_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                state.cnx_a = FixedString::from_cobol_str(&(state.cnx_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                                                                                                                                                 state.cnx_res = FixedString::copy_from(&state.cnx_a);
                                                                                                                                                                                                 if state.cnx_res.trimmed() != "1" {
                                                                                                                                                                                                     println!("{}", "ERROR COMP-N - NUM");
@@ -514,22 +514,22 @@ fn p_do_check(state: &mut ProgramState) {
                                                                                                                                                                                                                 state.cx9_res = state.cx9_a as u32;
                                                                                                                                                                                                                 if state.cx9_res != 1 {
                                                                                                                                                                                                                     println!("{}", "ERROR COMP-X - NUM");
-                                                                                                                                                                                                                    state.cxx_a = FixedString::from_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                    state.cxx_a = FixedString::from_cobol_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) + state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                     state.cxx_res = FixedString::copy_from(&state.cxx_a);
                                                                                                                                                                                                                     if state.cxx_res.trimmed() != "11" {
                                                                                                                                                                                                                         println!("{}", "ERROR COMP-X + COMP-X");
-                                                                                                                                                                                                                        state.cxx_a = FixedString::from_str("1");
-                                                                                                                                                                                                                        state.cxx_a = FixedString::from_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                                                                                                                                                                                        state.cxx_a = FixedString::from_cobol_str("1");
+                                                                                                                                                                                                                        state.cxx_a = FixedString::from_cobol_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                                                                                                                                                                                         state.cxx_res = FixedString::copy_from(&state.cxx_a);
                                                                                                                                                                                                                         if state.cxx_res.trimmed() != "11" {
                                                                                                                                                                                                                             println!("{}", "ERROR COMP-X + NUM");
-                                                                                                                                                                                                                            state.cxx_a = FixedString::from_str("11");
-                                                                                                                                                                                                                            state.cxx_a = FixedString::from_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                            state.cxx_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                            state.cxx_a = FixedString::from_cobol_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) - state.cxx_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                             state.cxx_res = FixedString::copy_from(&state.cxx_a);
                                                                                                                                                                                                                             if state.cxx_res.trimmed() != "1" {
                                                                                                                                                                                                                                 println!("{}", "ERROR COMP-X - COMP-X");
-                                                                                                                                                                                                                                state.cxx_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                state.cxx_a = FixedString::from_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                                                                                                                                                                                state.cxx_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                state.cxx_a = FixedString::from_cobol_str(&(state.cxx_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                                                                                                                                                                                 state.cxx_res = FixedString::copy_from(&state.cxx_a);
                                                                                                                                                                                                                                 if state.cxx_res.trimmed() != "1" {
                                                                                                                                                                                                                                     println!("{}", "ERROR COMP-X - NUM");
@@ -552,79 +552,79 @@ fn p_do_check(state: &mut ProgramState) {
                                                                                                                                                                                                                                                 state.d_res = state.d_a as i32;
                                                                                                                                                                                                                                                 if state.d_res != 1 {
                                                                                                                                                                                                                                                     println!("{}", "ERROR DISPLAY - NUM");
-                                                                                                                                                                                                                                                    state.fd16_a = FixedString::from_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                    state.fd16_a = FixedString::from_cobol_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                     state.fd16_res = FixedString::copy_from(&state.fd16_a);
                                                                                                                                                                                                                                                     if state.fd16_res.trimmed() != "11" {
                                                                                                                                                                                                                                                         println!("{}", "ERROR FLOAT-DECIMAL-16 + FLOAT-DECIMAL-16");
-                                                                                                                                                                                                                                                        state.fd16_a = FixedString::from_str("1");
-                                                                                                                                                                                                                                                        state.fd16_a = FixedString::from_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                                                                                                                                                                                                                        state.fd16_a = FixedString::from_cobol_str("1");
+                                                                                                                                                                                                                                                        state.fd16_a = FixedString::from_cobol_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                                                                                                                                                                                                                         state.fd16_res = FixedString::copy_from(&state.fd16_a);
                                                                                                                                                                                                                                                         if state.fd16_res.trimmed() != "11" {
                                                                                                                                                                                                                                                             println!("{}", "ERROR FLOAT-DECIMAL-16 + NUM");
-                                                                                                                                                                                                                                                            state.fd16_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                            state.fd16_a = FixedString::from_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                            state.fd16_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                            state.fd16_a = FixedString::from_cobol_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd16_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                             state.fd16_res = FixedString::copy_from(&state.fd16_a);
                                                                                                                                                                                                                                                             if state.fd16_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                 println!("{}", "ERROR FLOAT-DECIMAL-16 - FLOAT-DECIMAL-16");
-                                                                                                                                                                                                                                                                state.fd16_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                state.fd16_a = FixedString::from_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                                                                                                                                                                                                                state.fd16_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                state.fd16_a = FixedString::from_cobol_str(&(state.fd16_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                                                                                                                                                                                                                 state.fd16_res = FixedString::copy_from(&state.fd16_a);
                                                                                                                                                                                                                                                                 if state.fd16_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                     println!("{}", "ERROR FLOAT-DECIMAL-16 - NUM");
-                                                                                                                                                                                                                                                                    state.fd34_a = FixedString::from_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                                    state.fd34_a = FixedString::from_cobol_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) + state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                                     state.fd34_res = FixedString::copy_from(&state.fd34_a);
                                                                                                                                                                                                                                                                     if state.fd34_res.trimmed() != "11" {
                                                                                                                                                                                                                                                                         println!("{}", "ERROR FLOAT-DECIMAL-34 + FLOAT-DECIMAL-34");
-                                                                                                                                                                                                                                                                        state.fd34_a = FixedString::from_str("1");
-                                                                                                                                                                                                                                                                        state.fd34_a = FixedString::from_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                                                                                                                                                                                                                                        state.fd34_a = FixedString::from_cobol_str("1");
+                                                                                                                                                                                                                                                                        state.fd34_a = FixedString::from_cobol_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                                                                                                                                                                                                                                         state.fd34_res = FixedString::copy_from(&state.fd34_a);
                                                                                                                                                                                                                                                                         if state.fd34_res.trimmed() != "11" {
                                                                                                                                                                                                                                                                             println!("{}", "ERROR FLOAT-DECIMAL-34 + NUM");
-                                                                                                                                                                                                                                                                            state.fd34_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                            state.fd34_a = FixedString::from_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                                            state.fd34_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                            state.fd34_a = FixedString::from_cobol_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) - state.fd34_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                                             state.fd34_res = FixedString::copy_from(&state.fd34_a);
                                                                                                                                                                                                                                                                             if state.fd34_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                                 println!("{}", "ERROR FLOAT-DECIMAL-34 - FLOAT-DECIMAL-34");
-                                                                                                                                                                                                                                                                                state.fd34_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                                state.fd34_a = FixedString::from_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                                                                                                                                                                                                                                state.fd34_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                                state.fd34_a = FixedString::from_cobol_str(&(state.fd34_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                                                                                                                                                                                                                                 state.fd34_res = FixedString::copy_from(&state.fd34_a);
                                                                                                                                                                                                                                                                                 if state.fd34_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                                     println!("{}", "ERROR FLOAT-DECIMAL-34 - NUM");
-                                                                                                                                                                                                                                                                                    state.fl_a = FixedString::from_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) + state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                                                    state.fl_a = FixedString::from_cobol_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) + state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                                                     state.fl_res = FixedString::copy_from(&state.fl_a);
                                                                                                                                                                                                                                                                                     if state.fl_res.trimmed() != "11" {
                                                                                                                                                                                                                                                                                         println!("{}", "ERROR FLOAT-LONG + FLOAT-LONG");
-                                                                                                                                                                                                                                                                                        state.fl_a = FixedString::from_str("1");
-                                                                                                                                                                                                                                                                                        state.fl_a = FixedString::from_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                                                                                                                                                                                                                                                        state.fl_a = FixedString::from_cobol_str("1");
+                                                                                                                                                                                                                                                                                        state.fl_a = FixedString::from_cobol_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                                                                                                                                                                                                                                                         state.fl_res = FixedString::copy_from(&state.fl_a);
                                                                                                                                                                                                                                                                                         if state.fl_res.trimmed() != "11" {
                                                                                                                                                                                                                                                                                             println!("{}", "ERROR FLOAT-LONG + NUM");
-                                                                                                                                                                                                                                                                                            state.fl_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                                            state.fl_a = FixedString::from_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) - state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                                                            state.fl_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                                            state.fl_a = FixedString::from_cobol_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) - state.fl_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                                                             state.fl_res = FixedString::copy_from(&state.fl_a);
                                                                                                                                                                                                                                                                                             if state.fl_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                                                 println!("{}", "ERROR FLOAT-LONG - FLOAT-LONG");
-                                                                                                                                                                                                                                                                                                state.fl_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                                                state.fl_a = FixedString::from_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                                                                                                                                                                                                                                                state.fl_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                                                state.fl_a = FixedString::from_cobol_str(&(state.fl_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                                                                                                                                                                                                                                                 state.fl_res = FixedString::copy_from(&state.fl_a);
                                                                                                                                                                                                                                                                                                 if state.fl_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                                                     println!("{}", "ERROR FLOAT-LONG - NUM");
-                                                                                                                                                                                                                                                                                                    state.fs_a = FixedString::from_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) + state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                                                                    state.fs_a = FixedString::from_cobol_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) + state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                                                                     state.fs_res = FixedString::copy_from(&state.fs_a);
                                                                                                                                                                                                                                                                                                     if state.fs_res.trimmed() != "11" {
                                                                                                                                                                                                                                                                                                         println!("{}", "ERROR FLOAT-SHORT + FLOAT-SHORT");
-                                                                                                                                                                                                                                                                                                        state.fs_a = FixedString::from_str("1");
-                                                                                                                                                                                                                                                                                                        state.fs_a = FixedString::from_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
+                                                                                                                                                                                                                                                                                                        state.fs_a = FixedString::from_cobol_str("1");
+                                                                                                                                                                                                                                                                                                        state.fs_a = FixedString::from_cobol_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) + 10 as i64).to_string());
                                                                                                                                                                                                                                                                                                         state.fs_res = FixedString::copy_from(&state.fs_a);
                                                                                                                                                                                                                                                                                                         if state.fs_res.trimmed() != "11" {
                                                                                                                                                                                                                                                                                                             println!("{}", "ERROR FLOAT-SHORT + NUM");
-                                                                                                                                                                                                                                                                                                            state.fs_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                                                            state.fs_a = FixedString::from_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) - state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+                                                                                                                                                                                                                                                                                                            state.fs_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                                                            state.fs_a = FixedString::from_cobol_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) - state.fs_b.trimmed().parse::<i64>().unwrap_or(0)).to_string());
                                                                                                                                                                                                                                                                                                             state.fs_res = FixedString::copy_from(&state.fs_a);
                                                                                                                                                                                                                                                                                                             if state.fs_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                                                                 println!("{}", "ERROR FLOAT-SHORT - FLOAT-SHORT");
-                                                                                                                                                                                                                                                                                                                state.fs_a = FixedString::from_str("11");
-                                                                                                                                                                                                                                                                                                                state.fs_a = FixedString::from_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
+                                                                                                                                                                                                                                                                                                                state.fs_a = FixedString::from_cobol_str("11");
+                                                                                                                                                                                                                                                                                                                state.fs_a = FixedString::from_cobol_str(&(state.fs_a.trimmed().parse::<i64>().unwrap_or(0) - 10 as i64).to_string());
                                                                                                                                                                                                                                                                                                                 state.fs_res = FixedString::copy_from(&state.fs_a);
                                                                                                                                                                                                                                                                                                                 if state.fs_res.trimmed() != "1" {
                                                                                                                                                                                                                                                                                                                     println!("{}", "ERROR FLOAT-SHORT - NUM");

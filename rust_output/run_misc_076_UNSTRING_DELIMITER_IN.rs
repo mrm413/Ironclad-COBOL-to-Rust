@@ -69,8 +69,8 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            wk_cmd: FixedString::from_str("WWADDBCC"),
-            wk_signs: FixedString::from_str("AB"),
+            wk_cmd: FixedString::from_cobol_str("WWADDBCC"),
+            wk_signs: FixedString::from_cobol_str("AB"),
             wks: Default::default(),
             wk_sign: Default::default(),
             wk_delim: Default::default(),

@@ -42,9 +42,9 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            x1: FixedString::from_str(" -0.1234E+4 "),
-            x2: FixedString::from_str(" .1234e-2 "),
-            bad1: FixedString::from_str(" -000E-12"),
+            x1: FixedString::from_cobol_str(" -0.1234E+4 "),
+            x2: FixedString::from_cobol_str(" .1234e-2 "),
+            bad1: FixedString::from_cobol_str(" -000E-12"),
             n: Default::default(),
             return_code: 0,
             tally: 0,

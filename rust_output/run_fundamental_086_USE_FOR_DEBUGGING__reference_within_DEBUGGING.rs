@@ -36,7 +36,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            data_field: FixedString::from_str("ABCD"),
+            data_field: FixedString::from_cobol_str("ABCD"),
             return_code: 0,
             tally: 0,
             sort_return: 0,
@@ -69,7 +69,7 @@ fn p_declaratives_2(state: &mut ProgramState) {
 
 /// SOME-PAR
 fn p_some_par(state: &mut ProgramState) {
-    state.data_field = FixedString::from_str(&format!("{}", "\""));
+    state.data_field = FixedString::from_cobol_str(&format!("{}", "\""));
     if state.data_field.trimmed() == "" {
         println!("{}", "NO DEBUG");
         { std::process::exit(0); }

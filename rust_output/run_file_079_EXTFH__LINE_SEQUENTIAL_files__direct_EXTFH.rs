@@ -132,7 +132,7 @@ impl Default for ProgramState {
         Self {
             i: Default::default(),
             ws_fcd_ddname: FixedString::new(),
-            ws_fcd_ptr: FixedString::from_str("NULL"),
+            ws_fcd_ptr: FixedString::from_cobol_str("NULL"),
             ws_fcd_size: 0u32,
             ws_fcd_flags: 0u32,
             display_byte: Default::default(),
@@ -142,7 +142,7 @@ impl Default for ProgramState {
             display_a1_zz9: Default::default(),
             display_a2_xxx: Default::default(),
             display_a2_zz9: Default::default(),
-            fcd_filename: FixedString::from_str("test.out"),
+            fcd_filename: FixedString::from_cobol_str("test.out"),
             fcd_record: FixedString::new(),
             fcd_map: Default::default(),
             return_code: 0,

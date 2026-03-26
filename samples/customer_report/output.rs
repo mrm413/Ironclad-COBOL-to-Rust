@@ -129,7 +129,7 @@ impl Default for ProgramState {
             tr_item_number: Default::default(),
             tr_item_department: Default::default(),
             tr_item_cost: Default::default(),
-            end_of_file_switch: FixedString::from_str("N"),
+            end_of_file_switch: FixedString::from_cobol_str("N"),
             page_head_group: Default::default(),
             line: Default::default(),
             column: Default::default(),

@@ -40,7 +40,7 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            item_alpha: FixedString::from_str("40502"),
+            item_alpha: FixedString::from_cobol_str("40502"),
             item_numeric: 0,
             item_num: 30462u32,
             return_code: 0,
@@ -63,7 +63,7 @@ fn p_item_num(state: &mut ProgramState) {
     if state.item_num != 12 {
         println!("{}{}", "%30462 is not 12 (ASCII) but ", state.item_num);
     }
-    state.item_alpha = FixedString::from_str("101");
+    state.item_alpha = FixedString::from_cobol_str("101");
     if &format!("{}", state.item_alpha) != &"A ".to_string() {
         println!("{}{}", "%101 is not x\"4100\" = Anull (ASCII) but ", state.item_alpha);
     }

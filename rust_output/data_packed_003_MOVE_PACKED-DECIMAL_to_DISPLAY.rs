@@ -81,7 +81,7 @@ impl Default for ProgramState {
             d_99: Default::default(),
             d_p9: Default::default(),
             d_9p: Default::default(),
-            _filler_20: FixedString::from_str("0"),
+            _filler_20: FixedString::from_cobol_str("0"),
             return_code: 0,
             tally: 0,
             sort_return: 0,

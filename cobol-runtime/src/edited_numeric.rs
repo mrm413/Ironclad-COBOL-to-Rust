@@ -4,20 +4,20 @@
 /// zero suppression, commas, decimal points, dollar signs, and sign indicators.
 ///
 /// Supported PIC edit characters:
-///   9  — Always display digit
-///   Z  — Suppress leading zero with space
-///   *  — Suppress leading zero with asterisk
-///   ,  — Comma (suppressed in zero-suppressed area)
-///   .  — Decimal point
-///   $  — Dollar sign (fixed: single $, floating: $$...)
-///   +  — Sign (floating: shows + or -, fixed: shows + or -)
-///   -  — Sign (floating: shows space or -, fixed: shows space or -)
-///   CR — Credit (trailing "CR" if negative, spaces if positive)
-///   DB — Debit (trailing "DB" if negative, spaces if positive)
-///   B  — Blank insertion
-///   0  — Zero insertion character
-///   /  — Slash insertion
-
+///   - 9  -- Always display digit
+///   - Z  -- Suppress leading zero with space
+///   - *  -- Suppress leading zero with asterisk
+///   - ,  -- Comma (suppressed in zero-suppressed area)
+///   - .  -- Decimal point
+///   - $  -- Dollar sign (fixed: single $, floating: $$...)
+///   - +  -- Sign (floating: shows + or -, fixed: shows + or -)
+///   - -  -- Sign (floating: shows space or -, fixed: shows space or -)
+///   - CR -- Credit (trailing "CR" if negative, spaces if positive)
+///   - DB -- Debit (trailing "DB" if negative, spaces if positive)
+///   - B  -- Blank insertion
+///   - 0  -- Zero insertion character
+///   - /  -- Slash insertion
+///
 /// Format a numeric value according to a COBOL PIC edit pattern.
 ///
 /// # Arguments
@@ -32,20 +32,20 @@ pub fn format_edited(value: i64, scale: usize, pattern: &str) -> String {
     let abs_value = value.unsigned_abs();
 
     // Convert absolute value to digit string, zero-padded to needed length
-    let digit_str = format!("{}", abs_value);
+    let _digit_str = format!("{}", abs_value);
 
     // Count how many digit positions exist in the pattern
     // Digit positions: 9, Z, *, and floating $, +, - (after the first)
     let upper = pattern.to_uppercase();
     let chars: Vec<char> = upper.chars().collect();
-    let pat_len = chars.len();
+    let _pat_len = chars.len();
 
     // Detect CR/DB at end
     let (effective_pattern, has_cr, has_db) = detect_trailing_sign(&upper);
     let eff_chars: Vec<char> = effective_pattern.chars().collect();
 
     // Find decimal point position in pattern
-    let decimal_pos = eff_chars.iter().position(|&c| c == '.');
+    let _decimal_pos = eff_chars.iter().position(|&c| c == '.');
 
     // Classify each position in the pattern
     let positions = classify_positions(&eff_chars);
@@ -142,10 +142,10 @@ struct Position {
 }
 
 fn detect_trailing_sign(pattern: &str) -> (String, bool, bool) {
-    if pattern.ends_with("CR") {
-        (pattern[..pattern.len()-2].to_string(), true, false)
-    } else if pattern.ends_with("DB") {
-        (pattern[..pattern.len()-2].to_string(), false, true)
+    if let Some(stripped) = pattern.strip_suffix("CR") {
+        (stripped.to_string(), true, false)
+    } else if let Some(stripped) = pattern.strip_suffix("DB") {
+        (stripped.to_string(), false, true)
     } else {
         (pattern.to_string(), false, false)
     }
@@ -261,7 +261,7 @@ fn split_value(abs_value: u64, scale: usize, int_positions: usize, dec_positions
 fn apply_zero_suppression(output: &mut [char], positions: &[Position], _chars: &[char], is_negative: bool) {
     // Walk left-to-right through integer positions. Suppress leading zeros.
     let mut suppressing = true;
-    let mut float_sign_placed = false;
+    let float_sign_placed = false;
 
     for (i, pos) in positions.iter().enumerate() {
         if pos.is_decimal_part {
@@ -337,12 +337,11 @@ fn apply_zero_suppression(output: &mut [char], positions: &[Position], _chars: &
         let mut insert_pos = None;
         for (i, pos) in positions.iter().enumerate() {
             if pos.is_decimal_part { break; }
-            if pos.kind == PosKind::FloatDollar || pos.kind == PosKind::Comma {
-                if output[i] != ' ' && pos.is_digit_position {
-                    // First significant digit — place $ one position left
-                    insert_pos = Some(i);
-                    break;
-                }
+            if (pos.kind == PosKind::FloatDollar || pos.kind == PosKind::Comma)
+                && output[i] != ' ' && pos.is_digit_position {
+                // First significant digit — place $ one position left
+                insert_pos = Some(i);
+                break;
             }
         }
         if let Some(pos) = insert_pos {

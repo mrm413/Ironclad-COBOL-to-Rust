@@ -41,7 +41,7 @@ impl Default for ProgramState {
     fn default() -> Self {
         Self {
             p: Default::default(),
-            x: FixedString::from_str("ABC"),
+            x: FixedString::from_cobol_str("ABC"),
             test_fld: Default::default(),
             return_code: 0,
             tally: 0,
@@ -59,7 +59,7 @@ fn p_test_fld(state: &mut ProgramState) {
     if state.test_fld.trimmed() != "0" {
         println!("{}{}", "CONTENT-LENGTH NULL wrong: ", state.test_fld);
     }
-    state.p = FixedString::from_str(&format!("{}", &state.x as *const _ as usize));
+    state.p = FixedString::from_cobol_str(&format!("{}", &state.x as *const _ as usize));
     state.test_fld = FixedString::copy_from(&state.p);
     if state.test_fld.trimmed() != "3" {
         println!("{}{}", "CONTENT-LENGTH z\"abc\" wrong: ", state.test_fld);

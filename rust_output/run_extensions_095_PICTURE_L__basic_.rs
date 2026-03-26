@@ -308,7 +308,7 @@ fn p_main(state: &mut ProgramState) {
         p_show_vars(state);
     }
     state.w_lgs.lgy = 9 as u32;
-    state.w_data.y_alpha = FixedString::from_str(&format!("{}", "A"));
+    state.w_data.y_alpha = FixedString::from_cobol_str(&format!("{}", "A"));
     state.w_lgs.lgy = 5 as u32;
     state.w_data.y_alpha = Default::default();
     state.w_lgs.lgy = 9 as u32;

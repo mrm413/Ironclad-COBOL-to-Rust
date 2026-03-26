@@ -130,7 +130,7 @@ impl Default for ProgramState {
             f0rec: Default::default(),
             f1rec: Default::default(),
             f2rec: Default::default(),
-            filename: FixedString::from_str("MYFILE2"),
+            filename: FixedString::from_cobol_str("MYFILE2"),
             wsfs: Default::default(),
             _fs_file0: FileStatus::Success,
             _fh_file0: CobolFile::Closed,

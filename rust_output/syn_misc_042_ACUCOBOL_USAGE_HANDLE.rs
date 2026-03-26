@@ -54,8 +54,8 @@ pub struct ProgramState {
 impl Default for ProgramState {
     fn default() -> Self {
         Self {
-            pattern: FixedString::from_str("*.cob"),
-            directory: FixedString::from_str("."),
+            pattern: FixedString::from_cobol_str("*.cob"),
+            directory: FixedString::from_cobol_str("."),
             filename: Default::default(),
             mydir: Default::default(),
             mythread: Default::default(),
@@ -108,7 +108,7 @@ fn p_main(state: &mut ProgramState) {
     }
     r#in();
     println!("{}", "called in THREAD");
-    state.control_handle = FixedString::from_str(&(state.control_handle.trimmed().parse::<i64>().unwrap_or(0) + state.neither_a_handle.trimmed().parse::<i64>().unwrap_or(0)).to_string());
+    state.control_handle = FixedString::from_cobol_str(&(state.control_handle.trimmed().parse::<i64>().unwrap_or(0) + state.neither_a_handle.trimmed().parse::<i64>().unwrap_or(0)).to_string());
     state.mywindow = (0).into();
     {
         let mut _str_ptr: usize = 1;
