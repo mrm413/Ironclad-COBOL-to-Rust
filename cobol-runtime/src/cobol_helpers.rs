@@ -157,6 +157,53 @@ pub fn cobol_inspect_tallying_count(s: &str) -> i32 {
     s.len() as i32
 }
 
+/// FUNCTION FORMATTED-DATETIME(format, date, time, offset, system-offset)
+/// Returns formatted date-time string per ISO 8601 pattern.
+pub fn cobol_fn_formatted_datetime(fmt: &str, date: i64, time: i64, _offset: i64, _sys_offset: i64) -> String {
+    // Decode date (YYYYMMDD integer or Lilian day)
+    let (y, m, d) = if date > 19000000 {
+        (date / 10000, (date % 10000) / 100, date % 100)
+    } else {
+        let dt = cobol_fn_date_of_integer(date);
+        (dt / 10000, (dt % 10000) / 100, dt % 100)
+    };
+    let hh = time / 10000;
+    let mm = (time % 10000) / 100;
+    let ss = time % 100;
+    let result = fmt
+        .replace("YYYY", &format!("{:04}", y))
+        .replace("MM", &format!("{:02}", m))
+        .replace("DD", &format!("{:02}", d))
+        .replace("DDD", &format!("{:03}", cobol_fn_integer_of_date(y * 10000 + m * 100 + d) % 1000))
+        .replace("hh", &format!("{:02}", hh))
+        .replace("mm", &format!("{:02}", mm))
+        .replace("ss", &format!("{:02}", ss))
+        .replace("Z", "+0000");
+    result
+}
+
+/// FUNCTION FORMATTED-TIME(format, time, offset, system-offset)
+pub fn cobol_fn_formatted_time(fmt: &str, time: i64, _offset: i64, _sys_offset: i64) -> String {
+    let hh = time / 10000;
+    let mm = (time % 10000) / 100;
+    let ss = time % 100;
+    fmt.replace("hh", &format!("{:02}", hh))
+       .replace("mm", &format!("{:02}", mm))
+       .replace("ss", &format!("{:02}", ss))
+       .replace("Z", "+0000")
+}
+
+/// FUNCTION EXCEPTION-STATUS — returns last exception condition name.
+/// Stubbed: screen exceptions not supported in batch mode.
+pub fn cobol_fn_exception_status() -> String {
+    String::new()
+}
+
+/// SYSTEM-OFFSET — system timezone offset in minutes from UTC.
+pub fn cobol_system_offset() -> i64 {
+    0 // UTC by default in portable mode
+}
+
 /// CEE3ABD — IBM LE abend routine (stubbed)
 pub fn cee3abd(_code: i32, _timing: i32) {
     std::process::exit(1);

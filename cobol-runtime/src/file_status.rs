@@ -3,9 +3,10 @@
 use std::fmt;
 
 /// COBOL file status codes (ISO 2002).
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub enum FileStatus {
     // Successful
+    #[default]
     Success,              // 00
     SuccessDuplicate,     // 02
     SuccessNoLength,      // 04
