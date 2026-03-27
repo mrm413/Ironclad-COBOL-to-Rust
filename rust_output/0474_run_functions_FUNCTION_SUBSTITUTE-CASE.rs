@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,7 +41,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.y = format!("{}", "ABC111444555defxxabc").cobol_into();
-    state.z = format!("{}", cobol_fn_substitute_case(format!("{}", state.y), "abc", "zz", "55", "666")).cobol_into();
+    state.z = format!("{}", cobol_fn_substitute_case(&cobol_fn_substitute_case(&format!("{}", state.y), "abc", "zz"), "55", "666")).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", "zz1114446665defxxzz").trim() {
         println!("{}", format!("{}", state.z));
     }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct ScreenTab {
     /// SCREEN-ENTRY
-    pub screen_entry: [ScreenEntry; 0],
+    pub screen_entry: Vec<ScreenEntry>,
 }
 impl std::fmt::Display for ScreenTab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -74,7 +75,9 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // SEARCH ALL SCREEN-ENTRY AT END DISPLAY 'END' WHEN SCREEN-NAME ( SCREEN-IDX ) = 'AB' DISPLAY 'FOUND' END-SEARCH MOVE 1 TO SCREEN-AKT MOVE 'AB' TO SCREEN-NAME ( 1 ) SEARCH ALL SCREEN-ENTRY AT END DISPLAY 'END' WHEN SCREEN-NAME ( SCREEN-IDX ) = 'AB' DISPLAY 'FOUND' END-SEARCH MOVE 2 TO SCREEN-AKT MOVE 'CD' TO SCREEN-NAME ( 2 ) SEARCH ALL SCREEN-ENTRY AT END DISPLAY 'END' WHEN SCREEN-NAME ( SCREEN-IDX ) = 'CD' DISPLAY 'FOUND' END-SEARCH EXIT PROGRAM
+    // SEARCH ALL SCREEN-ENTRY AT END
+    println!("{}", format!("{}", "END"));
+    // WHEN SCREEN-NAME ( SCREEN-IDX ) = 'AB' DISPLAY 'FOUND' END-SEARCH MOVE 1 TO SCREEN-AKT MOVE 'AB' TO SCREEN-NAME ( 1 ) SEARCH ALL SCREEN-ENTRY AT END DISPLAY 'END' WHEN SCREEN-NAME ( SCREEN-IDX ) = 'AB' DISPLAY 'FOUND' END-SEARCH MOVE 2 TO SCREEN-AKT MOVE 'CD' TO SCREEN-NAME ( 2 ) SEARCH ALL SCREEN-ENTRY AT END DISPLAY 'END' WHEN SCREEN-NAME ( SCREEN-IDX ) = 'CD' DISPLAY 'FOUND' END-SEARCH EXIT PROGRAM
 }
 
 fn main() {

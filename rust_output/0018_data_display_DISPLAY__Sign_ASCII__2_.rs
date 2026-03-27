@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -18,7 +19,7 @@ pub struct G {
     /// X-S99
     pub x_s99: Decimal,
     /// X-S9
-    pub x_s9: [Decimal; 10],
+    pub x_s9: Vec<Decimal>,
 }
 impl std::fmt::Display for G {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -49,7 +50,7 @@ pub struct ProgramState {
     /// WS: X-S99
     pub x_s99: Decimal,
     /// WS: X-S9
-    pub x_s9: [Decimal; 10],
+    pub x_s9: Vec<Decimal>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -65,32 +66,43 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x11: FixedString<30>,
+    pub x_s91: FixedString<30>,
+    pub x_s910: FixedString<30>,
+    pub x_s92: FixedString<30>,
+    pub x_s93: FixedString<30>,
+    pub x_s94: FixedString<30>,
+    pub x_s95: FixedString<30>,
+    pub x_s96: FixedString<30>,
+    pub x_s97: FixedString<30>,
+    pub x_s98: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x_s9 = format!("{}", 0).cobol_into();
-    state.x_s9 = format!("{}", 1).cobol_into();
-    state.x_s9 = format!("{}", 2).cobol_into();
-    state.x_s9 = format!("{}", 3).cobol_into();
-    state.x_s9 = format!("{}", 4).cobol_into();
-    state.x_s9 = format!("{}", 5).cobol_into();
-    state.x_s9 = format!("{}", 6).cobol_into();
-    state.x_s9 = format!("{}", 7).cobol_into();
-    state.x_s9 = format!("{}", 8).cobol_into();
-    state.x_s9 = format!("{}", 9).cobol_into();
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 0).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 1).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 2).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 3).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 4).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 5).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 6).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 7).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 8).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", 9).cobol_into(); }
     println!("{}", format!("{}", state.x));
-    state.x_s99. = format!("{}", -10).cobol_into();
-    state.x_s9 = format!("{}", -1).cobol_into();
-    state.x_s9 = format!("{}", -2).cobol_into();
-    state.x_s9 = format!("{}", -3).cobol_into();
-    state.x_s9 = format!("{}", -4).cobol_into();
-    state.x_s9 = format!("{}", -5).cobol_into();
-    state.x_s9 = format!("{}", -6).cobol_into();
-    state.x_s9 = format!("{}", -7).cobol_into();
-    state.x_s9 = format!("{}", -8).cobol_into();
-    state.x_s9 = format!("{}", -9).cobol_into();
+    state.x_s99 = format!("{}", -10).cobol_into();
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -1).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -2).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -3).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -4).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -5).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -6).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -7).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -8).cobol_into(); }
+    for _elem in state.x_s9.iter_mut() { *_elem = format!("{}", -9).cobol_into(); }
     println!("{}", format!("{}", state.x));
     std::process::exit(0);
 }

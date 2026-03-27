@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G {
     /// X
-    pub x: [FixedString<3>; 3],
+    pub x: Vec<FixedString<3>>,
 }
 impl std::fmt::Display for G {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -41,7 +42,7 @@ pub struct ProgramState {
     /// WS: G (group)
     pub g: FixedString<9>,
     /// WS: X
-    pub x: [FixedString<3>; 3],
+    pub x: Vec<FixedString<3>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -57,6 +58,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x2: FixedString<30>,
 }
 
 
@@ -65,7 +68,7 @@ fn p__implicit_(state: &mut ProgramState) {
     state.g = format!("{}", " ").cobol_into();
     { let mut _result = String::new();
         _result.push_str(&format!("{}", "abc"));
-        state.x(2) = _result.into(); }
+        state.x2 = _result.into(); }
     if format!("{}", state.g).trim() != format!("{}", "   abc   ").trim() {
         println!("{}", format!("{:?}", state.x));
     }

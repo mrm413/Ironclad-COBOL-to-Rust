@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -50,15 +51,15 @@ fn p_main_10(state: &mut ProgramState) {
     state.var = format!("{}", "Peek a boo").cobol_into();
     // ALSO FALSE ALSO TRUE WHEN TRUE ALSO VAR-LEN > 16 AND VAR-LEN < 200 ALSO TRUE MOVE OTHERVAR ( 1 : VAR-LEN - 9 ) TO VAR ( 16 - VAR-LEN : VAR-LEN - 9 ) DISPLAY "A: Should NOT be executed" WHEN TRUE ALSO VAR-LEN < 16 ALSO TRUE MOVE OTHERVAR TO VAR DISPLAY "A: OK VAR-LEN > 16 AND VAR-LEN < 200" WHEN TRUE ALSO VAR = SPACES ALSO TRUE MOVE OTHERVAR TO VAR DISPLAY "A: OK VAR IS SPACES" END-EVALUATE
     state.var = format!("{}", "Peek a boo").cobol_into();
-    if ((format!("{}", 3).trim() == format!("{}", 7).trim()) == (format!("{}", state.var).trim() == format!("{}", " ").trim())) {
+    if (format!("{}", (format!("{}", 3).trim() == format!("{}", 7).trim())).trim() == format!("{}", (format!("{}", state.var).trim() == format!("{}", " ").trim())).trim()) {
         println!("{}", format!("{}", "B: OK VAR IS NOT SPACES"));
-    } else if ((format!("{}", 3).trim() == format!("{}", 7).trim()) == (format!("{}", state.var).trim() != format!("{}", " ").trim())) {
+    } else if (format!("{}", (format!("{}", 3).trim() == format!("{}", 7).trim())).trim() == format!("{}", (format!("{}", state.var).trim() != format!("{}", " ").trim())).trim()) {
         println!("{}", format!("{}", "B: FALSE VAR IS SPACES"));
     }
     state.var = format!("{}", " ").cobol_into();
-    if (state.r#false == (format!("{}", state.var).trim() == format!("{}", " ").trim())) {
+    if (format!("{}", false).trim() == format!("{}", (format!("{}", state.var).trim() == format!("{}", " ").trim())).trim()) {
         println!("{}", format!("{}", "C: FALSE VAR IS SPACES"));
-    } else if (state.r#false == (format!("{}", state.var).trim() != format!("{}", " ").trim())) {
+    } else if (format!("{}", false).trim() == format!("{}", (format!("{}", state.var).trim() != format!("{}", " ").trim())).trim()) {
         println!("{}", format!("{}", "C: OK VAR IS SPACES"));
     }
     state.var = format!("{}", "Peek a boo").cobol_into();

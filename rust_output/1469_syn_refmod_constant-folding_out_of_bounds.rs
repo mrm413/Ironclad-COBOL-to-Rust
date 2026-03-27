@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,10 +41,10 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", state.var_len).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0) {
-        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", (format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))));
-        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", (format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<i64>().unwrap_or(0))));
-        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", (format!("{}", format!("{}", 9)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))));
-        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", (format!("{}", format!("{}", 9)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<i64>().unwrap_or(0))));
+        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", (format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))));
+        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", (format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<usize>().unwrap_or(0))));
+        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", (format!("{}", format!("{}", 9)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))));
+        println!("{}", format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", (format!("{}", format!("{}", 9)).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", state.var_len)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<usize>().unwrap_or(0))));
         state.x = cobol_inspect_converting(&format!("{}", state.x), "DEF", "X").cobol_into();
     }
     // ( 1:0 + VAR-LEN ) END-IF STOP RUN

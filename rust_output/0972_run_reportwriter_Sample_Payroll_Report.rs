@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -91,7 +92,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct WpcDept {
     /// WPC-PERCENT
-    pub wpc_percent: [Decimal; 5],
+    pub wpc_percent: Vec<Decimal>,
 }
 impl std::fmt::Display for WpcDept {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -114,7 +115,7 @@ impl WpcDept {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct WsPercentsComputed {
     /// WPC-DEPT
-    pub wpc_dept: [WpcDept; 6],
+    pub wpc_dept: Vec<WpcDept>,
 }
 impl std::fmt::Display for WsPercentsComputed {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -263,7 +264,7 @@ pub struct ProgramState {
     /// WS: WPC-DEPT (group)
     pub wpc_dept: FixedString<25>,
     /// WS: WPC-PERCENT
-    pub wpc_percent: [Decimal; 5],
+    pub wpc_percent: Vec<Decimal>,
     /// WS: DEPARTMENT-TABLE (group)
     pub department_table: FixedString<402>,
     /// WS: FILLER
@@ -332,6 +333,16 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub de_ix: FixedString<30>,
+    pub dept_foot_fica: FixedString<30>,
+    pub dept_foot_fwt: FixedString<30>,
+    pub dept_foot_gross: FixedString<30>,
+    pub dept_foot_misc: FixedString<30>,
+    pub dept_foot_net: FixedString<30>,
+    pub end_of_file: FixedString<30>,
+    pub wpcc_ix: FixedString<30>,
+    pub wpcd_ix: FixedString<30>,
 }
 
 
@@ -436,6 +447,11 @@ fn payroll_register_data_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE PAYROLL-REGISTER-DATA
+fn payroll_register_data_delete(state: &mut ProgramState) {
+    state._fs_payroll_register_data = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT REPORT-FILE
 fn report_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("REPORT_FILE").unwrap_or("report_file.dat".to_string());
@@ -505,6 +521,11 @@ fn report_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_report_file = FileStatus::Success,
         Err(e) => state._fs_report_file = e,
     }
+}
+
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: DECLARATIVES

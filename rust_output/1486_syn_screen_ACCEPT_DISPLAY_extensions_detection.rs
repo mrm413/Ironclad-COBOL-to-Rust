@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -46,17 +47,20 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub statements: FixedString<30>,
+    pub valid: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}", format!("{}", "hello"), format!("{}", state.at), format!("{}", 0));
-    println!("{}{}{}{}{}", format!("{}", "world"), format!("{}", state.line), format!("{}", 0), format!("{}", state.column), format!("{}", state.zero_const));
+    println!("{}", format!("{}", "hello"));
+    println!("{}", format!("{}", "world"));
     // ACCEPT X
     println!("{}", format!("{}", state.scr));
     // ACCEPT SCR
-    println!("{}{}{}{}{}", format!("{}", state.scr), format!("{}", state.scr), format!("{}", state.*>), format!("{}", state.valid), format!("{}", state.statements));
+    println!("{}{}{}{}{}", format!("{}", state.scr), format!("{}", state.scr), format!("{}", ""), format!("{}", state.valid), format!("{}", state.statements));
     println!("{}", format!("{}", state.scr));
     // ACCEPT SCR
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -37,7 +38,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct RpDtl1 {
     /// NUMS
-    pub nums: [Decimal; 3],
+    pub nums: Vec<Decimal>,
     /// MARK
     pub mark: FixedString<4>,
 }
@@ -76,7 +77,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct RpDtl2 {
     /// GRPS
-    pub grps: [Grps; 3],
+    pub grps: Vec<Grps>,
 }
 impl std::fmt::Display for RpDtl2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -111,7 +112,7 @@ pub struct RpDtl4 {
     /// NUM4A
     pub num4a: Decimal,
     /// NUM4B
-    pub num4b: [Decimal; 3],
+    pub num4b: Vec<Decimal>,
     /// MRK4
     pub mrk4: FixedString<4>,
 }
@@ -150,7 +151,7 @@ pub struct ProgramState {
     /// FD: RP-DTL1 (group)
     pub rp_dtl1: FixedString<13>,
     /// FD: NUMS
-    pub nums: [Decimal; 3],
+    pub nums: Vec<Decimal>,
     /// FD: MARK
     pub mark: FixedString<4>,
     /// FD: RP-DTL2 (group)
@@ -176,7 +177,7 @@ pub struct ProgramState {
     /// FD: NUM4A
     pub num4a: Decimal,
     /// FD: NUM4B
-    pub num4b: [Decimal; 3],
+    pub num4b: Vec<Decimal>,
     /// FD: MRK4
     pub mrk4: FixedString<4>,
     // --- File handles ---
@@ -184,6 +185,10 @@ pub struct ProgramState {
     pub _fs_rp_file: FileStatus,
     /// File handle for RP-FILE
     pub _fh_rp_file: CobolFile,
+    pub _fs_initiate: FileStatus,
+    pub _fh_initiate: CobolFile,
+    pub _fs_rp: FileStatus,
+    pub _fh_rp: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -246,14 +251,12 @@ fn rp_file_read(state: &mut ProgramState) -> Result<(), FileStatus> {
             let _len = _bytes.len().min(149);
             if _len > 0 { let _end = _len.min(0+50); state.column = String::from_utf8_lossy(&_bytes[0.._end]).to_string().cobol_into(); }
             if _len > 50 { let _end = _len.min(50+50); state.column = String::from_utf8_lossy(&_bytes[50.._end]).to_string().cobol_into(); }
-            if _len > 100 { let _end = _len.min(100+3); let _s = String::from_utf8_lossy(&_bytes[100.._end]).trim().to_string(); state.nums = _s.cobol_into(); }
             if _len > 103 { let _end = _len.min(103+4); state.mark = String::from_utf8_lossy(&_bytes[103.._end]).to_string().cobol_into(); }
             if _len > 107 { let _end = _len.min(107+5); state.tag1 = String::from_utf8_lossy(&_bytes[107.._end]).to_string().cobol_into(); }
             if _len > 113 { let _end = _len.min(113+5); state.tag2 = String::from_utf8_lossy(&_bytes[113.._end]).to_string().cobol_into(); }
             if _len > 120 { let _end = _len.min(120+3); let _s = String::from_utf8_lossy(&_bytes[120.._end]).trim().to_string(); state.nnns = _s.cobol_into(); }
             if _len > 123 { let _end = _len.min(123+4); state.tagp = String::from_utf8_lossy(&_bytes[123.._end]).to_string().cobol_into(); }
             if _len > 127 { let _end = _len.min(127+3); let _s = String::from_utf8_lossy(&_bytes[127.._end]).trim().to_string(); state.num4a = _s.cobol_into(); }
-            if _len > 130 { let _end = _len.min(130+3); let _s = String::from_utf8_lossy(&_bytes[130.._end]).trim().to_string(); state.num4b = _s.cobol_into(); }
             if _len > 133 { let _end = _len.min(133+4); state.mrk4 = String::from_utf8_lossy(&_bytes[133.._end]).to_string().cobol_into(); }
             state._fs_rp_file = FileStatus::Success;
         }
@@ -272,14 +275,12 @@ fn rp_file_write(state: &mut ProgramState) {
     let mut _buf = vec![b' '; 149];
     { let _src = state.column.as_bytes(); let _end = (0+50).min(_buf.len()); let _cl = _src.len().min(_end-0); _buf[0..0+_cl].copy_from_slice(&_src[.._cl]); }
     { let _src = state.column.as_bytes(); let _end = (50+50).min(_buf.len()); let _cl = _src.len().min(_end-50); _buf[50..50+_cl].copy_from_slice(&_src[.._cl]); }
-    { let _s = format!("{:>width$}", state.nums, width = 3); let _b = _s.as_bytes(); let _cl = _b.len().min(3); _buf[100..100+_cl].copy_from_slice(&_b[_b.len()-_cl..]); }
     { let _src = state.mark.as_bytes(); let _end = (103+4).min(_buf.len()); let _cl = _src.len().min(_end-103); _buf[103..103+_cl].copy_from_slice(&_src[.._cl]); }
     { let _src = state.tag1.as_bytes(); let _end = (107+5).min(_buf.len()); let _cl = _src.len().min(_end-107); _buf[107..107+_cl].copy_from_slice(&_src[.._cl]); }
     { let _src = state.tag2.as_bytes(); let _end = (113+5).min(_buf.len()); let _cl = _src.len().min(_end-113); _buf[113..113+_cl].copy_from_slice(&_src[.._cl]); }
     { let _s = format!("{:>width$}", state.nnns, width = 3); let _b = _s.as_bytes(); let _cl = _b.len().min(3); _buf[120..120+_cl].copy_from_slice(&_b[_b.len()-_cl..]); }
     { let _src = state.tagp.as_bytes(); let _end = (123+4).min(_buf.len()); let _cl = _src.len().min(_end-123); _buf[123..123+_cl].copy_from_slice(&_src[.._cl]); }
     { let _s = format!("{:>width$}", state.num4a, width = 3); let _b = _s.as_bytes(); let _cl = _b.len().min(3); _buf[127..127+_cl].copy_from_slice(&_b[_b.len()-_cl..]); }
-    { let _s = format!("{:>width$}", state.num4b, width = 3); let _b = _s.as_bytes(); let _cl = _b.len().min(3); _buf[130..130+_cl].copy_from_slice(&_b[_b.len()-_cl..]); }
     { let _src = state.mrk4.as_bytes(); let _end = (133+4).min(_buf.len()); let _cl = _src.len().min(_end-133); _buf[133..133+_cl].copy_from_slice(&_src[.._cl]); }
     match state._fh_rp_file.write_record(&_buf) {
         Ok(()) => state._fs_rp_file = FileStatus::Success,
@@ -295,23 +296,133 @@ fn rp_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE RP-FILE
+fn rp_file_delete(state: &mut ProgramState) {
+    state._fs_rp_file = FileStatus::Success; // DELETE stub
+}
+
+fn initiate_open_input(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_output(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_io(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_extend(state: &mut ProgramState) { /* stub */ }
+fn initiate_read(state: &mut ProgramState) { /* stub */ }
+fn initiate_write(state: &mut ProgramState) { /* stub */ }
+fn initiate_rewrite(state: &mut ProgramState) { /* stub */ }
+fn initiate_close(state: &mut ProgramState) { /* stub */ }
+fn initiate_delete(state: &mut ProgramState) { /* stub */ }
+
+fn rp_open_input(state: &mut ProgramState) { /* stub */ }
+fn rp_open_output(state: &mut ProgramState) { /* stub */ }
+fn rp_open_io(state: &mut ProgramState) { /* stub */ }
+fn rp_open_extend(state: &mut ProgramState) { /* stub */ }
+fn rp_read(state: &mut ProgramState) { /* stub */ }
+fn rp_write(state: &mut ProgramState) { /* stub */ }
+fn rp_rewrite(state: &mut ProgramState) { /* stub */ }
+fn rp_close(state: &mut ProgramState) { /* stub */ }
+fn rp_delete(state: &mut ProgramState) { /* stub */ }
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     rp_file_open_output(state);
     initiate_open_output(state);
     rp_open_output(state);
-    state.nums = format!("{}", 100).cobol_into();
-    state.nums = format!("{}", 100).cobol_into();
-    state.nums = format!("{}", 100).cobol_into();
+    for _elem in state.nums.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
+    for _elem in state.nums.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
+    for _elem in state.nums.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
     state.mark = format!("{}", "<1>").cobol_into();
     // GENERATE RP-DTL1 MOVE ALL '*' TO GRPS(1) GRPS(2) GRPS(3) MOVE "Tag1" TO TAG1 ( 1 ) TAG1 ( 2 ) TAG1 ( 3 ) MOVE "Tag2" TO TAG2 ( 1 ) TAG2 ( 2 ) TAG2 ( 3 ) GENERATE RP-DTL2 MOVE 200 TO NNNS ( 1 ) NNNS ( 2 ) NNNS ( 3 ) NNNS ( 4 ) MOVE "<3>" TO TAGP
     // GENERATE RP-DTL3
     state.num4a = format!("{}", 400).cobol_into();
-    state.num4b = format!("{}", 401).cobol_into();
-    state.num4b = format!("{}", 402).cobol_into();
-    state.num4b = format!("{}", 403).cobol_into();
+    for _elem in state.num4b.iter_mut() { *_elem = format!("{}", 401).cobol_into(); }
+    for _elem in state.num4b.iter_mut() { *_elem = format!("{}", 402).cobol_into(); }
+    for _elem in state.num4b.iter_mut() { *_elem = format!("{}", 403).cobol_into(); }
     state.mrk4 = format!("{}", "<4>").cobol_into();
     // GENERATE RP-DTL4 TERMINATE RP CLOSE RP-FILE STOP RUN
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_input(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_output(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_io(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_extend(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_read(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_write(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_close(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_delete(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_input(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_output(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_io(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_extend(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_read(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_write(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_rewrite(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_close(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_delete(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

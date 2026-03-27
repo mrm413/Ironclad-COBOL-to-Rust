@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -60,8 +61,6 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     { let _src = format!("{}", state.g); let _parts: Vec<&str> = _src.splitn(4, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.low_values = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.into = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(2) { state.a = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(3) { state.b = p.to_string().cobol_into(); }
     }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -137,7 +138,7 @@ fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", state.output_name));
     state.amount = format!("{}", -123.450000).cobol_into();
     state.grp_amount = format!("{}", state.amount).cobol_into();
-    if format!("{}", state.my_proc).trim() == format!("{}", state.null).trim() {
+    if format!("{}", state.my_proc).trim() == format!("{}", "\x00").trim() {
         state.my_proc = " ".to_string().cobol_into();
     }
     // OF PROGRAM "prog"

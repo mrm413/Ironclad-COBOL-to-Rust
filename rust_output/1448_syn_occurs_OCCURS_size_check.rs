@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct X1 {
     /// X
-    pub x: [FixedString<1>; 1530001234],
+    pub x: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for X1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -37,7 +38,7 @@ impl X1 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct X2 {
     /// X
-    pub x: [FixedString<1>; 2147483648],
+    pub x: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for X2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -60,7 +61,7 @@ impl X2 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct X3 {
     /// X
-    pub x: [FixedString<1>; 9223372036854775808],
+    pub x: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for X3 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -87,15 +88,15 @@ pub struct ProgramState {
     /// WS: X1 (group)
     pub x1: FixedString<1530001234>,
     /// WS: X
-    pub x: [FixedString<1>; 1530001234],
+    pub x: Vec<FixedString<1>>,
     /// WS: X2 (group)
     pub x2: FixedString<2147483648>,
     /// WS: X
-    pub x_2: [FixedString<1>; 2147483648],
+    pub x_2: Vec<FixedString<1>>,
     /// WS: X3 (group)
     pub x3: FixedString<9223372036854775808>,
     /// WS: X
-    pub x_3: [FixedString<1>; 9223372036854775808],
+    pub x_3: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,

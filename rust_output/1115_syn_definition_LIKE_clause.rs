@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -88,14 +89,17 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n1length: FixedString<30>,
+    pub n55length: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", state.ausgabe_file_name));
-    println!("{}{}{}{}{}", format!("{}", state.z_message_t2), format!("{}", state.55:length), format!("{}", state.of), format!("{}", state.detail_no), format!("{}", state.)));
-    println!("{}{}{}{}{}", format!("{}", state.mt3), format!("{}", state.1:length), format!("{}", state.of), format!("{}", state.ausgabe_file_name), format!("{}", state.)));
+    println!("{}{}{}{}{}", format!("{}", state.z_message_t2), format!("{}", ""), format!("{}", ""), format!("{}", state.detail_no), format!("{}", ""));
+    println!("{}{}{}{}{}", format!("{}", state.mt3), format!("{}", ""), format!("{}", ""), format!("{}", state.ausgabe_file_name), format!("{}", ""));
     { let _a: f64 = format!("{}", state.detail_no).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.output_val).trim().parse().unwrap_or(0.0); state.detail_no = format!("{}", _a + _b).cobol_into(); }
     return;
 }

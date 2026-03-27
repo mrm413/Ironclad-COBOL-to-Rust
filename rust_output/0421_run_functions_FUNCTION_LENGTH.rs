@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -16,7 +17,7 @@ pub struct TestTab {
     /// T-ENTRIES
     pub t_entries: Decimal,
     /// TEST-ENTRY
-    pub test_entry: [FixedString<1>; 1],
+    pub test_entry: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for TestTab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -51,7 +52,7 @@ pub struct ProgramState {
     /// WS: T-ENTRIES
     pub t_entries: Decimal,
     /// WS: TEST-ENTRY
-    pub test_entry: [FixedString<1>; 1],
+    pub test_entry: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -72,39 +73,39 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.x))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length(&format!("{}", state.x))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 8).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH \"00128\" wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH \"00128\" wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.n))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length(&format!("{}", state.n))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 9).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH N(9) wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH N(9) wrong: "), format!("{}", state.test_fld));
     }
     state.test_fld = format!("{}", cobol_fn_length("00128")).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 5).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH \"00128\" wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH \"00128\" wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.x'a0'))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length("\\xA0")).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 1).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH x\"a0\" wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH x\"a0\" wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.z'a0'))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length("\\xA0")).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 3).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH z\"a0\" wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH z\"a0\" wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.n'a0'))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length("\\xA0")).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 2).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH n\"a0\" wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH n\"a0\" wrong: "), format!("{}", state.test_fld));
     }
     state.t_entries = format!("{}", 10).cobol_into();
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.test_tab))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length(&format!("{}", state.test_tab))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 12).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH TEST-TAB (10 entries): "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH TEST-TAB (10 entries): "), format!("{}", state.test_fld));
     }
     state.t_entries = format!("{}", 1).cobol_into();
-    state.test_fld = format!("{}", cobol_fn_length(format!("{}", state.test_tab))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_length(&format!("{}", state.test_tab))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 3).trim() {
-        println!("{}{}{}", format!("{}", "LENGTH TEST-TAB (1 entry): "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "LENGTH TEST-TAB (1 entry): "), format!("{}", state.test_fld));
     }
     std::process::exit(0);
 }

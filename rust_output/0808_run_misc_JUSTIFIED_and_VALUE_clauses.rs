@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -28,7 +29,7 @@ pub struct ArrEntry {
     /// ARR-FLD2
     pub arr_fld2: FixedString<10>,
     /// ARR-FLD3
-    pub arr_fld3: [ArrFld3; 6],
+    pub arr_fld3: Vec<ArrFld3>,
 }
 impl std::fmt::Display for ArrEntry {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -51,7 +52,7 @@ impl ArrEntry {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct ArrArray {
     /// ARR-ENTRY
-    pub arr_entry: [ArrEntry; 6],
+    pub arr_entry: Vec<ArrEntry>,
 }
 impl std::fmt::Display for ArrArray {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -134,6 +135,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x: FixedString<30>,
 }
 
 

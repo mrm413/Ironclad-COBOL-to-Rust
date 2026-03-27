@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -62,7 +63,7 @@ pub struct SomeValues {
     /// OTHER-DATA
     pub other_data: FixedString<1>,
     /// OTHER-VALUES
-    pub other_values: [OtherValues; 2],
+    pub other_values: Vec<OtherValues>,
 }
 impl std::fmt::Display for SomeValues {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -99,9 +100,9 @@ pub struct SomeStruct {
     /// SOME-DATA
     pub some_data: u8,
     /// SOME-VALUES
-    pub some_values: [SomeValues; 3],
+    pub some_values: Vec<SomeValues>,
     /// SOME2-VALUES
-    pub some2_values: [Some2Values; 1],
+    pub some2_values: Vec<Some2Values>,
 }
 impl std::fmt::Display for SomeStruct {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

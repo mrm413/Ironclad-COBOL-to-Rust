@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,13 +41,13 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.tal = format!("{}", 0).cobol_into();
-    state.tal = format!("{}", cobol_inspect_tallying_count("CHARACTERS BEFORE INITIAL " "")).cobol_into();
+    state.tal = format!("{}", cobol_inspect_tallying_count("CHARACTERS BEFORE INITIAL \" \"")).cobol_into();
     if format!("{}", state.tal).trim() != format!("{}", 3).trim() {
         println!("{}{}", format!("{}", "1: should be 3 but is "), format!("{}", state.tal));
     }
     state.tal = format!("{}", 0).cobol_into();
     state.x = format!("{}", " ABC").cobol_into();
-    state.tal = format!("{}", cobol_inspect_tallying_count("CHARACTERS BEFORE INITIAL " "")).cobol_into();
+    state.tal = format!("{}", cobol_inspect_tallying_count("CHARACTERS BEFORE INITIAL \" \"")).cobol_into();
     if format!("{}", state.tal).trim() != format!("{}", 0).trim() {
         println!("{}{}", format!("{}", "2: should be 0 but is "), format!("{}", state.tal));
     }

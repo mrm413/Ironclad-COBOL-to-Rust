@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -93,12 +94,11 @@ fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", state.x_1).trim() != format!("{}", 95000).trim() {
         println!("{}{}", format!("{}", "- 4000 failed: "), format!("{}", state.x_1));
     }
-    { let _a: f64 = format!("{}", state.x_1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 3).trim().parse().unwrap_or(0.0); state.x_1 = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.x_1 }; }
+    { let _a: f64 = format!("{}", state.x_1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 3).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.x_1 = format!("{}", _a / _b).cobol_into(); } }
     if format!("{}", state.x_1).trim() != format!("{}", 31000).trim() {
         println!("{}{}", format!("{}", "/ 3 failed: "), format!("{}", state.x_1));
     }
-    { let _a: f64 = format!("{}", state.x_1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2).trim().parse().unwrap_or(0.0); state.x_1 = format!("{}", _a * _b).cobol_into(); }
-    // GIVING X-1
+    state.x_1 = format!("{}", (format!("{}", format!("{}", 2)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", state.x_1)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     if format!("{}", state.x_1).trim() != format!("{}", 62000).trim() {
         println!("{}{}", format!("{}", "* 2 failed: "), format!("{}", state.x_1));
     }

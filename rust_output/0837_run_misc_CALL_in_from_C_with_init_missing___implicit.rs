@@ -2,6 +2,7 @@
 // Source: CALLEE.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -43,7 +44,7 @@ fn p__implicit_(state: &mut ProgramState) {
         println!("{}", format!("{}", state.p1));
     }
     if format!("{}", state.p2).trim() != format!("{}", "FROM C").trim() {
-        println!("{}{}", format!("{}", state.p2), format!("{}", state.end_display));
+        println!("{}", format!("{}", state.p2));
     } else {
         println!("{}", format!("{}", "OK"));
     }

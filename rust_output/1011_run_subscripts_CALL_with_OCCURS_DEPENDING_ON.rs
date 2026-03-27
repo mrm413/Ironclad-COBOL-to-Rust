@@ -2,6 +2,7 @@
 // Source: PROG-MAIN.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct ParmStr {
     /// PARM-CHAR
-    pub parm_char: [FixedString<1>; 0],
+    pub parm_char: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for ParmStr {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -55,7 +56,7 @@ pub struct ProgramState {
     /// WS: PARM-STR (group)
     pub parm_str: FixedString<1>,
     /// WS: PARM-CHAR
-    pub parm_char: [FixedString<1>; 0],
+    pub parm_char: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -89,7 +90,7 @@ fn p__implicit_(state: &mut ProgramState) {
     // 03 PARM-STR
     // 05 PARM-CHAR PIC X OCCURS 0 TO 100 TIMES DEPENDING ON PARM-SIZE
     // PROCEDURE DIVISION USING PARM
-    println!("{}", format!("{}", cobol_fn_trim(format!("{}", state.parm_str))));
+    println!("{}", format!("{}", cobol_fn_trim(&format!("{}", state.parm_str))));
     // END PROGRAM PROG
 }
 

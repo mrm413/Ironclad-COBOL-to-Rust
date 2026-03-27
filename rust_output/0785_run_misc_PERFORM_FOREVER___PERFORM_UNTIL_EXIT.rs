@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -32,6 +33,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub exit: FixedString<30>,
 }
 
 
@@ -46,7 +49,7 @@ fn p_a01(state: &mut ProgramState) {
         }
     }
     if format!("{}", state.indval).trim() != format!("{}", 3).trim() {
-        println!("{}{}{}", format!("{}", "1: "), format!("{}", state.indval), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "1: "), format!("{}", state.indval));
     }
     p_forever(state);
     { let _a: f64 = format!("{}", state.indval).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.indval = format!("{}", _a + _b).cobol_into(); }
@@ -59,6 +62,11 @@ fn p_a01(state: &mut ProgramState) {
 
 /// Stub for unresolved paragraph
 fn p_end_if(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

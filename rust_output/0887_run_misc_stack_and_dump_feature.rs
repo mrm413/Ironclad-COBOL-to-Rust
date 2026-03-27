@@ -2,6 +2,7 @@
 // Source: SUB2.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -17,7 +18,7 @@ pub struct Tstx {
     /// TSTG-1
     pub tstg_1: Decimal,
     /// TSTX-2
-    pub tstx_2: [FixedString<2>; 4],
+    pub tstx_2: Vec<FixedString<2>>,
 }
 impl std::fmt::Display for Tstx {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -42,7 +43,7 @@ pub struct Tstrec {
     /// TSTDEP
     pub tstdep: FixedString<3>,
     /// TSTX
-    pub tstx: [Tstx; 4],
+    pub tstx: Vec<Tstx>,
     /// TSTTAIL1
     pub tsttail1: Decimal,
     /// TSTCOMP3
@@ -137,7 +138,7 @@ pub struct ProgramState {
     /// WS: TSTG-1
     pub tstg_1: Decimal,
     /// WS: TSTX-2
-    pub tstx_2: [FixedString<2>; 4],
+    pub tstx_2: Vec<FixedString<2>>,
     /// WS: TSTTAIL1
     pub tsttail1: Decimal,
     /// WS: TSTCOMP3
@@ -190,13 +191,23 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n101: FixedString<30>,
+    pub n135: FixedString<30>,
+    pub n21: FixedString<30>,
+    pub n321: FixedString<30>,
+    pub n391: FixedString<30>,
+    pub n471: FixedString<30>,
+    pub n5036: FixedString<30>,
+    pub n541: FixedString<30>,
+    pub n591: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     // SUBWAY SECTION
-    if format!("{}", state.address).trim() == format!("{}", state.null).trim() {
+    if format!("{}", 0usize).trim() == format!("{}", "\x00").trim() {
     }
     // ALLOCATE BASED-RECORD INITIALIZED ELSE SET ADDRESS OF DYNAMIC-NUM TO ADDRESS OF BASED-RECORD ADD 1 TO B-NUM END-IF
 }

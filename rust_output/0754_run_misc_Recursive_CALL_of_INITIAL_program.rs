@@ -2,6 +2,7 @@
 // Source: CALLEE.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -38,7 +39,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", state.stopper).trim() == format!("{}", 1).trim() {
-        println!("{}{}", format!("{}", "INITIAL prog was called RECURSIVE"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "INITIAL prog was called RECURSIVE"));
         std::process::exit(0);
     }
     // RETURNING 1 ELSE MOVE 1 TO STOPPER CALL "callee2" END-CALL END-IF

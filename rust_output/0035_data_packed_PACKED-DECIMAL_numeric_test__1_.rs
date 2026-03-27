@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -56,49 +57,49 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x_2 = format!("{}", state.x"0000").cobol_into();
+    state.x_2 = format!("{}", "\\x00\\x00").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY " 0000 NG"
     if { let __v = format!("{}", state.n_s2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "S0000 NG"
-    state.x_2 = format!("{}", state.x"000c").cobol_into();
+    state.x_2 = format!("{}", "\\x00\\x0C").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY " 000c NG"
     if { let __v = format!("{}", state.n_s2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY "S000c NG"
-    state.x_2 = format!("{}", state.x"000d").cobol_into();
+    state.x_2 = format!("{}", "\\x00\\r").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY " 000d NG"
     if { let __v = format!("{}", state.n_s2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY "S000d NG"
-    state.x_2 = format!("{}", state.x"000f").cobol_into();
+    state.x_2 = format!("{}", "\\x00\\x0F").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY " 000f NG"
     if { let __v = format!("{}", state.n_s2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "S000f NG"
-    state.x_2 = format!("{}", state.x"1234").cobol_into();
+    state.x_2 = format!("{}", "\\x124").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY " 1234 NG"
     if { let __v = format!("{}", state.n_s2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "S1234 NG"
-    state.x_2 = format!("{}", state.x"999f").cobol_into();
+    state.x_2 = format!("{}", "\\x99\\x9F").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY " 999f NG"
     if { let __v = format!("{}", state.n_s2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "S999f NG"
-    state.x_2 = format!("{}", state.x"ffff").cobol_into();
+    state.x_2 = format!("{}", "\\xFF\\xFF").cobol_into();
     if { let __v = format!("{}", state.n_2); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY " ffff NG"

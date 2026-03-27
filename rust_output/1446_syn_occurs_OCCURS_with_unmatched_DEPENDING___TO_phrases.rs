@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Xtab {
     /// X
-    pub x: [FixedString<1>; 10],
+    pub x: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Xtab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -37,7 +38,7 @@ impl Xtab {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Xtab2 {
     /// X2
-    pub x2: [FixedString<1>; 1],
+    pub x2: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Xtab2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -60,7 +61,7 @@ impl Xtab2 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Xtab3 {
     /// X3
-    pub x3: [FixedString<1>; 1],
+    pub x3: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Xtab3 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -89,15 +90,15 @@ pub struct ProgramState {
     /// WS: XTAB (group)
     pub xtab: FixedString<10>,
     /// WS: X
-    pub x: [FixedString<1>; 10],
+    pub x: Vec<FixedString<1>>,
     /// WS: XTAB2 (group)
     pub xtab2: FixedString<1>,
     /// WS: X2
-    pub x2: [FixedString<1>; 1],
+    pub x2: Vec<FixedString<1>>,
     /// WS: XTAB3 (group)
     pub xtab3: FixedString<1>,
     /// WS: X3
-    pub x3: [FixedString<1>; 1],
+    pub x3: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -113,14 +114,18 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x1: FixedString<30>,
+    pub x22: FixedString<30>,
+    pub x33: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x = format!("{}", "A").cobol_into();
-    state.x2 = format!("{}", "A").cobol_into();
-    state.x3 = format!("{}", "A").cobol_into();
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", "A").cobol_into(); }
+    for _elem in state.x2.iter_mut() { *_elem = format!("{}", "A").cobol_into(); }
+    for _elem in state.x3.iter_mut() { *_elem = format!("{}", "A").cobol_into(); }
     return;
 }
 

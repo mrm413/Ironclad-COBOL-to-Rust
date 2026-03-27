@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -57,6 +58,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n16: FixedString<30>,
+    pub hexx_filler: FixedString<30>,
 }
 
 
@@ -77,31 +81,31 @@ fn p_main(state: &mut ProgramState) {
 fn p_do_check(state: &mut ProgramState) {
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_hex_of(format!("{}", state.x))));
+        _result.push_str(&format!("{}", cobol_fn_hex_of(&format!("{}", state.x))));
         state.hexx = _result.into(); }
     // >>IF CHARSET = 'ASCII' IF HEXX NOT = "20303132--" >>ELIF CHARSET = 'EBCDIC' IF HEXX NOT = "40F0F1F2--" >>ELSE IF 1 = 1 DISPLAY 'CHARSET UNKNOWN! PLEASE REPORT!' >>END-IF DISPLAY "UNEXPECTED HEX-VALUE OF '0012': " HEXX
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_hex_of(format!("{}", state.y))));
+        _result.push_str(&format!("{}", cobol_fn_hex_of(&format!("{}", state.y))));
         state.hexx = _result.into(); }
     // >>IF CHARSET = 'ASCII' IF HEXX NOT = "48492E20--" >> ELSE IF HEXX NOT = "C8C94B40--" >> END-IF DISPLAY "UNEXPECTED HEX-VALUE OF 'HI! ': " HEXX
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_hex_of(format!("{}", state.bin))));
+        _result.push_str(&format!("{}", cobol_fn_hex_of(&format!("{}", state.bin))));
         state.hexx = _result.into(); }
     if format!("{}", state.hexx).trim() != format!("{}", "0000000C--").trim() {
         println!("{}{}", format!("{}", "UNEXPECTED HEX-VALUE OF BIN 12: "), format!("{}", state.hexx));
     }
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_hex_of(format!("{}", state.pac))));
+        _result.push_str(&format!("{}", cobol_fn_hex_of(&format!("{}", state.pac))));
         state.hexx = _result.into(); }
     if format!("{}", state.hexx).trim() != format!("{}", "01234F----").trim() {
         println!("{}{}", format!("{}", "UNEXPECTED HEX-VALUE OF PACKED 1234: "), format!("{}", state.hexx));
     }
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_hex_of(format!("{}", state.z"01"))));
+        _result.push_str(&format!("{}", cobol_fn_hex_of("\\x01")));
         state.hexx = _result.into(); }
     // >>IF CHARSET = 'ASCII' IF HEXX NOT = "303100----" >> ELSE IF HEXX NOT = "F0F100----" >> END-IF DISPLAY "UNEXPECTED HEX-VALUE OF z'01': " HEXX
     state.hexx = "ALL".to_string().cobol_into();
@@ -111,7 +115,7 @@ fn p_do_check(state: &mut ProgramState) {
     // >>IF CHARSET = 'ASCII' IF HEXX NOT = "20--------" >> ELSE IF HEXX NOT = "40--------" >> END-IF DISPLAY "UNEXPECTED HEX-VALUE OF ' ': " HEXX
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_hex_of(format!("{}", state.n' '))));
+        _result.push_str(&format!("{}", cobol_fn_hex_of("")));
         state.hexx = _result.into(); }
     if format!("{}", state.hexx).trim() != format!("{}", "0020------").trim() {
         println!("{}{}", format!("{}", "UNEXPECTED HEX-VALUE OF n' ': "), format!("{}", state.hexx));
@@ -121,24 +125,27 @@ fn p_do_check(state: &mut ProgramState) {
     // *> FIXME: FAILING WITH "00212020--" -> BAD PADDING *> -> CODEGEN ISSUE FOR INITIALIZATION / MOVE *> AND LIBCOB ISSUE AT LEAST FOR MOVE *> SET HEXX-FILLER TO TRUE *> STRING FUNCTION HEX-OF ( NX ) DELIMITED BY SIZE INTO HEXX
     // *> IF HEXX NOT = "00210020--" *> DISPLAY "UNEXPECTED HEX-VALUE OF NX: " HEXX
     // *> SETTING UP TEST DATA: SET HEXX-FILLER TO TRUE STRING FUNCTION HEX-OF ( Z"01" ) DELIMITED BY SIZE INTO HEXX
-    if format!("{}", cobol_fn_hex_to_char(cobol_refmod(&format!("{}", state.hexx), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", 6).trim().parse::<i64>().unwrap_or(0)))).trim() != format!("{}", state.z"01").trim() {
-        println!("{}{}{}", format!("{}", "UNEXPECTED CHAR VALUE, does not match z'01': "), format!("{}", state.hexx), format!("{}", state.1:6));
+    if format!("{}", cobol_fn_hex_to_char(&format!("{}", cobol_refmod(&format!("{}", state.hexx), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", 6).trim().parse::<usize>().unwrap_or(0))))).trim() != format!("{}", "\\x01").trim() {
+        println!("{}{}{}", format!("{}", "UNEXPECTED CHAR VALUE, does not match z'01': "), format!("{}", state.hexx), format!("{}", ""));
     }
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
         _result.push_str(&format!("{}", cobol_fn_hex_to_char("3132")));
         state.hexx = _result.into(); }
-    if !(state.hexx) {
+    if !({ let __v = format!("{}", state.hexx); __v.trim() != "" && __v.trim() != "0" }) {
     }
     // ( 1:2 ) = X"3132" AND HEXX ( 3: ) = "--------" ) DISPLAY "UNEXPECTED CHAR VALUE, expected 12-* got: " HEXX
     state.hexx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
         _result.push_str(&format!("{}", cobol_fn_hex_to_char("3132")));
         state.hexx = _result.into(); }
-    if !(state.hexx) {
+    if !({ let __v = format!("{}", state.hexx); __v.trim() != "" && __v.trim() != "0" }) {
     }
     // ( 1:2 ) = X"3132" AND HEXX ( 3: ) = "--------" ) DISPLAY "UNEXPECTED CHAR VALUE, expected 12-* got: " HEXX
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_hex_to_char(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

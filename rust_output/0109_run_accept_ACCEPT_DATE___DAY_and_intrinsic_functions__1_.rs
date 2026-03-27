@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,14 +41,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     // ACCEPT WS-YYYYMMDD
-    // ACCEPT WS-YYYYDDD
-    if format!("{}", cobol_fn_integer_of_date(format!("{}", state.ws_yyyymmdd))).trim() != format!("{}", cobol_fn_integer_of_day(format!("{}", state.ws_yyyyddd))).trim() {
-        println!("{}{}", format!("{}", "DIFFERENCES FOUND!"), format!("{}", state.end_display));
-        println!("{}{}{}{}{}{}", format!("{}", "YYYYMMDD = "), format!("{}", state.ws_yyyymmdd), format!("{}", ", "), format!("{}", "YYYYDDD = "), format!("{}", state.ws_yyyyddd), format!("{}", state.end_display));
-        println!("{}{}{}{}{}{}", format!("{}", "INTEGER-OF-DATE = "), format!("{}", cobol_fn_integer_of_date(format!("{}", state.ws_yyyymmdd))), format!("{}", ", "), format!("{}", "INTEGER-OF-DAY = "), format!("{}", cobol_fn_integer_of_day(format!("{}", state.ws_yyyyddd))), format!("{}", state.end_display));
-        state.return_code = format!("{}", 1).cobol_into();
-    }
-    std::process::exit(0);
+    // END-ACCEPT ACCEPT WS-YYYYDDD FROM DAY YYYYDDD END-ACCEPT IF FUNCTION INTEGER-OF-DATE ( WS-YYYYMMDD ) NOT = FUNCTION INTEGER-OF-DAY ( WS-YYYYDDD ) DISPLAY "DIFFERENCES FOUND!" END-DISPLAY DISPLAY "YYYYMMDD = " WS-YYYYMMDD ", " "YYYYDDD = " WS-YYYYDDD END-DISPLAY DISPLAY "INTEGER-OF-DATE = " FUNCTION INTEGER-OF-DATE ( WS-YYYYMMDD ) ", " "INTEGER-OF-DAY = " FUNCTION INTEGER-OF-DAY ( WS-YYYYDDD ) END-DISPLAY MOVE 1 TO RETURN-CODE END-IF STOP RUN
 }
 
 fn main() {

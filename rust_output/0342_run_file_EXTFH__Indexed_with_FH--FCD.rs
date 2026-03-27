@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -524,7 +525,7 @@ pub struct KeyDef {
     /// FILLER-2
     pub filler_2: FixedString<6>,
     /// KEY-DEFS
-    pub key_defs: [KeyDefs; 1],
+    pub key_defs: Vec<KeyDefs>,
 }
 impl std::fmt::Display for KeyDef {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -1014,6 +1015,14 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub z: FixedString<30>,
+    pub n1fcd_name_length: FixedString<30>,
+    pub fcd_filename_address: FixedString<30>,
+    pub fcd_name_length: FixedString<30>,
+    pub fcd_other_flags: FixedString<30>,
+    pub null_key: FixedString<30>,
+    pub odd_record: FixedString<30>,
 }
 
 
@@ -1129,6 +1138,12 @@ fn tspfile_close(state: &mut ProgramState) {
     state.cust_stat = format!("{}", state._fs_tspfile).cobol_into();
 }
 
+/// DELETE TSPFILE
+fn tspfile_delete(state: &mut ProgramState) {
+    state._fs_tspfile = FileStatus::Success; // DELETE stub
+    state.cust_stat = format!("{}", state._fs_tspfile).cobol_into();
+}
+
 /// Paragraph: MAINFILE
 fn p_mainfile(state: &mut ProgramState) {
     // SET ADDRESS OF TSP-FCD TO ADDRESS OF FH--FCD OF TSPFILE
@@ -1137,7 +1152,7 @@ fn p_mainfile(state: &mut ProgramState) {
     println!("{}{}{}", format!("{}", "File has "), format!("{}", state.key_nkeys), format!("{}", " keys."));
     println!("{}{}{}", format!("{}", "Key def  "), format!("{}", state.kdb_len), format!("{}", " bytes."));
     // SET ADDRESS OF TSP-FILENAME TO FCD-FILENAME-ADDRESS
-    println!("{}{}{}{}", format!("{}", "File assigned is "), format!("{}", state.tsp_filename), format!("{}", state.1:fcd_name_length), format!("{}", ""));
+    println!("{}{}{}{}", format!("{}", "File assigned is "), format!("{}", state.tsp_filename), format!("{}", ""), format!("{}", ""));
     state.fcd_filename_address = " ".to_string().cobol_into();
     // OF OUT-FILE-NAME
     state.fcd_name_length = format!("{}", std::mem::size_of_val(&state.out_file_name)).cobol_into();
@@ -1155,26 +1170,32 @@ fn p_mainfile(state: &mut ProgramState) {
 
 /// Paragraph: DUMP-FCD
 fn p_dump_fcd(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING IDX FROM 1 BY 1 UNTIL IDX > KEY-NKEYS IF KEY-SPARSE ( IDX ) < ' ' MOVE ' ' TO KEY-SPARSE ( IDX ) END-IF DISPLAY "Key" IDX " has " KEY-COUNT ( IDX ) " parts," " Offset " KEY-OFFSET ( IDX ) " Flags " KEY-FLAGS ( IDX ) " Comp " KEY-COMPRESSION ( IDX ) " Sparse " KEY-SPARSE ( IDX ) "." SET KC-PTR TO ADDRESS OF KEY-DEF SET KC-PTR UP BY KEY-OFFSET ( IDX ) PERFORM VARYING IDX2 FROM 1 BY 1 UNTIL IDX2 > KEY-COUNT ( IDX ) SET ADDRESS OF KEY-COMP TO KC-PTR DISPLAY "      Pos " KC-POS " Len " KC-LEN SET KC-PTR UP BY LENGTH OF KEY-COMP END-PERFORM END-PERFORM
+    while !((format!("{}", state.idx).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.key_nkeys).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.idx = format!("{}", 1).cobol_into();
+        if { let __v = format!("{}", state.key_sparse); __v.trim() != "" && __v.trim() != "0" } {
+        }
+    }
+    // ( IDX ) < ' ' MOVE ' ' TO KEY-SPARSE ( IDX ) END-IF DISPLAY "Key" IDX " has " KEY-COUNT ( IDX ) " parts," " Offset " KEY-OFFSET ( IDX ) " Flags " KEY-FLAGS ( IDX ) " Comp " KEY-COMPRESSION ( IDX ) " Sparse " KEY-SPARSE ( IDX ) "." SET KC-PTR TO ADDRESS OF KEY-DEF SET KC-PTR UP BY KEY-OFFSET ( IDX ) PERFORM VARYING IDX2 FROM 1 BY 1 UNTIL IDX2 > KEY-COUNT ( IDX ) SET ADDRESS OF KEY-COMP TO KC-PTR DISPLAY "      Pos " KC-POS " Len " KC-LEN SET KC-PTR UP BY LENGTH OF KEY-COMP END-PERFORM END-PERFORM
 }
 
 /// Paragraph: LOADFILE
 fn p_loadfile(state: &mut ProgramState) {
     tspfile_open_output(state);
     // SET ADDRESS OF TSP-FILENAME TO FCD-FILENAME-ADDRESS
-    println!("{}{}{}{}", format!("{}", "Loading sample file "), format!("{}", state.tsp_filename), format!("{}", state.1:fcd_name_length), format!("{}", ""));
+    println!("{}{}{}{}", format!("{}", "Loading sample file "), format!("{}", state.tsp_filename), format!("{}", ""), format!("{}", ""));
     if (format!("{}", state.cust_stat).trim() != format!("{}", "00").trim()) && (format!("{}", state.cust_stat).trim() != format!("{}", "05").trim()) {
-        println!("{}{}{}{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " opening "), format!("{}", state.tsp_filename), format!("{}", state.1:fcd_name_length), format!("{}", " file"));
+        println!("{}{}{}{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " opening "), format!("{}", state.tsp_filename), format!("{}", ""), format!("{}", " file"));
         std::process::exit(0);
     }
-    p_1000_load_record(state);
-    // VARYING SUB FROM 1 BY 1 UNTIL SUB > MAX-SUB
+    while !((format!("{}", state.sub).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0))) {
+        p_n1000_load_record(state);
+    }
     println!("{}", format!("{}", "Sample data file load complete."));
     tspfile_close(state);
 }
 
 /// Paragraph: 1000-LOAD-RECORD
-fn p_1000_load_record(state: &mut ProgramState) {
+fn p_n1000_load_record(state: &mut ProgramState) {
     state.tspfl_record = format!("{}", " ").cobol_into();
     state.sub = format!("{}", state.data_cust_num).cobol_into();
     state.cm_cust_num = format!("{}", state.data_cust_num).cobol_into();
@@ -1205,10 +1226,8 @@ fn p_1000_load_record(state: &mut ProgramState) {
         state.cm_memory = format!("{}", "3MEG").cobol_into();
     }
     if state.null_key() {
-        state."*" = format!("{}", state.all).cobol_into();
-        state.cm_disk = format!("{}", state.all).cobol_into();
-        state."*" = format!("{}", state.all).cobol_into();
-        state.cm_tape = format!("{}", state.all).cobol_into();
+        state.cm_disk = format!("{}", " ").cobol_into();
+        state.cm_tape = format!("{}", " ").cobol_into();
     }
     if (format!("{}", state.sub).trim() == format!("{}", 1).trim()) || (format!("{}", state.sub).trim() == format!("{}", 6).trim()) {
         state.cm_disk = format!("{}", "2417").cobol_into();
@@ -1225,7 +1244,7 @@ fn p_listfile(state: &mut ProgramState) {
     state.rec_num = format!("{}", 0).cobol_into();
     tspfile_open_input(state);
     // SET ADDRESS OF TSP-FILENAME TO FCD-FILENAME-ADDRESS
-    println!("{}{}{}{}", format!("{}", "List sample file "), format!("{}", state.tsp_filename), format!("{}", state.1:fcd_name_length), format!("{}", ""));
+    println!("{}{}{}{}", format!("{}", "List sample file "), format!("{}", state.tsp_filename), format!("{}", ""), format!("{}", ""));
     if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
         println!("{}{}{}", format!("{}", "ERROR "), format!("{}", state.cust_stat), format!("{}", " OPENING INPUT FILE"));
         if { let __v = format!("{}", state.cust_stat); __v.trim() != "" && __v.trim() != "0" } {
@@ -1233,7 +1252,13 @@ fn p_listfile(state: &mut ProgramState) {
     }
     // ( 1:1 ) = "9" DISPLAY "Sub Error " STAT-X2 UPON CONSOLE END-IF STOP RUN END-IF
     state.tspfl_record = format!("{}", " ").cobol_into();
-    // START TSPFILE KEY GREATER THAN PRIME-KEY IF CUST-STAT NOT = "00" DISPLAY "Error " CUST-STAT " starting file" UPON CONSOLE IF CUST-STAT ( 1:1 ) = "9" DISPLAY "Sub Error " STAT-X2 UPON CONSOLE END-IF STOP RUN END-IF
+    // START TSPFILE KEY GREATER THAN PRIME-KEY
+    if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
+        println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " starting file"));
+        if { let __v = format!("{}", state.cust_stat); __v.trim() != "" && __v.trim() != "0" } {
+        }
+    }
+    // ( 1:1 ) = "9" DISPLAY "Sub Error " STAT-X2 UPON CONSOLE END-IF STOP RUN END-IF
     let _ = tspfile_read(state);
     // NEXT RECORD WITH NO LOCK IF CUST-STAT NOT = "00" DISPLAY "Error " CUST-STAT " on 1st read of file" UPON CONSOLE IF CUST-STAT ( 1:1 ) = "9" DISPLAY "Sub Error " STAT-X2 UPON CONSOLE END-IF STOP RUN END-IF
     while !(((format!("{}", state.cust_stat).trim() != format!("{}", "00").trim()) || (format!("{}", state.rec_num).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0)))) {
@@ -1243,9 +1268,12 @@ fn p_listfile(state: &mut ProgramState) {
     // NEXT RECORD AT END MOVE "99" TO CUST-STAT END-READ ADD 1 TO REC-NUM END-PERFORM IF CUST-STAT = "99" DISPLAY "Hit End of File after " REC-NUM UPON CONSOLE END-IF
     println!("{}", format!("{}", "LIST SAMPLE FILE DESCENDING"));
     state.rec_num = format!("{}", 0).cobol_into();
-    state.'z' = format!("{}", state.all).cobol_into();
-    state.tspfl_record = format!("{}", state.all).cobol_into();
-    // START TSPFILE KEY LESS THAN PRIME-KEY IF CUST-STAT NOT = "00" DISPLAY "Error " CUST-STAT " starting file" UPON CONSOLE STOP RUN END-IF
+    state.tspfl_record = format!("{}", " ").cobol_into();
+    // START TSPFILE KEY LESS THAN PRIME-KEY
+    if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
+        println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " starting file"));
+        std::process::exit(0);
+    }
     let _ = tspfile_read(state);
     // PREVIOUS RECORD WITH NO LOCK IF CUST-STAT NOT = "00" DISPLAY "Error " CUST-STAT " on 1st read of file" UPON CONSOLE STOP RUN END-IF
     while !(((format!("{}", state.cust_stat).trim() != format!("{}", "00").trim()) || (format!("{}", state.rec_num).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0)))) {
@@ -1259,7 +1287,11 @@ fn p_listfile(state: &mut ProgramState) {
     println!("{}", format!("{}", "LIST SAMPLE FILE BY KEY3"));
     state.rec_num = format!("{}", 0).cobol_into();
     state.tspfl_record = format!("{}", " ").cobol_into();
-    // START TSPFILE KEY GREATER THAN OR EQUAL TO SPLIT-KEY3 IF CUST-STAT NOT = "00" AND CUST-STAT NOT = "02" DISPLAY "Error " CUST-STAT " starting file" UPON CONSOLE STOP RUN END-IF
+    // START TSPFILE KEY GREATER THAN OR EQUAL TO SPLIT-KEY3
+    if (format!("{}", state.cust_stat).trim() != format!("{}", "00").trim()) && (format!("{}", state.cust_stat).trim() != format!("{}", "02").trim()) {
+        println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " starting file"));
+        std::process::exit(0);
+    }
     let _ = tspfile_read(state);
     // NEXT RECORD WITH NO LOCK IF CUST-STAT NOT = "00" AND CUST-STAT NOT = "02" DISPLAY "Error " CUST-STAT " on 1st read of file" UPON CONSOLE STOP RUN END-IF
     while !((((format!("{}", state.cust_stat).trim() != format!("{}", "00").trim()) && (format!("{}", state.cust_stat).trim() != format!("{}", "02").trim())) || (format!("{}", state.rec_num).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0)))) {
@@ -1271,6 +1303,11 @@ fn p_listfile(state: &mut ProgramState) {
         println!("{}{}", format!("{}", "Hit End of File after "), format!("{}", state.rec_num));
     }
     tspfile_close(state);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,6 +35,11 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub t_y: FixedString<30>,
+    pub v2_4: FixedString<30>,
+    pub v9: FixedString<30>,
+    pub x: FixedString<30>,
 }
 
 
@@ -47,60 +53,60 @@ impl ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     if state.x() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS X"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS X"));
     }
     state.var_x = "X".to_string().cobol_into();
     if !(state.x()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT X"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT X"));
     }
     if !(state.t_y()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT T-Y"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT T-Y"));
     }
     state.var_x = "T".to_string().cobol_into();
     if !(state.t_y()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT T-Y"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT T-Y"));
     }
     state.var_x = format!("{}", "Y").cobol_into();
     if !(state.t_y()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT T-Y"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS NOT T-Y"));
     }
     state.var_x = format!("{}", "Z").cobol_into();
     if state.t_y() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS T-Y"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS T-Y"));
     }
     state.var_x = format!("{}", "A").cobol_into();
     if state.t_y() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS T-Y"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_x), format!("{}", " IS T-Y"));
     }
     if state.v9() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V9"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V9"));
     }
     state.var_9 = "9".to_string().cobol_into();
     if !(state.v9()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V9"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V9"));
     }
     state.var_9 = "2".to_string().cobol_into();
     if state.v9() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V9"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V9"));
     }
     if !(state.v2_4()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V2-4"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V2-4"));
     }
     state.var_9 = format!("{}", 3).cobol_into();
     if !(state.v2_4()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V2-4"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V2-4"));
     }
     state.var_9 = format!("{}", 4).cobol_into();
     if !(state.v2_4()) {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V2-4"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS NOT V2-4"));
     }
     state.var_9 = format!("{}", 5).cobol_into();
     if state.v2_4() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V2-4"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V2-4"));
     }
     state.var_9 = format!("{}", 1).cobol_into();
     if state.v2_4() {
-        println!("{}{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V2-4"), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "NOT OK "), format!("{}", state.var_9), format!("{}", " IS V2-4"));
     }
     std::process::exit(0);
 }

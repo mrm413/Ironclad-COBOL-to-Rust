@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -139,6 +140,11 @@ fn report_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_report_file = FileStatus::Success,
         Err(e) => state._fs_report_file = e,
     }
+}
+
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: _IMPLICIT_

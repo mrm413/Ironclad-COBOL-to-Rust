@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -71,39 +72,39 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_9. = format!("{}", 1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9. = format!("{}", 1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9. = format!("{}", -1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_l. = format!("{}", 1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_l. = format!("{}", -1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_ls. = format!("{}", 1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_ls. = format!("{}", -1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_t. = format!("{}", 1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_t. = format!("{}", -1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_ts. = format!("{}", 1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
-    state.x. = format!("{}", 0).cobol_into();
-    state.x_s9_ts. = format!("{}", -1234).cobol_into();
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_9 = format!("{}", 1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9 = format!("{}", 1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9 = format!("{}", -1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_l = format!("{}", 1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_l = format!("{}", -1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_ls = format!("{}", 1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_ls = format!("{}", -1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_t = format!("{}", 1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_t = format!("{}", -1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_ts = format!("{}", 1234).cobol_into();
+    println!("{}", format!("{}", state.x));
+    state.x = format!("{}", 0).cobol_into();
+    state.x_s9_ts = format!("{}", -1234).cobol_into();
+    println!("{}", format!("{}", state.x));
     std::process::exit(0);
 }
 

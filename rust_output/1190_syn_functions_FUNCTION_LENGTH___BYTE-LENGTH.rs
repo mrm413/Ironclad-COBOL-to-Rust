@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,18 +30,20 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub physical: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}", format!("{}", cobol_fn_length("abcd", format!("{}", state.&), "xyz")));
-    println!("{}", format!("{}", cobol_fn_byte_length("abcd", format!("{}", state.&), "xyz")));
-    println!("{}", format!("{}", cobol_fn_length("abcd", "xyz")));
-    println!("{}", format!("{}", cobol_fn_byte_length(1234)));
-    println!("{}", format!("{}", cobol_fn_length(567)));
-    println!("{}", format!("{}", cobol_fn_length("abcd", format!("{}", state.&), "xyz", format!("{}", state.physical))));
-    println!("{}", format!("{}", cobol_fn_byte_length("abcd", format!("{}", state.&), "xyz", format!("{}", state.physical))));
+    println!("{}", format!("{}", cobol_fn_length("abcd")));
+    println!("{}", format!("{}", cobol_fn_byte_length("abcd")));
+    println!("{}", format!("{}", cobol_fn_length("abcd")));
+    println!("{}", format!("{}", cobol_fn_byte_length(&format!("{}", 1234))));
+    println!("{}", format!("{}", cobol_fn_length(&format!("{}", 567))));
+    println!("{}", format!("{}", cobol_fn_length("abcd")));
+    println!("{}", format!("{}", cobol_fn_byte_length("abcd")));
 }
 
 fn main() {

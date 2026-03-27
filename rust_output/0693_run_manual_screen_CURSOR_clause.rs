@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -89,7 +90,18 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING LOOP FROM 1 BY 1 UNTIL LOOP > 10 DISPLAY "screen accept no. " AT LINE 10 COL 4 LOOP "/10" DISPLAY SCREEN-EXAMPLE ACCEPT SCREEN-EXAMPLE END-PERFORM GOBACK
+    while !((format!("{}", state.r#loop).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 10).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.r#loop = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", "screen accept no. "));
+        println!("{}", format!("{}", state.screen_example));
+        // ACCEPT SCREEN-EXAMPLE
+    }
+    return;
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

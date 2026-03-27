@@ -2,6 +2,7 @@
 // Source: DIVIDEEXTENT.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct W01Divides {
     /// RES-TAB
-    pub res_tab: [i32; 3],
+    pub res_tab: Vec<i32>,
 }
 impl std::fmt::Display for W01Divides {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -41,7 +42,7 @@ pub struct ProgramState {
     /// WS: W01-DIVIDES (group)
     pub w01_divides: FixedString<12>,
     /// WS: RES-TAB
-    pub res_tab: [i32; 3],
+    pub res_tab: Vec<i32>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -57,29 +58,33 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub res_tab1: FixedString<30>,
+    pub res_tab2: FixedString<30>,
+    pub res_tab3: FixedString<30>,
 }
 
 
 /// Paragraph: TEST-FORMAT-1
 fn p_test_format_1(state: &mut ProgramState) {
-    state.res_tab = format!("{}", 100).cobol_into();
-    state.res_tab = format!("{}", 200).cobol_into();
-    state.res_tab = format!("{}", 300).cobol_into();
-    { let _a: f64 = format!("{}", state.res_tab(1)).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 100).trim().parse().unwrap_or(0.0); state.res_tab(1) = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.res_tab(1) }; }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 200).cobol_into(); }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 300).cobol_into(); }
+    { let _a: f64 = format!("{}", state.res_tab1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 100).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.res_tab1 = format!("{}", _a / _b).cobol_into(); } }
     // RES-TAB(2) RES-TAB(3) ON SIZE ERROR DISPLAY '1: Should not raised size error' END-DIVIDE
     if ((format!("{:?}", state.res_tab).trim() != format!("{}", 1).trim()) || (format!("{:?}", state.res_tab).trim() != format!("{}", 2).trim())) || (format!("{:?}", state.res_tab).trim() != format!("{}", 3).trim()) {
         println!("{}{}{}{}{}{}{}", format!("{}", "F1.1: result <"), format!("{:?}", state.res_tab), format!("{}", "> <"), format!("{:?}", state.res_tab), format!("{}", "> <"), format!("{:?}", state.res_tab), format!("{}", "> should be 1 2 3"));
     }
-    state.res_tab = format!("{}", 0).cobol_into();
-    state.res_tab = format!("{}", 100).cobol_into();
-    state.res_tab = format!("{}", 200).cobol_into();
-    { let _a: f64 = format!("{}", state.res_tab(2)).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.res_tab).trim().parse().unwrap_or(0.0); state.res_tab(2) = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.res_tab(2) }; }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 0).cobol_into(); }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 200).cobol_into(); }
+    { let _a: f64 = format!("{}", state.res_tab2).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{:?}", state.res_tab).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.res_tab2 = format!("{}", _a / _b).cobol_into(); } }
     // RES-TAB(3) NOT ON SIZE ERROR DISPLAY 'F1.2: Should raise size error' END-DIVIDE
     if ((format!("{:?}", state.res_tab).trim() != format!("{}", 0).trim()) || (format!("{:?}", state.res_tab).trim() != format!("{}", 100).trim())) || (format!("{:?}", state.res_tab).trim() != format!("{}", 200).trim()) {
         println!("{}{}{}{}{}{}{}", format!("{}", "F1.2: result <"), format!("{:?}", state.res_tab), format!("{}", "> <"), format!("{:?}", state.res_tab), format!("{}", "> <"), format!("{:?}", state.res_tab), format!("{}", "> should be 0 100 200"));
     }
-    state.res_tab = format!("{}", 100).cobol_into();
-    { let _a: f64 = format!("{}", state.res_tab(1)).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2.190000).trim().parse().unwrap_or(0.0); state.res_tab(1) = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.res_tab(1) }; }
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
+    { let _a: f64 = format!("{}", state.res_tab1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2.190000).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.res_tab1 = format!("{}", _a / _b).cobol_into(); } }
     // ON SIZE ERROR:
         // ON SIZE ERROR
     println!("{}", format!("{}", "F1.3: Should not raise size error"));
@@ -87,9 +92,12 @@ fn p_test_format_1(state: &mut ProgramState) {
     if format!("{:?}", state.res_tab).trim() != format!("{}", 45).trim() {
         println!("{}{}{}", format!("{}", "F1.3: result <"), format!("{:?}", state.res_tab), format!("{}", "> should be 45"));
     }
-    state.res_tab = format!("{}", 100).cobol_into();
-    { let _a: f64 = format!("{}", state.res_tab(1)).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2.190000).trim().parse().unwrap_or(0.0); state.res_tab(1) = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.res_tab(1) }; }
-    // ROUNDED ON SIZE ERROR DISPLAY 'F1.4: Should not raise size error' END-DIVIDE
+    for _elem in state.res_tab.iter_mut() { *_elem = format!("{}", 100).cobol_into(); }
+    { let _a: f64 = format!("{}", state.res_tab1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2.190000).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.res_tab1 = format!("{}", _a / _b).cobol_into(); } }
+    // ON SIZE ERROR:
+        // ON SIZE ERROR
+    println!("{}", format!("{}", "F1.4: Should not raise size error"));
+    // END-DIVIDE
     if format!("{:?}", state.res_tab).trim() != format!("{}", 46).trim() {
         println!("{}{}{}", format!("{}", "F1.4: result <"), format!("{:?}", state.res_tab), format!("{}", "> should be 46"));
     }

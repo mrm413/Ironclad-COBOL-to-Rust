@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,10 +35,10 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}", format!("{}", cobol_fn_formatted_time("hhmmss,ss", 1)));
-    println!("{}", format!("{}", cobol_fn_formatted_datetime("YYYYMMDDThhmmss,ss", 1, 1)));
-    println!("{}", format!("{}", cobol_fn_formatted_time("hhmmss.ss", 1)));
-    println!("{}", format!("{}", cobol_fn_formatted_datetime("YYYYMMDDThhmmss.ss", 1, 1)));
+    println!("{}", format!("{}", cobol_fn_formatted_time("hhmmss,ss", &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_datetime("YYYYMMDDThhmmss,ss", &format!("{}", 1), &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_time("hhmmss.ss", &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_datetime("YYYYMMDDThhmmss.ss", &format!("{}", 1), &format!("{}", 1), "0", "0")));
     std::process::exit(0);
 }
 

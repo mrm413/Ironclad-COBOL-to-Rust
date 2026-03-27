@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -42,15 +43,15 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.z = format!("{}", cobol_fn_acos(-0.234500)).cobol_into();
+    state.z = format!("{}", cobol_fn_acos(&format!("{}", -0.234500))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 1.807501).trim() {
         println!("{}{}", format!("{}", "DISPLAY: "), format!("{}", state.z));
     }
-    state.p = format!("{}", cobol_fn_acos(-0.234500)).cobol_into();
+    state.p = format!("{}", cobol_fn_acos(&format!("{}", -0.234500))).cobol_into();
     if format!("{}", state.p).trim() != format!("{}", 1.807501).trim() {
         println!("{}{}", format!("{}", "PACKED: "), format!("{}", state.p));
     }
-    state.s = format!("{}", cobol_fn_acos(-0.234500)).cobol_into();
+    state.s = format!("{}", cobol_fn_acos(&format!("{}", -0.234500))).cobol_into();
     if format!("{}", state.s).trim() != format!("{}", 1.807501).trim() {
         println!("{}{}", format!("{}", "COMP-6: "), format!("{}", state.s));
     }

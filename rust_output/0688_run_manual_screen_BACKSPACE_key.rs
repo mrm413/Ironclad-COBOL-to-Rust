@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,6 +37,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub success: FixedString<30>,
 }
 
 
@@ -45,10 +48,10 @@ impl ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}{}{}", format!("{}", "Enter 'y' if each press of the BACKSPACE key"), format!("{}", state.line), format!("{}", 1), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "deletes the character to the left and moves the"), format!("{}", state.line), format!("{}", 2), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "cursor and remaining characters one space to the"), format!("{}", state.line), format!("{}", 3), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "left."), format!("{}", state.line), format!("{}", 4), format!("{}", state.column), format!("{}", 1));
+    println!("{}", format!("{}", "Enter 'y' if each press of the BACKSPACE key"));
+    println!("{}", format!("{}", "deletes the character to the left and moves the"));
+    println!("{}", format!("{}", "cursor and remaining characters one space to the"));
+    println!("{}", format!("{}", "left."));
     state.ws_x_20 = format!("{}", "ABCD      ").cobol_into();
     state.cur_pos = format!("{}", 6002).cobol_into();
     // ACCEPT WS-X-20

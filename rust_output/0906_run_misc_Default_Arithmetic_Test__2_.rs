@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -54,7 +55,7 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     state.res = format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", state.val)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div1)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div2)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}", format!("{}", "RES = "), format!("{}", state.res));
-    state.res = format!("{}", (format!("{}", state.rounded).trim() == format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", state.val)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div1)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div2)).trim().parse::<f64>().unwrap_or(0.0))).trim())).cobol_into();
+    state.res = format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", state.val)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div1)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div2)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}", format!("{}", "RES ROUNDED = "), format!("{}", state.res));
     state.res = format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", state.val)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", state.mul1)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div3)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div2)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}", format!("{}", "RES MULT1 = "), format!("{}", state.res));
@@ -64,8 +65,8 @@ fn p__implicit_(state: &mut ProgramState) {
     println!("{}{}", format!("{}", "RES 1 = "), format!("{}", state.res));
     state.res = format!("{}", (format!("{}", format!("{}", state.res)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.div2)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}", format!("{}", "RES F = "), format!("{}", state.res));
-    state.res = format!("{}", state.rounded).cobol_into();
-    // MODE AWAY-FROM-ZERO = VAL / DIV1 / DIV2
+    state.res = format!("{}", "").cobol_into();
+    // AWAY-FROM-ZERO = VAL / DIV1 / DIV2
     println!("{}{}", format!("{}", "RES ROUNDED AWAY = "), format!("{}", state.res));
     std::process::exit(0);
 }

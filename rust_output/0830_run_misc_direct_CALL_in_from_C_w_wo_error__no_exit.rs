@@ -2,6 +2,7 @@
 // Source: BUGGY.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,7 +41,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", "out of bounds - refmod following"));
-    println!("{}{}", format!("{}", state.var), format!("{}", state.vpos:));
+    println!("{}{}", format!("{}", state.var), format!("{}", ""));
     println!("{}", format!("{}", "AFTER ERROR"));
     return;
 }

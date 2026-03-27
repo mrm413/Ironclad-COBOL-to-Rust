@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -101,7 +102,7 @@ pub struct KeyDef {
     /// FILLER-2
     pub filler_2: FixedString<6>,
     /// KEY-DEFS
-    pub key_defs: [KeyDefs; 16],
+    pub key_defs: Vec<KeyDefs>,
     /// FILLER-3
     pub filler_3: FixedString<128>,
 }
@@ -256,6 +257,10 @@ pub struct ProgramState {
     pub _fs_optional: FileStatus,
     /// File handle for OPTIONAL
     pub _fh_optional: CobolFile,
+    pub _fs_tspfile: FileStatus,
+    pub _fh_tspfile: CobolFile,
+    pub _fs_file: FileStatus,
+    pub _fh_file: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -271,6 +276,20 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n120: FixedString<30>,
+    pub fcd_binary: FixedString<30>,
+    pub fcd_current_rec_len: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_filename_address: FixedString<30>,
+    pub fcd_key_def_address: FixedString<30>,
+    pub fcd_max_rec_length: FixedString<30>,
+    pub fcd_min_rec_length: FixedString<30>,
+    pub fcd_name_length: FixedString<30>,
+    pub fcd_organization: FixedString<30>,
+    pub fcd_record_address: FixedString<30>,
+    pub fcd_status_key_1: FixedString<30>,
+    pub fcd_version: FixedString<30>,
 }
 
 
@@ -353,9 +372,35 @@ fn optional_close(state: &mut ProgramState) {
     state.cust_stat = format!("{}", state._fs_optional).cobol_into();
 }
 
+/// DELETE OPTIONAL
+fn optional_delete(state: &mut ProgramState) {
+    state._fs_optional = FileStatus::Success; // DELETE stub
+    state.cust_stat = format!("{}", state._fs_optional).cobol_into();
+}
+
+fn file_open_input(state: &mut ProgramState) { /* stub */ }
+fn file_open_output(state: &mut ProgramState) { /* stub */ }
+fn file_open_io(state: &mut ProgramState) { /* stub */ }
+fn file_open_extend(state: &mut ProgramState) { /* stub */ }
+fn file_read(state: &mut ProgramState) { /* stub */ }
+fn file_write(state: &mut ProgramState) { /* stub */ }
+fn file_rewrite(state: &mut ProgramState) { /* stub */ }
+fn file_close(state: &mut ProgramState) { /* stub */ }
+fn file_delete(state: &mut ProgramState) { /* stub */ }
+
+fn tspfile_open_input(state: &mut ProgramState) { /* stub */ }
+fn tspfile_open_output(state: &mut ProgramState) { /* stub */ }
+fn tspfile_open_io(state: &mut ProgramState) { /* stub */ }
+fn tspfile_open_extend(state: &mut ProgramState) { /* stub */ }
+fn tspfile_read(state: &mut ProgramState) { /* stub */ }
+fn tspfile_write(state: &mut ProgramState) { /* stub */ }
+fn tspfile_rewrite(state: &mut ProgramState) { /* stub */ }
+fn tspfile_close(state: &mut ProgramState) { /* stub */ }
+fn tspfile_delete(state: &mut ProgramState) { /* stub */ }
+
 /// Paragraph: 000-MAIN
-fn p_000_main(state: &mut ProgramState) {
-    state._fh_file.delete().unwrap_or_default();
+fn p_n000_main(state: &mut ProgramState) {
+    file_delete(state);
     tspfile_open_output(state);
     tspfile_write(state);
     tspfile_close(state);
@@ -373,23 +418,33 @@ fn p_000_main(state: &mut ProgramState) {
     state.fcd_version = format!("{}", 1).cobol_into();
     state.fcd_organization = format!("{}", 255).cobol_into();
     state.action_code = format!("{}", state.op_query_file).cobol_into();
-    p_800_call_extfh(state);
-    println!("{}{}{}{}{}{}", format!("{}", "Status: "), format!("{}", state.fcd_file_status), format!("{}", " File: "), format!("{}", state.fcd_filename), format!("{}", state.1:20), format!("{}", "."));
+    p_n800_call_extfh(state);
+    println!("{}{}{}{}{}{}", format!("{}", "Status: "), format!("{}", state.fcd_file_status), format!("{}", " File: "), format!("{}", state.fcd_filename), format!("{}", ""), format!("{}", "."));
     println!("{}{}{}{}", format!("{}", " Nkeys: "), format!("{}", state.key_nkeys), format!("{}", " Recsz: "), format!("{}", state.fcd_max_rec_length));
     println!("{}{}", format!("{}", "kdblen: "), format!("{}", state.kdb_len));
-    // PERFORM VARYING VARYING I FROM 1 UNTIL I > KEY-NKEYS DISPLAY " Index: " I " Parts: " KEY-COUNT ( I ) " Offset: " KEY-OFFSET ( I ) " Flags: " KEY-FLAGS ( I ) " Comp: " KEY-COMPRESSION ( I ) " Sparse: " KEY-SPARSE ( I ) SET WS-FCD-PTR TO ADDRESS OF KEY-DEF SET WS-FCD-PTR UP BY KEY-OFFSET ( I ) SET ADDRESS OF KEY-INF TO WS-FCD-PTR PERFORM VARYING K FROM 1 UNTIL K > KEY-COUNT ( I ) DISPLAY "   Pos: " KEY-POS "   Len: " KEY-LEN "   Desc: " KEY-DESC " Type: " KEY-TYPE SET WS-FCD-PTR UP BY LENGTH OF KEY-INF SET ADDRESS OF KEY-INF TO WS-FCD-PTR END-PERFORM END-PERFORM
+    while !((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.key_nkeys).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.i = format!("{}", 1).cobol_into();
+        println!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", format!("{}", " Index: "), format!("{}", state.i), format!("{}", " Parts: "), format!("{}", state.key_count), format!("{}", state.i), format!("{}", " Offset: "), format!("{}", state.key_offset), format!("{}", state.i), format!("{}", " Flags: "), format!("{}", state.key_flags), format!("{}", state.i), format!("{}", " Comp: "), format!("{}", state.key_compression), format!("{}", state.i), format!("{}", " Sparse: "), format!("{}", state.key_sparse), format!("{}", state.i));
+        state.ws_fcd_ptr = " ".to_string().cobol_into();
+    }
+    // OF KEY-DEF SET WS-FCD-PTR UP BY KEY-OFFSET ( I ) SET ADDRESS OF KEY-INF TO WS-FCD-PTR PERFORM VARYING K FROM 1 UNTIL K > KEY-COUNT ( I ) DISPLAY "   Pos: " KEY-POS "   Len: " KEY-LEN "   Desc: " KEY-DESC " Type: " KEY-TYPE SET WS-FCD-PTR UP BY LENGTH OF KEY-INF SET ADDRESS OF KEY-INF TO WS-FCD-PTR END-PERFORM END-PERFORM
     std::process::exit(0);
 }
 
 /// Paragraph: 800-CALL-EXTFH
-fn p_800_call_extfh(state: &mut ProgramState) {
+fn p_n800_call_extfh(state: &mut ProgramState) {
     // CALL 'EXTFH' USING &mut state.action_code, &mut state.fcd_map
     if (format!("{}", state.fcd_status_key_1).trim() == format!("{}", "9").trim()) && (format!("{}", state.fcd_binary).trim() == format!("{}", 199).trim()) {
         state.fcd_file_status = format!("{}", "10").cobol_into();
     }
 }
 
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
 fn main() {
     let mut state = ProgramState::default();
-    p_000_main(&mut state);
+    p_n000_main(&mut state);
 }

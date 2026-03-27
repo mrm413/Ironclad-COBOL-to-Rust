@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -69,7 +70,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.ne = format!("{}", -512.770000).cobol_into();
-    // CALL 'CAPI' USING &mut state.2560, state.16
+    // CALL 'CAPI' USING &mut state.n2560, state.n16
     // CALL 'CAPI' USING &mut state.binfld5, &mut state.ne
     // CALL 'CAPI' USING &mut state.binfld5s
     // CALL 'CAPI' USING &mut state.binfld9
@@ -83,7 +84,7 @@ fn p__implicit_(state: &mut ProgramState) {
     // CALL 'CAPI' USING state.binfld5, state.chrx
     // CALL 'CAPI' USING &mut state.length, &mut state.of, &mut state.grpx
     // CALL 'CAPI' USING state.grpx, state.length, state.of, state.grpx
-    // CALL 'CAPI' USING &mut state."fred fish", &mut state.comp3
+    // CALL 'CAPI' USING &mut state.fredfish, &mut state.comp3
     // CALL 'CAPI' USING &mut state.comp3v99
     // CALL 'CAPI' USING 
     println!("{}{}{}", format!("{}", "COMP3    is now "), format!("{}", state.comp3), format!("{}", ";"));

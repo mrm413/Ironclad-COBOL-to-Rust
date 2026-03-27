@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -39,13 +40,13 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.r = format!("{}", cobol_fn_mod(-11, 5)).cobol_into();
+    state.r = format!("{}", cobol_fn_mod(&format!("{}", -11), &format!("{}", 5))).cobol_into();
     if format!("{}", state.r).trim() != format!("{}", 4).trim() {
-        println!("{}{}{}", format!("{}", "first one wrong: "), format!("{}", state.r), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "first one wrong: "), format!("{}", state.r));
     }
-    state.r = format!("{}", cobol_fn_mod(format!("{}", state.y), 71)).cobol_into();
+    state.r = format!("{}", cobol_fn_mod(&format!("{}", state.y), &format!("{}", 71))).cobol_into();
     if format!("{}", state.r).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}", format!("{}", "second one wrong: "), format!("{}", state.r), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "second one wrong: "), format!("{}", state.r));
     }
     std::process::exit(0);
 }

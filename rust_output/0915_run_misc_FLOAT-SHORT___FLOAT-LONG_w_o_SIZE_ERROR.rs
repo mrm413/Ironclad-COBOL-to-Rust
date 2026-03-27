@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -55,7 +56,7 @@ fn p_cnd_000(state: &mut ProgramState) {
     println!("{}", format!("{}", "    ..."));
     println!("{}", format!("{}", "--- COMP-2 ---"));
     state.cmp2 = format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", 10000000.000000)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 2.100000)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 3.100000)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", 0.500000)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 6.000000)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
-    if (format!("{}", state.cmp2).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", 9216586.861751).trim().parse::<f64>().unwrap_or(0.0)) && { let __v = format!("{}", state.<=); __v.trim() != "" && __v.trim() != "0" } {
+    if (format!("{}", state.cmp2).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", 9216586.861751).trim().parse::<f64>().unwrap_or(0.0)) && true {
     }
     // 9216586.86175116 DISPLAY "A ~ 9216586.86175115" ELSE DISPLAY "A: " CMP2 END-IF COMPUTE CMP2 = ( ( ( 1.0E7 / 2.9E0 ) / 3.9E0 ) - 5.0E-1 ) * 6.0E0 IF CMP2 >= 5305036.7877983 AND <= 5305036.7877985 DISPLAY "B ~ 5305036.787798408" ELSE DISPLAY "B: " CMP2 END-IF MOVE ZERO TO CMP2
     state.cmp2 = format!("{}", (format!("{}", format!("{}", 1000.000000)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 2.100000)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();

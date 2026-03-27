@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -185,6 +186,11 @@ fn test_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TEST-FIL2
 fn test_fil2_open_input(state: &mut ProgramState) {
     let path = std::env::var("TEST_FIL2").unwrap_or("test_fil2.dat".to_string());
@@ -260,6 +266,11 @@ fn test_fil2_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FIL2
+fn test_fil2_delete(state: &mut ProgramState) {
+    state._fs_test_fil2 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TEST-FIL3
 fn test_fil3_open_input(state: &mut ProgramState) {
     let path = std::env::var("TEST_FIL3").unwrap_or("test_fil3.dat".to_string());
@@ -331,6 +342,11 @@ fn test_fil3_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FIL3
+fn test_fil3_delete(state: &mut ProgramState) {
+    state._fs_test_fil3 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TEST-FIL4
 fn test_fil4_open_input(state: &mut ProgramState) {
     let path = std::env::var("TEST_FIL4").unwrap_or("test_fil4.dat".to_string());
@@ -400,6 +416,11 @@ fn test_fil4_close(state: &mut ProgramState) {
         Ok(()) => state._fs_test_fil4 = FileStatus::Success,
         Err(e) => state._fs_test_fil4 = e,
     }
+}
+
+/// DELETE TEST-FIL4
+fn test_fil4_delete(state: &mut ProgramState) {
+    state._fs_test_fil4 = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: _IMPLICIT_

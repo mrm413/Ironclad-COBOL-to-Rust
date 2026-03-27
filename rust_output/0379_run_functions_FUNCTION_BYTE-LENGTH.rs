@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -41,11 +42,11 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_byte_length(format!("{}", state.x))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_byte_length(&format!("{}", state.x))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 4).trim() {
         println!("{}{}", format!("{}", "BYTE-LENGTH X(4) wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_byte_length(format!("{}", state.z))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_byte_length(&format!("{}", state.z))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 8).trim() {
         println!("{}{}", format!("{}", "BYTE-LENGTH N(4) wrong: "), format!("{}", state.test_fld));
     }
@@ -53,11 +54,11 @@ fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", state.test_fld).trim() != format!("{}", 5).trim() {
         println!("{}{}", format!("{}", "BYTE-LENGTH \"00128\" wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_byte_length(format!("{}", state.x'a0'))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_byte_length("\\xA0")).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 1).trim() {
         println!("{}{}", format!("{}", "BYTE-LENGTH x\"a0\" wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_byte_length(format!("{}", state.z'a0'))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_byte_length("\\xA0")).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 3).trim() {
         println!("{}{}", format!("{}", "BYTE-LENGTH z\"a0\" wrong: "), format!("{}", state.test_fld));
     }

@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  validator:
+    build: .
+    container_name: ironclad-validator
+    # Results are printed to stdout.
+    # To extract the results file after a run:
+    #   docker cp ironclad-validator:/ironclad/compile_results.txt .

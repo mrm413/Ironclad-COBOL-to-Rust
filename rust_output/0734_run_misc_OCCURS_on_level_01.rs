@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -16,7 +17,7 @@ use cobol_runtime::define_record;
 pub struct ProgramState {
     // --- WORKING-STORAGE SECTION ---
     /// WS: X
-    pub x: [FixedString<1>; 10],
+    pub x: Vec<FixedString<1>>,
     // --- LINKAGE SECTION ---
     /// LK: X-ALL
     pub x_all: FixedString<10>,
@@ -35,16 +36,22 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x1: FixedString<30>,
+    pub x2: FixedString<30>,
+    pub x4: FixedString<30>,
+    pub x6: FixedString<30>,
+    pub x8: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x = format!("{}", " ").cobol_into();
-    state.x = format!("{}", 0).cobol_into();
-    state.x = format!("{}", 0).cobol_into();
-    state.x = format!("{}", 0).cobol_into();
-    state.x = format!("{}", 0).cobol_into();
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", 0).cobol_into(); }
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", 0).cobol_into(); }
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", 0).cobol_into(); }
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", 0).cobol_into(); }
     // SET ADDRESS OF X-ALL TO ADDRESS OF X(1) IF X-ALL NOT = " 0 0 0 0AA" DISPLAY X-ALL UPON SYSERR
     std::process::exit(0);
 }

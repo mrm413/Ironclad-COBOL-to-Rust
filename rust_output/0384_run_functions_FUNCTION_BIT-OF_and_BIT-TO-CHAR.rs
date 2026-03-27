@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,6 +38,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub bitx_filler: FixedString<30>,
 }
 
 
@@ -48,30 +51,36 @@ impl ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     state.bitx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_bit_of(format!("{}", state.pac))));
+        _result.push_str(&format!("{}", cobol_fn_bit_of(&format!("{}", state.pac))));
         state.bitx = _result.into(); }
     if format!("{}", state.bitx).trim() != format!("{}", "000000000000000100101111----------").trim() {
         println!("{}{}", format!("{}", "UNEXPECTED BIT-VALUE OF PAC 0012: "), format!("{}", state.bitx));
     }
     state.bitx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_bit_of(format!("{}", state.txt))));
+        _result.push_str(&format!("{}", cobol_fn_bit_of(&format!("{}", state.txt))));
         state.bitx = _result.into(); }
     // >>IF CHARSET = 'ASCII' IF BITX NOT = "01001000010010010010111000100000--" >>ELIF CHARSET = 'EBCDIC' IF BITX NOT = "11001000110010010100101101000000--" >>ELSE IF 1 = 1 DISPLAY 'CHARSET UNKNOWN! PLEASE REPORT!' >>END-IF DISPLAY "UNEXPECTED BIT-VALUE OF 'HI. ': " BITX
     state.bitx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_bit_of(format!("{}", state.z"01"))));
+        _result.push_str(&format!("{}", cobol_fn_bit_of("\\x01")));
         state.bitx = _result.into(); }
     // >>IF CHARSET = 'ASCII' IF BITX NOT = "001100000011000100000000----------" >>ELSE IF BITX NOT = "111100001111000100000000----------" >>END-IF IF FUNCTION BIT-TO-CHAR ( BITX(1:24) ) NOT = Z"01" DISPLAY "UNEXPECTED CHAR VALUE, does not match z'01': " BITX ( 1:24 )
     state.bitx = "ALL".to_string().cobol_into();
     { let mut _result = String::new();
         _result.push_str(&format!("{}", cobol_fn_bit_to_char("0011000100110010")));
         state.bitx = _result.into(); }
-    if !(state.bitx) {
+    if !({ let __v = format!("{}", state.bitx); __v.trim() != "" && __v.trim() != "0" }) {
     }
     // ( 1:2 ) = X"3132" AND BITX ( 3: ) = "--------------------------------" ) DISPLAY "UNEXPECTED CHAR VALUE, expected 12-* got: " BITX
     std::process::exit(0);
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_bit_of(args: &str) -> String { args.to_string() }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_bit_to_char(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -100,6 +101,11 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n11: FixedString<30>,
+    pub n2: FixedString<30>,
+    pub n40: FixedString<30>,
+    pub n75: FixedString<30>,
 }
 
 
@@ -110,17 +116,17 @@ impl ProgramState {
 /// Paragraph: TESTME
 fn p_testme(state: &mut ProgramState) {
     state.lin = format!("{}", 2).cobol_into();
-    println!("{}{}{}{}{}{}{}{}{}", format!("{}", state.scr1), format!("{}", state.1:1), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.control), format!("{}", "LEFTLINE OVERLINE"));
-    println!("{}{}{}{}{}{}{}{}{}{}{}", format!("{}", state.scr1), format!("{}", state.2:), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.+), format!("{}", 1), format!("{}", state.control), format!("{}", "OVERLINE"));
-    println!("{}{}{}{}{}{}{}{}{}{}{}", format!("{}", state.scr1), format!("{}", state.75:), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.+), format!("{}", 75), format!("{}", state.control), format!("{}", "OVERLINE  RIGHTLINE"));
+    println!("{}{}", format!("{}", state.scr1), format!("{}", ""));
+    println!("{}{}", format!("{}", state.scr1), format!("{}", ""));
+    println!("{}{}", format!("{}", state.scr1), format!("{}", ""));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}{}{}", format!("{}", state.scr2), format!("{}", state.1:1), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.control), format!("{}", "LEFTLINE"));
-    println!("{}{}{}{}{}{}{}{}{}", format!("{}", state.scr2), format!("{}", state.2:), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.+), format!("{}", 1));
-    println!("{}{}{}{}{}{}{}{}{}{}{}", format!("{}", state.scr2), format!("{}", state.75:), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.+), format!("{}", 75), format!("{}", state.control), format!("{}", "RIGHTLINE"));
+    println!("{}{}", format!("{}", state.scr2), format!("{}", ""));
+    println!("{}{}", format!("{}", state.scr2), format!("{}", ""));
+    println!("{}{}", format!("{}", state.scr2), format!("{}", ""));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}{}{}", format!("{}", state.scr3), format!("{}", state.1:1), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.control), format!("{}", "LEFTLINE UNDERLINE"));
-    println!("{}{}{}{}{}{}{}{}{}{}{}", format!("{}", state.scr3), format!("{}", state.2:), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.+), format!("{}", 1), format!("{}", state.control), format!("{}", "UNDERLINE"));
-    println!("{}{}{}{}{}{}{}{}{}{}{}", format!("{}", state.scr3), format!("{}", state.75:), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2), format!("{}", state.+), format!("{}", 75), format!("{}", state.control), format!("{}", "UNDERLINE  RIGHTLINE"));
+    println!("{}{}", format!("{}", state.scr3), format!("{}", ""));
+    println!("{}{}", format!("{}", state.scr3), format!("{}", ""));
+    println!("{}{}", format!("{}", state.scr3), format!("{}", ""));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
     p_dspcol(state);
     state.cblack = format!("{}", "REVERSE,").cobol_into();
@@ -138,14 +144,14 @@ fn p_testme(state: &mut ProgramState) {
 
 /// Paragraph: DSPCOL
 fn p_dspcol(state: &mut ProgramState) {
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrblack), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 1), format!("{}", state.control), format!("{}", state.cblack));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrblue), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 10), format!("{}", state.control), format!("{}", state.cblue));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrgreen), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 19), format!("{}", state.control), format!("{}", state.cgreen));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrcyan), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 28), format!("{}", state.control), format!("{}", state.ccyan));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrred), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 37), format!("{}", state.control), format!("{}", state.cred));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrmaggy), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 46), format!("{}", state.control), format!("{}", state.cmagenta));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scryell), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 55), format!("{}", state.control), format!("{}", state.cyellow));
-    println!("{}{}{}{}{}{}{}", format!("{}", state.scrwhite), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 70), format!("{}", state.control), format!("{}", state.cwhite));
+    println!("{}", format!("{}", state.scrblack));
+    println!("{}", format!("{}", state.scrblue));
+    println!("{}", format!("{}", state.scrgreen));
+    println!("{}", format!("{}", state.scrcyan));
+    println!("{}", format!("{}", state.scrred));
+    println!("{}", format!("{}", state.scrmaggy));
+    println!("{}", format!("{}", state.scryell));
+    println!("{}", format!("{}", state.scrwhite));
     // ]
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -139,6 +140,11 @@ fn f_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE F
+fn f_delete(state: &mut ProgramState) {
+    state._fs_f = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT G
 fn g_open_input(state: &mut ProgramState) {
     let path = std::env::var("G").unwrap_or("g.dat".to_string());
@@ -210,6 +216,11 @@ fn g_close(state: &mut ProgramState) {
         Ok(()) => state._fs_g = FileStatus::Success,
         Err(e) => state._fs_g = e,
     }
+}
+
+/// DELETE G
+fn g_delete(state: &mut ProgramState) {
+    state._fs_g = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT H
@@ -285,6 +296,11 @@ fn h_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE H
+fn h_delete(state: &mut ProgramState) {
+    state._fs_h = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT I
 fn i_open_input(state: &mut ProgramState) {
     let path = std::env::var("I").unwrap_or("i.dat".to_string());
@@ -356,6 +372,11 @@ fn i_close(state: &mut ProgramState) {
         Ok(()) => state._fs_i = FileStatus::Success,
         Err(e) => state._fs_i = e,
     }
+}
+
+/// DELETE I
+fn i_delete(state: &mut ProgramState) {
+    state._fs_i = FileStatus::Success; // DELETE stub
 }
 
 fn main() {

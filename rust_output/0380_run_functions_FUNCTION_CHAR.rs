@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -48,6 +49,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub valid_data: FixedString<30>,
+    pub valid_unset: FixedString<30>,
 }
 
 
@@ -59,14 +63,14 @@ impl ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_char(format!("{}", state.x))));
+        _result.push_str(&format!("{}", cobol_fn_char(&format!("{}", state.x))));
         state.test_fld = _result.into(); }
     if (!(state.valid_unset())) {
-        println!("{}{}", format!("{}", "FUNCTION result too long"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "FUNCTION result too long"));
     } else if (state.valid_data()) {
         // CONTINUE
     } else {
-        println!("{}{}", format!("{}", state.test_data), format!("{}", state.end_display));
+        println!("{}", format!("{}", state.test_data));
     }
     std::process::exit(0);
 }

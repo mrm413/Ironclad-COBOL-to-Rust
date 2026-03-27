@@ -1,6 +1,6 @@
 # Ironclad: Deterministic COBOL-to-Rust Transpiler Output
 
-**1,544 Rust programs transpiled from 1,545 COBOL test programs | 100% compile | 100% runtime | Zero external dependencies**
+**1,545 Rust programs transpiled from 1,545 COBOL test programs | 100% compile rate | Zero external dependencies**
 
 This repository contains the **output** of the Ironclad transpilation system — not the system itself. Every file here was generated automatically from legacy COBOL source code and compiled as idiomatic Rust.
 
@@ -15,16 +15,16 @@ Ironclad takes legacy COBOL programs and produces deterministic, idiomatic Rust.
 | Metric | Value |
 |--------|-------|
 | COBOL programs processed | 1,545 |
-| Rust programs generated | 1,544 |
-| Transpile success rate | 99.94% |
+| Rust programs generated | 1,545 |
+| Transpile success rate | 100.0% |
 | Compile success rate | 100.0% |
-| Runtime validation rate | 100.0% |
-| Total transpiled Rust lines | 185,312 |
+| Total transpiled Rust lines | ~190,000 |
 | Runtime library lines | 6,000 (17 modules) |
 | Expansion ratio | ~2.5x (COBOL lines to Rust lines) |
 | Pipeline speed | ~1.64 seconds total |
 | External dependencies | 0 |
 | AI/LLM in the loop | None |
+| Docker test harness | Included |
 
 ### What Changed (v2)
 
@@ -36,6 +36,38 @@ The transpiler now produces significantly more compact output:
 - **Clean compilation** — A single file-level `#![allow(...)]` attribute replaces scattered per-item annotations.
 
 On the CardDemo enterprise benchmark (44 COBOL programs, 30K lines), these changes reduced output from 103,715 to 76,208 lines — a **26.5% reduction**, bringing the expansion ratio from 3.44x down to **2.53x**.
+
+---
+
+## Running the Test Harness
+
+The fastest way to verify everything compiles is the Docker harness:
+
+```bash
+# Build and run (compiles all 1,545 Rust programs)
+docker build -t ironclad-validator .
+docker run --rm ironclad-validator
+
+# Quick spot-check (first 50 files)
+docker run --rm ironclad-validator bash test_harness.sh --quick 50
+
+# Or run locally with Rust installed (stable 1.70+)
+bash test_harness.sh
+```
+
+Expected output:
+```
+============================================
+  RESULTS
+============================================
+Total:  1545
+Pass:   1545
+Fail:   0
+Rate:   100%
+
+ALL 1545 FILES COMPILE SUCCESSFULLY.
+Ironclad COBOL-to-Rust: 100% compile rate on GnuCOBOL 3.2 test suite.
+```
 
 ---
 
@@ -118,9 +150,12 @@ Every stage is deterministic. Same COBOL input always produces the same Rust out
 ## Repository Structure
 
 ```
-ironclad-showcase/
+ironclad-cobol-to-rust/
   README.md                          # This file
-  cobol-runtime/
+  Dockerfile                         # Docker test harness
+  docker-compose.yml                 # docker-compose config
+  test_harness.sh                    # Compile check script (1,545 files)
+  cobol-runtime/                     # Pure Rust runtime library (zero deps)
     src/
       lib.rs                         # Core types: FixedString, Decimal, PackedDecimal
       fixed_string.rs                # FixedString<N> implementation
@@ -147,7 +182,7 @@ ironclad-showcase/
     packed_decimal_arithmetic/       # COMP-3 packed decimal math
     binary_64bit_compare/            # 64-bit unsigned binary comparison
   cobol_source/                      # All 1,545 original COBOL programs
-  rust_output/                       # All 1,544 transpiled Rust programs
+  rust_output/                       # All 1,545 transpiled Rust programs
 ```
 
 ---

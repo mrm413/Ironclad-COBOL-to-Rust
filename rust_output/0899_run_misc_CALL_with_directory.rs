@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,11 +38,11 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // CALL 'SUB' USING &mut state.'0', &mut state.on, &mut state.exception
+    // CALL 'SUB' USING &mut state.n0, &mut state.on, &mut state.exception
     // CONTINUE
-    // CALL 'MYRTN' USING &mut state.'x'
-    // CALL 'DIR/SUB' USING &mut state.'y'
-    // CALL 'SUB' USING &mut state.'z'
+    // CALL 'MYRTN' USING &mut state.x
+    // CALL 'DIR/SUB' USING &mut state.y
+    // CALL 'SUB' USING &mut state.z
     // CANCEL "SUB" CALL "SUB" USING '0' ON EXCEPTION CONTINUE
     std::process::exit(0);
 }

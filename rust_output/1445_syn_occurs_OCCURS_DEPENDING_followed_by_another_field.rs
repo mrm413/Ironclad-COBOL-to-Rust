@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G1 {
     /// X
-    pub x: [FixedString<1>; 1],
+    pub x: Vec<FixedString<1>>,
     /// Y
     pub y: FixedString<1>,
 }
@@ -47,7 +48,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G2 {
     /// G-3
-    pub g_3: [G3; 1],
+    pub g_3: Vec<G3>,
     /// Y
     pub y: FixedString<1>,
 }
@@ -72,7 +73,7 @@ impl G2 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G5 {
     /// X
-    pub x: [FixedString<1>; 1],
+    pub x: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for G5 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -109,7 +110,7 @@ pub struct ProgramState {
     /// WS: G-1 (group)
     pub g_1: FixedString<2>,
     /// WS: X
-    pub x: [FixedString<1>; 1],
+    pub x: Vec<FixedString<1>>,
     /// WS: Y
     pub y: FixedString<1>,
     /// WS: G-2 (group)
@@ -125,7 +126,7 @@ pub struct ProgramState {
     /// WS: G-5 (group)
     pub g_5: FixedString<1>,
     /// WS: X
-    pub x_3: [FixedString<1>; 1],
+    pub x_3: Vec<FixedString<1>>,
     /// WS: Y
     pub y_3: FixedString<1>,
     /// WS: I

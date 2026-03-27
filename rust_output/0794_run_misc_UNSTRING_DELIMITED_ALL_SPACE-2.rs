@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -70,21 +71,21 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.ws_pointer = format!("{}", 1).cobol_into();
-    p_0001_sub(state);
+    p_n0001_sub(state);
     if format!("{}", state.ws_dummy).trim() != format!("{}", " ").trim() {
         println!("{}{}", format!("{}", "Expected space - Got "), format!("{}", state.ws_dummy));
     }
     if format!("{}", state.ws_pointer).trim() != format!("{}", 5).trim() {
         println!("{}{}", format!("{}", "Expected 5 - Got "), format!("{}", state.ws_pointer));
     }
-    p_0001_sub(state);
+    p_n0001_sub(state);
     if format!("{}", state.ws_dummy).trim() != format!("{}", "ABC AND DE").trim() {
         println!("{}{}", format!("{}", "Expected ABC AND DE - Got "), format!("{}", state.ws_dummy));
     }
     if format!("{}", state.ws_pointer).trim() != format!("{}", 21).trim() {
         println!("{}{}", format!("{}", "Expected 21 - Got "), format!("{}", state.ws_pointer));
     }
-    p_0001_sub(state);
+    p_n0001_sub(state);
     if format!("{}", state.ws_dummy).trim() != format!("{}", " FG AND HIJ").trim() {
         println!("{}{}", format!("{}", "Expected  FG AND HIJ - Got "), format!("{}", state.ws_dummy));
     }
@@ -95,10 +96,9 @@ fn p__implicit_(state: &mut ProgramState) {
 }
 
 /// Paragraph: 0001-SUB
-fn p_0001_sub(state: &mut ProgramState) {
+fn p_n0001_sub(state: &mut ProgramState) {
     { let _src = format!("{}", state.ws_record); let _parts: Vec<&str> = _src.splitn(3, ' ').collect();
         if let Some(&p) = _parts.get(0) { state.space_2 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.into = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(2) { state.ws_dummy = p.to_string().cobol_into(); }
     }
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -46,6 +47,10 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n21: FixedString<30>,
+    pub n5001: FixedString<30>,
+    pub fldx50501: FixedString<30>,
 }
 
 
@@ -158,36 +163,36 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", "\x00").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  LOW-VALUE >= \"X\"!"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X\" > x\"00"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X\" < x\"00\"!"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X\" >= x\"00"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X\" <= x\"00\"!"));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"00\" < \"X"));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"00\" > \"X\"!"));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"00\" <= \"X"));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"00\" >= \"X\"!"));
     }
     if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", "\u{00FF}").trim().parse::<f64>().unwrap_or(0.0) {
@@ -222,36 +227,36 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", "\u{00FF}").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  HIGH-VALUE <= \"X\"!"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X\" < x\"FF"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X\" > x\"FF\"!"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X\" <= x\"FF"));
     }
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X\" >= x\"FF\"!"));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"FF\" > \"X"));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"FF\" < \"X\"!"));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"FF\" >= \"X"));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"FF\" <= \"X\"!"));
     }
     if format!("{}", state.fld1).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 0).trim().parse::<f64>().unwrap_or(0.0) {
@@ -414,36 +419,36 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", "\x00").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  LOW-VALUE >= \"X\"!"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X \" > x\"00"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X \" < x\"00\"!"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X \" >= x\"00"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X \" <= x\"00\"!"));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"00\" < \"X "));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"00\" > \"X \"!"));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"00\" <= \"X "));
     }
-    if format!("{}", state.x"00").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\x00").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"00\" >= \"X \"!"));
     }
     if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", "\u{00FF}").trim().parse::<f64>().unwrap_or(0.0) {
@@ -478,36 +483,36 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", "\u{00FF}").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  HIGH-VALUE <= \"X \"!"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X \" < x\"FF"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X \" > x\"FF\"!"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! \"X \" <= x\"FF"));
     }
-    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  \"X \" >= x\"FF\"!"));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"FF\" > \"X "));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) < format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"FF\" < \"X \"!"));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) >= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE
     } else {
         println!("{}", format!("{}", "! x\"FF\" >= \"X "));
     }
-    if format!("{}", state.x"ff").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", "\\xFF").trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fldx32k).trim().parse::<f64>().unwrap_or(0.0) {
         println!("{}", format!("{}", "  x\"FF\" <= \"X \"!"));
     }
     if format!("{}", state.fld1x).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 0).trim().parse::<f64>().unwrap_or(0.0) {
@@ -612,8 +617,7 @@ fn p_do_check(state: &mut ProgramState) {
     } else {
         println!("{}", format!("{}", "! \"XX\" <> \"     "));
     }
-    state."a" = format!("{}", state.all).cobol_into();
-    state.fldxx = format!("{}", state.all).cobol_into();
+    state.fldxx = format!("{}", " ").cobol_into();
     if format!("{}", state.fldxx).trim() == format!("{}", "AA  ").trim() {
         // CONTINUE
     } else {
@@ -622,22 +626,21 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", state.fldxx).trim() == format!("{}", "AAA").trim() {
         println!("{}", format!("{}", "! \"AA\" = \"AAA "));
     }
-    if format!("{}", state.fldxx).trim() == format!("{}", state.all).trim() {
+    if format!("{}", state.fldxx).trim() == format!("{}", " ").trim() {
     }
     // "A" CONTINUE ELSE DISPLAY '! "AA" <> ALL "A"'
     state.fldxx = format!("{}", "B").cobol_into();
-    if format!("{}", state.fldxx).trim() == format!("{}", state.all).trim() {
+    if format!("{}", state.fldxx).trim() == format!("{}", " ").trim() {
     }
     // "AB" CONTINUE ELSE DISPLAY '! "AB" <> ALL "AB"'
-    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.all).trim().parse::<f64>().unwrap_or(0.0) {
+    if format!("{}", state.fldx).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", " ").trim().parse::<f64>().unwrap_or(0.0) {
     }
     // "XX" CONTINUE ELSE DISPLAY '! "X" > ALL "XX"'
-    if { let __v = format!("{}", state.all); __v.trim() != "" && __v.trim() != "0" } {
+    if true {
     }
     // "XX" NOT > FLDX CONTINUE ELSE DISPLAY '! ALL "XX" <= "X"'
-    state.zero = format!("{}", state.all).cobol_into();
-    state.fldx500 = format!("{}", state.all).cobol_into();
-    state.fldx50 = format!("{}", state.all).cobol_into();
+    state.fldx500 = format!("{}", " ").cobol_into();
+    state.fldx50 = format!("{}", " ").cobol_into();
     state.fldx500 = format!("{}", "1").cobol_into();
     if format!("{}", state.fldx50).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 0).trim().parse::<f64>().unwrap_or(0.0) {
         // CONTINUE

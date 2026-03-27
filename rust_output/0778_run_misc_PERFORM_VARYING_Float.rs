@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,14 +38,28 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING I FROM 1.0 BY 1.0 UNTIL I > 5.0 DISPLAY I " " NO ADVANCING END-PERFORM
+    while !((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 5.000000).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.i = format!("{}", 1.000000).cobol_into();
+        println!("{}{}", format!("{}", state.i), format!("{}", " "));
+    }
     println!("{}", format!("{}", "Test Part 1 Completed"));
-    // PERFORM VARYING VARYING I FROM 1 BY 1 UNTIL I > 5 DISPLAY I " " NO ADVANCING END-PERFORM
+    while !((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 5).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.i = format!("{}", 1).cobol_into();
+        println!("{}{}", format!("{}", state.i), format!("{}", " "));
+    }
     println!("{}", format!("{}", "Test Part 2 Completed"));
-    // PERFORM VARYING VARYING I FROM 5 BY -1 UNTIL I < 1 DISPLAY I " " NO ADVANCING END-PERFORM
+    while !((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", 1).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.i = format!("{}", 5).cobol_into();
+        println!("{}{}", format!("{}", state.i), format!("{}", " "));
+    }
     println!("{}", format!("{}", "Test Part 3 Completed"));
     std::process::exit(0);
     // END PROGRAM PROG
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

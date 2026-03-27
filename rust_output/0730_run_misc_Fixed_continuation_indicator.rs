@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -32,22 +33,23 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n456789abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz01: FixedString<30>,
+    pub n89abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz012345: FixedString<30>,
+    pub z: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", state.x));
-    println!("{}{}", format!("{}", "_"), format!("{}", state.end_display));
-    state.89abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz012345 = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
-    state."6789abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123 " = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
-    state.456789abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz01 = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
-    state."23456789abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy " = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
+    println!("{}", format!("{}", "_"));
+    state.n89abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz012345 = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
+    state.n456789abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz01 = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
     state.z = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
-    state."0123456789" = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
     state.x = format!("{}", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567 ").cobol_into();
     println!("{}", format!("{}", state.x));
-    println!("{}{}", format!("{}", "_"), format!("{}", state.end_display));
+    println!("{}", format!("{}", "_"));
     std::process::exit(0);
 }
 

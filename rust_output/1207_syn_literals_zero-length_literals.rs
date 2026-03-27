@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,19 +37,23 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub h: FixedString<30>,
+    pub l: FixedString<30>,
+    pub nx: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x = format!("{}", state.x'').cobol_into();
-    state.n = format!("{}", state.h'').cobol_into();
-    state.x = format!("{}", state.z'').cobol_into();
-    state.x = format!("{}", state.l'').cobol_into();
-    state.nat = format!("{}", state.n"").cobol_into();
-    state.nat = format!("{}", state.nx'').cobol_into();
-    state.n = format!("{}", state.b"").cobol_into();
-    state.n = format!("{}", state.bx"").cobol_into();
+    state.x = format!("{}", "").cobol_into();
+    state.n = format!("{}", "").cobol_into();
+    state.x = format!("{}", "").cobol_into();
+    state.x = format!("{}", "").cobol_into();
+    state.nat = format!("{}", "").cobol_into();
+    state.nat = format!("{}", "").cobol_into();
+    state.n = format!("{}", "").cobol_into();
+    state.n = format!("{}", "").cobol_into();
 }
 
 fn main() {

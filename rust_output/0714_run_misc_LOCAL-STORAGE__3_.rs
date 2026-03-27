@@ -2,6 +2,7 @@
 // Source: CALLEE.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -24,7 +25,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct WrkX {
     /// WRK-VAR
-    pub wrk_var: [u8; 1],
+    pub wrk_var: Vec<u8>,
 }
 impl std::fmt::Display for WrkX {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -57,7 +58,7 @@ pub struct ProgramState {
     /// WS: WRK-X (group)
     pub wrk_x: FixedString<1>,
     /// WS: WRK-VAR
-    pub wrk_var: [u8; 1],
+    pub wrk_var: Vec<u8>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -73,13 +74,16 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub wrk_idx: FixedString<30>,
+    pub wrk_var1: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", " "));
-    { let _a: f64 = format!("{}", state.wrk_var(1)).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.wrk_var(1) = format!("{}", _a + _b).cobol_into(); }
+    { let _a: f64 = format!("{}", state.wrk_var1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.wrk_var1 = format!("{}", _a + _b).cobol_into(); }
     state.wrk_idx = " ".to_string().cobol_into();
     // BY 1 SET DISP-IDX TO WRK-IDX
     state.disp_val = format!("{:?}", state.wrk_var).cobol_into();

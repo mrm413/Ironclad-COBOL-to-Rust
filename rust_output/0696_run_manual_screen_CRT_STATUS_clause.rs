@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -61,7 +62,6 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.environment = " ".to_string().cobol_into();
     // TO 'TRUE' SET ENVIRONMENT 'COB_SCREEN_ESC' TO 'TRUE' PERFORM VARYING LOOP FROM 1 BY 1 UNTIL LOOP > 10 DISPLAY "screen accept no. " AT LINE 10 COL 4 LOOP "/10" DISPLAY SCREEN-EXAMPLE ACCEPT SCREEN-EXAMPLE END-PERFORM GOBACK
 }
 

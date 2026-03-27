@@ -2,6 +2,7 @@
 // Source: UNSTRINGTEST.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -79,18 +80,10 @@ fn p__implicit_(state: &mut ProgramState) {
     state.str_pointer = format!("{}", 1).cobol_into();
     { let _src = format!("{}", state.inp_string); let _parts: Vec<&str> = _src.splitn(14, ' ').collect();
         if let Some(&p) = _parts.get(0) { state.res_trgt_1 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.delimiter = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(2) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(3) { state.res_delim_1 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(4) { state.count = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(5) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(6) { state.res_count_1 = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(7) { state.res_trgt_2 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(8) { state.delimiter = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(9) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(10) { state.res_delim_2 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(11) { state.count = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(12) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(13) { state.res_count_2 = p.to_string().cobol_into(); }
     }
     // STR-POINTER TALLYING RES-TALLY ON OVERFLOW DISPLAY 'Unstring tallying case 1 should not OVERFLOW' END-DISPLAY END-UNSTRING
@@ -98,21 +91,11 @@ fn p__implicit_(state: &mut ProgramState) {
     state.res_data = format!("{}", " ").cobol_into();
     state.str_pointer = format!("{}", 1).cobol_into();
     { let _src = format!("{}", state.inp_string); let _parts: Vec<&str> = _src.splitn(16, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.'_' = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.into = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(2) { state.res_trgt_1 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(3) { state.delimiter = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(4) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(5) { state.res_delim_1 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(6) { state.count = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(7) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(8) { state.res_count_1 = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(9) { state.res_trgt_2 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(10) { state.delimiter = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(11) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(12) { state.res_delim_2 = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(13) { state.count = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(14) { state.r#in = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(15) { state.res_count_2 = p.to_string().cobol_into(); }
     }
     // STR-POINTER TALLYING RES-TALLY NOT ON OVERFLOW DISPLAY 'Unstring tallying case 2 should  OVERFLOW' END-DISPLAY END-UNSTRING

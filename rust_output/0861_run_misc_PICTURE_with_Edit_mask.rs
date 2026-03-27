@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -67,8 +68,7 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     state.wflt = format!("{}", 18536.230000).cobol_into();
     println!("{}{}", format!("{}", "WFLT IS "), format!("{}", state.wflt));
-    { let _a: f64 = format!("{}", state.1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.dept_cost_ytd).trim().parse().unwrap_or(0.0); state.1 = format!("{}", _a * _b).cobol_into(); }
-    // GIVING DL-PROD-COST ROUNDED
+    state.dl_prod_cost = format!("{}", (format!("{}", format!("{}", state.dept_cost_ytd)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 1)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}", format!("{}", "COST IS "), format!("{}", state.dl_prod_cost));
     std::process::exit(0);
 }

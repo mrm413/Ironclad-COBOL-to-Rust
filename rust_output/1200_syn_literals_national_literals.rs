@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,15 +30,17 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub nc0123456789abcdef: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}", format!("{}", state.n"utf_16 string"));
-    println!("{}", format!("{}", state.n'0123456789abcdef'));
-    println!("{}{}{}", format!("{}", state.n"0123456789abcdef"), format!("{}", state._), format!("{}", state.n"0123456789abcdef"));
-    println!("{}{}{}", format!("{}", state.nc"0123456789abcdef"), format!("{}", state._), format!("{}", state.nc'0123456789abcdef'));
+    println!("{}", format!("{}", "\\x16"));
+    println!("{}", format!("{}", "\\x01#Eg\\x89\\xAB\\xCD\\xEF"));
+    println!("{}{}{}", format!("{}", "\\x01#Eg\\x89\\xAB\\xCD\\xEF"), format!("{}", ""), format!("{}", "\\x01#Eg\\x89\\xAB\\xCD\\xEF"));
+    println!("{}{}{}", format!("{}", ""), format!("{}", ""), format!("{}", ""));
 }
 
 fn main() {

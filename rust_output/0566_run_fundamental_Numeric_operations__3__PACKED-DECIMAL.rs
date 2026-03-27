@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -288,14 +289,14 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", state.feld5).trim() != format!("{}", 123456791.012346).trim() {
         println!("{}{}", format!("{}", "Test 41 SUBTRACT "), format!("{}", state.feld5));
     }
-    state.feld5b = format!("{}", 12345678901234567).cobol_into();
-    { let _a: f64 = format!("{}", state.feld5b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 18518518351851850).trim().parse().unwrap_or(0.0); state.feld5b = format!("{}", _a + _b).cobol_into(); }
-    if format!("{}", state.feld5b).trim() != format!("{}", 30864197253086417).trim() {
+    state.feld5b = format!("{}", 12345678901234567i64).cobol_into();
+    { let _a: f64 = format!("{}", state.feld5b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 18518518351851850i64).trim().parse().unwrap_or(0.0); state.feld5b = format!("{}", _a + _b).cobol_into(); }
+    if format!("{}", state.feld5b).trim() != format!("{}", 30864197253086417i64).trim() {
         println!("{}{}", format!("{}", "Test 41b ADD "), format!("{}", state.feld5b));
     }
-    state.feld5b = format!("{}", 30864197253086417).cobol_into();
-    { let _a: f64 = format!("{}", state.feld5b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 18518518351851850).trim().parse().unwrap_or(0.0); state.feld5b = format!("{}", _a - _b).cobol_into(); }
-    if format!("{}", state.feld5b).trim() != format!("{}", 12345678901234567).trim() {
+    state.feld5b = format!("{}", 30864197253086417i64).cobol_into();
+    { let _a: f64 = format!("{}", state.feld5b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 18518518351851850i64).trim().parse().unwrap_or(0.0); state.feld5b = format!("{}", _a - _b).cobol_into(); }
+    if format!("{}", state.feld5b).trim() != format!("{}", 12345678901234567i64).trim() {
         println!("{}{}", format!("{}", "Test 41b SUBTRACT "), format!("{}", state.feld5b));
     }
     state.feld6 = format!("{}", 12345678.123457).cobol_into();
@@ -308,22 +309,24 @@ fn p_do_check(state: &mut ProgramState) {
     if format!("{}", state.feld6).trim() != format!("{}", 12345676.023457).trim() {
         println!("{}{}", format!("{}", "Test 42 SUBTRACT "), format!("{}", state.feld6));
     }
-    state.feld6 = format!("{}", state..123456789012345678901234).cobol_into();
+    state.feld6 = format!("{}", 0.123457).cobol_into();
     { let _a: f64 = format!("{}", state.feld6).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1.800000).trim().parse().unwrap_or(0.0); state.feld6 = format!("{}", _a + _b).cobol_into(); }
     if format!("{}", state.feld6).trim() != format!("{}", 1.923457).trim() {
         println!("{}{}", format!("{}", "Test 43 "), format!("{}", state.feld6));
     }
-    state.feld6b = format!("{}", 7123456789012345670).cobol_into();
-    { let _a: f64 = format!("{}", state.feld6b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1800000000000000000).trim().parse().unwrap_or(0.0); state.feld6b = format!("{}", _a + _b).cobol_into(); }
-    if format!("{}", state.feld6b).trim() != format!("{}", 8923456789012345670).trim() {
+    state.feld6b = format!("{}", 7123456789012345670i64).cobol_into();
+    { let _a: f64 = format!("{}", state.feld6b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1800000000000000000i64).trim().parse().unwrap_or(0.0); state.feld6b = format!("{}", _a + _b).cobol_into(); }
+    if format!("{}", state.feld6b).trim() != format!("{}", 8923456789012345670i64).trim() {
         println!("{}{}", format!("{}", "Test 43b ADD "), format!("{}", state.feld6b));
     }
-    if format!("{}", state.feld6b).trim() == format!("{}", -8923456789012345670).trim() {
+    if format!("{}", state.feld6b).trim() == format!("{}", -8923456789012345670i64).trim() {
         println!("{}{}", format!("{}", "Test 43b2 ADD "), format!("{}", state.feld6b));
     }
-    { let _a: f64 = format!("{}", state._1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.feld6b).trim().parse().unwrap_or(0.0); state._1 = format!("{}", _a * _b).cobol_into(); }
-    // GIVING FELD6B IF FELD6B NOT = -8923456789012345670 DISPLAY "Test 43c NEGATIVE " FELD6B
-    if format!("{}", state.feld6b).trim() == format!("{}", 8923456789012345670).trim() {
+    state.feld6b = format!("{}", (format!("{}", format!("{}", state.feld6b)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", -1)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
+    if format!("{}", state.feld6b).trim() != format!("{}", -8923456789012345670i64).trim() {
+        println!("{}{}", format!("{}", "Test 43c NEGATIVE "), format!("{}", state.feld6b));
+    }
+    if format!("{}", state.feld6b).trim() == format!("{}", 8923456789012345670i64).trim() {
         println!("{}{}", format!("{}", "Test 43c2 NEGATIVE "), format!("{}", state.feld6b));
     }
 }

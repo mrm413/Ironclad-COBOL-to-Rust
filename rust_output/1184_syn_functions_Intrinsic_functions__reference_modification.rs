@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,15 +30,18 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n10: FixedString<30>,
+    pub n12: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{}", cobol_fn_char(66)), format!("{}", state.1:2));
-    println!("{}{}", format!("{}", cobol_fn_numval_c(123)), format!("{}", state.1:2));
-    println!("{}{}", format!("{}", cobol_fn_reverse("TESTME")), format!("{}", state._1:1));
-    println!("{}{}", format!("{}", cobol_fn_reverse("TESTME")), format!("{}", state.1:0));
+    println!("{}{}", format!("{}", cobol_fn_char(&format!("{}", 66))), format!("{}", ""));
+    println!("{}{}", format!("{}", cobol_fn_numval_c(&format!("{}", 123))), format!("{}", ""));
+    println!("{}{}", format!("{}", cobol_fn_reverse("TESTME")), format!("{}", ""));
+    println!("{}{}", format!("{}", cobol_fn_reverse("TESTME")), format!("{}", ""));
     std::process::exit(0);
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,6 +35,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub success: FixedString<30>,
 }
 
 
@@ -43,9 +46,9 @@ impl ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}{}{}", format!("{}", "Enter 'y' if pressing the ALT and LEFT-ARROW keys"), format!("{}", state.line), format!("{}", 1), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "at the first column does not exit the field."), format!("{}", state.line), format!("{}", 2), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "But the LEFT-ARROW without ALT does exit."), format!("{}", state.line), format!("{}", 3), format!("{}", state.column), format!("{}", 1));
+    println!("{}", format!("{}", "Enter 'y' if pressing the ALT and LEFT-ARROW keys"));
+    println!("{}", format!("{}", "at the first column does not exit the field."));
+    println!("{}", format!("{}", "But the LEFT-ARROW without ALT does exit."));
     state.ws_x_20 = format!("{}", "ABCD      ").cobol_into();
     // ACCEPT WS-X-20
     // ACCEPT SUCCESS-FLAG

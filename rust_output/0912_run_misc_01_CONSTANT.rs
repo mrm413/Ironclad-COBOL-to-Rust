@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -18,7 +19,7 @@ pub struct Myrec {
     /// FLD2
     pub fld2: FixedString<7>,
     /// FLD3
-    pub fld3: [FixedString<2>; 5],
+    pub fld3: Vec<FixedString<2>>,
     /// FLD4
     pub fld4: FixedString<4>,
     /// FLD5
@@ -59,7 +60,7 @@ pub struct ProgramState {
     /// WS: FLD2
     pub fld2: FixedString<7>,
     /// WS: FLD3
-    pub fld3: [FixedString<2>; 5],
+    pub fld3: Vec<FixedString<2>>,
     /// WS: FLD4
     pub fld4: FixedString<4>,
     /// WS: FLD5

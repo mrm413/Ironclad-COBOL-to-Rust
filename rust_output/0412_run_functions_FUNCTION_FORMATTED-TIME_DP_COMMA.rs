@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.str = format!("{}", cobol_fn_formatted_time("hh:mm:ss,ss", 45296)).cobol_into();
+    state.str = format!("{}", cobol_fn_formatted_time("hh:mm:ss,ss", &format!("{}", 45296), "0", "0")).cobol_into();
     if { let __v = format!("{}", state.str); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> "12:34:56,00" DISPLAY "Test 1 failed: " STR END-DISPLAY END-IF STOP RUN

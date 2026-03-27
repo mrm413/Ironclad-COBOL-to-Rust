@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -50,13 +51,13 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.calcer = format!("{}", 3.500000).cobol_into();
-    p_42(state);
+    p_n42(state);
     { let _a: f64 = format!("{}", state.cnt).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.cnt = format!("{}", _a + _b).cobol_into(); }
     // >>D DISPLAY CNT COMPUTE DUMMY-RES = ( CALCER + 2 ) * 2 + 2 END-PERFORM GOBACK
 }
 
 /// Stub for unresolved paragraph
-fn p_42(state: &mut ProgramState) {
+fn p_n42(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

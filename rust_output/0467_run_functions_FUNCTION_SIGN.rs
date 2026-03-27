@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -39,34 +40,34 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.z = format!("{}", cobol_fn_sign(3.123450)).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", 3.123450))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 1).trim() {
         println!("{}{}", format!("{}", "Sign 1 "), format!("{}", state.z));
     }
-    state.z = format!("{}", cobol_fn_sign(-0.000000)).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", -0.000000))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 0).trim() {
         println!("{}{}", format!("{}", "Sign 2 "), format!("{}", state.z));
     }
-    state.z = format!("{}", cobol_fn_sign(0.000000)).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", 0.000000))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 0).trim() {
         println!("{}{}", format!("{}", "Sign 3 "), format!("{}", state.z));
     }
-    state.z = format!("{}", cobol_fn_sign(-3.123450)).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", -3.123450))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", -1).trim() {
         println!("{}{}", format!("{}", "Sign 4 "), format!("{}", state.z));
     }
     state.f = format!("{}", 3.123450).cobol_into();
-    state.z = format!("{}", cobol_fn_sign(format!("{}", state.f))).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", state.f))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 1).trim() {
         println!("{}{}", format!("{}", "Sign 5 "), format!("{}", state.z));
     }
     state.f = format!("{}", -0.000000).cobol_into();
-    state.z = format!("{}", cobol_fn_sign(format!("{}", state.f))).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", state.f))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 0).trim() {
         println!("{}{}", format!("{}", "Sign 6 "), format!("{}", state.z));
     }
     state.f = format!("{}", -3.123450).cobol_into();
-    state.z = format!("{}", cobol_fn_sign(format!("{}", state.f))).cobol_into();
+    state.z = format!("{}", cobol_fn_sign(&format!("{}", state.f))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", -1).trim() {
         println!("{}{}", format!("{}", "Sign 7 "), format!("{}", state.z));
     }

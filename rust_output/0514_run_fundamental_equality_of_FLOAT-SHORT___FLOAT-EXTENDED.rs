@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -38,6 +39,13 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub ort: FixedString<30>,
+    pub t: FixedString<30>,
+    pub entical: FixedString<30>,
+    pub failed: FixedString<30>,
+    pub ical: FixedString<30>,
+    pub identical: FixedString<30>,
 }
 
 
@@ -63,44 +71,43 @@ fn p__implicit_(state: &mut ProgramState) {
     }
     state.dst1 = format!("{}", 0).cobol_into();
     if !(((format!("{}", state.dst1).trim() == format!("{}", 0).trim()) && (format!("{}", state.dst1).trim() == format!("{}", 0.000000).trim()))) {
-        println!("{}{}{}", format!("{}", "Zero compare failed: "), format!("{}", state.dst1), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Zero compare failed: "), format!("{}", state.dst1));
     }
     state.dst1 = format!("{}", -0.000000).cobol_into();
     if !(((format!("{}", state.dst1).trim() == format!("{}", 0).trim()) && (format!("{}", state.dst1).trim() == format!("{}", 0.000000).trim()))) {
-        println!("{}{}{}", format!("{}", "Negative Zero compare failed: "), format!("{}", state.dst1), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Negative Zero compare failed: "), format!("{}", state.dst1));
     }
     state.dst1 = format!("{}", 1.123457).cobol_into();
     state.dst2 = format!("{}", state.dst1).cobol_into();
     if format!("{}", state.dst2).trim() != format!("{}", 1.123457).trim() {
-        println!("{}{}{}{}{}", format!("{}", "move/compare number to FLOAT to DOUBLE failed: "), format!("{}", state.dst1), format!("{}", " - "), format!("{}", state.dst2), format!("{}", state.end_display));
+        println!("{}{}{}{}", format!("{}", "move/compare number to FLOAT to DOUBLE failed: "), format!("{}", state.dst1), format!("{}", " - "), format!("{}", state.dst2));
     }
     state.dst1 = format!("{}", 1.123457).cobol_into();
     state.dst2 = format!("{}", 1.123457).cobol_into();
     if format!("{}", state.dst1).trim() != format!("{}", state.dst2).trim() {
-        println!("{}{}{}{}{}", format!("{}", "move/compare of very near numbers failed (not id "), format!("{}", state.entical), format!("{}", state.)), format!("{}", state.:), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
+        println!("{}{}{}{}{}", format!("{}", "move/compare of very near numbers failed (not id "), format!("{}", state.entical), format!("{}", ""), format!("{}", ""), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
     }
     state.dst1 = format!("{}", 1.123457).cobol_into();
     state.dst2 = format!("{}", 0.123457).cobol_into();
     { let _a: f64 = format!("{}", state.dst2).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1.000000).trim().parse().unwrap_or(0.0); state.dst2 = format!("{}", _a + _b).cobol_into(); }
     if format!("{}", state.dst1).trim() != format!("{}", state.dst2).trim() {
-        println!("{}{}{}", format!("{}", "move/compare of very near numbers failed (not id "), format!("{}", state.entical), format!("{}", state.after));
-        { let _a: f64 = format!("{}", state.:).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.)).trim().parse().unwrap_or(0.0); state.: = format!("{}", _a + _b).cobol_into(); }
+        println!("{}{}{}", format!("{}", "move/compare of very near numbers failed (not id "), format!("{}", state.entical), format!("{}", ""));
     }
     // ' DST1 " - " DST2 END-DISPLAY END-IF
     state.dst1 = format!("{}", 1.123457).cobol_into();
     state.dst2 = format!("{}", 1.123457).cobol_into();
     if format!("{}", state.dst1).trim() == format!("{}", state.dst2).trim() {
-        println!("{}{}{}{}{}", format!("{}", "move/compare of near equal numbers failed (ident "), format!("{}", state.ical), format!("{}", state.)), format!("{}", state.:), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
+        println!("{}{}{}{}{}", format!("{}", "move/compare of near equal numbers failed (ident "), format!("{}", state.ical), format!("{}", ""), format!("{}", ""), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
     }
     state.dst1 = format!("{}", 0.000100).cobol_into();
     state.dst2 = format!("{}", 0.000000).cobol_into();
     if format!("{}", state.dst1).trim() == format!("{}", state.dst2).trim() {
-        println!("{}{}{}{}{}", format!("{}", "move/compare of nearly equal very small numbers "), format!("{}", state.failed), format!("{}", state.identical), format!("{}", state.:), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
+        println!("{}{}{}{}{}", format!("{}", "move/compare of nearly equal very small numbers "), format!("{}", state.failed), format!("{}", state.identical), format!("{}", ""), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
     }
     state.dst1 = format!("{}", 1000001.000000).cobol_into();
     state.dst2 = format!("{}", 1000000.000000).cobol_into();
     if format!("{}", state.dst1).trim() == format!("{}", state.dst2).trim() {
-        println!("{}{}{}{}", format!("{}", "move/compare of nearly equal big numbers failed "), format!("{}", state.identical), format!("{}", state.:), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
+        println!("{}{}{}{}", format!("{}", "move/compare of nearly equal big numbers failed "), format!("{}", state.identical), format!("{}", ""), format!("{}", " DST1 \" - \" DST2 END-DISPLAY END-IF"));
     }
     std::process::exit(0);
 }

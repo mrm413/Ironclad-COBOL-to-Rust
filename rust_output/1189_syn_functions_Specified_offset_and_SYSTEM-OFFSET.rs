@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,13 +30,15 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub system_offset: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{}", cobol_fn_formatted_datetime("YYYYDDDThhmmssZ", 1, 1, 1, format!("{}", state.system_offset))), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_time("hhmmssZ", 1, 1, format!("{}", state.system_offset))), format!("{}", state.end_display));
+    println!("{}", format!("{}", cobol_fn_formatted_datetime("YYYYDDDThhmmssZ", &format!("{}", 1), &format!("{}", 1), &format!("{}", 1), &format!("{}", state.system_offset))));
+    println!("{}", format!("{}", cobol_fn_formatted_time("hhmmssZ", &format!("{}", 1), &format!("{}", 1), &format!("{}", state.system_offset))));
 }
 
 fn main() {

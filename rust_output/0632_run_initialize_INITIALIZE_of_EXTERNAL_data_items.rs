@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -69,19 +70,19 @@ fn p__implicit_(state: &mut ProgramState) {
     state.ext_var_01 = format!("{}", " ").cobol_into();
     state.ext_var_grp = format!("{}", " ").cobol_into();
     if format!("{}", state.ext_var_01).trim() != format!("{}", " ").trim() {
-        println!("{}{}{}", format!("{}", "EXT-VAR-01 "), format!("{}", state.ext_var_01), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "EXT-VAR-01 "), format!("{}", state.ext_var_01));
     }
     if format!("{}", state.ext_field1).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}", format!("{}", "EXT-FIELD1 "), format!("{}", state.ext_field1), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "EXT-FIELD1 "), format!("{}", state.ext_field1));
     }
     if format!("{}", state.ext_field2).trim() != format!("{}", " ").trim() {
-        println!("{}{}{}", format!("{}", "EXT-FIELD2 "), format!("{}", state.ext_field2), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "EXT-FIELD2 "), format!("{}", state.ext_field2));
     }
     if format!("{}", state.ext_field3).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}", format!("{}", "EXT-FIELD3 "), format!("{}", state.ext_field3), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "EXT-FIELD3 "), format!("{}", state.ext_field3));
     }
     if format!("{}", state.ext_field4).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}", format!("{}", "EXT-FIELD4 "), format!("{}", state.ext_field4), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "EXT-FIELD4 "), format!("{}", state.ext_field4));
     }
     std::process::exit(0);
 }

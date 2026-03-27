@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -108,6 +109,23 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub fcd__dynamic_access: FixedString<30>,
+    pub fcd__line_sequential_org: FixedString<30>,
+    pub fcd__sequential_org: FixedString<30>,
+    pub fcd__version_number: FixedString<30>,
+    pub fcd_access_mode: FixedString<30>,
+    pub fcd_binary: FixedString<30>,
+    pub fcd_current_rec_len: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_filename_address: FixedString<30>,
+    pub fcd_max_rec_length: FixedString<30>,
+    pub fcd_min_rec_length: FixedString<30>,
+    pub fcd_name_length: FixedString<30>,
+    pub fcd_organization: FixedString<30>,
+    pub fcd_record_address: FixedString<30>,
+    pub fcd_status_key_1: FixedString<30>,
+    pub fcd_version: FixedString<30>,
 }
 
 
@@ -192,6 +210,12 @@ fn f_seq_file_close(state: &mut ProgramState) {
     state.f_seq_status = format!("{}", state._fs_f_seq_file).cobol_into();
 }
 
+/// DELETE F-SEQ-FILE
+fn f_seq_file_delete(state: &mut ProgramState) {
+    state._fs_f_seq_file = FileStatus::Success; // DELETE stub
+    state.f_seq_status = format!("{}", state._fs_f_seq_file).cobol_into();
+}
+
 /// OPEN INPUT F-TXT-FILE
 fn f_txt_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("F_TXT_FILE").unwrap_or("f_txt_file.dat".to_string());
@@ -273,6 +297,12 @@ fn f_txt_file_close(state: &mut ProgramState) {
     state.f_txt_status = format!("{}", state._fs_f_txt_file).cobol_into();
 }
 
+/// DELETE F-TXT-FILE
+fn f_txt_file_delete(state: &mut ProgramState) {
+    state._fs_f_txt_file = FileStatus::Success; // DELETE stub
+    state.f_txt_status = format!("{}", state._fs_f_txt_file).cobol_into();
+}
+
 /// Paragraph: MAIN-RTN
 fn p_main_rtn(state: &mut ProgramState) {
     f_seq_file_open_output(state);
@@ -319,7 +349,7 @@ fn p_main_rtn(state: &mut ProgramState) {
         state.ex_record_buffer = format!("{}", " ").cobol_into();
         // CALL 'EXTFH' USING &mut state.opcode, &mut state.fcd
         println!("{}{}{}{}", format!("{}", "READ NEXT STATUS:"), format!("{}", state.fcd_status_key_1), format!("{}", "/"), format!("{}", state.fcd_binary));
-        println!("{}{}{}", format!("{}", "DATA:"), format!("{}", cobol_refmod(&format!("{}", state.ex_record_buffer), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", 10).trim().parse::<i64>().unwrap_or(0))), format!("{}", "-"));
+        println!("{}{}{}", format!("{}", "DATA:"), format!("{}", cobol_refmod(&format!("{}", state.ex_record_buffer), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", 10).trim().parse::<usize>().unwrap_or(0))), format!("{}", "-"));
     }
     state.opcode = format!("{}", state.op_close).cobol_into();
     // CALL 'EXTFH' USING &mut state.opcode, &mut state.fcd
@@ -339,11 +369,16 @@ fn p_main_rtn(state: &mut ProgramState) {
         state.ex_record_buffer = format!("{}", " ").cobol_into();
         // CALL 'EXTFH' USING &mut state.opcode, &mut state.fcd
         println!("{}{}{}{}", format!("{}", "READ NEXT STATUS:"), format!("{}", state.fcd_status_key_1), format!("{}", "/"), format!("{}", state.fcd_binary));
-        println!("{}{}{}", format!("{}", "DATA:"), format!("{}", cobol_refmod(&format!("{}", state.ex_record_buffer), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", 10).trim().parse::<i64>().unwrap_or(0))), format!("{}", "-"));
+        println!("{}{}{}", format!("{}", "DATA:"), format!("{}", cobol_refmod(&format!("{}", state.ex_record_buffer), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", 10).trim().parse::<usize>().unwrap_or(0))), format!("{}", "-"));
     }
     state.opcode = format!("{}", state.op_close).cobol_into();
     // CALL 'EXTFH' USING &mut state.opcode, &mut state.fcd
     println!("{}{}{}{}", format!("{}", "CLOSE STATUS:"), format!("{}", state.fcd_status_key_1), format!("{}", "/"), format!("{}", state.fcd_binary));
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

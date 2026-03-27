@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -60,11 +61,11 @@ fn p__implicit_(state: &mut ProgramState) {
     state.edt_3 = format!("{}", state.src_3).cobol_into();
     state.edt_4 = format!("{}", state.src_4).cobol_into();
     state.edt_5 = format!("{}", state.src_5).cobol_into();
-    println!("{}{}{}{}", format!("{}", ">"), format!("{}", state.edt_1), format!("{}", "<"), format!("{}", state.end_display));
-    println!("{}{}{}{}", format!("{}", ">"), format!("{}", state.edt_2), format!("{}", "<"), format!("{}", state.end_display));
-    println!("{}{}{}{}", format!("{}", ">"), format!("{}", state.edt_3), format!("{}", "<"), format!("{}", state.end_display));
-    println!("{}{}{}{}", format!("{}", ">"), format!("{}", state.edt_4), format!("{}", "<"), format!("{}", state.end_display));
-    println!("{}{}{}{}", format!("{}", ">"), format!("{}", state.edt_5), format!("{}", "<"), format!("{}", state.end_display));
+    println!("{}{}{}", format!("{}", ">"), format!("{}", state.edt_1), format!("{}", "<"));
+    println!("{}{}{}", format!("{}", ">"), format!("{}", state.edt_2), format!("{}", "<"));
+    println!("{}{}{}", format!("{}", ">"), format!("{}", state.edt_3), format!("{}", "<"));
+    println!("{}{}{}", format!("{}", ">"), format!("{}", state.edt_4), format!("{}", "<"));
+    println!("{}{}{}", format!("{}", ">"), format!("{}", state.edt_5), format!("{}", "<"));
     std::process::exit(0);
 }
 

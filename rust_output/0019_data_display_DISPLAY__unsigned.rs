@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -49,32 +50,32 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x_bcu. = format!("{}", 127).cobol_into();
-    println!("{}{}", format!("{}", state.x_bcu), format!("{}", state.end_display));
+    state.x_bcu = format!("{}", 127).cobol_into();
+    println!("{}", format!("{}", state.x_bcu));
     { let _a: f64 = format!("{}", state.x_bcu).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_bcu = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-BCU END-DISPLAY
-    state.x_bsu. = format!("{}", 32767).cobol_into();
-    println!("{}{}", format!("{}", state.x_bsu), format!("{}", state.end_display));
+    state.x_bsu = format!("{}", 32767).cobol_into();
+    println!("{}", format!("{}", state.x_bsu));
     { let _a: f64 = format!("{}", state.x_bsu).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_bsu = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-BSU END-DISPLAY
-    state.x_biu. = format!("{}", 2147483647).cobol_into();
-    println!("{}{}", format!("{}", state.x_biu), format!("{}", state.end_display));
+    state.x_biu = format!("{}", 2147483647).cobol_into();
+    println!("{}", format!("{}", state.x_biu));
     { let _a: f64 = format!("{}", state.x_biu).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_biu = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-BIU END-DISPLAY
-    state.x_blu. = format!("{}", 2147483647).cobol_into();
-    println!("{}{}", format!("{}", state.x_blu), format!("{}", state.end_display));
+    state.x_blu = format!("{}", 2147483647).cobol_into();
+    println!("{}", format!("{}", state.x_blu));
     { let _a: f64 = format!("{}", state.x_blu).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_blu = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-BLU END-DISPLAY
-    state.x_bdu. = format!("{}", 9223372036854775807).cobol_into();
-    println!("{}{}", format!("{}", state.x_bdu), format!("{}", state.end_display));
+    state.x_bdu = format!("{}", 9223372036854775807i64).cobol_into();
+    println!("{}", format!("{}", state.x_bdu));
     { let _a: f64 = format!("{}", state.x_bdu).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_bdu = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-BDU END-DISPLAY
-    state.x_us. = format!("{}", 32767).cobol_into();
-    println!("{}{}", format!("{}", state.x_us), format!("{}", state.end_display));
+    state.x_us = format!("{}", 32767).cobol_into();
+    println!("{}", format!("{}", state.x_us));
     { let _a: f64 = format!("{}", state.x_us).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_us = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-US END-DISPLAY
-    state.x_ui. = format!("{}", 2147483647).cobol_into();
-    println!("{}{}", format!("{}", state.x_ui), format!("{}", state.end_display));
+    state.x_ui = format!("{}", 2147483647).cobol_into();
+    println!("{}", format!("{}", state.x_ui));
     { let _a: f64 = format!("{}", state.x_ui).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.x_ui = format!("{}", _a + _b).cobol_into(); }
     // END-ADD. DISPLAY X-UI END-DISPLAY
     std::process::exit(0);

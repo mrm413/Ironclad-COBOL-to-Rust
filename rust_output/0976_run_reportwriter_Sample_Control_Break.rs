@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -100,6 +101,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub there_are_no_more_records: FixedString<30>,
 }
 
 
@@ -180,6 +183,11 @@ fn student_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE STUDENT-FILE
+fn student_file_delete(state: &mut ProgramState) {
+    state._fs_student_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT PRINT-FILE
 fn print_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("PRINT_FILE").unwrap_or("print_file.dat".to_string());
@@ -249,6 +257,11 @@ fn print_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_print_file = FileStatus::Success,
         Err(e) => state._fs_print_file = e,
     }
+}
+
+/// DELETE PRINT-FILE
+fn print_file_delete(state: &mut ProgramState) {
+    state._fs_print_file = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: A000-CREATE-REPORTS

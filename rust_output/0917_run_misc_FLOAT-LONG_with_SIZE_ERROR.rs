@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -42,7 +43,25 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     // MAIN SECTION
-    // PERFORM VARYING VARYING COUNTER FROM 1 BY 1 UNTIL COUNTER > 1060 COMPUTE DOUBLEVALUE = DOUBLEVALUE * 2 ON SIZE ERROR DISPLAY 'SIZE ERROR raised' WITH NO ADVANCING UPON SYSERR END-DISPLAY DISPLAY 'SIZE ERROR, last value = ' DOUBLEVALUE UPON SYSOUT END-DISPLAY EXIT PERFORM NOT ON SIZE ERROR IF DOUBLEVALUE > LASTDOUBLEVALUE MOVE DOUBLEVALUE TO LASTDOUBLEVALUE ELSE DISPLAY 'math ERROR, last value > current: ' LASTDOUBLEVALUE ' > ' DOUBLEVALUE UPON SYSERR END-DISPLAY EXIT PERFORM END-IF END-COMPUTE END-PERFORM IF NOT ( COUNTER >= 1023 AND <=1025 ) DISPLAY ' ' UPON SYSERR DISPLAY 'counter is ' COUNTER UPON SYSERR END-IF GOBACK
+    while !((format!("{}", state.counter).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 1060).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.counter = format!("{}", 1).cobol_into();
+        state.doublevalue = format!("{}", (format!("{}", format!("{}", state.doublevalue)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 2)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
+        println!("{}", format!("{}", "SIZE ERROR raised"));
+        println!("{}{}", format!("{}", "SIZE ERROR, last value = "), format!("{}", state.doublevalue));
+        // CONTINUE
+        p_not(state);
+    }
+    // ON SIZE ERROR IF DOUBLEVALUE > LASTDOUBLEVALUE MOVE DOUBLEVALUE TO LASTDOUBLEVALUE ELSE DISPLAY 'math ERROR, last value > current: ' LASTDOUBLEVALUE ' > ' DOUBLEVALUE UPON SYSERR END-DISPLAY EXIT PERFORM END-IF END-COMPUTE END-PERFORM IF NOT ( COUNTER >= 1023 AND <=1025 ) DISPLAY ' ' UPON SYSERR DISPLAY 'counter is ' COUNTER UPON SYSERR END-IF GOBACK
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph
+fn p_not(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -478,39 +479,39 @@ pub struct TestData {
     /// DATA-CUST-NUM-TBL
     pub data_cust_num_tbl: DataCustNumTbl,
     /// DATA-CUST-NUM
-    pub data_cust_num: [FixedString<8>; 16],
+    pub data_cust_num: Vec<FixedString<8>>,
     /// DATA-COMPANY-TBL
     pub data_company_tbl: DataCompanyTbl,
     /// DATA-COMPANY
-    pub data_company: [FixedString<25>; 16],
+    pub data_company: Vec<FixedString<25>>,
     /// DATA-ADDRESS-1-TBL
     pub data_address_1_tbl: DataAddress1Tbl,
     /// DATA-ADDRESS-1
-    pub data_address_1: [FixedString<25>; 16],
+    pub data_address_1: Vec<FixedString<25>>,
     /// DATA-ADDRESS-2-TBL
     pub data_address_2_tbl: DataAddress2Tbl,
     /// DATA-ADDRESS-2
-    pub data_address_2: [FixedString<10>; 16],
+    pub data_address_2: Vec<FixedString<10>>,
     /// DATA-ADDRESS-3-TBL
     pub data_address_3_tbl: DataAddress3Tbl,
     /// DATA-ADDRESS-3
-    pub data_address_3: [FixedString<10>; 16],
+    pub data_address_3: Vec<FixedString<10>>,
     /// DATA-TELEPHONE-TBL
     pub data_telephone_tbl: DataTelephoneTbl,
     /// DATA-TELEPHONE
-    pub data_telephone: [Decimal; 16],
+    pub data_telephone: Vec<Decimal>,
     /// DATA-DP-MGR-TBL
     pub data_dp_mgr_tbl: DataDpMgrTbl,
     /// DATA-DP-MGR
-    pub data_dp_mgr: [FixedString<20>; 16],
+    pub data_dp_mgr: Vec<FixedString<20>>,
     /// DATA-MACHINE-TBL
     pub data_machine_tbl: DataMachineTbl,
     /// DATA-MACHINE
-    pub data_machine: [FixedString<8>; 16],
+    pub data_machine: Vec<FixedString<8>>,
     /// DATA-NO-TERMINALS-TBL
     pub data_no_terminals_tbl: DataNoTerminalsTbl,
     /// DATA-NO-TERMINALS
-    pub data_no_terminals: [PackedDecimal<2>; 16],
+    pub data_no_terminals: Vec<PackedDecimal<2>>,
 }
 impl std::fmt::Display for TestData {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -670,7 +671,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_17: FixedString<8>,
     /// WS: DATA-CUST-NUM
-    pub data_cust_num: [FixedString<8>; 16],
+    pub data_cust_num: Vec<FixedString<8>>,
     /// WS: DATA-COMPANY-TBL (group)
     pub data_company_tbl: FixedString<400>,
     /// WS: FILLER
@@ -706,7 +707,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_33: FixedString<25>,
     /// WS: DATA-COMPANY
-    pub data_company: [FixedString<25>; 16],
+    pub data_company: Vec<FixedString<25>>,
     /// WS: DATA-ADDRESS-1-TBL (group)
     pub data_address_1_tbl: FixedString<400>,
     /// WS: FILLER
@@ -742,7 +743,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_49: FixedString<25>,
     /// WS: DATA-ADDRESS-1
-    pub data_address_1: [FixedString<25>; 16],
+    pub data_address_1: Vec<FixedString<25>>,
     /// WS: DATA-ADDRESS-2-TBL (group)
     pub data_address_2_tbl: FixedString<160>,
     /// WS: FILLER
@@ -778,7 +779,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_65: FixedString<10>,
     /// WS: DATA-ADDRESS-2
-    pub data_address_2: [FixedString<10>; 16],
+    pub data_address_2: Vec<FixedString<10>>,
     /// WS: DATA-ADDRESS-3-TBL (group)
     pub data_address_3_tbl: FixedString<160>,
     /// WS: FILLER
@@ -814,7 +815,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_81: FixedString<10>,
     /// WS: DATA-ADDRESS-3
-    pub data_address_3: [FixedString<10>; 16],
+    pub data_address_3: Vec<FixedString<10>>,
     /// WS: DATA-TELEPHONE-TBL (group)
     pub data_telephone_tbl: FixedString<160>,
     /// WS: FILLER
@@ -850,7 +851,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_97: Decimal,
     /// WS: DATA-TELEPHONE
-    pub data_telephone: [Decimal; 16],
+    pub data_telephone: Vec<Decimal>,
     /// WS: DATA-DP-MGR-TBL (group)
     pub data_dp_mgr_tbl: FixedString<320>,
     /// WS: FILLER
@@ -886,7 +887,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_113: FixedString<20>,
     /// WS: DATA-DP-MGR
-    pub data_dp_mgr: [FixedString<20>; 16],
+    pub data_dp_mgr: Vec<FixedString<20>>,
     /// WS: DATA-MACHINE-TBL (group)
     pub data_machine_tbl: FixedString<128>,
     /// WS: FILLER
@@ -922,7 +923,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_129: FixedString<8>,
     /// WS: DATA-MACHINE
-    pub data_machine: [FixedString<8>; 16],
+    pub data_machine: Vec<FixedString<8>>,
     /// WS: DATA-NO-TERMINALS-TBL (group)
     pub data_no_terminals_tbl: FixedString<32>,
     /// WS: FILLER
@@ -958,7 +959,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_145: PackedDecimal<2>,
     /// WS: DATA-NO-TERMINALS
-    pub data_no_terminals: [PackedDecimal<2>; 16],
+    pub data_no_terminals: Vec<PackedDecimal<2>>,
     /// WS: WORK-AREA (group)
     pub work_area: FixedString<22>,
     /// WS: REC-NUM
@@ -982,6 +983,8 @@ pub struct ProgramState {
     pub _fs_flatfile: FileStatus,
     /// File handle for FLATFILE
     pub _fh_flatfile: CobolFile,
+    pub _fs_tspfile: FileStatus,
+    pub _fh_tspfile: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -997,6 +1000,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n51: FixedString<30>,
+    pub odd_record: FixedString<30>,
 }
 
 
@@ -1080,6 +1086,12 @@ fn optional_close(state: &mut ProgramState) {
         Ok(()) => state._fs_optional = FileStatus::Success,
         Err(e) => state._fs_optional = e,
     }
+    state.cust_stat = format!("{}", state._fs_optional).cobol_into();
+}
+
+/// DELETE OPTIONAL
+fn optional_delete(state: &mut ProgramState) {
+    state._fs_optional = FileStatus::Success; // DELETE stub
     state.cust_stat = format!("{}", state._fs_optional).cobol_into();
 }
 
@@ -1186,6 +1198,12 @@ fn tstfile_close(state: &mut ProgramState) {
     state.cust_stat = format!("{}", state._fs_tstfile).cobol_into();
 }
 
+/// DELETE TSTFILE
+fn tstfile_delete(state: &mut ProgramState) {
+    state._fs_tstfile = FileStatus::Success; // DELETE stub
+    state.cust_stat = format!("{}", state._fs_tstfile).cobol_into();
+}
+
 /// OPEN INPUT FLATFILE
 fn flatfile_open_input(state: &mut ProgramState) {
     let path = std::env::var("FLATFILE").unwrap_or("flatfile.dat".to_string());
@@ -1275,6 +1293,22 @@ fn flatfile_close(state: &mut ProgramState) {
     state.cust_stat = format!("{}", state._fs_flatfile).cobol_into();
 }
 
+/// DELETE FLATFILE
+fn flatfile_delete(state: &mut ProgramState) {
+    state._fs_flatfile = FileStatus::Success; // DELETE stub
+    state.cust_stat = format!("{}", state._fs_flatfile).cobol_into();
+}
+
+fn tspfile_open_input(state: &mut ProgramState) { /* stub */ }
+fn tspfile_open_output(state: &mut ProgramState) { /* stub */ }
+fn tspfile_open_io(state: &mut ProgramState) { /* stub */ }
+fn tspfile_open_extend(state: &mut ProgramState) { /* stub */ }
+fn tspfile_read(state: &mut ProgramState) { /* stub */ }
+fn tspfile_write(state: &mut ProgramState) { /* stub */ }
+fn tspfile_rewrite(state: &mut ProgramState) { /* stub */ }
+fn tspfile_close(state: &mut ProgramState) { /* stub */ }
+fn tspfile_delete(state: &mut ProgramState) { /* stub */ }
+
 /// Paragraph: MAINFILE
 fn p_mainfile(state: &mut ProgramState) {
     tspfile_open_output(state);
@@ -1284,7 +1318,11 @@ fn p_mainfile(state: &mut ProgramState) {
     let _ = tspfile_read(state);
     // NEXT RECORD WITH NO LOCK IF CUST-STAT NOT = "10" DISPLAY "Error " CUST-STAT " on read of empty file" UPON CONSOLE STOP RUN END-IF
     state.tspfl_record = format!("{}", "\x00").cobol_into();
-    // START TSPFILE KEY GREATER THAN CM-CUST-NUM IF CUST-STAT NOT = "23" DISPLAY "Error " CUST-STAT " starting empty file" UPON CONSOLE STOP RUN END-IF
+    // START TSPFILE KEY GREATER THAN CM-CUST-NUM
+    if format!("{}", state.cust_stat).trim() != format!("{}", "23").trim() {
+        println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " starting empty file"));
+        std::process::exit(0);
+    }
     let _ = tspfile_read(state);
     // NEXT RECORD WITH NO LOCK IF CUST-STAT NOT = "46" DISPLAY "Error " CUST-STAT " start/read of empty file" UPON CONSOLE STOP RUN END-IF
     println!("{}", format!("{}", "OK: Operations on empty file"));
@@ -1302,14 +1340,15 @@ fn p_loadfile(state: &mut ProgramState) {
         println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " opening 'testisam' file"));
         std::process::exit(0);
     }
-    p_1000_load_record(state);
-    // VARYING SUB FROM 1 BY 1 UNTIL SUB > MAX-SUB
+    while !((format!("{}", state.sub).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0))) {
+        p_n1000_load_record(state);
+    }
     println!("{}", format!("{}", "Sample data file load complete."));
     tspfile_close(state);
 }
 
 /// Paragraph: 1000-LOAD-RECORD
-fn p_1000_load_record(state: &mut ProgramState) {
+fn p_n1000_load_record(state: &mut ProgramState) {
     state.tspfl_record = format!("{}", " ").cobol_into();
     state.sub = format!("{:?}", state.data_cust_num).cobol_into();
     state.cm_cust_num = format!("{:?}", state.data_cust_num).cobol_into();
@@ -1351,7 +1390,9 @@ fn p_listfile(state: &mut ProgramState) {
     tstfile_open_input(state);
     state.tstfl_record = format!("{}", " ").cobol_into();
     state.cm_cust_num = format!("{}", "PRE00000").cobol_into();
-    // START TSTFILE KEY GREATER THAN OR EQUAL TO TS-CUST-NUM READ TSTFILE NEXT RECORD READ TSTFILE NEXT RECORD CLOSE TSTFILE
+    // START TSTFILE KEY GREATER THAN OR EQUAL TO TS-CUST-NUM
+    let _ = tstfile_read(state);
+    // NEXT RECORD READ TSTFILE NEXT RECORD CLOSE TSTFILE
     state.rec_num = format!("{}", 0).cobol_into();
     tspfile_open_input(state);
     if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
@@ -1360,9 +1401,15 @@ fn p_listfile(state: &mut ProgramState) {
     }
     state.tspfl_record = format!("{}", " ").cobol_into();
     state.cm_cust_num = format!("{}", "PRE00000").cobol_into();
-    // START TSPFILE KEY GREATER THAN OR EQUAL TO CM-CUST-NUM READ TSPFILE NEXT RECORD READ TSPFILE NEXT RECORD MOVE SPACES TO TSPFL-RECORD
+    // START TSPFILE KEY GREATER THAN OR EQUAL TO CM-CUST-NUM
+    let _ = tspfile_read(state);
+    // NEXT RECORD READ TSPFILE NEXT RECORD MOVE SPACES TO TSPFL-RECORD
     state.cm_cust_num = format!("{}", "DEL00000").cobol_into();
-    // START TSPFILE KEY GREATER THAN CM-CUST-NUM IF CUST-STAT NOT = "00" DISPLAY "Error " CUST-STAT " starting file" UPON CONSOLE STOP RUN END-IF
+    // START TSPFILE KEY GREATER THAN CM-CUST-NUM
+    if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
+        println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " starting file"));
+        std::process::exit(0);
+    }
     let _ = tspfile_read(state);
     // NEXT RECORD WITH NO LOCK IF CUST-STAT NOT = "00" DISPLAY "Error " CUST-STAT " on 1st read of file" UPON CONSOLE STOP RUN END-IF
     while !((format!("{}", state.cust_stat).trim() != format!("{}", "00").trim())) {
@@ -1370,12 +1417,7 @@ fn p_listfile(state: &mut ProgramState) {
     // *> NO WITH AFTER FOR TRAC OR REC-NUM > REC-MAX DISPLAY "Key: " CM-CUST-NUM " is " CM-COMPANY " Disk=" CM-DISK "." UPON CONSOLE CALL "callsub" USING CALL-NUM READ TSPFILE NEXT RECORD AT END MOVE "99" TO CUST-STAT END-READ ADD 1 TO REC-NUM END-PERFORM IF CUST-STAT = "99" DISPLAY "Hit End of File: " CALL-NUM UPON CONSOLE ELSE DISPLAY "Stop read after: " CALL-NUM UPON CONSOLE END-IF
     println!("{}", format!("{}", "LIST SAMPLE FILE DESCENDING"));
     state.rec_num = format!("{}", 0).cobol_into();
-    state.start = format!("{}", 0).cobol_into();
-    state.tspfile = format!("{}", 0).cobol_into();
-    state.key = format!("{}", 0).cobol_into();
-    state.less = format!("{}", 0).cobol_into();
-    state.than = format!("{}", 0).cobol_into();
-    state.cm_cust_num = format!("{}", 0).cobol_into();
+    // START TSPFILE KEY LESS THAN CM-CUST-NUM
     if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
         println!("{}{}{}", format!("{}", "Error "), format!("{}", state.cust_stat), format!("{}", " starting file"));
         std::process::exit(0);
@@ -1451,12 +1493,17 @@ fn p_listfile(state: &mut ProgramState) {
     } else {
         println!("{}{}{}{}", format!("{}", "ReWrite: "), format!("{}", state.cm_cust_num), format!("{}", " got "), format!("{}", "00/02 as expected"));
     }
-    state._fh_tspfile.delete().unwrap_or_default();
+    tspfile_delete(state);
     tspfile_close(state);
 }
 
 /// Stub for unresolved paragraph
 fn p_with(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -51,7 +52,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    if format!("{}", state.address).trim() != format!("{}", state.null).trim() {
+    if format!("{}", 0usize).trim() != format!("{}", "\x00").trim() {
         println!("{}", format!("{}", "BASED ITEM WITH ADDRESS ON START"));
     }
     // FREE MYFLD ALLOCATE MYFLD IF ADDRESS OF MYFLD = NULL DISPLAY "BASED ITEM WITHOUT ADDRESS AFTER ALLOCATE" END-IF INITIALIZE MYFLD IF MYFLD NOT = " 0" DISPLAY "BASED ITEM INITIALIZED WRONG: " WITH NO ADVANCING END-DISPLAY DISPLAY MYFLD END-IF FREE ADDRESS OF MYFLD IF ADDRESS OF MYFLD NOT = NULL DISPLAY "BASED ITEM WITH ADDRESS AFTER FREE" END-IF GOBACK

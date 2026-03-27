@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -126,6 +127,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub there_are_no_more_records: FixedString<30>,
 }
 
 
@@ -214,6 +217,11 @@ fn cust_order_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE CUST-ORDER-FILE
+fn cust_order_file_delete(state: &mut ProgramState) {
+    state._fs_cust_order_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT CUST-PRINT-FILE
 fn cust_print_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("CUST_PRINT_FILE").unwrap_or("cust_print_file.dat".to_string());
@@ -285,6 +293,11 @@ fn cust_print_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE CUST-PRINT-FILE
+fn cust_print_file_delete(state: &mut ProgramState) {
+    state._fs_cust_print_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: A000-MAINLINE
 fn p_a000_mainline(state: &mut ProgramState) {
     cust_order_file_open_input(state);
@@ -305,10 +318,8 @@ fn p_a000_mainline(state: &mut ProgramState) {
 
 /// Paragraph: A001-LOOP
 fn p_a001_loop(state: &mut ProgramState) {
-    { let _a: f64 = format!("{}", state.price).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.num_ord).trim().parse().unwrap_or(0.0); state.price = format!("{}", _a * _b).cobol_into(); }
-    // GIVING AMT-ORDER
-    { let _a: f64 = format!("{}", state.sales_tax).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.amt_order).trim().parse().unwrap_or(0.0); state.sales_tax = format!("{}", _a * _b).cobol_into(); }
-    // GIVING AMT-TAX
+    state.amt_order = format!("{}", (format!("{}", format!("{}", state.num_ord)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", state.price)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
+    state.amt_tax = format!("{}", (format!("{}", format!("{}", state.amt_order)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", state.sales_tax)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     { let _a: f64 = format!("{}", state.shipping).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.amt_order).trim().parse().unwrap_or(0.0); state.shipping = format!("{}", _a + _b).cobol_into(); }
     // AMT-TAX GIVING TOT-ORDER
     // GENERATE DETAIL-LINE

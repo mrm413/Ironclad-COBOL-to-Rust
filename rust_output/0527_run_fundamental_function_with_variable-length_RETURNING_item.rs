@@ -2,6 +2,7 @@
 // Source: .cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Result {
     /// FILLER-1
-    pub filler_1: [FixedString<1>; 0],
+    pub filler_1: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Result {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -46,7 +47,7 @@ pub struct ProgramState {
     /// LK: RESULT (group)
     pub result: FixedString<1>,
     /// LK: FILLER
-    pub filler_1: [FixedString<1>; 0],
+    pub filler_1: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -62,12 +63,15 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub arg: FixedString<30>,
+    pub reply: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.arg_len = format!("{}", cobol_fn_length(format!("{}", state.argument))).cobol_into();
+    state.arg_len = format!("{}", cobol_fn_length(&format!("{}", state.argument))).cobol_into();
     state.result = format!("{}", state.argument).cobol_into();
     // END FUNCTION REPLY
     // IDENTIFICATION DIVISION

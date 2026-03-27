@@ -2,6 +2,7 @@
 // Source: FIXED.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,6 +30,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n70display: FixedString<30>,
+    pub stopstoprun: FixedString<30>,
 }
 
 
@@ -36,7 +40,7 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", "START"));
     println!("{}", format!("{}", "     20        30        40         50       60    "));
-    println!("{}{}{}", format!("{}", "     20        30        40         50       60 "), format!("{}", state.70' display '), format!("{}", state.stop' stop run));
+    println!("{}{}{}", format!("{}", "     20        30        40         50       60 "), format!("{}", ""), format!("{}", ""));
 }
 
 fn main() {

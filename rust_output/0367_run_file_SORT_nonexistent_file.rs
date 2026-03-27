@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -129,6 +130,11 @@ fn sort_in_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE SORT-IN
+fn sort_in_delete(state: &mut ProgramState) {
+    state._fs_sort_in = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT SORT-OUT
 fn sort_out_open_input(state: &mut ProgramState) {
     let path = std::env::var("SORT_OUT").unwrap_or("sort_out.dat".to_string());
@@ -202,6 +208,11 @@ fn sort_out_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE SORT-OUT
+fn sort_out_delete(state: &mut ProgramState) {
+    state._fs_sort_out = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT SORT-WRK
 fn sort_wrk_open_input(state: &mut ProgramState) {
     let path = std::env::var("SORT_WRK").unwrap_or("sort_wrk.dat".to_string());
@@ -271,6 +282,11 @@ fn sort_wrk_close(state: &mut ProgramState) {
         Ok(()) => state._fs_sort_wrk = FileStatus::Success,
         Err(e) => state._fs_sort_wrk = e,
     }
+}
+
+/// DELETE SORT-WRK
+fn sort_wrk_delete(state: &mut ProgramState) {
+    state._fs_sort_wrk = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: _IMPLICIT_

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -34,10 +35,6 @@ pub struct ProgramState {
     pub _fs_file2: FileStatus,
     /// File handle for FILE2
     pub _fh_file2: CobolFile,
-    /// File status for FILE1
-    pub _fs_file1: FileStatus,
-    /// File handle for FILE1
-    pub _fh_file1: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -129,6 +126,11 @@ fn file1_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE FILE1
+fn file1_delete(state: &mut ProgramState) {
+    state._fs_file1 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT FILE2
 fn file2_open_input(state: &mut ProgramState) {
     let path = std::env::var("FILE2").unwrap_or("file2.dat".to_string());
@@ -202,77 +204,9 @@ fn file2_close(state: &mut ProgramState) {
     }
 }
 
-/// OPEN INPUT FILE1
-fn file1_open_input(state: &mut ProgramState) {
-    let path = std::env::var("FILE1").unwrap_or("file1.dat".to_string());
-    match CobolFile::open_input(&path) {
-        Ok(handle) => { state._fh_file1 = handle; state._fs_file1 = FileStatus::Success; }
-        Err(_) => { state._fs_file1 = FileStatus::Error("35".to_string()); }
-    }
-}
-
-/// OPEN OUTPUT FILE1
-fn file1_open_output(state: &mut ProgramState) {
-    let path = std::env::var("FILE1").unwrap_or("file1.dat".to_string());
-    match CobolFile::open_output(&path) {
-        Ok(handle) => { state._fh_file1 = handle; state._fs_file1 = FileStatus::Success; }
-        Err(_) => { state._fs_file1 = FileStatus::Error("35".to_string()); }
-    }
-}
-
-/// OPEN I-O FILE1
-fn file1_open_io(state: &mut ProgramState) {
-    let path = std::env::var("FILE1").unwrap_or("file1.dat".to_string());
-    match CobolFile::open_io(&path) {
-        Ok(handle) => { state._fh_file1 = handle; state._fs_file1 = FileStatus::Success; }
-        Err(_) => { state._fs_file1 = FileStatus::Error("35".to_string()); }
-    }
-}
-
-/// OPEN EXTEND FILE1
-fn file1_open_extend(state: &mut ProgramState) {
-    let path = std::env::var("FILE1").unwrap_or("file1.dat".to_string());
-    match CobolFile::open_extend(&path) {
-        Ok(handle) => { state._fh_file1 = handle; state._fs_file1 = FileStatus::Success; }
-        Err(_) => { state._fs_file1 = FileStatus::Error("35".to_string()); }
-    }
-}
-
-/// READ FILE1
-fn file1_read(state: &mut ProgramState) -> Result<(), FileStatus> {
-    match state._fh_file1.read_line() {
-        Ok(line) => {
-            let _bytes = line.as_bytes();
-            let _len = _bytes.len().min(1);
-            if _len > 0 { let _end = _len.min(0+1); state.file1_rec = String::from_utf8_lossy(&_bytes[0.._end]).to_string().cobol_into(); }
-            state._fs_file1 = FileStatus::Success;
-        }
-        Err(FileStatus::AtEnd) => {
-            state._fs_file1 = FileStatus::AtEnd;
-        }
-        Err(e) => {
-            state._fs_file1 = e.clone();
-        }
-    }
-    Ok(())
-}
-
-/// WRITE to FILE1
-fn file1_write(state: &mut ProgramState) {
-    let mut _buf = vec![b' '; 1];
-    { let _src = state.file1_rec.as_bytes(); let _end = (0+1).min(_buf.len()); let _cl = _src.len().min(_end-0); _buf[0..0+_cl].copy_from_slice(&_src[.._cl]); }
-    match state._fh_file1.write_record(&_buf) {
-        Ok(()) => state._fs_file1 = FileStatus::Success,
-        Err(e) => state._fs_file1 = e,
-    }
-}
-
-/// CLOSE FILE1
-fn file1_close(state: &mut ProgramState) {
-    match state._fh_file1.close() {
-        Ok(()) => state._fs_file1 = FileStatus::Success,
-        Err(e) => state._fs_file1 = e,
-    }
+/// DELETE FILE2
+fn file2_delete(state: &mut ProgramState) {
+    state._fs_file2 = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: _IMPLICIT_

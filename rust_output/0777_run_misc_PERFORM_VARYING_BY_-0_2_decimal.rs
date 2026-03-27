@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,11 +38,19 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING X FROM 0.8 BY -0.2 UNTIL X < 0.4 DISPLAY "X" NO ADVANCING END-PERFORM
+    while !((format!("{}", state.x).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", 0.400000).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.x = format!("{}", 0.800000).cobol_into();
+        println!("{}", format!("{}", "X"));
+    }
     if format!("{}", state.x).trim() != format!("{}", 0.200000).trim() {
-        println!("{}{}{}", format!("{}", "WRONG X: "), format!("{}", state.x), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "WRONG X: "), format!("{}", state.x));
     }
     std::process::exit(0);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

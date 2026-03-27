@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -160,6 +161,11 @@ fn tst_file1_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TST-FILE1
+fn tst_file1_delete(state: &mut ProgramState) {
+    state._fs_tst_file1 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TST-FILE2
 fn tst_file2_open_input(state: &mut ProgramState) {
     let path = std::env::var("TST_FILE2").unwrap_or("tst_file2.dat".to_string());
@@ -231,6 +237,11 @@ fn tst_file2_close(state: &mut ProgramState) {
         Ok(()) => state._fs_tst_file2 = FileStatus::Success,
         Err(e) => state._fs_tst_file2 = e,
     }
+}
+
+/// DELETE TST-FILE2
+fn tst_file2_delete(state: &mut ProgramState) {
+    state._fs_tst_file2 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT TST-FILE3
@@ -306,6 +317,11 @@ fn tst_file3_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TST-FILE3
+fn tst_file3_delete(state: &mut ProgramState) {
+    state._fs_tst_file3 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TST-FILE4
 fn tst_file4_open_input(state: &mut ProgramState) {
     let path = std::env::var("TST_FILE4").unwrap_or("tst_file4.dat".to_string());
@@ -377,6 +393,11 @@ fn tst_file4_close(state: &mut ProgramState) {
         Ok(()) => state._fs_tst_file4 = FileStatus::Success,
         Err(e) => state._fs_tst_file4 = e,
     }
+}
+
+/// DELETE TST-FILE4
+fn tst_file4_delete(state: &mut ProgramState) {
+    state._fs_tst_file4 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT TST-FILE5
@@ -452,6 +473,11 @@ fn tst_file5_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TST-FILE5
+fn tst_file5_delete(state: &mut ProgramState) {
+    state._fs_tst_file5 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TST-FILE6
 fn tst_file6_open_input(state: &mut ProgramState) {
     let path = std::env::var("TST_FILE6").unwrap_or("tst_file6.dat".to_string());
@@ -525,6 +551,11 @@ fn tst_file6_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TST-FILE6
+fn tst_file6_delete(state: &mut ProgramState) {
+    state._fs_tst_file6 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TST-FILE7
 fn tst_file7_open_input(state: &mut ProgramState) {
     let path = std::env::var("TST_FILE7").unwrap_or("tst_file7.dat".to_string());
@@ -596,6 +627,11 @@ fn tst_file7_close(state: &mut ProgramState) {
         Ok(()) => state._fs_tst_file7 = FileStatus::Success,
         Err(e) => state._fs_tst_file7 = e,
     }
+}
+
+/// DELETE TST-FILE7
+fn tst_file7_delete(state: &mut ProgramState) {
+    state._fs_tst_file7 = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: _IMPLICIT_

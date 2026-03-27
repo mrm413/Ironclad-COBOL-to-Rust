@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.str = format!("{}", cobol_fn_formatted_date("YYYYMMDD", 1)).cobol_into();
+    state.str = format!("{}", cobol_fn_formatted_date("YYYYMMDD", &format!("{}", 1))).cobol_into();
     if { let __v = format!("{}", state.str); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> "16010101" DISPLAY "Test 1 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYY-MM-DD" 1 ) TO STR IF STR <> "1601-01-01" DISPLAY "Test 2 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYYDDD" 1 ) TO STR IF STR <> "1601001" DISPLAY "Test 3 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYY-DDD" 1 ) TO STR IF STR <> "1601-001" DISPLAY "Test 4 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYYWwwD" 1 ) TO STR IF STR <> "1601W011" DISPLAY "Test 5 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYY-Www-D" 1 ) TO STR IF STR <> "1601-W01-1" DISPLAY "Test 6 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYYWwwD" 150115 ) TO STR IF STR <> "2011W527" DISPLAY "Test 7 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATE ( "YYYYWwwD" 150844 ) TO STR IF STR <> "2014W011" DISPLAY "Test 8 failed: " STR END-DISPLAY END-IF STOP RUN

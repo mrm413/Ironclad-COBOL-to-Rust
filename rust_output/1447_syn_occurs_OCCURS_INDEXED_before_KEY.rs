@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,9 +35,9 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab {
     /// TAB-ENTRY1
-    pub tab_entry1: [TabEntry1; 5],
+    pub tab_entry1: Vec<TabEntry1>,
     /// TAB-ENTRY
-    pub tab_entry: [TabEntry; 2],
+    pub tab_entry: Vec<TabEntry>,
 }
 impl std::fmt::Display for Tab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

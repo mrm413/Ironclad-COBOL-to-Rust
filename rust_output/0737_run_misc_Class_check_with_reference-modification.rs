@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    if { let __v = format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", 3).trim().parse::<i64>().unwrap_or(0))); __v.trim() != "" && __v.trim() != "0" } {
+    if { let __v = format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", 3).trim().parse::<usize>().unwrap_or(0))); __v.trim() != "" && __v.trim() != "0" } {
     }
     // NUMERIC STOP RUN
     println!("{}", format!("{}", "NG"));

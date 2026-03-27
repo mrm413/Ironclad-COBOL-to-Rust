@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -21,11 +22,11 @@ pub struct X {
     /// Y
     pub y: Decimal,
     /// Z
-    pub z: [FixedString<2>; 1],
+    pub z: Vec<FixedString<2>>,
     /// OS
     pub os: FixedString<2>,
     /// Z2
-    pub z2: [FixedString<2>; 1],
+    pub z2: Vec<FixedString<2>>,
 }
 impl std::fmt::Display for X {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -102,11 +103,11 @@ pub struct ProgramState {
     /// WS: Y
     pub y: Decimal,
     /// WS: Z
-    pub z: [FixedString<2>; 1],
+    pub z: Vec<FixedString<2>>,
     /// WS: OS
     pub os: FixedString<2>,
     /// WS: Z2
-    pub z2: [FixedString<2>; 1],
+    pub z2: Vec<FixedString<2>>,
     /// WS: RS
     pub rs: FixedString<1>,
     // --- File handles ---
@@ -158,6 +159,12 @@ pub struct ProgramState {
     pub _fs_r: FileStatus,
     /// File handle for R
     pub _fh_r: CobolFile,
+    /// FILE STATUS variable for F
+    pub fs: FixedString<2>,
+    /// FILE STATUS variable for P
+    pub ps: FixedString<2>,
+    /// FILE STATUS variable for Q
+    pub non_existent: FixedString<2>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -261,6 +268,12 @@ fn f_close(state: &mut ProgramState) {
     state.fs = format!("{}", state._fs_f).cobol_into();
 }
 
+/// DELETE F
+fn f_delete(state: &mut ProgramState) {
+    state._fs_f = FileStatus::Success; // DELETE stub
+    state.fs = format!("{}", state._fs_f).cobol_into();
+}
+
 /// OPEN INPUT G
 fn g_open_input(state: &mut ProgramState) {
     let path = std::env::var("G").unwrap_or("g.dat".to_string());
@@ -339,6 +352,12 @@ fn g_close(state: &mut ProgramState) {
         Ok(()) => state._fs_g = FileStatus::Success,
         Err(e) => state._fs_g = e,
     }
+    state.gs = format!("{}", state._fs_g).cobol_into();
+}
+
+/// DELETE G
+fn g_delete(state: &mut ProgramState) {
+    state._fs_g = FileStatus::Success; // DELETE stub
     state.gs = format!("{}", state._fs_g).cobol_into();
 }
 
@@ -423,6 +442,12 @@ fn h_close(state: &mut ProgramState) {
     state.hs = format!("{}", state._fs_h).cobol_into();
 }
 
+/// DELETE H
+fn h_delete(state: &mut ProgramState) {
+    state._fs_h = FileStatus::Success; // DELETE stub
+    state.hs = format!("{}", state._fs_h).cobol_into();
+}
+
 /// OPEN INPUT J
 fn j_open_input(state: &mut ProgramState) {
     let path = std::env::var("J").unwrap_or("j.dat".to_string());
@@ -501,6 +526,12 @@ fn j_close(state: &mut ProgramState) {
         Ok(()) => state._fs_j = FileStatus::Success,
         Err(e) => state._fs_j = e,
     }
+    state.js = format!("{}", state._fs_j).cobol_into();
+}
+
+/// DELETE J
+fn j_delete(state: &mut ProgramState) {
+    state._fs_j = FileStatus::Success; // DELETE stub
     state.js = format!("{}", state._fs_j).cobol_into();
 }
 
@@ -585,6 +616,12 @@ fn k_close(state: &mut ProgramState) {
     state.ks = format!("{}", state._fs_k).cobol_into();
 }
 
+/// DELETE K
+fn k_delete(state: &mut ProgramState) {
+    state._fs_k = FileStatus::Success; // DELETE stub
+    state.ks = format!("{}", state._fs_k).cobol_into();
+}
+
 /// OPEN INPUT L
 fn l_open_input(state: &mut ProgramState) {
     let path = std::env::var("L").unwrap_or("l.dat".to_string());
@@ -663,6 +700,12 @@ fn l_close(state: &mut ProgramState) {
         Ok(()) => state._fs_l = FileStatus::Success,
         Err(e) => state._fs_l = e,
     }
+    state.ls = format!("{}", state._fs_l).cobol_into();
+}
+
+/// DELETE L
+fn l_delete(state: &mut ProgramState) {
+    state._fs_l = FileStatus::Success; // DELETE stub
     state.ls = format!("{}", state._fs_l).cobol_into();
 }
 
@@ -747,6 +790,12 @@ fn m_close(state: &mut ProgramState) {
     state.ms = format!("{}", state._fs_m).cobol_into();
 }
 
+/// DELETE M
+fn m_delete(state: &mut ProgramState) {
+    state._fs_m = FileStatus::Success; // DELETE stub
+    state.ms = format!("{}", state._fs_m).cobol_into();
+}
+
 /// OPEN INPUT N
 fn n_open_input(state: &mut ProgramState) {
     let path = std::env::var("N").unwrap_or("n.dat".to_string());
@@ -825,6 +874,12 @@ fn n_close(state: &mut ProgramState) {
         Ok(()) => state._fs_n = FileStatus::Success,
         Err(e) => state._fs_n = e,
     }
+    state.ns = format!("{}", state._fs_n).cobol_into();
+}
+
+/// DELETE N
+fn n_delete(state: &mut ProgramState) {
+    state._fs_n = FileStatus::Success; // DELETE stub
     state.ns = format!("{}", state._fs_n).cobol_into();
 }
 
@@ -909,6 +964,12 @@ fn o_close(state: &mut ProgramState) {
     state.os = format!("{}", state._fs_o).cobol_into();
 }
 
+/// DELETE O
+fn o_delete(state: &mut ProgramState) {
+    state._fs_o = FileStatus::Success; // DELETE stub
+    state.os = format!("{}", state._fs_o).cobol_into();
+}
+
 /// OPEN INPUT P
 fn p_open_input(state: &mut ProgramState) {
     let path = std::env::var("P").unwrap_or("p.dat".to_string());
@@ -987,6 +1048,12 @@ fn p_close(state: &mut ProgramState) {
         Ok(()) => state._fs_p = FileStatus::Success,
         Err(e) => state._fs_p = e,
     }
+    state.ps = format!("{}", state._fs_p).cobol_into();
+}
+
+/// DELETE P
+fn p_delete(state: &mut ProgramState) {
+    state._fs_p = FileStatus::Success; // DELETE stub
     state.ps = format!("{}", state._fs_p).cobol_into();
 }
 
@@ -1071,6 +1138,12 @@ fn q_close(state: &mut ProgramState) {
     state.non_existent = format!("{}", state._fs_q).cobol_into();
 }
 
+/// DELETE Q
+fn q_delete(state: &mut ProgramState) {
+    state._fs_q = FileStatus::Success; // DELETE stub
+    state.non_existent = format!("{}", state._fs_q).cobol_into();
+}
+
 /// OPEN INPUT R
 fn r_open_input(state: &mut ProgramState) {
     let path = std::env::var("R").unwrap_or("r.dat".to_string());
@@ -1149,6 +1222,12 @@ fn r_close(state: &mut ProgramState) {
         Ok(()) => state._fs_r = FileStatus::Success,
         Err(e) => state._fs_r = e,
     }
+    state.rs = format!("{}", state._fs_r).cobol_into();
+}
+
+/// DELETE R
+fn r_delete(state: &mut ProgramState) {
+    state._fs_r = FileStatus::Success; // DELETE stub
     state.rs = format!("{}", state._fs_r).cobol_into();
 }
 

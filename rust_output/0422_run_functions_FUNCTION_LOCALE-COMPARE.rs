@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -35,13 +36,13 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", cobol_fn_locale_compare("A", "B")).trim() != format!("{}", "<").trim() {
-        println!("{}{}", format!("{}", "Test 1 fail"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "Test 1 fail"));
     }
     if format!("{}", cobol_fn_locale_compare("B", "A")).trim() != format!("{}", ">").trim() {
-        println!("{}{}", format!("{}", "Test 2 fail"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "Test 2 fail"));
     }
     if format!("{}", cobol_fn_locale_compare("A", "A")).trim() != format!("{}", "=").trim() {
-        println!("{}{}", format!("{}", "Test 3 fail"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "Test 3 fail"));
     }
     std::process::exit(0);
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -42,23 +43,23 @@ fn p__implicit_(state: &mut ProgramState) {
     state.x_left = format!("{}", "1234").cobol_into();
     state.x_right = format!("{}", "1234").cobol_into();
     if (format!("{}", state.x_left).trim() != format!("{}", "123").trim()) || (format!("{}", state.x_right).trim() != format!("{}", "234").trim()) {
-        println!("{}{}", format!("{}", "error with \"1234\":"), format!("{}", state.end_display));
-        println!("{}{}", format!("{}", state.x_left), format!("{}", state.end_display));
-        println!("{}{}", format!("{}", state.x_right), format!("{}", state.end_display));
+        println!("{}", format!("{}", "error with \"1234\":"));
+        println!("{}", format!("{}", state.x_left));
+        println!("{}", format!("{}", state.x_right));
     }
     state.x_left = format!("{}", "   3").cobol_into();
     state.x_right = format!("{}", "   3").cobol_into();
     if (format!("{}", state.x_left).trim() != format!("{}", " ").trim()) || (format!("{}", state.x_right).trim() != format!("{}", "  3").trim()) {
-        println!("{}{}", format!("{}", "error with \"   3\":"), format!("{}", state.end_display));
-        println!("{}{}", format!("{}", state.x_left), format!("{}", state.end_display));
-        println!("{}{}", format!("{}", state.x_right), format!("{}", state.end_display));
+        println!("{}", format!("{}", "error with \"   3\":"));
+        println!("{}", format!("{}", state.x_left));
+        println!("{}", format!("{}", state.x_right));
     }
     state.x_left = format!("{}", "3   ").cobol_into();
     state.x_right = format!("{}", "3   ").cobol_into();
     if (format!("{}", state.x_left).trim() != format!("{}", "3").trim()) || (format!("{}", state.x_right).trim() != format!("{}", " ").trim()) {
-        println!("{}{}", format!("{}", "error with \"3   \":"), format!("{}", state.end_display));
-        println!("{}{}", format!("{}", state.x_left), format!("{}", state.end_display));
-        println!("{}{}", format!("{}", state.x_right), format!("{}", state.end_display));
+        println!("{}", format!("{}", "error with \"3   \":"));
+        println!("{}", format!("{}", state.x_left));
+        println!("{}", format!("{}", state.x_right));
     }
 }
 

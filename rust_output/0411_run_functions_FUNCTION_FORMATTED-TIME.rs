@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.str = format!("{}", cobol_fn_formatted_time("hhmmss", 45296)).cobol_into();
+    state.str = format!("{}", cobol_fn_formatted_time("hhmmss", &format!("{}", 45296), "0", "0")).cobol_into();
     if { let __v = format!("{}", state.str); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> "123456" DISPLAY "Test 1 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hh:mm:ss" 45296 ) TO STR IF STR <> "12:34:56" DISPLAY "Test 2 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hhmmssZ" 86399 -1 ) TO STR IF STR <> "000059Z" DISPLAY "Test 3 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hh:mm:ssZ" 45296 ) TO STR IF STR <> "12:34:56Z" DISPLAY "Test 4 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hhmmss.ss" 45296.78 ) TO STR IF STR <> "123456.78" DISPLAY "Test 5 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hh:mm:ss.ssZ" 0 120 ) TO STR IF STR <> "22:00:00.00Z" DISPLAY "Test 6 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hhmmss+hhmm" 45296 ) TO STR IF STR <> "123456+0000" DISPLAY "Test 7 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hh:mm:ss+hh:mm" 45296 0 ) TO STR IF STR <> "12:34:56+00:00" DISPLAY "Test 8 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hhmmss+hhmm" 45296 -754 ) TO STR IF STR <> "123456-1234" DISPLAY "Test 9 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hhmmss+hhmm" 1 3000 ) TO STR IF STR <> SPACES OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 60" DISPLAY "Test 10 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-TIME ( "hhmmss+hhmm" 1 -3000 ) TO STR IF STR <> SPACES OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 68" DISPLAY "Test 11 failed: " STR END-DISPLAY END-IF STOP RUN

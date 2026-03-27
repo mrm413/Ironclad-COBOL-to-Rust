@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -141,12 +142,17 @@ fn test_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.teststat = format!("{}", "00").cobol_into();
     // CALL 'prog2' USING 
     if format!("{}", state.teststat).trim() == format!("{}", "00").trim() {
-        println!("{}{}", format!("{}", "Not OK"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "Not OK"));
     }
     std::process::exit(0);
     // IDENTIFICATION DIVISION

@@ -2,6 +2,7 @@
 // Source: TUTORIAL.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,6 +30,20 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub c: FixedString<30>,
+    pub d: FixedString<30>,
+    pub e: FixedString<30>,
+    pub f: FixedString<30>,
+    pub g: FixedString<30>,
+    pub h: FixedString<30>,
+    pub i: FixedString<30>,
+    pub j: FixedString<30>,
+    pub k: FixedString<30>,
+    pub l: FixedString<30>,
+    pub m: FixedString<30>,
+    pub n: FixedString<30>,
+    pub q: FixedString<30>,
 }
 
 

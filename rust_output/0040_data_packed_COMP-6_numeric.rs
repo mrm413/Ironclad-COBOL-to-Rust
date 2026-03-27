@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -55,28 +56,28 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x_2 = format!("{}", state.x"0000").cobol_into();
+    state.x_2 = format!("{}", "\\x00\\x00").cobol_into();
     if { let __v = format!("{}", state.n_3); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY "3 0000 NG"
     if { let __v = format!("{}", state.n_4); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY "4 0000 NG"
-    state.x_2 = format!("{}", state.x"000c").cobol_into();
+    state.x_2 = format!("{}", "\\x00\\x0C").cobol_into();
     if { let __v = format!("{}", state.n_3); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "3 000c NG"
     if { let __v = format!("{}", state.n_4); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "4 000c NG"
-    state.x_2 = format!("{}", state.x"1234").cobol_into();
+    state.x_2 = format!("{}", "\\x124").cobol_into();
     if { let __v = format!("{}", state.n_3); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY "3 1234 NG"
     if { let __v = format!("{}", state.n_4); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NOT NUMERIC DISPLAY "4 1234 NG"
-    state.x_2 = format!("{}", state.x"ffff").cobol_into();
+    state.x_2 = format!("{}", "\\xFF\\xFF").cobol_into();
     if { let __v = format!("{}", state.n_3); __v.trim() != "" && __v.trim() != "0" } {
     }
     // IS NUMERIC DISPLAY "3 ffff NG"

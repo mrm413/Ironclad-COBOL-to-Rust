@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,7 +35,7 @@ pub struct ProgramState {
 
 /// Paragraph: MAIN
 fn p_main(state: &mut ProgramState) {
-    // CALL '_SUB-PROG_NOW' USING &mut state.'x'
+    // CALL '_SUB-PROG_NOW' USING &mut state.x
     std::process::exit(0);
 }
 

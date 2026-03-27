@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,9 +38,9 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_date_to_yyyymmdd(981002, -10, 1994)).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_date_to_yyyymmdd(&format!("{}", 981002), &format!("{}", -10))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 18981002).trim() {
-        println!("{}{}", format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}", format!("{}", state.test_fld));
     }
     std::process::exit(0);
 }

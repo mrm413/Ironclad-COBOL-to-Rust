@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,6 +41,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub success: FixedString<30>,
 }
 
 
@@ -49,8 +52,8 @@ impl ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}{}{}", format!("{}", "Enter \"y\" if you see exactly four rows of 1234, all"), format!("{}", state.&), format!("{}", " aligned."), format!("{}", state.line), format!("{}", 1));
-    println!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", format!("{}", state.num_1), format!("{}", state.line), format!("{}", 3), format!("{}", state.col), format!("{}", 3), format!("{}", state.size), format!("{}", 4), format!("{}", state.num_2), format!("{}", state.line), format!("{}", 4), format!("{}", state.col), format!("{}", 3), format!("{}", state.size), format!("{}", state.four), format!("{}", state.num_3), format!("{}", state.line), format!("{}", 5), format!("{}", state.col), format!("{}", 3), format!("{}", state.size), format!("{}", 8), format!("{}", "1234"), format!("{}", state.line), format!("{}", 6), format!("{}", state.col), format!("{}", 3), format!("{}", state.size), format!("{}", 0));
+    println!("{}{}{}", format!("{}", "Enter \"y\" if you see exactly four rows of 1234, all"), format!("{}", ""), format!("{}", " aligned."));
+    println!("{}", format!("{}", state.num_1));
     // ACCEPT SUCCESS-FLAG
     if state.success() && (format!("{}", state.cob_crt_status).trim() == format!("{}", 0).trim()) {
         return;

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,16 +38,19 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_fraction_part(3.123450)).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_fraction_part(&format!("{}", 3.123450))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 0.123450).trim() {
-        println!("{}{}{}", format!("{}", "FRACTION-PART ( +3.12345 ) wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "FRACTION-PART ( +3.12345 ) wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_fraction_part(-3.123450)).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_fraction_part(&format!("{}", -3.123450))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", -0.123450).trim() {
-        println!("{}{}{}", format!("{}", "FRACTION-PART ( -3.12345 ) wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "FRACTION-PART ( -3.12345 ) wrong: "), format!("{}", state.test_fld));
     }
     std::process::exit(0);
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_fraction_part(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

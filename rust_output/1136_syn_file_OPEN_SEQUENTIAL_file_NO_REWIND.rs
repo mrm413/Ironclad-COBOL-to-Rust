@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -27,6 +28,14 @@ pub struct ProgramState {
     pub _fs_test_file: FileStatus,
     /// File handle for TEST-FILE
     pub _fh_test_file: CobolFile,
+    pub _fs_rewind: FileStatus,
+    pub _fh_rewind: CobolFile,
+    pub _fs_with: FileStatus,
+    pub _fh_with: CobolFile,
+    pub _fs_no: FileStatus,
+    pub _fh_no: CobolFile,
+    pub _fs_lock: FileStatus,
+    pub _fh_lock: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -117,6 +126,51 @@ fn test_file_close(state: &mut ProgramState) {
         Err(e) => state._fs_test_file = e,
     }
 }
+
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
+}
+
+fn no_open_input(state: &mut ProgramState) { /* stub */ }
+fn no_open_output(state: &mut ProgramState) { /* stub */ }
+fn no_open_io(state: &mut ProgramState) { /* stub */ }
+fn no_open_extend(state: &mut ProgramState) { /* stub */ }
+fn no_read(state: &mut ProgramState) { /* stub */ }
+fn no_write(state: &mut ProgramState) { /* stub */ }
+fn no_rewrite(state: &mut ProgramState) { /* stub */ }
+fn no_close(state: &mut ProgramState) { /* stub */ }
+fn no_delete(state: &mut ProgramState) { /* stub */ }
+
+fn lock_open_input(state: &mut ProgramState) { /* stub */ }
+fn lock_open_output(state: &mut ProgramState) { /* stub */ }
+fn lock_open_io(state: &mut ProgramState) { /* stub */ }
+fn lock_open_extend(state: &mut ProgramState) { /* stub */ }
+fn lock_read(state: &mut ProgramState) { /* stub */ }
+fn lock_write(state: &mut ProgramState) { /* stub */ }
+fn lock_rewrite(state: &mut ProgramState) { /* stub */ }
+fn lock_close(state: &mut ProgramState) { /* stub */ }
+fn lock_delete(state: &mut ProgramState) { /* stub */ }
+
+fn rewind_open_input(state: &mut ProgramState) { /* stub */ }
+fn rewind_open_output(state: &mut ProgramState) { /* stub */ }
+fn rewind_open_io(state: &mut ProgramState) { /* stub */ }
+fn rewind_open_extend(state: &mut ProgramState) { /* stub */ }
+fn rewind_read(state: &mut ProgramState) { /* stub */ }
+fn rewind_write(state: &mut ProgramState) { /* stub */ }
+fn rewind_rewrite(state: &mut ProgramState) { /* stub */ }
+fn rewind_close(state: &mut ProgramState) { /* stub */ }
+fn rewind_delete(state: &mut ProgramState) { /* stub */ }
+
+fn with_open_input(state: &mut ProgramState) { /* stub */ }
+fn with_open_output(state: &mut ProgramState) { /* stub */ }
+fn with_open_io(state: &mut ProgramState) { /* stub */ }
+fn with_open_extend(state: &mut ProgramState) { /* stub */ }
+fn with_read(state: &mut ProgramState) { /* stub */ }
+fn with_write(state: &mut ProgramState) { /* stub */ }
+fn with_rewrite(state: &mut ProgramState) { /* stub */ }
+fn with_close(state: &mut ProgramState) { /* stub */ }
+fn with_delete(state: &mut ProgramState) { /* stub */ }
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {

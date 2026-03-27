@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -43,9 +44,8 @@ impl ProgramState {
 
 /// Paragraph: TESTME
 fn p_testme(state: &mut ProgramState) {
-    state.environment = " ".to_string().cobol_into();
     // TO 'TRUE' SET ENVIRONMENT 'COB_SCREEN_ESC' TO 'TRUE' DISPLAY "If the cursor below is positioned at the 'C'" LINE 1 COLUMN 1
-    println!("{}{}{}{}{}", format!("{}", "(third column in field) below, then press ENTER."), format!("{}", state.line), format!("{}", 2), format!("{}", state.column), format!("{}", 1));
+    println!("{}", format!("{}", "(third column in field) below, then press ENTER."));
     state.ws_x_20 = format!("{}", "ABCDEFG   ").cobol_into();
     // ACCEPT WS-X-20
     if format!("{}", state.cob_crt_status).trim() == format!("{}", 0).trim() {

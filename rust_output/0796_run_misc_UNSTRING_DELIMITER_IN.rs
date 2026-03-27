@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Wks {
     /// WK-SIGN
-    pub wk_sign: [FixedString<1>; 2],
+    pub wk_sign: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Wks {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -45,11 +46,11 @@ pub struct ProgramState {
     /// WS: WKS (group)
     pub wks: FixedString<2>,
     /// WS: WK-SIGN
-    pub wk_sign: [FixedString<1>; 2],
+    pub wk_sign: Vec<FixedString<1>>,
     /// WS: WK-DELIM
-    pub wk_delim: [FixedString<1>; 2],
+    pub wk_delim: Vec<FixedString<1>>,
     /// WS: WK-DATA
-    pub wk_data: [FixedString<2>; 3],
+    pub wk_data: Vec<FixedString<2>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -65,24 +66,26 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub wk_data1: FixedString<30>,
+    pub wk_data2: FixedString<30>,
+    pub wk_data3: FixedString<30>,
+    pub wk_delim1: FixedString<30>,
+    pub wk_delim2: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     { let _src = format!("{}", state.wk_cmd); let _parts: Vec<&str> = _src.splitn(9, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.wk_data(1) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.delimiter = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(2) { state.r#in = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(3) { state.wk_delim(1) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(4) { state.wk_data(2) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(5) { state.delimiter = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(6) { state.r#in = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(7) { state.wk_delim(2) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(8) { state.wk_data(3) = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(0) { state.wk_data1 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(3) { state.wk_delim1 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(4) { state.wk_data2 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(7) { state.wk_delim2 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(8) { state.wk_data3 = p.to_string().cobol_into(); }
     }
     if ((((format!("{:?}", state.wk_data).trim() != format!("{}", "WW").trim()) || (format!("{:?}", state.wk_data).trim() != format!("{}", "DD").trim())) || (format!("{:?}", state.wk_data).trim() != format!("{}", "CC").trim())) || (format!("{:?}", state.wk_delim).trim() != format!("{}", "A").trim())) || (format!("{:?}", state.wk_delim).trim() != format!("{}", "B").trim()) {
-        println!("{}{}{}{}{}{}", format!("{:?}", state.wk_data), format!("{:?}", state.wk_data), format!("{:?}", state.wk_data), format!("{:?}", state.wk_delim), format!("{:?}", state.wk_delim), format!("{}", state.end_display));
+        println!("{}{}{}{}{}", format!("{:?}", state.wk_data), format!("{:?}", state.wk_data), format!("{:?}", state.wk_data), format!("{:?}", state.wk_delim), format!("{:?}", state.wk_delim));
     }
     std::process::exit(0);
 }

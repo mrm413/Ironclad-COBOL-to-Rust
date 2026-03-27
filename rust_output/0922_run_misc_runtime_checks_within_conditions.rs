@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -72,6 +73,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n1var2: FixedString<30>,
 }
 
 
@@ -85,7 +88,7 @@ fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", state.t16_prgm).trim() == format!("{}", state.t15_prgm).trim() {
         println!("{}", format!("{}", "WRONG RESULT OCCURS"));
     }
-    if format!("{}", cobol_refmod(&format!("{}", state.mytab), format!("{}", state.var).trim().parse::<i64>().unwrap_or(1), format!("{}", state.var2).trim().parse::<i64>().unwrap_or(0))).trim() == format!("{}", cobol_refmod(&format!("{}", state.mytab), format!("{}", state.var2).trim().parse::<i64>().unwrap_or(1), format!("{}", state.var).trim().parse::<i64>().unwrap_or(0))).trim() {
+    if format!("{}", cobol_refmod(&format!("{}", state.mytab), format!("{}", state.var).trim().parse::<usize>().unwrap_or(1), format!("{}", state.var2).trim().parse::<usize>().unwrap_or(0))).trim() == format!("{}", cobol_refmod(&format!("{}", state.mytab), format!("{}", state.var2).trim().parse::<usize>().unwrap_or(1), format!("{}", state.var).trim().parse::<usize>().unwrap_or(0))).trim() {
         println!("{}", format!("{}", "WRONG RESULT REFMOD"));
     }
     state.mytab = format!("{}", " ").cobol_into();

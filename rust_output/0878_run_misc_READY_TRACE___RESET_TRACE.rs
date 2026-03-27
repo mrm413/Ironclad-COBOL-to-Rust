@@ -2,6 +2,7 @@
 // Source: CALLER.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -30,7 +31,7 @@ pub struct Ttab {
     /// TENTRIES
     pub tentries: u8,
     /// TENTRY
-    pub tentry: [Tentry; 0],
+    pub tentry: Vec<Tentry>,
 }
 impl std::fmt::Display for Ttab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

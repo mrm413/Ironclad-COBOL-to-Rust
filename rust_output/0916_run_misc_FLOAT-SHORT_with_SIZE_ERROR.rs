@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -42,7 +43,24 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     // MAIN SECTION
-    // PERFORM VARYING VARYING COUNTER FROM 1 BY 1 UNTIL COUNTER > 130 COMPUTE FLOATVALUE = FLOATVALUE * 2 ON SIZE ERROR DISPLAY 'SIZE ERROR, last value = ' FLOATVALUE EXIT PERFORM NOT ON SIZE ERROR IF FLOATVALUE > LASTFLOATVALUE MOVE FLOATVALUE TO LASTFLOATVALUE ELSE DISPLAY 'math ERROR, last value > current: ' LASTFLOATVALUE ' > ' FLOATVALUE EXIT PERFORM END-IF END-COMPUTE END-PERFORM IF COUNTER NOT = 127 DISPLAY 'counter is ' COUNTER END-IF GOBACK
+    while !((format!("{}", state.counter).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 130).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.counter = format!("{}", 1).cobol_into();
+        state.floatvalue = format!("{}", (format!("{}", format!("{}", state.floatvalue)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 2)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
+        println!("{}{}", format!("{}", "SIZE ERROR, last value = "), format!("{}", state.floatvalue));
+        // CONTINUE
+        p_not(state);
+    }
+    // ON SIZE ERROR IF FLOATVALUE > LASTFLOATVALUE MOVE FLOATVALUE TO LASTFLOATVALUE ELSE DISPLAY 'math ERROR, last value > current: ' LASTFLOATVALUE ' > ' FLOATVALUE EXIT PERFORM END-IF END-COMPUTE END-PERFORM IF COUNTER NOT = 127 DISPLAY 'counter is ' COUNTER END-IF GOBACK
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph
+fn p_not(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

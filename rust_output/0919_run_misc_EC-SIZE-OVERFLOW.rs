@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -39,10 +40,10 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    { let _a: f64 = format!("{}", state.y).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.x)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.y)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); state.y = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.y }; }
-    { let _a: f64 = format!("{}", state.y).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.x)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 0.100000)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); state.y = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.y }; }
-    if format!("{}", cobol_fn_trim(cobol_fn_exception_status())).trim() != format!("{}", "EC-SIZE-OVERFLOW").trim() {
-        println!("{}{}{}", format!("{}", "Wrong/missing exception: "), format!("{}", cobol_fn_exception_status()), format!("{}", state.end_display));
+    { let _a: f64 = format!("{}", state.y).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.x)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", state.y)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.y = format!("{}", _a / _b).cobol_into(); } }
+    { let _a: f64 = format!("{}", state.y).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.x)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 0.100000)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.y = format!("{}", _a / _b).cobol_into(); } }
+    if format!("{}", cobol_fn_trim(&format!("{}", cobol_fn_exception_status()))).trim() != format!("{}", "EC-SIZE-OVERFLOW").trim() {
+        println!("{}{}", format!("{}", "Wrong/missing exception: "), format!("{}", cobol_fn_exception_status()));
     }
 }
 

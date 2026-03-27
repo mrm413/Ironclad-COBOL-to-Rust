@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -46,9 +47,9 @@ fn p__implicit_(state: &mut ProgramState) {
     p_check_x_val(state);
     return;
     // CHECK-X-VAL SECTION
-    if (state.x == 30000) {
+    if (format!("{}", state.x).trim() == format!("{}", 30000).trim()) {
         println!("{}", format!("{}", "x IS 30000"));
-    } else if (state.x == state.>=) {
+    } else if (format!("{}", state.x).trim() == format!("{}", "").trim()) {
     }
     // 10000 DISPLAY "x >= 10000" WHEN ZERO DISPLAY "x IS ZERO" WHEN OTHER CONTINUE END-EVALUATE
     // END PROGRAM PROG

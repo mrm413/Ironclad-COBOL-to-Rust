@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -41,7 +42,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    if { let __v = format!("{}", cobol_fn_formatted_current_date(format!("{}", state.invalid_date_format))); __v.trim() != "" && __v.trim() != "0" } {
+    if { let __v = format!("{}", cobol_fn_formatted_current_date(&format!("{}", state.invalid_date_format))); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> SPACES OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 11" DISPLAY "Test 1 failed" END-DISPLAY END-IF IF FUNCTION FORMATTED-DATE ( INVALID-DATE-FORMAT 1 ) <> SPACES OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 18" DISPLAY "Test 2 failed" END-DISPLAY END-IF IF FUNCTION FORMATTED-DATETIME ( INVALID-DATETIME-FORMAT 1 1 ) <> SPACES OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 24" DISPLAY "Test 3 failed" END-DISPLAY END-IF IF FUNCTION FORMATTED-TIME ( INVALID-TIME-FORMAT 1 ) <> SPACES OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 31" DISPLAY "Test 4 failed" END-DISPLAY END-IF IF FUNCTION INTEGER-OF-FORMATTED-DATE ( INVALID-DATE-FORMAT 1 ) <> ZERO OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 37" DISPLAY "Test 5 failed" END-DISPLAY END-IF IF FUNCTION SECONDS-FROM-FORMATTED-TIME ( INVALID-TIME-FORMAT 1 ) <> ZERO OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 44" DISPLAY "Test 6 failed" END-DISPLAY END-IF IF FUNCTION TEST-FORMATTED-DATETIME ( INVALID-DATETIME-FORMAT 1 ) <> ZERO OR FUNCTION EXCEPTION-STATUS <> "EC-ARGUMENT-FUNCTION" OR FUNCTION EXCEPTION-LOCATION <> "prog; ; 51" DISPLAY "Test 7 failed" END-DISPLAY END-IF STOP RUN
 }

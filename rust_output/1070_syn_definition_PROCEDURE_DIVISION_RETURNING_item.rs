@@ -2,6 +2,7 @@
 // Source: .cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -16,7 +17,7 @@ use cobol_runtime::define_record;
 pub struct ProgramState {
     // --- LINKAGE SECTION ---
     /// LK: PAR-OUT
-    pub par_out: [u8; 10],
+    pub par_out: Vec<u8>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.par_out = format!("{}", 4).cobol_into();
+    for _elem in state.par_out.iter_mut() { *_elem = format!("{}", 4).cobol_into(); }
     return;
     // END FUNCTION FUNC
 }

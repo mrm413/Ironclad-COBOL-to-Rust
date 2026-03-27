@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -64,19 +65,18 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub xml: FixedString<30>,
+    pub xml_code: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.'a' = format!("{}", state.all).cobol_into();
-    state.short_str = format!("{}", state.all).cobol_into();
-    state.xml = format!("{}", state.all).cobol_into();
-    state.generate = format!("{}", state.all).cobol_into();
-    state.short_str = format!("{}", state.all).cobol_into();
-    state.from = format!("{}", state.all).cobol_into();
-    state.valid_rec = format!("{}", state.all).cobol_into();
-    state.count = format!("{}", state.all).cobol_into();
+    state.short_str = format!("{}", " ").cobol_into();
+    state.xml = format!("{}", " ").cobol_into();
+    state.short_str = format!("{}", " ").cobol_into();
+    state.valid_rec = format!("{}", " ").cobol_into();
     if { let __v = format!("{}", state.xml_code); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 400 OR SHORT-STR <> "<vali" OR XML-LEN <> 42 DISPLAY "Failed 1a: " SHORT-STR " " XML-LEN " " XML-CODE END-IF MOVE ALL 'B' TO SHORT-STR2 XML GENERATE SHORT-STR2 FROM VALID-REC COUNT IN XML-LEN IF XML-CODE <> 400 OR SHORT-STR2 <> "<valid-rec><a>aa</a><b" OR XML-LEN <> 42 DISPLAY "Failed 1b: " SHORT-STR2 " " XML-LEN " " XML-CODE END-IF XML GENERATE NORMAL-STR FROM VALID-REC NAMESPACE INVALID-NAMESPACE IF XML-CODE <> 416 DISPLAY "Failed 2: " FUNCTION TRIM ( NORMAL-STR ) " " XML-CODE END-IF XML GENERATE NORMAL-STR FROM INVALID-CONTENT IF XML-CODE <> 417 OR NORMAL-STR <> '<hex.invalid-content>8aff00</hex.' - 'invalid-content>' DISPLAY "Failed 3: " FUNCTION TRIM ( NORMAL-STR ) " " XML-CODE END-IF XML GENERATE NORMAL-STR FROM VALID-REC NAMESPACE "http://www.w3.org/1999/xhtml" NAMESPACE-PREFIX INVALID-PREFIX IF XML-CODE <> 419 DISPLAY "Failed 4: " FUNCTION TRIM ( NORMAL-STR ) " " XML-CODE END-IF XML GENERATE NORMAL-STR FROM VALID-REC ON EXCEPTION DISPLAY "Failed 5: EXCEPTION " FUNCTION TRIM ( NORMAL-STR ) " " XML-CODE END-DISPLAY *> THE END-DISPLAY IS IMPORTANT! OTHERWISE THE DISPL *> TAKE THE NOT ON EXCEPTION

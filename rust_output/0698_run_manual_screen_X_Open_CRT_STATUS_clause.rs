@@ -2,6 +2,7 @@
 // Source: PROG-CRT3.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -54,7 +55,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct TestRabR {
     /// TEST-DATA
-    pub test_data: [TestData; 7],
+    pub test_data: Vec<TestData>,
 }
 impl std::fmt::Display for TestRabR {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -154,7 +155,6 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.environment = " ".to_string().cobol_into();
     // TO 'TRUE' SET ENVIRONMENT 'COB_SCREEN_ESC' TO 'TRUE' PERFORM FOREVER DISPLAY SPACES WITH BLANK SCREEN MOVE 0 TO RETURN-VALUE PERFORM VARYING LOOP FROM 1 BY 1 UNTIL LOOP > 7 COMPUTE LINENR = LOOP + 5 DISPLAY "Please press " LINE LINENR COLUMN 1 DISPLAY TEST-NAME(LOOP) LINE LINENR COLUMN 14 MOVE SPACES TO TEST-FIELD ACCEPT TEST-FIELD LINE LINENR COLUMN 30 MOVE CRT3-1 TO TEST-RESULT-1 DISPLAY TEST-RESULT-1 LINE LINENR COLUMN 30 MOVE CRT3-2 TO TEST-RESULT-3 DISPLAY TEST-RESULT-3 LINE LINENR COLUMN 32 IF TEST-RESULT-1 = TEST-CRT31(LOOP) AND TEST-RESULT-3 = TEST-CRT32(LOOP) DISPLAY "passed" LINE LINENR COLUMN 36 ELSE MOVE 1 TO RETURN-VALUE DISPLAY "failed" LINE LINENR COLUMN 36 END-IF END-PERFORM IF RETURN-VALUE = 0 EXIT PERFORM END-IF DISPLAY "Try again? (Y/n) " LINE 20 COLUMN 1 MOVE "Y" TO TEST-FIELD ACCEPT TEST-FIELD LINE 20 COLUMN 18 IF NOT ( TEST-FIELD = "Y" OR "y" ) EXIT PERFORM END-IF END-PERFORM GOBACK RETURNING RETURN-VALUE
 }
 

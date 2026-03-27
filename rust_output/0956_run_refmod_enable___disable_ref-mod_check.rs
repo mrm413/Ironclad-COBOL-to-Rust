@@ -2,6 +2,7 @@
 // Source: PROG2.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -48,17 +49,19 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n1len: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{}", state.y), format!("{}", state.1:len));
-    println!("{}", format!("{}", cobol_fn_trim(cobol_fn_exception_status())));
+    println!("{}{}", format!("{}", state.y), format!("{}", ""));
+    println!("{}", format!("{}", cobol_fn_trim(&format!("{}", cobol_fn_exception_status()))));
     println!("{}", format!("{}", "."));
     state.len = format!("{}", 2).cobol_into();
-    println!("{}{}", format!("{}", state.y), format!("{}", state.1:len));
-    println!("{}", format!("{}", cobol_fn_trim(cobol_fn_exception_status())));
+    println!("{}{}", format!("{}", state.y), format!("{}", ""));
+    println!("{}", format!("{}", cobol_fn_trim(&format!("{}", cobol_fn_exception_status()))));
     println!("{}", format!("{}", "."));
 }
 

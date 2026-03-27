@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -102,6 +103,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x1: FixedString<30>,
+    pub y2: FixedString<30>,
 }
 
 
@@ -113,25 +117,25 @@ fn p__implicit_(state: &mut ProgramState) {
     state.y = format!("{}", -9).cobol_into();
     state.minus_name1 = format!("{}", -9).cobol_into();
     if format!("{}", state.g1).trim() != format!("{}", "+5+00+9-").trim() {
-        println!("{}{}{}{}", format!("{}", "MOVE G "), format!("{}", state.g1), format!("{}", ""), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "MOVE G "), format!("{}", state.g1), format!("{}", ""));
     }
-    state.plus_name3 = format!("{}", state..123).cobol_into();
+    state.plus_name3 = format!("{}", 0.123000).cobol_into();
     if (format!("{}", state.minus_names_1).trim() != format!("{}", "000000000000000009-000000000000000001+000000000000000005+").trim()) || (format!("{}", state.minus_names_2).trim() != format!("{}", "999999999999999999-100000000000000000+123000000000000000+").trim()) {
-        println!("{}{}{}{}", format!("{}", "MOVE MN1 "), format!("{}", state.minus_names_1), format!("{}", ""), format!("{}", state.end_display));
-        println!("{}{}{}{}", format!("{}", "MOVE MN2 "), format!("{}", state.minus_names_2), format!("{}", ""), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "MOVE MN1 "), format!("{}", state.minus_names_1), format!("{}", ""));
+        println!("{}{}{}", format!("{}", "MOVE MN2 "), format!("{}", state.minus_names_2), format!("{}", ""));
     }
     state.g1 = format!("{}", " ").cobol_into();
     if format!("{}", state.g1).trim() != format!("{}", "+0+00+0+").trim() {
-        println!("{}{}{}{}", format!("{}", "INIT G1 "), format!("{}", state.g1), format!("{}", ""), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "INIT G1 "), format!("{}", state.g1), format!("{}", ""));
     }
     if (format!("{}", state.minus_names_1).trim() != format!("{}", "000000000000000000+000000000000000000+000000000000000000+").trim()) || (format!("{}", state.minus_names_2).trim() != format!("{}", "000000000000000000+000000000000000000+000000000000000000+").trim()) {
-        println!("{}{}{}{}", format!("{}", "MOVE MN1 "), format!("{}", state.minus_names_1), format!("{}", ""), format!("{}", state.end_display));
-        println!("{}{}{}{}", format!("{}", "MOVE MN2 "), format!("{}", state.minus_names_2), format!("{}", ""), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "MOVE MN1 "), format!("{}", state.minus_names_1), format!("{}", ""));
+        println!("{}{}{}", format!("{}", "MOVE MN2 "), format!("{}", state.minus_names_2), format!("{}", ""));
     }
-    state.plus_name3 = format!("{}", state..123).cobol_into();
+    state.plus_name3 = format!("{}", 0.123000).cobol_into();
     state.minus_name3 = format!("{}", -0.456000).cobol_into();
-    println!("{}{}", format!("{}", state.plus_name3), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", state.minus_name3), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.plus_name3));
+    println!("{}", format!("{}", state.minus_name3));
     std::process::exit(0);
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -24,7 +25,7 @@ pub struct G1 {
     /// X
     pub x: FixedString<1>,
     /// G2
-    pub g2: [G2; 2],
+    pub g2: Vec<G2>,
     /// Z
     pub z: u8,
 }

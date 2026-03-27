@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -198,6 +199,11 @@ fn good_1_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE GOOD-1
+fn good_1_delete(state: &mut ProgramState) {
+    state._fs_good_1 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT GOOD-2
 fn good_2_open_input(state: &mut ProgramState) {
     let path = std::env::var("GOOD_2").unwrap_or("good_2.dat".to_string());
@@ -269,6 +275,11 @@ fn good_2_close(state: &mut ProgramState) {
         Ok(()) => state._fs_good_2 = FileStatus::Success,
         Err(e) => state._fs_good_2 = e,
     }
+}
+
+/// DELETE GOOD-2
+fn good_2_delete(state: &mut ProgramState) {
+    state._fs_good_2 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT GOOD-3
@@ -346,6 +357,11 @@ fn good_3_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE GOOD-3
+fn good_3_delete(state: &mut ProgramState) {
+    state._fs_good_3 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT GOOD-4
 fn good_4_open_input(state: &mut ProgramState) {
     let path = std::env::var("GOOD_4").unwrap_or("good_4.dat".to_string());
@@ -417,6 +433,11 @@ fn good_4_close(state: &mut ProgramState) {
         Ok(()) => state._fs_good_4 = FileStatus::Success,
         Err(e) => state._fs_good_4 = e,
     }
+}
+
+/// DELETE GOOD-4
+fn good_4_delete(state: &mut ProgramState) {
+    state._fs_good_4 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT OK-I-GUESS-1
@@ -494,6 +515,11 @@ fn ok_i_guess_1_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE OK-I-GUESS-1
+fn ok_i_guess_1_delete(state: &mut ProgramState) {
+    state._fs_ok_i_guess_1 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT OK-I-GUESS-2
 fn ok_i_guess_2_open_input(state: &mut ProgramState) {
     let path = std::env::var("OK_I_GUESS_2").unwrap_or("ok_i_guess_2.dat".to_string());
@@ -569,6 +595,11 @@ fn ok_i_guess_2_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE OK-I-GUESS-2
+fn ok_i_guess_2_delete(state: &mut ProgramState) {
+    state._fs_ok_i_guess_2 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT BAD-1
 fn bad_1_open_input(state: &mut ProgramState) {
     let path = std::env::var("BAD_1").unwrap_or("bad_1.dat".to_string());
@@ -640,6 +671,11 @@ fn bad_1_close(state: &mut ProgramState) {
         Ok(()) => state._fs_bad_1 = FileStatus::Success,
         Err(e) => state._fs_bad_1 = e,
     }
+}
+
+/// DELETE BAD-1
+fn bad_1_delete(state: &mut ProgramState) {
+    state._fs_bad_1 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT BAD-2
@@ -715,6 +751,11 @@ fn bad_2_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE BAD-2
+fn bad_2_delete(state: &mut ProgramState) {
+    state._fs_bad_2 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT BAD-3
 fn bad_3_open_input(state: &mut ProgramState) {
     let path = std::env::var("BAD_3").unwrap_or("bad_3.dat".to_string());
@@ -786,6 +827,11 @@ fn bad_3_close(state: &mut ProgramState) {
         Ok(()) => state._fs_bad_3 = FileStatus::Success,
         Err(e) => state._fs_bad_3 = e,
     }
+}
+
+/// DELETE BAD-3
+fn bad_3_delete(state: &mut ProgramState) {
+    state._fs_bad_3 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT BAD-4
@@ -861,6 +907,11 @@ fn bad_4_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE BAD-4
+fn bad_4_delete(state: &mut ProgramState) {
+    state._fs_bad_4 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT BAD-5
 fn bad_5_open_input(state: &mut ProgramState) {
     let path = std::env::var("BAD_5").unwrap_or("bad_5.dat".to_string());
@@ -932,6 +983,11 @@ fn bad_5_close(state: &mut ProgramState) {
         Ok(()) => state._fs_bad_5 = FileStatus::Success,
         Err(e) => state._fs_bad_5 = e,
     }
+}
+
+/// DELETE BAD-5
+fn bad_5_delete(state: &mut ProgramState) {
+    state._fs_bad_5 = FileStatus::Success; // DELETE stub
 }
 
 fn main() {

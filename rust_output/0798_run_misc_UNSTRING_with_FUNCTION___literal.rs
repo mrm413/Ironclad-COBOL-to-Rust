@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -20,7 +21,7 @@ pub struct ProgramState {
     /// WS: TSTUNS
     pub tstuns: FixedString<479>,
     /// WS: PRM
-    pub prm: [FixedString<16>; 4],
+    pub prm: Vec<FixedString<16>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -36,6 +37,13 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub delimited: FixedString<30>,
+    pub prm1: FixedString<30>,
+    pub prm2: FixedString<30>,
+    pub prm3: FixedString<30>,
+    pub prm4: FixedString<30>,
+    pub upper_casetstuns: FixedString<30>,
 }
 
 
@@ -43,52 +51,43 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     state.tstuns = format!("{}", "The,Quick,Brown,Fox").cobol_into();
     { let _src = format!("{}", state.tstuns); let _parts: Vec<&str> = _src.splitn(4, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.prm(1) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.prm(2) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(2) { state.prm(3) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(3) { state.prm(4) = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(0) { state.prm1 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(1) { state.prm2 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(2) { state.prm3 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(3) { state.prm4 = p.to_string().cobol_into(); }
     }
     println!("{}{}{}", format!("{}", "PRM(1) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(2) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(3) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(4) is "), format!("{:?}", state.prm), format!("{}", ":"));
-    { let _src = format!("{}", state.function); let _parts: Vec<&str> = _src.splitn(9, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.upper_case(tstuns) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.delimited = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(2) { state.by = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(3) { state.',' = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(4) { state.into = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(5) { state.prm(1) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(6) { state.prm(2) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(7) { state.prm(3) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(8) { state.prm(4) = p.to_string().cobol_into(); }
+    { let _src = format!("{}", ""); let _parts: Vec<&str> = _src.splitn(9, ' ').collect();
+        if let Some(&p) = _parts.get(0) { state.upper_casetstuns = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(5) { state.prm1 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(6) { state.prm2 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(7) { state.prm3 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(8) { state.prm4 = p.to_string().cobol_into(); }
     }
     println!("{}", format!("{}", "Now using UPPER-CASE"));
     println!("{}{}{}", format!("{}", "PRM(1) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(2) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(3) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(4) is "), format!("{:?}", state.prm), format!("{}", ":"));
-    { let _src = format!("{}", state."daddy,was,a,rolling stone"); let _parts: Vec<&str> = _src.splitn(4, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.prm(1) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.prm(2) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(2) { state.prm(3) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(3) { state.prm(4) = p.to_string().cobol_into(); }
+    { let _src = format!("{}", ""); let _parts: Vec<&str> = _src.splitn(4, ' ').collect();
+        if let Some(&p) = _parts.get(0) { state.prm1 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(1) { state.prm2 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(2) { state.prm3 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(3) { state.prm4 = p.to_string().cobol_into(); }
     }
     println!("{}", format!("{}", "Now using Literal"));
     println!("{}{}{}", format!("{}", "PRM(1) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(2) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(3) is "), format!("{:?}", state.prm), format!("{}", ":"));
     println!("{}{}{}", format!("{}", "PRM(4) is "), format!("{:?}", state.prm), format!("{}", ":"));
-    { let _src = format!("{}", state.function); let _parts: Vec<&str> = _src.splitn(9, ' ').collect();
-        if let Some(&p) = _parts.get(0) { state.lower_case("daddy,was,a,rolling stone") = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.delimited = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(2) { state.by = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(3) { state.',' = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(4) { state.into = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(5) { state.prm(1) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(6) { state.prm(2) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(7) { state.prm(3) = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(8) { state.prm(4) = p.to_string().cobol_into(); }
+    { let _src = format!("{}", ""); let _parts: Vec<&str> = _src.splitn(9, ' ').collect();
+        if let Some(&p) = _parts.get(5) { state.prm1 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(6) { state.prm2 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(7) { state.prm3 = p.to_string().cobol_into(); }
+        if let Some(&p) = _parts.get(8) { state.prm4 = p.to_string().cobol_into(); }
     }
     println!("{}", format!("{}", "Now using Literal + LOWER-CASE"));
     println!("{}{}{}", format!("{}", "PRM(1) is "), format!("{:?}", state.prm), format!("{}", ":"));

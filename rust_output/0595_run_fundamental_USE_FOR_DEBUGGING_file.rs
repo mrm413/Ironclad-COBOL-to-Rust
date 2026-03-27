@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -118,11 +119,16 @@ fn test_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: DECLARATIVES
 fn p_declaratives(state: &mut ProgramState) {
     // TEST-DEBUG SECTION
     // USE FOR DEBUGGING ON TEST-FILE
-    println!("{}{}{}", format!("{}", state.debug_item), format!("{}", "|"), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", state.debug_item), format!("{}", "|"));
     // END DECLARATIVES
 }
 

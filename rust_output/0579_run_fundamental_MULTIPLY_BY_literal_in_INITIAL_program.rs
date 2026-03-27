@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -43,10 +44,9 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    { let _a: f64 = format!("{}", state.4).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.num).trim().parse().unwrap_or(0.0); state.4 = format!("{}", _a * _b).cobol_into(); }
-    // GIVING RESULT MOVE 1.10 TO WS-TEMP
-    { let _a: f64 = format!("{}", state.ws_temp).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.ws_temp2).trim().parse().unwrap_or(0.0); state.ws_temp = format!("{}", _a * _b).cobol_into(); }
-    // GIVING WS-TEMP
+    state.result = format!("{}", (format!("{}", format!("{}", state.num)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
+    state.ws_temp = format!("{}", 1.100000).cobol_into();
+    state.ws_temp = format!("{}", (format!("{}", format!("{}", state.ws_temp2)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", state.ws_temp)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     if format!("{}", state.result).trim() != format!("{}", 20).trim() {
         println!("{}{}", format!("{}", "Bad integer: "), format!("{}", state.result));
     }

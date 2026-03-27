@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -89,19 +90,19 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    { let _a: f64 = format!("{}", state.group_1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.corresponding).trim().parse().unwrap_or(0.0); state.group_1 = format!("{}", _a + _b).cobol_into(); }
+    { let _a: f64 = format!("{}", state.group_1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", "").trim().parse().unwrap_or(0.0); state.group_1 = format!("{}", _a + _b).cobol_into(); }
     // TO GROUP-2
     if format!("{}", state.field_a).trim() != format!("{}", 1).trim() {
-        println!("{}{}{}", format!("{}", "BAD FIELD-A "), format!("{}", state.field_a), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "BAD FIELD-A "), format!("{}", state.field_a));
     }
     if format!("{}", state.field_b).trim() != format!("{}", 2).trim() {
-        println!("{}{}{}", format!("{}", "BAD FIELD-B "), format!("{}", state.field_b), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "BAD FIELD-B "), format!("{}", state.field_b));
     }
     if format!("{}", state.field_c).trim() != format!("{}", 3).trim() {
-        println!("{}{}{}", format!("{}", "BAD FIELD-C "), format!("{}", state.field_c), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "BAD FIELD-C "), format!("{}", state.field_c));
     }
     if format!("{}", state.field_d).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}", format!("{}", "BAD FIELD-D "), format!("{}", state.field_d), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "BAD FIELD-D "), format!("{}", state.field_d));
     }
     std::process::exit(0);
 }

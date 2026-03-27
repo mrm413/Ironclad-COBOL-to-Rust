@@ -2,6 +2,7 @@
 // Source: OUTER-PROGRAM.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -199,6 +200,12 @@ fn stck_file_close(state: &mut ProgramState) {
     state.stck_file_status = format!("{}", state._fs_stck_file).cobol_into();
 }
 
+/// DELETE STCK-FILE
+fn stck_file_delete(state: &mut ProgramState) {
+    state._fs_stck_file = FileStatus::Success; // DELETE stub
+    state.stck_file_status = format!("{}", state._fs_stck_file).cobol_into();
+}
+
 /// OPEN INPUT LOCAL-FILE
 fn local_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("LOCAL_FILE").unwrap_or("local_file.dat".to_string());
@@ -279,6 +286,12 @@ fn local_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_local_file = FileStatus::Success,
         Err(e) => state._fs_local_file = e,
     }
+    state.locl_file_status = format!("{}", state._fs_local_file).cobol_into();
+}
+
+/// DELETE LOCAL-FILE
+fn local_file_delete(state: &mut ProgramState) {
+    state._fs_local_file = FileStatus::Success; // DELETE stub
     state.locl_file_status = format!("{}", state._fs_local_file).cobol_into();
 }
 

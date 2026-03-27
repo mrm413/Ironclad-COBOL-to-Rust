@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,9 +15,9 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tstrec {
     /// TSTX
-    pub tstx: [FixedString<4>; 3],
+    pub tstx: Vec<FixedString<4>>,
     /// TSTY
-    pub tsty: [FixedString<4>; 300],
+    pub tsty: Vec<FixedString<4>>,
 }
 impl std::fmt::Display for Tstrec {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -57,9 +58,9 @@ pub struct ProgramState {
     /// WS: PIC
     pub pic: FixedString<1>,
     /// WS: TSTX
-    pub tstx: [FixedString<4>; 3],
+    pub tstx: Vec<FixedString<4>>,
     /// WS: TSTY
-    pub tsty: [FixedString<4>; 300],
+    pub tsty: Vec<FixedString<4>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -75,23 +76,32 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n1: FixedString<30>,
+    pub n2: FixedString<30>,
+    pub n3: FixedString<30>,
+    pub a: FixedString<30>,
+    pub b: FixedString<30>,
+    pub c: FixedString<30>,
+    pub tstx1: FixedString<30>,
+    pub tstx2: FixedString<30>,
+    pub tstx3: FixedString<30>,
+    pub tsty1: FixedString<30>,
+    pub tsty2: FixedString<30>,
+    pub tsty3: FixedString<30>,
+    pub tstysbin: FixedString<30>,
+    pub tstyubin: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.'a' = format!("{}", state.all).cobol_into();
-    state.tstx = format!("{}", state.all).cobol_into();
-    state.'b' = format!("{}", state.all).cobol_into();
-    state.tstx = format!("{}", state.all).cobol_into();
-    state.'c' = format!("{}", state.all).cobol_into();
-    state.tstx = format!("{}", state.all).cobol_into();
-    state.'1' = format!("{}", state.all).cobol_into();
-    state.tsty = format!("{}", state.all).cobol_into();
-    state.'2' = format!("{}", state.all).cobol_into();
-    state.tsty = format!("{}", state.all).cobol_into();
-    state.'3' = format!("{}", state.all).cobol_into();
-    state.tsty = format!("{}", state.all).cobol_into();
+    for _elem in state.tstx.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
+    for _elem in state.tstx.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
+    for _elem in state.tstx.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
+    for _elem in state.tsty.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
+    for _elem in state.tsty.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
+    for _elem in state.tsty.iter_mut() { *_elem = format!("{}", " ").cobol_into(); }
     state.unup = format!("{}", 0).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "UNUP: "), format!("{}", state.unup), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
     state.snup = format!("{}", 0).cobol_into();
@@ -100,18 +110,18 @@ fn p__implicit_(state: &mut ProgramState) {
     println!("{}{}{}{}{}", format!("{}", "SBIN: "), format!("{}", state.sbin), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
     state.sbin = format!("{}", -1).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "SBIN: "), format!("{}", state.sbin), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
-    state.tsty = format!("{}", "xxx").cobol_into();
+    for _elem in state.tsty.iter_mut() { *_elem = format!("{}", "xxx").cobol_into(); }
     println!("{}{}{}{}{}", format!("{}", "SBIN: "), format!("{}", state.sbin), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
     state.ubin = format!("{}", 0).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "UBIN: "), format!("{}", state.ubin), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
-    state.tsty = format!("{}", "yyy").cobol_into();
+    for _elem in state.tsty.iter_mut() { *_elem = format!("{}", "yyy").cobol_into(); }
     state.ubin = format!("{}", 1).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "UBIN: "), format!("{}", state.ubin), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
     state.uchr = format!("{}", 0).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "UCHR: "), format!("{}", state.uchr), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
     state.schr = format!("{}", -1).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "SCHR: "), format!("{}", state.schr), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
-    state.tsty = format!("{}", "zzz").cobol_into();
+    for _elem in state.tsty.iter_mut() { *_elem = format!("{}", "zzz").cobol_into(); }
     state.uchr = format!("{}", 129).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "UCHR: "), format!("{}", state.uchr), format!("{}", " is :"), format!("{:?}", state.tsty), format!("{}", ":"));
     std::process::exit(0);

@@ -4,6 +4,11 @@
 *.o
 target/
 
+# Build artifacts
+_compile_tmp/
+compile_results*.txt
+error_details*.txt
+
 # OS files
 Thumbs.db
 .DS_Store
@@ -11,3 +16,15 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Working directories (not for distribution)
+federal-validator/
+build/
+results/
+
+# Stale checkpoints and logs
+checkpoint_*.md
+battle_plan_*.md
+fail_list*.txt
+error_categories*.txt
+*.pdb

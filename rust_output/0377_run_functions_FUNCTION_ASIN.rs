@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -42,19 +43,19 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.y = format!("{}", cobol_fn_asin(-0.234500)).cobol_into();
+    state.y = format!("{}", cobol_fn_asin(&format!("{}", -0.234500))).cobol_into();
     if format!("{}", state.y).trim() != format!("{}", -0.236704).trim() {
         println!("{}{}", format!("{}", "DISPLAY: "), format!("{}", state.y));
     }
-    state.p = format!("{}", cobol_fn_asin(-0.234500)).cobol_into();
+    state.p = format!("{}", cobol_fn_asin(&format!("{}", -0.234500))).cobol_into();
     if format!("{}", state.p).trim() != format!("{}", -0.236704).trim() {
         println!("{}{}", format!("{}", "PACKED:  "), format!("{}", state.p));
     }
-    state.s = format!("{}", cobol_fn_asin(-0.234500)).cobol_into();
+    state.s = format!("{}", cobol_fn_asin(&format!("{}", -0.234500))).cobol_into();
     if format!("{}", state.s).trim() != format!("{}", 0.236704).trim() {
         println!("{}{}", format!("{}", "COMP-6:  "), format!("{}", state.s));
     }
-    if format!("{}", cobol_fn_asin(-0.234500)).trim() != format!("{}", cobol_fn_asin(-0.234500)).trim() {
+    if format!("{}", cobol_fn_asin(&format!("{}", -0.234500))).trim() != format!("{}", cobol_fn_asin(&format!("{}", -0.234500))).trim() {
         println!("{}", format!("{}", "ASIN IS NOT ITSELF"));
     }
     std::process::exit(0);

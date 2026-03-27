@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -62,42 +63,42 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub a: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.'a' = format!("{}", state.all).cobol_into();
-    state.g1 = format!("{}", state.all).cobol_into();
+    state.g1 = format!("{}", " ").cobol_into();
     state.g1 = format!("{}", " ").cobol_into();
     if format!("{}", state.g1).trim() != format!("{}", "00A00").trim() {
-        println!("{}{}{}", format!("{}", "G1 (INIT): "), format!("{}", state.g1), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "G1 (INIT): "), format!("{}", state.g1));
     }
-    state.'a' = format!("{}", state.all).cobol_into();
-    state.g1 = format!("{}", state.all).cobol_into();
+    state.g1 = format!("{}", " ").cobol_into();
     state.g1 = format!("{}", " ").cobol_into();
     if format!("{}", state.g1).trim() != format!("{}", "00 00").trim() {
-        println!("{}{}{}", format!("{}", "G1 (INIT FILLER):"), format!("{}", state.g1), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "G1 (INIT FILLER):"), format!("{}", state.g1));
     }
     state.my_filler = format!("{}", " ").cobol_into();
     if format!("{}", state.my_filler).trim() != format!("{}", "012345").trim() {
-        println!("{}{}{}", format!("{}", "MY-FILLER (INIT): "), format!("{}", state.my_filler), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "MY-FILLER (INIT): "), format!("{}", state.my_filler));
     }
     state.my_filler = format!("{}", " ").cobol_into();
     if format!("{}", state.my_filler).trim() != format!("{}", "000000").trim() {
-        println!("{}{}{}", format!("{}", "MY-FILLER (INIT FILLER): "), format!("{}", state.my_filler), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "MY-FILLER (INIT FILLER): "), format!("{}", state.my_filler));
     }
     state.my_filler = format!("{}", " ").cobol_into();
     if format!("{}", state.my_filler).trim() != format!("{}", "000000").trim() {
-        println!("{}{}{}", format!("{}", "MY-FILLER (INIT TO VAL): "), format!("{}", state.my_filler), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "MY-FILLER (INIT TO VAL): "), format!("{}", state.my_filler));
     }
     state.my_filler = format!("{}", " ").cobol_into();
     if format!("{}", state.my_filler).trim() != format!("{}", "012345").trim() {
-        println!("{}{}{}", format!("{}", "MY-FILLER (INIT FILLER TO VAL): "), format!("{}", state.my_filler), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "MY-FILLER (INIT FILLER TO VAL): "), format!("{}", state.my_filler));
     }
     state.my_filler = format!("{}", " ").cobol_into();
     if format!("{}", state.my_filler).trim() != format!("{}", "0   45").trim() {
-        println!("{}{}{}", format!("{}", "MY-FILLER (REF-MOD): "), format!("{}", state.my_filler), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "MY-FILLER (REF-MOD): "), format!("{}", state.my_filler));
     }
     std::process::exit(0);
 }

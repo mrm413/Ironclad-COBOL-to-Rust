@@ -2,6 +2,7 @@
 // Source: CALLEE.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -45,8 +46,8 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     { let _a: f64 = format!("{}", state.counter).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.counter = format!("{}", _a + _b).cobol_into(); }
-    // CALL 'C$PARAMSIZE' USING &mut state.1, &mut state.giving, &mut state.lparam
-    println!("{}{}{}{}{}{}{}", format!("{}", "COUNTER = "), format!("{}", state.counter), format!("{}", " LPARAM1 = "), format!("{}", state.lparam), format!("{}", " PARAM1 = "), format!("{}", state.param1), format!("{}", state.end_display));
+    // CALL 'C$PARAMSIZE' USING &mut state.n1, &mut state.giving, &mut state.lparam
+    println!("{}{}{}{}{}{}", format!("{}", "COUNTER = "), format!("{}", state.counter), format!("{}", " LPARAM1 = "), format!("{}", state.lparam), format!("{}", " PARAM1 = "), format!("{}", state.param1));
     return;
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -42,20 +43,22 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub system_offset: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.str = format!("{}", cobol_fn_formatted_datetime("YYYYDDDThhmmss+hhmm", 1, 45296, format!("{}", state.system_offset))).cobol_into();
-    state.val = format!("{}", cobol_fn_test_formatted_datetime("YYYYDDDThhmmss+hhmm", format!("{}", state.str))).cobol_into();
+    state.str = format!("{}", cobol_fn_formatted_datetime("YYYYDDDThhmmss+hhmm", &format!("{}", 1), &format!("{}", 45296), &format!("{}", state.system_offset), "0")).cobol_into();
+    state.val = format!("{}", cobol_fn_test_formatted_datetime("YYYYDDDThhmmss+hhmm", &format!("{}", state.str))).cobol_into();
     if format!("{}", state.val).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}{}{}", format!("{}", "Test 1 failed: "), format!("{}", state.str), format!("{}", " - "), format!("{}", state.val), format!("{}", state.end_display));
+        println!("{}{}{}{}", format!("{}", "Test 1 failed: "), format!("{}", state.str), format!("{}", " - "), format!("{}", state.val));
     }
-    state.str = format!("{}", cobol_fn_formatted_time("hhmmss.ssZ", 45296, format!("{}", state.system_offset))).cobol_into();
-    state.val = format!("{}", cobol_fn_test_formatted_datetime("hhmmss.ssZ", format!("{}", state.str))).cobol_into();
+    state.str = format!("{}", cobol_fn_formatted_time("hhmmss.ssZ", &format!("{}", 45296), &format!("{}", state.system_offset), "0")).cobol_into();
+    state.val = format!("{}", cobol_fn_test_formatted_datetime("hhmmss.ssZ", &format!("{}", state.str))).cobol_into();
     if format!("{}", state.val).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}{}{}", format!("{}", "Test 2 failed: "), format!("{}", state.str), format!("{}", " - "), format!("{}", state.val), format!("{}", state.end_display));
+        println!("{}{}{}{}", format!("{}", "Test 2 failed: "), format!("{}", state.str), format!("{}", " - "), format!("{}", state.val));
     }
 }
 

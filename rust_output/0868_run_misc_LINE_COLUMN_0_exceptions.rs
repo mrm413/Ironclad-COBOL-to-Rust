@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -47,7 +48,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}{}", format!("{}", state.scr), format!("{}", state.at), format!("{}", state.line), format!("{}", state.zero_var));
+    println!("{}", format!("{}", state.scr));
     if { let __v = format!("{}", cobol_fn_exception_status()); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> "EC-SCREEN-LINE-NUMBER" GOBACK RETURNING 1 END-IF DISPLAY SCR AT COLUMN ZERO-VAR IF FUNCTION EXCEPTION-STATUS <> "EC-SCREEN-STARTING-COLUMN" GOBACK RETURNING 2 END-IF GOBACK RETURNING 0

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -98,6 +99,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub end_of_file: FixedString<30>,
 }
 
 
@@ -186,6 +189,11 @@ fn transaction_data_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TRANSACTION-DATA
+fn transaction_data_delete(state: &mut ProgramState) {
+    state._fs_transaction_data = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT REPORT-FILE
 fn report_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("REPORT_FILE").unwrap_or("report_file.dat".to_string());
@@ -257,8 +265,13 @@ fn report_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: 000-INITIATE
-fn p_000_initiate(state: &mut ProgramState) {
+fn p_n000_initiate(state: &mut ProgramState) {
     transaction_data_open_input(state);
     // OUTPUT REPORT-FILE
     // INITIATE CUSTOMER-REPORT
@@ -267,13 +280,13 @@ fn p_000_initiate(state: &mut ProgramState) {
         state.end_of_file_switch = format!("{}", "Y").cobol_into();
     }
     while !(state.end_of_file()) {
-        p_100_process_transaction_data(state);
-        p_199_exit(state);
+        p_n100_process_transaction_data(state);
+        p_n199_exit(state);
     }
 }
 
 /// Paragraph: 100-PROCESS-TRANSACTION-DATA
-fn p_100_process_transaction_data(state: &mut ProgramState) {
+fn p_n100_process_transaction_data(state: &mut ProgramState) {
     // GENERATE CHARGE-DETAIL
     let _ = transaction_data_read(state);
     if state._fs_transaction_data == FileStatus::AtEnd {
@@ -282,11 +295,11 @@ fn p_100_process_transaction_data(state: &mut ProgramState) {
 }
 
 /// Paragraph: 199-EXIT
-fn p_199_exit(state: &mut ProgramState) {
+fn p_n199_exit(state: &mut ProgramState) {
     // CONTINUE
 }
 
 fn main() {
     let mut state = ProgramState::default();
-    p_000_initiate(&mut state);
+    p_n000_initiate(&mut state);
 }

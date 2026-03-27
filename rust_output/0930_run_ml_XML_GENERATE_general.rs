@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -64,7 +65,7 @@ pub struct ProgramState {
     /// WS: D
     pub d: FixedString<3>,
     /// WS: 0SPECIALTAGNAME
-    pub 0specialtagname: FixedString<3>,
+    pub n0specialtagname: FixedString<3>,
     /// WS: EMPLOYEE (group)
     pub employee: FixedString<21>,
     /// WS: ID

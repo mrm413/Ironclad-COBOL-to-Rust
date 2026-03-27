@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,6 +35,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub success: FixedString<30>,
 }
 
 
@@ -43,9 +46,9 @@ impl ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}{}{}", format!("{}", "Enter 'y' if multiple presses of the END key"), format!("{}", state.line), format!("{}", 1), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "go to the end of the field and just after the end"), format!("{}", state.line), format!("{}", 2), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "of the characters."), format!("{}", state.line), format!("{}", 3), format!("{}", state.column), format!("{}", 1));
+    println!("{}", format!("{}", "Enter 'y' if multiple presses of the END key"));
+    println!("{}", format!("{}", "go to the end of the field and just after the end"));
+    println!("{}", format!("{}", "of the characters."));
     state.ws_x_20 = format!("{}", "   ABC    ").cobol_into();
     // ACCEPT WS-X-20
     // ACCEPT SUCCESS-FLAG

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -156,7 +157,7 @@ fn p__implicit_(state: &mut ProgramState) {
         println!("{}{}", format!("{}", "Test 27 fail: "), format!("{}", state.result));
     }
     state.result = format!("{}", 0).cobol_into();
-    state.result = format!("{}", cobol_fn_test_numval(format!("{}", state.empty))).cobol_into();
+    state.result = format!("{}", cobol_fn_test_numval(&format!("{}", state.empty))).cobol_into();
     if format!("{}", state.result).trim() != format!("{}", 1).trim() {
         println!("{}{}", format!("{}", "Test 28 fail: "), format!("{}", state.result));
     }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -80,7 +81,7 @@ pub struct LseqRecordtable {
     /// LSEQ-TCOUNT
     pub lseq_tcount: FixedString<1>,
     /// LSEQ-TENTRY
-    pub lseq_tentry: [LseqTentry; 3],
+    pub lseq_tentry: Vec<LseqTentry>,
 }
 impl std::fmt::Display for LseqRecordtable {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -165,6 +166,26 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub extfh_opcode_isopenoutput: FixedString<30>,
+    pub fcd__exclusive_bit: FixedString<30>,
+    pub fcd__format_cobol2: FixedString<30>,
+    pub fcd__open_closed: FixedString<30>,
+    pub fcd__recmode_variable: FixedString<30>,
+    pub fcd__version_number: FixedString<30>,
+    pub fcd_binary: FixedString<30>,
+    pub fcd_file_format: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_filename_address: FixedString<30>,
+    pub fcd_length: FixedString<30>,
+    pub fcd_lock_mode: FixedString<30>,
+    pub fcd_max_rec_length: FixedString<30>,
+    pub fcd_min_rec_length: FixedString<30>,
+    pub fcd_name_length: FixedString<30>,
+    pub fcd_open_mode: FixedString<30>,
+    pub fcd_recording_mode: FixedString<30>,
+    pub fcd_status_key_1: FixedString<30>,
+    pub fcd_version: FixedString<30>,
 }
 
 

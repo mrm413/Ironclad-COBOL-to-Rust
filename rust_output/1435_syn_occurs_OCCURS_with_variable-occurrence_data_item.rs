@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G2 {
     /// X
-    pub x: [X; 1],
+    pub x: Vec<X>,
 }
 impl std::fmt::Display for G2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -45,7 +46,7 @@ impl G2 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G1 {
     /// G-2
-    pub g_2: [G2; 10],
+    pub g_2: Vec<G2>,
 }
 impl std::fmt::Display for G1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

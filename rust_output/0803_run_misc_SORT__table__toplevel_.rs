@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -18,7 +19,7 @@ pub struct ProgramState {
     /// WS: VAL
     pub val: FixedString<5>,
     /// WS: TBL
-    pub tbl: [FixedString<1>; 5],
+    pub tbl: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -39,7 +40,10 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // SORT TBL ASCENDING IF VAL NOT = "12345" DISPLAY VAL
+    // SORT TBL ASCENDING
+    if format!("{}", state.val).trim() != format!("{}", "12345").trim() {
+        println!("{}", format!("{}", state.val));
+    }
     std::process::exit(0);
 }
 

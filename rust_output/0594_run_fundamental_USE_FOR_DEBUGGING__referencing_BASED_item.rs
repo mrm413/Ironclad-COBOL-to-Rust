@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -52,7 +53,7 @@ pub struct ProgramState {
 fn p_declaratives(state: &mut ProgramState) {
     // TEST-DEBUG SECTION
     // USE FOR DEBUGGING ON ALL REFERENCES OF DATA-FIELD ALL REFERENCES OF DATA-FIELD2 DATA-FIELD3
-    println!("{}{}{}", format!("{}", state.debug_item), format!("{}", "|"), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", state.debug_item), format!("{}", "|"));
     // END DECLARATIVES
 }
 

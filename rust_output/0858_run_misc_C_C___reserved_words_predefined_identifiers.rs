@@ -2,6 +2,7 @@
 // Source: CALLER.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -145,63 +146,63 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // CALL 'callee' USING &mut state.r#const, &mut state.double, &mut state.float, &mut state.int, &mut state.short, &mut state.r#struct, &mut state.r#break, &mut state.long, &mut state.switch, &mut state.void, &mut state.case, &mut state.r#enum, &mut state.goto, &mut state.register, &mut state.sizeof, &mut state.volatile, &mut state.char, &mut state.r#do, &mut state.*>extern, &mut state.*>static, &mut state.union, &mut state.r#while
+    // CALL 'callee' USING &mut state.r#const, &mut state.double, &mut state.float, &mut state.int, &mut state.short, &mut state.r#struct, &mut state.r#break, &mut state.long, &mut state.switch, &mut state.void, &mut state.case, &mut state.r#enum, &mut state.goto, &mut state.register, &mut state.sizeof, &mut state.volatile, &mut state.char, &mut state.r#do, &mut state.r#extern, &mut state.r#static, &mut state.union, &mut state.r#while
     // CALL 'callee2' USING &mut state.r#asm, &mut state.dynamic_cast, &mut state.r#namespace, &mut state.reinterpret_cast, &mut state.r#try, &mut state.bool, &mut state.explicit, &mut state.new, &mut state.static_cast, &mut state.typeid, &mut state.catch, &mut state.operator, &mut state.template, &mut state.typename, &mut state.friend, &mut state.private, &mut state.this, &mut state.const_cast, &mut state.inline, &mut state.public, &mut state.throw, &mut state.r#virtual, &mut state.mutable, &mut state.protected, &mut state.wchar_t, &mut state.bitand, &mut state.compl, &mut state.not_eq, &mut state.or_eq, &mut state.xor_eq, &mut state.and_eq, &mut state.bitor, &mut state.xor
-    state.r#const = format!("{}", state.x'00').cobol_into();
-    state.double = format!("{}", state.x'00').cobol_into();
-    state.float = format!("{}", state.x'00').cobol_into();
-    state.int = format!("{}", state.x'00').cobol_into();
-    state.short = format!("{}", state.x'00').cobol_into();
-    state.r#struct = format!("{}", state.x'00').cobol_into();
-    state.r#break = format!("{}", state.x'00').cobol_into();
-    state.long = format!("{}", state.x'00').cobol_into();
-    state.switch = format!("{}", state.x'00').cobol_into();
-    state.void = format!("{}", state.x'00').cobol_into();
-    state.case = format!("{}", state.x'00').cobol_into();
-    state.r#enum = format!("{}", state.x'00').cobol_into();
-    state.goto = format!("{}", state.x'00').cobol_into();
-    state.register = format!("{}", state.x'00').cobol_into();
-    state.sizeof = format!("{}", state.x'00').cobol_into();
-    state.volatile = format!("{}", state.x'00').cobol_into();
-    state.char = format!("{}", state.x'00').cobol_into();
-    state.r#do = format!("{}", state.x'00').cobol_into();
-    state.r#extern = format!("{}", state.x'00').cobol_into();
-    state.r#static = format!("{}", state.x'00').cobol_into();
-    state.union = format!("{}", state.x'00').cobol_into();
-    state.r#while = format!("{}", state.x'00').cobol_into();
-    state.r#asm = format!("{}", state.x'00').cobol_into();
-    state.dynamic_cast = format!("{}", state.x'00').cobol_into();
-    state.r#namespace = format!("{}", state.x'00').cobol_into();
-    state.reinterpret_cast = format!("{}", state.x'00').cobol_into();
-    state.r#try = format!("{}", state.x'00').cobol_into();
-    state.bool = format!("{}", state.x'00').cobol_into();
-    state.explicit = format!("{}", state.x'00').cobol_into();
-    state.new = format!("{}", state.x'00').cobol_into();
-    state.static_cast = format!("{}", state.x'00').cobol_into();
-    state.typeid = format!("{}", state.x'00').cobol_into();
-    state.catch = format!("{}", state.x'00').cobol_into();
-    state.operator = format!("{}", state.x'00').cobol_into();
-    state.template = format!("{}", state.x'00').cobol_into();
-    state.typename = format!("{}", state.x'00').cobol_into();
-    state.friend = format!("{}", state.x'00').cobol_into();
-    state.private = format!("{}", state.x'00').cobol_into();
-    state.this = format!("{}", state.x'00').cobol_into();
-    state.const_cast = format!("{}", state.x'00').cobol_into();
-    state.inline = format!("{}", state.x'00').cobol_into();
-    state.public = format!("{}", state.x'00').cobol_into();
-    state.throw = format!("{}", state.x'00').cobol_into();
-    state.r#virtual = format!("{}", state.x'00').cobol_into();
-    state.mutable = format!("{}", state.x'00').cobol_into();
-    state.protected = format!("{}", state.x'00').cobol_into();
-    state.wchar_t = format!("{}", state.x'00').cobol_into();
-    state.bitand = format!("{}", state.x'00').cobol_into();
-    state.compl = format!("{}", state.x'00').cobol_into();
-    state.not_eq = format!("{}", state.x'00').cobol_into();
-    state.or_eq = format!("{}", state.x'00').cobol_into();
-    state.xor_eq = format!("{}", state.x'00').cobol_into();
-    state.and_eq = format!("{}", state.x'00').cobol_into();
-    state.bitor = format!("{}", state.x'00').cobol_into();
-    state.xor = format!("{}", state.x'00').cobol_into();
+    state.r#const = format!("{}", "\\x00").cobol_into();
+    state.double = format!("{}", "\\x00").cobol_into();
+    state.float = format!("{}", "\\x00").cobol_into();
+    state.int = format!("{}", "\\x00").cobol_into();
+    state.short = format!("{}", "\\x00").cobol_into();
+    state.r#struct = format!("{}", "\\x00").cobol_into();
+    state.r#break = format!("{}", "\\x00").cobol_into();
+    state.long = format!("{}", "\\x00").cobol_into();
+    state.switch = format!("{}", "\\x00").cobol_into();
+    state.void = format!("{}", "\\x00").cobol_into();
+    state.case = format!("{}", "\\x00").cobol_into();
+    state.r#enum = format!("{}", "\\x00").cobol_into();
+    state.goto = format!("{}", "\\x00").cobol_into();
+    state.register = format!("{}", "\\x00").cobol_into();
+    state.sizeof = format!("{}", "\\x00").cobol_into();
+    state.volatile = format!("{}", "\\x00").cobol_into();
+    state.char = format!("{}", "\\x00").cobol_into();
+    state.r#do = format!("{}", "\\x00").cobol_into();
+    state.r#extern = format!("{}", "\\x00").cobol_into();
+    state.r#static = format!("{}", "\\x00").cobol_into();
+    state.union = format!("{}", "\\x00").cobol_into();
+    state.r#while = format!("{}", "\\x00").cobol_into();
+    state.r#asm = format!("{}", "\\x00").cobol_into();
+    state.dynamic_cast = format!("{}", "\\x00").cobol_into();
+    state.r#namespace = format!("{}", "\\x00").cobol_into();
+    state.reinterpret_cast = format!("{}", "\\x00").cobol_into();
+    state.r#try = format!("{}", "\\x00").cobol_into();
+    state.bool = format!("{}", "\\x00").cobol_into();
+    state.explicit = format!("{}", "\\x00").cobol_into();
+    state.new = format!("{}", "\\x00").cobol_into();
+    state.static_cast = format!("{}", "\\x00").cobol_into();
+    state.typeid = format!("{}", "\\x00").cobol_into();
+    state.catch = format!("{}", "\\x00").cobol_into();
+    state.operator = format!("{}", "\\x00").cobol_into();
+    state.template = format!("{}", "\\x00").cobol_into();
+    state.typename = format!("{}", "\\x00").cobol_into();
+    state.friend = format!("{}", "\\x00").cobol_into();
+    state.private = format!("{}", "\\x00").cobol_into();
+    state.this = format!("{}", "\\x00").cobol_into();
+    state.const_cast = format!("{}", "\\x00").cobol_into();
+    state.inline = format!("{}", "\\x00").cobol_into();
+    state.public = format!("{}", "\\x00").cobol_into();
+    state.throw = format!("{}", "\\x00").cobol_into();
+    state.r#virtual = format!("{}", "\\x00").cobol_into();
+    state.mutable = format!("{}", "\\x00").cobol_into();
+    state.protected = format!("{}", "\\x00").cobol_into();
+    state.wchar_t = format!("{}", "\\x00").cobol_into();
+    state.bitand = format!("{}", "\\x00").cobol_into();
+    state.compl = format!("{}", "\\x00").cobol_into();
+    state.not_eq = format!("{}", "\\x00").cobol_into();
+    state.or_eq = format!("{}", "\\x00").cobol_into();
+    state.xor_eq = format!("{}", "\\x00").cobol_into();
+    state.and_eq = format!("{}", "\\x00").cobol_into();
+    state.bitor = format!("{}", "\\x00").cobol_into();
+    state.xor = format!("{}", "\\x00").cobol_into();
     std::process::exit(0);
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -48,6 +49,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub valid_unset: FixedString<30>,
 }
 
 
@@ -60,10 +63,10 @@ impl ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     state.y = format!("{}", "defx").cobol_into();
     { let mut _result = String::new();
-        _result.push_str(&format!("{}", cobol_fn_concatenate(format!("{}", state.y), "abc", "zz", "55", "666")));
+        _result.push_str(&format!("{}", cobol_fn_concatenate(&cobol_fn_concatenate(&cobol_fn_concatenate(&cobol_fn_concatenate(&format!("{}", state.y), "abc"), "zz"), "55"), "666")));
         state.test_fld = _result.into(); }
     if (!(state.valid_unset())) {
-        println!("{}{}", format!("{}", "FUNCTION result too long"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "FUNCTION result too long"));
     } else if ({ let __v = format!("{}", state.test_data); __v.trim() != "" && __v.trim() != "0" }) {
     }
     // <> FUNCTION CONCAT ( Y "abc" "zz" "55" "666" ) DISPLAY "CONCAT issue, '" TEST-DATA "' vs. '" FUNCTION CONCAT ( Y "abc" "zz" "55" "666" ) "'" END-DISPLAY WHEN VALID-DATA CONTINUE WHEN OTHER DISPLAY TEST-DATA END-DISPLAY END-EVALUATE

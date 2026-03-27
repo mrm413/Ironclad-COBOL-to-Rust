@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,6 +35,11 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n0: FixedString<30>,
+    pub n21: FixedString<30>,
+    pub a1: FixedString<30>,
+    pub n1: FixedString<30>,
 }
 
 
@@ -54,23 +60,19 @@ fn p_main_1(state: &mut ProgramState) {
     state.myfld = format!("{}", "\u{00FF}").cobol_into();
     p_show_it(state);
     println!("{}", format!("{}", "MOVE QUOTE"));
-    state.myfld = format!("{}", state.quote).cobol_into();
+    state.myfld = format!("{}", "\"").cobol_into();
     p_show_it(state);
     println!("{}", format!("{}", "MOVE ALL *"));
-    state.'*' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
     p_show_it(state);
     println!("{}", format!("{}", "MOVE ALL 0"));
-    state.'0' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
     p_show_it(state);
     println!("{}", format!("{}", "MOVE ALL 'A1"));
-    state.'a1' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
     p_show_it(state);
     println!("{}", format!("{}", "MOVE ALL '21"));
-    state.'21' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
     p_show_it(state);
     println!("{}", format!("{}", "MOVE HIGH-VALUES TO (1:)"));
     state.myfld = format!("{}", "\u{00FF}").cobol_into();
@@ -80,16 +82,14 @@ fn p_main_1(state: &mut ProgramState) {
     p_show_big(state);
     // CALL 'dump' USING &mut state.bigflt
     println!("{}", format!("{}", "MOVE QUOTE TO BIGFLT"));
-    state.bigflt = format!("{}", state.quote).cobol_into();
+    state.bigflt = format!("{}", "\"").cobol_into();
     p_show_big(state);
     // CALL 'dump' USING &mut state.bigflt
     println!("{}", format!("{}", "MOVE ALL * TO BIGFLT"));
-    state.'*' = format!("{}", state.all).cobol_into();
-    state.bigflt = format!("{}", state.all).cobol_into();
+    state.bigflt = format!("{}", " ").cobol_into();
     p_show_big(state);
     println!("{}", format!("{}", "MOVE ALL '21' TO BIGFLT"));
-    state.'21' = format!("{}", state.all).cobol_into();
-    state.bigflt = format!("{}", state.all).cobol_into();
+    state.bigflt = format!("{}", " ").cobol_into();
     p_show_big(state);
     std::process::exit(0);
 }

@@ -2,6 +2,7 @@
 // Source: PROGDYN.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,8 +38,8 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // CALL 'calldyn' USING &mut state."cob_unix_lf", &mut state.returning, &mut state.c_text_pointer
-    if { let __v = format!("{}", cobol_fn_content_of(format!("{}", state.c_text_pointer))); __v.trim() != "" && __v.trim() != "0" } {
+    // CALL 'calldyn' USING &mut state.cob_unix_lf, &mut state.returning, &mut state.c_text_pointer
+    if { let __v = format!("{}", cobol_fn_content_of(&format!("{}", state.c_text_pointer))); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> "1" DISPLAY "unexpected value: " FUNCTION CONTENT-OF(C-TEXT-POINTER)
     return;

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -29,6 +30,8 @@ pub struct ProgramState {
     pub _fs_f: FileStatus,
     /// File handle for F
     pub _fh_f: CobolFile,
+    pub _fs_file: FileStatus,
+    pub _fh_file: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -121,6 +124,21 @@ fn f_close(state: &mut ProgramState) {
         Err(e) => state._fs_f = e,
     }
 }
+
+/// DELETE F
+fn f_delete(state: &mut ProgramState) {
+    state._fs_f = FileStatus::Success; // DELETE stub
+}
+
+fn file_open_input(state: &mut ProgramState) { /* stub */ }
+fn file_open_output(state: &mut ProgramState) { /* stub */ }
+fn file_open_io(state: &mut ProgramState) { /* stub */ }
+fn file_open_extend(state: &mut ProgramState) { /* stub */ }
+fn file_read(state: &mut ProgramState) { /* stub */ }
+fn file_write(state: &mut ProgramState) { /* stub */ }
+fn file_rewrite(state: &mut ProgramState) { /* stub */ }
+fn file_close(state: &mut ProgramState) { /* stub */ }
+fn file_delete(state: &mut ProgramState) { /* stub */ }
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {

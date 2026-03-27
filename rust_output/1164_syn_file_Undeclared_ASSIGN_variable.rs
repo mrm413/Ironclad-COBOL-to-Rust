@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -133,9 +134,14 @@ fn test_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}", format!("{}", state.glob_path), format!("{}", state.glob_var), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", state.glob_path), format!("{}", state.glob_var));
     // CALL 'prog2' USING 
     // CALL 'prog3' USING 
     std::process::exit(0);

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -26,7 +27,7 @@ pub struct ProgramState {
     /// WS: LINE
     pub line: FixedString<1>,
     /// WS: " IMPLICIT VALUE "
-    pub " implicit value ": FixedString<1>,
+    pub implicitvalue: FixedString<1>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -47,7 +48,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{}", state.sg), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.sg));
     std::process::exit(0);
 }
 

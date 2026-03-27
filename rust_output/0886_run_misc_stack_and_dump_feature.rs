@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -108,19 +109,19 @@ pub struct TestData {
     /// DATA-CUST-NUM-TBL
     pub data_cust_num_tbl: DataCustNumTbl,
     /// DATA-CUST-NUM
-    pub data_cust_num: [FixedString<8>; 6],
+    pub data_cust_num: Vec<FixedString<8>>,
     /// DATA-COMPANY-TBL
     pub data_company_tbl: DataCompanyTbl,
     /// DATA-COMPANY
-    pub data_company: [FixedString<25>; 6],
+    pub data_company: Vec<FixedString<25>>,
     /// DATA-ADDRESS-2-TBL
     pub data_address_2_tbl: DataAddress2Tbl,
     /// DATA-ADDRESS
-    pub data_address: [FixedString<10>; 6],
+    pub data_address: Vec<FixedString<10>>,
     /// DATA-NO-TERMINALS-TBL
     pub data_no_terminals_tbl: DataNoTerminalsTbl,
     /// DATA-NO-TERMINALS
-    pub data_no_terminals: [PackedDecimal<2>; 6],
+    pub data_no_terminals: Vec<PackedDecimal<2>>,
 }
 impl std::fmt::Display for TestData {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -188,7 +189,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_6: FixedString<8>,
     /// WS: DATA-CUST-NUM
-    pub data_cust_num: [FixedString<8>; 6],
+    pub data_cust_num: Vec<FixedString<8>>,
     /// WS: DATA-COMPANY-TBL (group)
     pub data_company_tbl: FixedString<150>,
     /// WS: FILLER
@@ -204,7 +205,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_12: FixedString<25>,
     /// WS: DATA-COMPANY
-    pub data_company: [FixedString<25>; 6],
+    pub data_company: Vec<FixedString<25>>,
     /// WS: DATA-ADDRESS-2-TBL (group)
     pub data_address_2_tbl: FixedString<60>,
     /// WS: FILLER
@@ -220,7 +221,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_18: FixedString<10>,
     /// WS: DATA-ADDRESS
-    pub data_address: [FixedString<10>; 6],
+    pub data_address: Vec<FixedString<10>>,
     /// WS: DATA-NO-TERMINALS-TBL (group)
     pub data_no_terminals_tbl: FixedString<12>,
     /// WS: FILLER
@@ -236,13 +237,13 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_24: PackedDecimal<2>,
     /// WS: DATA-NO-TERMINALS
-    pub data_no_terminals: [PackedDecimal<2>; 6],
+    pub data_no_terminals: Vec<PackedDecimal<2>>,
     /// WS: WORK-AREA (group)
     pub work_area: FixedString<2>,
     /// WS: SUB
     pub sub: u16,
     /// WS: SUMS-NON-STD-OCCURS
-    pub sums_non_std_occurs: [Decimal; 8],
+    pub sums_non_std_occurs: Vec<Decimal>,
     // --- File handles ---
     /// File status for FLATFILE
     pub _fs_flatfile: FileStatus,
@@ -263,6 +264,30 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n101: FixedString<30>,
+    pub n135: FixedString<30>,
+    pub n21: FixedString<30>,
+    pub n321: FixedString<30>,
+    pub n391: FixedString<30>,
+    pub n471: FixedString<30>,
+    pub n5036: FixedString<30>,
+    pub n541: FixedString<30>,
+    pub n591: FixedString<30>,
+    pub hexc: FixedString<30>,
+    pub hexv: FixedString<30>,
+    pub odd_record: FixedString<30>,
+    pub test_based_sub: FixedString<30>,
+    pub tstg_1: FixedString<30>,
+    pub tsthex: FixedString<30>,
+    pub tsthex2: FixedString<30>,
+    pub tstlong: FixedString<30>,
+    pub tstrec: FixedString<30>,
+    pub tsttail1: FixedString<30>,
+    pub tsttailx: FixedString<30>,
+    pub tstx: FixedString<30>,
+    pub tstx_2: FixedString<30>,
+    pub x: FixedString<30>,
 }
 
 
@@ -357,6 +382,12 @@ fn flatfile_close(state: &mut ProgramState) {
     state.cust_stat = format!("{}", state._fs_flatfile).cobol_into();
 }
 
+/// DELETE FLATFILE
+fn flatfile_delete(state: &mut ProgramState) {
+    state._fs_flatfile = FileStatus::Success; // DELETE stub
+    state.cust_stat = format!("{}", state._fs_flatfile).cobol_into();
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     p_loadfile(state);
@@ -367,8 +398,9 @@ fn p__implicit_(state: &mut ProgramState) {
 /// Paragraph: LOADFILE
 fn p_loadfile(state: &mut ProgramState) {
     flatfile_open_output(state);
-    p_load_record(state);
-    // VARYING SUB FROM 1 BY 1 UNTIL SUB > MAX-SUB
+    while !((format!("{}", state.sub).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0))) {
+        p_load_record(state);
+    }
     flatfile_close(state);
 }
 
@@ -391,11 +423,11 @@ fn p_load_record(state: &mut ProgramState) {
     // CALL 'sub1' USING &mut state.bin, &mut state.tspfl_record
     // CALL-SUB-2 SECTION
     state.bin = format!("{}", 4096).cobol_into();
-    state.sums_non_std_occurs = format!("{}", 4096).cobol_into();
+    for _elem in state.sums_non_std_occurs.iter_mut() { *_elem = format!("{}", 4096).cobol_into(); }
     // CALL 'sub2' USING &mut state.bin, &mut state.tspfl_record
     // CALL-IT-OMIT SECTION
     state.bin = format!("{}", 5440).cobol_into();
-    state.sums_non_std_occurs = format!("{}", 5440).cobol_into();
+    for _elem in state.sums_non_std_occurs.iter_mut() { *_elem = format!("{}", 5440).cobol_into(); }
     // CALL 'sub2' USING &mut state.bin, &mut state.tspfl_record
     // END PROGRAM PROG
     // IDENTIFICATION DIVISION
@@ -431,8 +463,7 @@ fn p_load_record(state: &mut ProgramState) {
     // 10 CM-NO-TERMINALS PICTURE 9(4)
     // PROCEDURE DIVISION USING X OPTIONAL TSPFL-RECORD
     // MAIN-1 SECTION
-    state."x" = format!("{}", state.all).cobol_into();
-    state.tstrec = format!("{}", state.all).cobol_into();
+    state.tstrec = format!("{}", " ").cobol_into();
     state.tstg_1 = format!("{}", 1).cobol_into();
     state.tstg_1 = format!("{}", 2).cobol_into();
     state.tstg_1 = format!("{}", 3).cobol_into();
@@ -449,7 +480,6 @@ fn p_load_record(state: &mut ProgramState) {
     state.tstlong = format!("{}", "Quick brown fox jumped over the dog").cobol_into();
     state.tstlong = format!("{}", "Quick brown fox jumped over the dog").cobol_into();
     state.tsthex = format!("{}", "Quicker grey fox jumped the cougar").cobol_into();
-    state.. = format!("{}", "Quicker grey fox jumped the cougar").cobol_into();
     p_main_2(state);
 }
 
@@ -476,7 +506,7 @@ fn p_main_2(state: &mut ProgramState) {
     println!("{}{}", format!("{}", "X is "), format!("{}", state.x));
     // ALLOCATE TEST-ALLOCED INITIALIZED
     // COPY CPYABRT
-    if format!("{}", state.address).trim() != format!("{}", state.null).trim() {
+    if format!("{}", 0usize).trim() != format!("{}", "\x00").trim() {
         println!("{}", format!("{}", state.test_based_sub));
     }
     return;

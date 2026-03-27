@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,18 +37,18 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     println!("{}", format!("{}", cobol_fn_pi()));
     println!("{}", format!("{}", cobol_fn_pi()));
-    println!("{}", format!("{}", cobol_fn_pi(1)));
-    println!("{}", format!("{}", cobol_fn_abs()));
-    println!("{}", format!("{}", cobol_fn_abs(1)));
-    println!("{}", format!("{}", cobol_fn_abs(1, 2)));
-    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd()));
-    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(6000)));
-    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(6000, 50)));
-    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(6000, 50, 1600)));
-    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(6000, 50, 1600, 500)));
-    println!("{}", format!("{}", cobol_fn_max()));
-    println!("{}", format!("{}", cobol_fn_max(6000)));
-    println!("{}", format!("{}", cobol_fn_substitute("A", "B", "C", "D")));
+    println!("{}", format!("{}", cobol_fn_pi()));
+    println!("{}", format!("{}", cobol_fn_abs("")));
+    println!("{}", format!("{}", cobol_fn_abs(&format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_abs(&format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd("0", "0")));
+    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(&format!("{}", 6000), "0")));
+    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(&format!("{}", 6000), &format!("{}", 50))));
+    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(&format!("{}", 6000), &format!("{}", 50))));
+    println!("{}", format!("{}", cobol_fn_day_to_yyyyddd(&format!("{}", 6000), &format!("{}", 50))));
+    println!("{}", format!("{}", cobol_fn_max("", "")));
+    println!("{}", format!("{}", cobol_fn_max(&format!("{}", 6000), &format!("{}", 6000))));
+    println!("{}", format!("{}", cobol_fn_substitute("A", "B", "C")));
     std::process::exit(0);
 }
 

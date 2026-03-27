@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,29 +35,32 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub col: FixedString<30>,
+    pub lin: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}", format!("{}", state.erase));
-    state.lin. = format!("{}", 10).cobol_into();
+    println!("", );
+    state.lin = format!("{}", 10).cobol_into();
     state.col = format!("{}", 15).cobol_into();
-    println!("{}{}{}{}{}{}", format!("{}", state.lin), format!("{}", state.col), format!("{}", state._), format!("{}", 3), format!("{}", state.)), format!("{}", state.field_a));
-    println!("{}{}{}{}", format!("{}", (format!("{}", format!("{}", state.lin)).trim().parse::<f64>().unwrap_or(0.0) + format!("{}", format!("{}", 1)).trim().parse::<f64>().unwrap_or(0.0))), format!("{}", state.col), format!("{}", state.)), format!("{}", state.field_a));
+    println!("{}", format!("{}", state.lin));
+    println!("{}", format!("{}", (format!("{}", format!("{}", state.lin)).trim().parse::<f64>().unwrap_or(0.0) + format!("{}", format!("{}", 1)).trim().parse::<f64>().unwrap_or(0.0))));
     // ACCEPT (
-    println!("{}{}{}{}", format!("{}", 8), format!("{}", 12), format!("{}", state.)), format!("{}", state.field_a));
+    println!("{}{}{}{}", format!("{}", 8), format!("{}", 12), format!("{}", ""), format!("{}", state.field_a));
     // ACCEPT (
-    println!("{}{}{}{}{}{}", format!("{}", state.field_a), format!("{}", state.at), format!("{}", state.line), format!("{}", 6), format!("{}", state.column), format!("{}", 12));
+    println!("{}", format!("{}", state.field_a));
     // ACCEPT A
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 2).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a - _b).cobol_into(); }
     { let _a: f64 = format!("{}", state.col).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 3).trim().parse().unwrap_or(0.0); state.col = format!("{}", _a - _b).cobol_into(); }
-    println!("{}{}{}{}{}{}", format!("{}", state.field_a), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.column), format!("{}", state.col));
+    println!("{}", format!("{}", state.field_a));
     // ACCEPT (
-    println!("{}{}{}{}", format!("{}", 1), format!("{}", 1), format!("{}", state.)), format!("{}", state.erase));
-    println!("{}{}{}{}{}", format!("{}", 2), format!("{}", 1), format!("{}", state.)), format!("{}", "Field value : "), format!("{}", state.field_a));
-    println!("{}{}{}{}{}", format!("{}", 3), format!("{}", 1), format!("{}", state.)), format!("{}", state.a), format!("{}", " --> A value"));
-    println!("{}{}{}{}", format!("{}", 5), format!("{}", 1), format!("{}", state.)), format!("{}", "Press ENTER to exit"));
+    println!("{}{}{}", format!("{}", 1), format!("{}", 1), format!("{}", ""));
+    println!("{}{}{}{}{}", format!("{}", 2), format!("{}", 1), format!("{}", ""), format!("{}", "Field value : "), format!("{}", state.field_a));
+    println!("{}{}{}{}{}", format!("{}", 3), format!("{}", 1), format!("{}", ""), format!("{}", state.a), format!("{}", " --> A value"));
+    println!("{}{}{}{}", format!("{}", 5), format!("{}", 1), format!("{}", ""), format!("{}", "Press ENTER to exit"));
     // ACCEPT (
     std::process::exit(0);
 }

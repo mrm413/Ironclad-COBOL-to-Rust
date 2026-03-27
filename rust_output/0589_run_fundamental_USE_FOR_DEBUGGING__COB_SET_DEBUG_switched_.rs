@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -35,7 +36,7 @@ pub struct ProgramState {
 /// Paragraph: DECLARATIVES
 fn p_declaratives(state: &mut ProgramState) {
     // TEST-DEBUG SECTION. USE FOR DEBUGGING ON ALL PROCEDURES
-    println!("{}{}{}", format!("{}", state.debug_item), format!("{}", "|"), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", state.debug_item), format!("{}", "|"));
     // END DECLARATIVES
 }
 

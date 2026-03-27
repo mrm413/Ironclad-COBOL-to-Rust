@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -70,23 +71,21 @@ fn p_main(state: &mut ProgramState) {
     println!("{}{}", format!("{}", "Add      RSLT    IS "), format!("{}", state.rslt));
     { let _a: f64 = format!("{}", state.rslt).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.num_c).trim().parse().unwrap_or(0.0); state.rslt = format!("{}", _a - _b).cobol_into(); }
     println!("{}{}", format!("{}", "Subtract RSLT    IS "), format!("{}", state.rslt));
-    { let _a: f64 = format!("{}", state._10).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.num_a).trim().parse().unwrap_or(0.0); state._10 = format!("{}", _a - _b).cobol_into(); }
     // FROM RSLT
     println!("{}{}", format!("{}", "Subtract RSLT    IS "), format!("{}", state.rslt));
     state.rslt = format!("{}", 0).cobol_into();
     { let _a: f64 = format!("{}", state.num_c).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.num_a).trim().parse().unwrap_or(0.0); state.num_c = format!("{}", _a + _b).cobol_into(); }
     // TO RSLT GIVING RSLTV1
     println!("{}{}", format!("{}", "Add      RSLTv9  IS "), format!("{}", state.rsltv1));
-    { let _a: f64 = format!("{}", state.num_c).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.num_a).trim().parse().unwrap_or(0.0); state.num_c = format!("{}", _a * _b).cobol_into(); }
-    // GIVING RSLT
+    state.rslt = format!("{}", (format!("{}", format!("{}", state.num_a)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", state.num_c)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}", format!("{}", "Multiply RSLT    IS "), format!("{}", state.rslt));
     { let _a: f64 = format!("{}", state.num_c).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.rslt).trim().parse().unwrap_or(0.0); state.num_c = format!("{}", _a * _b).cobol_into(); }
     println!("{}{}", format!("{}", "Multiply RSLT    IS "), format!("{}", state.rslt));
-    { let _a: f64 = format!("{}", state.rslt).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.num_a)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 10)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); state.rslt = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.rslt }; }
+    { let _a: f64 = format!("{}", state.rslt).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.num_a)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 10)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.rslt = format!("{}", _a / _b).cobol_into(); } }
     println!("{}{}", format!("{}", "Divide   RSLT    IS "), format!("{}", state.rslt));
-    { let _a: f64 = format!("{}", state.rsltv1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.rslt)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); state.rsltv1 = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.rsltv1 }; }
+    { let _a: f64 = format!("{}", state.rsltv1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.rslt)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.rsltv1 = format!("{}", _a / _b).cobol_into(); } }
     println!("{}{}", format!("{}", "Divide   RSLTv9  IS "), format!("{}", state.rsltv1));
-    { let _a: f64 = format!("{}", state.rslt).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.rslt)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); state.rslt = if _b != 0.0 { format!("{}", _a / _b).cobol_into() } else { state.rslt }; }
+    { let _a: f64 = format!("{}", state.rslt).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", (format!("{}", format!("{}", state.rslt)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 4)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse().unwrap_or(0.0); if _b != 0.0 { state.rslt = format!("{}", _a / _b).cobol_into(); } }
     println!("{}{}", format!("{}", "Divide   RSLT    IS "), format!("{}", state.rslt));
     state.rsltv1 = format!("{}", (format!("{}", state.rslt).trim() == format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", (format!("{}", format!("{}", state.num_a)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 100)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) - format!("{}", format!("{}", (format!("{}", format!("{}", state.num_b)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 100)).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0)))).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 100)).trim().parse::<f64>().unwrap_or(0.0))).trim())).cobol_into();
     println!("{}{}{}{}", format!("{}", "Simple   RSLT    IS "), format!("{}", state.rslt), format!("{}", " RSLTv9  IS "), format!("{}", state.rsltv1));

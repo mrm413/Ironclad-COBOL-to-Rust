@@ -2,6 +2,7 @@
 // Source: PROG2.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -24,7 +25,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab1 {
     /// ROW1
-    pub row1: [Row1; 5],
+    pub row1: Vec<Row1>,
 }
 impl std::fmt::Display for Tab1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -47,7 +48,7 @@ impl Tab1 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab2 {
     /// ROW1
-    pub row1: [Row1; 1],
+    pub row1: Vec<Row1>,
 }
 impl std::fmt::Display for Tab2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -112,8 +113,22 @@ pub struct ProgramState {
 /// Paragraph: A
 fn p_a(state: &mut ProgramState) {
     println!("{}{}", format!("{}", state.tab1_nr), format!("{}", 2));
-    // PERFORM VARYING VARYING K FROM 1 BY 1 UNTIL K > 4 MOVE K TO TAB1-NR OF TAB2(K) MOVE 'BLA' TO TAB-DATA OF TAB2(K) END-PERFORM SORT ROW1 OF TAB2
-    // PERFORM VARYING VARYING K FROM 1 BY 1 UNTIL K > 4 DISPLAY TAB1-NR OF TAB2(K) NO ADVANCING END-DISPLAY END-PERFORM STOP RUN
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        state.tab1_nr = format!("{}", state.k).cobol_into();
+        state.tab_data = format!("{}", "BLA").cobol_into();
+    }
+    // SORT ROW1 OF TAB2
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", state.tab1_nr));
+    }
+    std::process::exit(0);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

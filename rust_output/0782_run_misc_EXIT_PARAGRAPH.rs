@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,17 @@ pub struct ProgramState {
 
 /// Paragraph: A01
 fn p_a01(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING INDVAL FROM 1 BY 1 UNTIL INDVAL > 10 IF INDVAL > 2 EXIT PARAGRAPH END-IF END-PERFORM
+    while !((format!("{}", state.indval).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 10).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.indval = format!("{}", 1).cobol_into();
+        if format!("{}", state.indval).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 2).trim().parse::<f64>().unwrap_or(0.0) {
+            // CONTINUE
+        }
+    }
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

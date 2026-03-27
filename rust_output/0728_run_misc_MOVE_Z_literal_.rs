@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -56,20 +57,22 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n13: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x = format!("{}", state.z"012").cobol_into();
+    state.x = format!("{}", "\\x01").cobol_into();
     if (((format!("{}", state.xbyte1).trim() == format!("{}", "0").trim()) && (format!("{}", state.xbyte2).trim() == format!("{}", "1").trim())) && (format!("{}", state.xbyte3).trim() == format!("{}", "2").trim())) && (format!("{}", state.xbyte4).trim() == format!("{}", "\x00").trim()) {
         println!("{}", format!("{}", "OK"));
     } else {
-        println!("{}{}{}", format!("{}", "X = "), format!("{}", state.x), format!("{}", state.1:3));
+        println!("{}{}{}", format!("{}", "X = "), format!("{}", state.x), format!("{}", ""));
         if format!("{}", state.xbyte4).trim() == format!("{}", "\x00").trim() {
-            println!("{}{}", format!("{}", " WITH LOW-VALUE"), format!("{}", state.end_display));
+            println!("{}", format!("{}", " WITH LOW-VALUE"));
         } else {
-            println!("{}{}{}{}", format!("{}", " WITHOUT LOW-VALUE BUT "), format!("{}", state.xbyte4), format!("{}", ""), format!("{}", state.end_display));
+            println!("{}{}{}", format!("{}", " WITHOUT LOW-VALUE BUT "), format!("{}", state.xbyte4), format!("{}", ""));
         }
     }
     std::process::exit(0);

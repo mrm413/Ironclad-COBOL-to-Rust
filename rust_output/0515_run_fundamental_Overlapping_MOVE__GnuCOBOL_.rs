@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,20 +37,23 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n19: FixedString<30>,
+    pub n28: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.tstmov2 = format!("{}", "0123456789").cobol_into();
-    state.tstmov2 = format!("{}", cobol_refmod(&format!("{}", state.tstmov2), format!("{}", 2).trim().parse::<i64>().unwrap_or(1), format!("{}", 9).trim().parse::<i64>().unwrap_or(0))).cobol_into();
+    state.tstmov2 = format!("{}", cobol_refmod(&format!("{}", state.tstmov2), format!("{}", 2).trim().parse::<usize>().unwrap_or(1), format!("{}", 9).trim().parse::<usize>().unwrap_or(0))).cobol_into();
     if format!("{}", state.tstmov2).trim() != format!("{}", "1234567899").trim() {
         println!("{}{}", format!("{}", "  PROBLEM MOVE: "), format!("{}", state.tstmov2));
     } else {
         println!("{}{}", format!("{}", "  OK with MOVE: "), format!("{}", state.tstmov2));
     }
     state.tstmov2 = format!("{}", "0123456789").cobol_into();
-    state.tstmov2 = format!("{}", cobol_refmod(&format!("{}", state.tstmov2), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", 8).trim().parse::<i64>().unwrap_or(0))).cobol_into();
+    state.tstmov2 = format!("{}", cobol_refmod(&format!("{}", state.tstmov2), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", 8).trim().parse::<usize>().unwrap_or(0))).cobol_into();
     if format!("{}", state.tstmov2).trim() == format!("{}", "0000000009").trim() {
         println!("{}{}", format!("{}", "IBM style MOVE: "), format!("{}", state.tstmov2));
     } else {

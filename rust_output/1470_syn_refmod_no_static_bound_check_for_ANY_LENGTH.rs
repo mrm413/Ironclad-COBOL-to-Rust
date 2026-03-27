@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,9 +41,9 @@ pub struct ProgramState {
 
 /// Paragraph: MAIN
 fn p_main(state: &mut ProgramState) {
-    if ((format!("{}", cobol_refmod(&format!("{}", state.testme), format!("{}", state.pos).trim().parse::<i64>().unwrap_or(1), format!("{}", 2).trim().parse::<i64>().unwrap_or(0))).trim() == format!("{}", ", ").trim())) {
+    if ((format!("{}", cobol_refmod(&format!("{}", state.testme), format!("{}", state.pos).trim().parse::<usize>().unwrap_or(1), format!("{}", 2).trim().parse::<usize>().unwrap_or(0))).trim() == format!("{}", ", ").trim())) {
         // CONTINUE
-    } else if (((format!("{}", cobol_refmod(&format!("{}", state.testme), format!("{}", state.pos).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))).trim() == format!("{}", ",").trim()) && (format!("{}", cobol_refmod(&format!("{}", state.testme), format!("{}", (format!("{}", format!("{}", 1)).trim().parse::<f64>().unwrap_or(0.0) + format!("{}", format!("{}", state.pos)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))).trim() == format!("{}", " ").trim()))) {
+    } else if (((format!("{}", cobol_refmod(&format!("{}", state.testme), format!("{}", state.pos).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))).trim() == format!("{}", ",").trim()) && (format!("{}", cobol_refmod(&format!("{}", state.testme), format!("{}", (format!("{}", format!("{}", 1)).trim().parse::<f64>().unwrap_or(0.0) + format!("{}", format!("{}", state.pos)).trim().parse::<f64>().unwrap_or(0.0))).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))).trim() == format!("{}", " ").trim()))) {
         println!("{}{}{}", format!("{}", "TESTME"), format!("{}", state.pos), format!("{}", 1525));
     }
     std::process::exit(0);

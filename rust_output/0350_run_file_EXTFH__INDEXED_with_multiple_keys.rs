@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,7 +41,7 @@ pub struct AcbKeyGroup {
     /// ACB-CNT
     pub acb_cnt: Decimal,
     /// ACB-KEY-TABLE
-    pub acb_key_table: [AcbKeyTable; 32],
+    pub acb_key_table: Vec<AcbKeyTable>,
 }
 impl std::fmt::Display for AcbKeyGroup {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -297,6 +298,17 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n155: FixedString<30>,
+    pub n4610: FixedString<30>,
+    pub n81: FixedString<30>,
+    pub fcd__version_number: FixedString<30>,
+    pub fcd_access_mode: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_key_def_address: FixedString<30>,
+    pub fcd_key_length: FixedString<30>,
+    pub fcd_record_address: FixedString<30>,
+    pub fcd_version: FixedString<30>,
 }
 
 
@@ -304,16 +316,16 @@ pub struct ProgramState {
 fn p_a_000_main(state: &mut ProgramState) {
     p_a_100_open_file(state);
     p_a_300_read_record(state);
-    println!("{}{}{}{}", format!("{}", "READ ------> "), format!("{}", state.record_area), format!("{}", state.1:55), format!("{}", "."));
+    println!("{}{}{}{}", format!("{}", "READ ------> "), format!("{}", state.record_area), format!("{}", ""), format!("{}", "."));
     state.record_area = format!("{}", "1234567890").cobol_into();
     p_a_400_rewrite_record(state);
     p_a_300_read_record(state);
-    println!("{}{}{}{}", format!("{}", "WRITE -----> "), format!("{}", state.record_area), format!("{}", state.1:55), format!("{}", "."));
+    println!("{}{}{}{}", format!("{}", "WRITE -----> "), format!("{}", state.record_area), format!("{}", ""), format!("{}", "."));
     state.data_area = format!("{}", " ").cobol_into();
     p_a_400_rewrite_record(state);
     p_a_700_start(state);
     p_a_800_read_previous(state);
-    println!("{}{}{}{}", format!("{}", "READ PREV -> "), format!("{}", state.record_area), format!("{}", state.1:55), format!("{}", "."));
+    println!("{}{}{}{}", format!("{}", "READ PREV -> "), format!("{}", state.record_area), format!("{}", ""), format!("{}", "."));
     p_a_600_close_file(state);
     std::process::exit(0);
 }
@@ -334,22 +346,22 @@ fn p_a_100_open_file(state: &mut ProgramState) {
     state.acb_key_len = format!("{}", 15).cobol_into();
     state.acb_key_dupe = format!("{}", 1).cobol_into();
     // CALL 'EXFHKEYS' USING &mut state.acb_key_group, &mut state.key_def_area
-    state.fh_action = format!("{}", state.x'fa01').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x01").cobol_into();
     state.fcd_key_def_address = " ".to_string().cobol_into();
     // OF KEY-DEF-AREA MOVE 'TESTISAM2' TO FILE-NAME MOVE 9 TO FILE-NAME-LEN MOVE FILE-NAME-LEN TO FCD-NAME-LENGTH MOVE 0 TO FCD-ACCESS-MODE MOVE 2 TO FCD-ORGANIZATION MOVE 128 TO FCD-OPEN-MODE MOVE 1 TO FCD-RECORDING-MODE MOVE 0 TO FCD-RECORDING-MODE SET FCD-FILENAME-ADDRESS TO ADDRESS OF FILE-NAME MOVE 400 TO FCD-MIN-REC-LENGTH MOVE 400 TO FCD-MAX-REC-LENGTH PERFORM A-200-CALL-EXTFH
     p_a_600_close_file(state);
-    state.fh_action = format!("{}", state.x'fa02').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x02").cobol_into();
     state.fcd_access_mode = format!("{}", 8).cobol_into();
     p_a_200_call_extfh(state);
     state.record_area = format!("{}", " ").cobol_into();
     state.data_area1 = format!("{}", 0).cobol_into();
     state.data_area2 = format!("{}", 0).cobol_into();
-    p_7(state);
+    p_n7(state);
     { let _a: f64 = format!("{}", state.data_area1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.data_area1 = format!("{}", _a + _b).cobol_into(); }
     { let _a: f64 = format!("{}", state.data_area2).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.data_area2 = format!("{}", _a + _b).cobol_into(); }
     state.prime_key = format!("{}", "RECORD-1").cobol_into();
-    state.prime_key = format!("{}", cobol_refmod(&format!("{}", state.data_area1), format!("{}", 10).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.fh_action = format!("{}", state.x'faf3').cobol_into();
+    state.prime_key = format!("{}", cobol_refmod(&format!("{}", state.data_area1), format!("{}", 10).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\xF3").cobol_into();
     state.fcd_record_address = " ".to_string().cobol_into();
     // OF RECORD-AREA PERFORM A-200-CALL-EXTFH END-PERFORM
 }
@@ -357,7 +369,7 @@ fn p_a_100_open_file(state: &mut ProgramState) {
 /// Paragraph: A-200-CALL-EXTFH
 fn p_a_200_call_extfh(state: &mut ProgramState) {
     // CALL 'EXTFH' USING &mut state.fh_action, &mut state.fcd_area
-    if (format!("{}", state.fcd_file_status).trim() != format!("{}", "00").trim()) && !(state.=) {
+    if (format!("{}", state.fcd_file_status).trim() != format!("{}", "00").trim()) && !(true) {
     }
     // '02' IF FCD-STATUS-KEY-1 = '9' DISPLAY "Operation: " FH-ACTION2 " FILE ERROR, STATUS: 9/" FCD-BINARY ELSE DISPLAY "Operation: " FH-ACTION2 " FILE ERROR, STATUS: " FCD-FILE-STATUS END-IF STOP RUN END-IF
 }
@@ -366,7 +378,7 @@ fn p_a_200_call_extfh(state: &mut ProgramState) {
 fn p_a_300_read_record(state: &mut ProgramState) {
     state.record_area = format!("{}", " ").cobol_into();
     state.prime_key = format!("{}", "RECORD-3").cobol_into();
-    state.fh_action = format!("{}", state.x'fa8e').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x8E").cobol_into();
     state.fcd_record_address = " ".to_string().cobol_into();
     // OF RECORD-AREA
     p_a_200_call_extfh(state);
@@ -374,14 +386,14 @@ fn p_a_300_read_record(state: &mut ProgramState) {
 
 /// Paragraph: A-400-REWRITE-RECORD
 fn p_a_400_rewrite_record(state: &mut ProgramState) {
-    state.fh_action = format!("{}", state.x'faf4').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\xF4").cobol_into();
     state.cobol_op = format!("{}", state.rewrite_record).cobol_into();
     p_a_200_call_extfh(state);
 }
 
 /// Paragraph: A-600-CLOSE-FILE
 fn p_a_600_close_file(state: &mut ProgramState) {
-    state.fh_action = format!("{}", state.x'fa80').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x80").cobol_into();
     p_a_200_call_extfh(state);
 }
 
@@ -391,18 +403,18 @@ fn p_a_700_start(state: &mut ProgramState) {
     // OF RECORD-AREA
     state.fcd_key_length = format!("{}", 20).cobol_into();
     state.prime_key = format!("{}", "\u{00FF}").cobol_into();
-    state.fh_action = format!("{}", state.x'fafe').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\xFE").cobol_into();
     p_a_200_call_extfh(state);
 }
 
 /// Paragraph: A-800-READ-PREVIOUS
 fn p_a_800_read_previous(state: &mut ProgramState) {
-    state.fh_action = format!("{}", state.x'faf9').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\xF9").cobol_into();
     p_a_200_call_extfh(state);
 }
 
 /// Stub for unresolved paragraph
-fn p_7(state: &mut ProgramState) {
+fn p_n7(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -158,6 +159,10 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub ws_input_eof: FixedString<30>,
+    pub ws_input_ok: FixedString<30>,
+    pub ws_output_ok: FixedString<30>,
 }
 
 
@@ -256,6 +261,12 @@ fn in_file_close(state: &mut ProgramState) {
     state.ws_input_status = format!("{}", state._fs_in_file).cobol_into();
 }
 
+/// DELETE IN-FILE
+fn in_file_delete(state: &mut ProgramState) {
+    state._fs_in_file = FileStatus::Success; // DELETE stub
+    state.ws_input_status = format!("{}", state._fs_in_file).cobol_into();
+}
+
 /// OPEN INPUT OUT-FILE
 fn out_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("OUT_FILE").unwrap_or("out_file.dat".to_string());
@@ -334,6 +345,12 @@ fn out_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_out_file = FileStatus::Success,
         Err(e) => state._fs_out_file = e,
     }
+    state.ws_output_status = format!("{}", state._fs_out_file).cobol_into();
+}
+
+/// DELETE OUT-FILE
+fn out_file_delete(state: &mut ProgramState) {
+    state._fs_out_file = FileStatus::Success; // DELETE stub
     state.ws_output_status = format!("{}", state._fs_out_file).cobol_into();
 }
 

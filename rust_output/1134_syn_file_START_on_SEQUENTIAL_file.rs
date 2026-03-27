@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -125,6 +126,11 @@ fn test_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TEST-FILE2
 fn test_file2_open_input(state: &mut ProgramState) {
     let path = std::env::var("TEST_FILE2").unwrap_or("test_file2.dat".to_string());
@@ -198,22 +204,17 @@ fn test_file2_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEST-FILE2
+fn test_file2_delete(state: &mut ProgramState) {
+    state._fs_test_file2 = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     test_file_open_input(state);
     test_file2_open_input(state);
-    start_open_input(state);
-    test_file_open_input(state);
-    key_open_input(state);
-    equal_open_input(state);
-    test_rec_open_input(state);
-    end_start_open_input(state);
-    start_open_input(state);
-    test_file2_open_input(state);
-    key_open_input(state);
-    equal_open_input(state);
-    test_rec2_open_input(state);
-    end_start_open_input(state);
+    // START TEST-FILE KEY EQUAL TEST-REC
+    // START TEST-FILE2 KEY EQUAL TEST-REC2
     test_file_close(state);
     test_file2_close(state);
     std::process::exit(0);

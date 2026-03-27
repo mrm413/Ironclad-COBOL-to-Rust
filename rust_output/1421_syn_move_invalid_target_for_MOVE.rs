@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,6 +35,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub main: FixedString<30>,
+    pub repo_prog: FixedString<30>,
 }
 
 
@@ -42,7 +46,6 @@ fn p_main(state: &mut ProgramState) {
     state.main_var = format!("{}", "A").cobol_into();
     state.main = format!("{}", "B").cobol_into();
     state.repo_prog = format!("{}", "C").cobol_into();
-    state.quote = format!("{}", "D").cobol_into();
     state.defined_const = format!("{}", "E").cobol_into();
     std::process::exit(0);
 }

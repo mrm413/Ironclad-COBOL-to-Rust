@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -38,7 +39,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct DayxMonthx {
     /// DAY-MONTH
-    pub day_month: [DayMonth; 3],
+    pub day_month: Vec<DayMonth>,
     /// FLR
     pub flr: FixedString<4>,
 }
@@ -63,7 +64,7 @@ impl DayxMonthx {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct DaysMonths {
     /// DAYX-MONTHX
-    pub dayx_monthx: [DayxMonthx; 4],
+    pub dayx_monthx: Vec<DayxMonthx>,
 }
 impl std::fmt::Display for DaysMonths {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -92,13 +93,13 @@ pub struct Ws {
     /// IX3
     pub ix3: Decimal,
     /// GRP1
-    pub grp1: [Grp1; 3],
+    pub grp1: Vec<Grp1>,
     /// MONTH-IN-YEAR
-    pub month_in_year: [FixedString<3>; 13],
+    pub month_in_year: Vec<FixedString<3>>,
     /// DAYS-IN-MONTH
-    pub days_in_month: [u16; 13],
+    pub days_in_month: Vec<u16>,
     /// DAYS-MONTHS
-    pub days_months: [DaysMonths; 2],
+    pub days_months: Vec<DaysMonths>,
 }
 impl std::fmt::Display for Ws {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -135,9 +136,9 @@ pub struct ProgramState {
     /// WS: GRPX
     pub grpx: FixedString<99>,
     /// WS: MONTH-IN-YEAR
-    pub month_in_year: [FixedString<3>; 13],
+    pub month_in_year: Vec<FixedString<3>>,
     /// WS: DAYS-IN-MONTH
-    pub days_in_month: [u16; 13],
+    pub days_in_month: Vec<u16>,
     /// WS: DAYS-MONTHS (group)
     pub days_months: FixedString<13>,
     /// WS: DAYX-MONTHX (group)
@@ -177,10 +178,24 @@ pub struct ProgramState {
 /// Paragraph: INIT-RTN
 fn p_init_rtn(state: &mut ProgramState) {
     println!("{}", format!("{}", "Simple OCCURS with multi VALUES"));
-    // PERFORM VARYING VARYING IX1 FROM 1 BY 1 UNTIL IX1 > 13 DISPLAY IX1 ": " MONTH-IN-YEAR ( IX1 ) " has " DAYS-IN-MONTH ( IX1 ) " days" END-DISPLAY END-PERFORM
+    while !((format!("{}", state.ix1).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 13).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.ix1 = format!("{}", 1).cobol_into();
+        println!("{}{}{}{}{}{}{}{}", format!("{}", state.ix1), format!("{}", ": "), format!("{:?}", state.month_in_year), format!("{}", state.ix1), format!("{}", " has "), format!("{:?}", state.days_in_month), format!("{}", state.ix1), format!("{}", " days"));
+    }
     println!("{}", format!("{}", "Complex OCCURS with multi VALUES"));
-    // PERFORM VARYING VARYING IX3 FROM 1 BY 1 UNTIL IX3 > 2 PERFORM VARYING IX2 FROM 1 BY 1 UNTIL IX2 > 4 DISPLAY IX3 "-" IX2 ": " DAYX-MONTHX ( IX3 IX2 ) END-DISPLAY END-PERFORM END-PERFORM
+    while !((format!("{}", state.ix3).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 2).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.ix3 = format!("{}", 1).cobol_into();
+        while !((format!("{}", state.ix2).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+            state.ix2 = format!("{}", 1).cobol_into();
+            println!("{}{}{}{}{}{}{}{}", format!("{}", state.ix3), format!("{}", "-"), format!("{}", state.ix2), format!("{}", ": "), format!("{}", state.dayx_monthx), format!("{}", state.ix3), format!("{}", state.ix2), format!("{}", ""));
+        }
+    }
     std::process::exit(0);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

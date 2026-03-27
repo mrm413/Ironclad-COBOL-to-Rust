@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct PlineText {
     /// FILLER-1
-    pub filler_1: [FixedString<1>; 1],
+    pub filler_1: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for PlineText {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -55,7 +56,7 @@ pub struct ProgramState {
     /// WS: PLINE-TEXT (group)
     pub pline_text: FixedString<1>,
     /// WS: FILLER
-    pub filler_1: [FixedString<1>; 1],
+    pub filler_1: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -71,6 +72,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n2: FixedString<30>,
 }
 
 
@@ -81,14 +84,14 @@ fn p__implicit_(state: &mut ProgramState) {
     state.pline_text = format!("{}", "the first part in").cobol_into();
     state.pline_len = format!("{}", 30).cobol_into();
     if format!("{}", state.pline_text).trim() != format!("{}", "the f").trim() {
-        println!("{}{}{}", format!("{}", "text1 wrong: "), format!("{}", state.pline_text), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "text1 wrong: "), format!("{}", state.pline_text));
     }
     state.pline_text = format!("{}", "the first part in").cobol_into();
     state.pline_len = format!("{}", 4).cobol_into();
     state.pline_text = format!("{}", "second").cobol_into();
     state.pline_len = format!("{}", 14).cobol_into();
     if format!("{}", state.pline_text).trim() != format!("{}", "secofirst part").trim() {
-        println!("{}{}{}", format!("{}", "text2 wrong: "), format!("{}", state.pline_text), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "text2 wrong: "), format!("{}", state.pline_text));
     }
     state.pline_len = format!("{}", 80).cobol_into();
     state.pline_text = format!("{}", " ").cobol_into();
@@ -96,14 +99,14 @@ fn p__implicit_(state: &mut ProgramState) {
     state.pline_text = format!("{}", "the first part in").cobol_into();
     state.pline_len = format!("{}", 30).cobol_into();
     if format!("{}", state.pline_text).trim() != format!("{}", " the ").trim() {
-        println!("{}{}{}", format!("{}", "text3 wrong: "), format!("{}", state.pline_text), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "text3 wrong: "), format!("{}", state.pline_text));
     }
     state.pline_text = format!("{}", "the first part in").cobol_into();
     state.pline_len = format!("{}", 4).cobol_into();
     state.pline_text = format!("{}", "second").cobol_into();
     state.pline_len = format!("{}", 14).cobol_into();
     if format!("{}", state.pline_text).trim() != format!("{}", " sec first par").trim() {
-        println!("{}{}{}", format!("{}", "text4 wrong: "), format!("{}", state.pline_text), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "text4 wrong: "), format!("{}", state.pline_text));
     }
     std::process::exit(0);
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -196,6 +197,11 @@ fn report_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT TEMP-FILE
 fn temp_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("TEMP_FILE").unwrap_or("temp_file.dat".to_string());
@@ -285,6 +291,11 @@ fn temp_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TEMP-FILE
+fn temp_file_delete(state: &mut ProgramState) {
+    state._fs_temp_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     temp_file_open_input(state);
@@ -324,6 +335,46 @@ fn p_read_next_temp_rec(state: &mut ProgramState) {
 /// Paragraph: RNTR-EXIT
 fn p_rntr_exit(state: &mut ProgramState) {
     // CONTINUE
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_input(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_output(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_io(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_extend(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_read(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_write(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_close(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_delete(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

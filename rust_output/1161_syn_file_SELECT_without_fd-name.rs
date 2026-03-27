@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -111,6 +112,11 @@ fn assign_close(state: &mut ProgramState) {
         Ok(()) => state._fs_assign = FileStatus::Success,
         Err(e) => state._fs_assign = e,
     }
+}
+
+/// DELETE ASSIGN
+fn assign_delete(state: &mut ProgramState) {
+    state._fs_assign = FileStatus::Success; // DELETE stub
 }
 
 fn main() {

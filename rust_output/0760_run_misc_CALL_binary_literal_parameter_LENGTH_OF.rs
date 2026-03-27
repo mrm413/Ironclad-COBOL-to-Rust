@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Mytab {
     /// MYBYTE
-    pub mybyte: [FixedString<1>; 1],
+    pub mybyte: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Mytab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -43,7 +44,7 @@ pub struct ProgramState {
     /// WS: MYTAB (group)
     pub mytab: FixedString<1>,
     /// WS: MYBYTE
-    pub mybyte: [FixedString<1>; 1],
+    pub mybyte: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -65,7 +66,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.myocc = format!("{}", 9).cobol_into();
-    // CALL 'dump' USING &state.1
+    // CALL 'dump' USING &state.n1
     // CALL 'dump' USING &state.length, &state.of, &state.mytab
     // CALL 'dump' USING &state.length, &state.of, &state.myocc
     std::process::exit(0);

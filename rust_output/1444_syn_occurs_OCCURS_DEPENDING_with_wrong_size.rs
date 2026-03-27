@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -18,7 +19,7 @@ pub struct ProgramState {
     /// WS: FILLER (group)
     pub filler_1: FixedString<1>,
     /// WS: G-1
-    pub g_1: [FixedString<1>; 1],
+    pub g_1: Vec<FixedString<1>>,
     /// WS: FILLER (group)
     pub filler_2: FixedString<1>,
     /// WS: G-2
@@ -26,11 +27,11 @@ pub struct ProgramState {
     /// WS: FILLER (group)
     pub filler_3: FixedString<1>,
     /// WS: G-3
-    pub g_3: [FixedString<1>; 1],
+    pub g_3: Vec<FixedString<1>>,
     /// WS: FILLER (group)
     pub filler_4: FixedString<1>,
     /// WS: G-4
-    pub g_4: [FixedString<1>; 0],
+    pub g_4: Vec<FixedString<1>>,
     /// WS: I
     pub i: u8,
     // --- Special registers ---

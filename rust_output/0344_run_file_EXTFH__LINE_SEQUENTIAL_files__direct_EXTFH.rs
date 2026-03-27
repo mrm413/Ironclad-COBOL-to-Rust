@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -99,43 +100,65 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub fcd_binary: FixedString<30>,
+    pub fcd_current_rec_len: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_status_key_1: FixedString<30>,
 }
 
 
 /// Paragraph: 000-MAIN
-fn p_000_main(state: &mut ProgramState) {
-    p_100_open(state);
-    // PERFORM VARYING VARYING I FROM 1 BY 1 UNTIL I > 10 MOVE I TO DISPLAY-A1-ZZ9 MOVE DISPLAY-A1-ZZ9 TO FCD-RECORD PERFORM 300-WRITE END-PERFORM
-    p_400_close(state);
+fn p_n000_main(state: &mut ProgramState) {
+    p_n100_open(state);
+    while !((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 10).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.i = format!("{}", 1).cobol_into();
+        state.display_a1_zz9 = format!("{}", state.i).cobol_into();
+        state.fcd_record = format!("{}", state.display_a1_zz9).cobol_into();
+        p_n300_write(state);
+    }
+    p_n400_close(state);
     std::process::exit(0);
 }
 
 /// Paragraph: 100-OPEN
-fn p_100_open(state: &mut ProgramState) {
+fn p_n100_open(state: &mut ProgramState) {
     state.ws_fcd_ddname = format!("{}", "TESTOUT").cobol_into();
     state.ws_fcd_size = format!("{}", std::mem::size_of_val(&state.fcd_map)).cobol_into();
     println!("{}{}", format!("{}", "FCD SIZE "), format!("{}", state.ws_fcd_size));
-    if format!("{}", state.ws_fcd_ptr).trim() == format!("{}", state.null).trim() {
+    if format!("{}", state.ws_fcd_ptr).trim() == format!("{}", "\x00").trim() {
     }
     // ALLOCATE WS-FCD-SIZE CHARACTERS RETURNING WS-FCD-PTR SET ADDRESS OF FCD-MAP TO WS-FCD-PTR MOVE LOW-VALUES TO FCD-MAP MOVE WS-FCD-SIZE TO FCD-LENGTH MOVE FCD--VERSION-NUMBER TO FCD-VERSION MOVE "00" TO FCD-FILE-STATUS MOVE FCD--STATUS-DEFINED TO FCD-ACCESS-MODE MOVE FCD--OPEN-CLOSED TO FCD-OPEN-MODE MOVE FCD--EXTERNAL-NAME TO FCD-OTHER-FLAGS SET FCD-HANDLE TO NULL MOVE 8 TO FCD-NAME-LENGTH SET FCD-FILENAME-ADDRESS TO ADDRESS OF WS-FCD-DDNAME SET FCD-KEY-DEF-ADDRESS TO NULL MOVE FCD--ALLOW-READERS TO FCD-LOCKTYPES ELSE SET ADDRESS OF FCD-MAP TO WS-FCD-PTR IF FCD-OPEN-MODE NOT = FCD--OPEN-CLOSED DISPLAY "ERRROR - FILE ALREADY OPEN" STOP RUN END-IF END-IF MOVE FCD--LINE-SEQUENTIAL-ORG TO FCD-ORGANIZATION MOVE FCD--RECMODE-FIXED TO FCD-RECORDING-MODE MOVE 10 TO FCD-MIN-REC-LENGTH FCD-MAX-REC-LENGTH SET FCD-RECORD-ADDRESS TO ADDRESS OF FCD-RECORD MOVE OP-OPEN-OUTPUT TO ACTION-CODE PERFORM 800-CALL-EXTFH
 }
 
+/// Paragraph: 300-WRITE
+fn p_n300_write(state: &mut ProgramState) {
+    state.fcd_current_rec_len = format!("{}", 10).cobol_into();
+    state.action_code = format!("{}", state.op_write).cobol_into();
+    p_n800_call_extfh(state);
+}
+
 /// Paragraph: 400-CLOSE
-fn p_400_close(state: &mut ProgramState) {
+fn p_n400_close(state: &mut ProgramState) {
     state.fcd_file_status = format!("{}", "00").cobol_into();
     state.action_code = format!("{}", state.op_close).cobol_into();
-    p_800_call_extfh(state);
+    p_n800_call_extfh(state);
 }
 
 /// Paragraph: 800-CALL-EXTFH
-fn p_800_call_extfh(state: &mut ProgramState) {
+fn p_n800_call_extfh(state: &mut ProgramState) {
     // CALL 'EXTFH' USING &mut state.action_code, &mut state.fcd_map
     if (format!("{}", state.fcd_status_key_1).trim() == format!("{}", "9").trim()) && (format!("{}", state.fcd_binary).trim() == format!("{}", 199).trim()) {
         state.fcd_file_status = format!("{}", "10").cobol_into();
     }
 }
 
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
 fn main() {
     let mut state = ProgramState::default();
-    p_000_main(&mut state);
+    p_n000_main(&mut state);
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -158,6 +159,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub commission_ix: FixedString<30>,
+    pub end_of_file: FixedString<30>,
 }
 
 
@@ -242,6 +246,11 @@ fn sales_data_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE SALES-DATA
+fn sales_data_delete(state: &mut ProgramState) {
+    state._fs_sales_data = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT REPORT-FILE
 fn report_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("REPORT_FILE").unwrap_or("report_file.dat".to_string());
@@ -311,6 +320,11 @@ fn report_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_report_file = FileStatus::Success,
         Err(e) => state._fs_report_file = e,
     }
+}
+
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: DECLARATIVES

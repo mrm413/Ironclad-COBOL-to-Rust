@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.z = format!("{}", cobol_fn_range(3, -14, 0, 8, -3)).cobol_into();
+    state.z = format!("{}", cobol_fn_range(&cobol_fn_range(&cobol_fn_range(&cobol_fn_range(&format!("{}", 3), &format!("{}", -14)), &format!("{}", 0)), &format!("{}", 8)), &format!("{}", -3))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 22).trim() {
         println!("{}", format!("{}", state.z));
     }

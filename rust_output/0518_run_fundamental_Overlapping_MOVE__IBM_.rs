@@ -2,6 +2,7 @@
 // Source: SUBPROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,12 +35,14 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n78: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.f2 = format!("{}", cobol_refmod(&format!("{}", state.f1), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", 8).trim().parse::<i64>().unwrap_or(0))).cobol_into();
+    state.f2 = format!("{}", cobol_refmod(&format!("{}", state.f1), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", 8).trim().parse::<usize>().unwrap_or(0))).cobol_into();
     if format!("{}", state.f2).trim() != format!("{}", "Hallo1111111110").trim() {
         println!("{}{}", format!("{}", "error:3: "), format!("{}", state.f2));
     }

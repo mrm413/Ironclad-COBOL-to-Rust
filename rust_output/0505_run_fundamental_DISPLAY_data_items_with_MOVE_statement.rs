@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -50,19 +51,19 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.x_abc = format!("{}", "abc").cobol_into();
-    println!("{}{}", format!("{}", state.x_abc), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_abc));
     state.x_123 = format!("{}", 123).cobol_into();
-    println!("{}{}", format!("{}", state.x_123), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_123));
     state.x_p123 = format!("{}", 123).cobol_into();
-    println!("{}{}", format!("{}", state.x_p123), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_p123));
     state.x_n123 = format!("{}", -123).cobol_into();
-    println!("{}{}", format!("{}", state.x_n123), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_n123));
     state.x_12_3 = format!("{}", 12.300000).cobol_into();
-    println!("{}{}", format!("{}", state.x_12_3), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_12_3));
     state.x_p12_3 = format!("{}", 12.300000).cobol_into();
-    println!("{}{}", format!("{}", state.x_p12_3), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_p12_3));
     state.x_n12_3 = format!("{}", -12.300000).cobol_into();
-    println!("{}{}", format!("{}", state.x_n12_3), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x_n12_3));
     std::process::exit(0);
 }
 

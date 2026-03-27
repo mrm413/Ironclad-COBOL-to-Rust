@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -50,6 +51,10 @@ pub struct ProgramState {
     pub _fs_print_file: FileStatus,
     /// File handle for PRINT-FILE
     pub _fh_print_file: CobolFile,
+    pub _fs_report_1: FileStatus,
+    pub _fh_report_1: CobolFile,
+    pub _fs_initiate: FileStatus,
+    pub _fh_initiate: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -138,6 +143,31 @@ fn print_file_close(state: &mut ProgramState) {
         Err(e) => state._fs_print_file = e,
     }
 }
+
+/// DELETE PRINT-FILE
+fn print_file_delete(state: &mut ProgramState) {
+    state._fs_print_file = FileStatus::Success; // DELETE stub
+}
+
+fn report_1_open_input(state: &mut ProgramState) { /* stub */ }
+fn report_1_open_output(state: &mut ProgramState) { /* stub */ }
+fn report_1_open_io(state: &mut ProgramState) { /* stub */ }
+fn report_1_open_extend(state: &mut ProgramState) { /* stub */ }
+fn report_1_read(state: &mut ProgramState) { /* stub */ }
+fn report_1_write(state: &mut ProgramState) { /* stub */ }
+fn report_1_rewrite(state: &mut ProgramState) { /* stub */ }
+fn report_1_close(state: &mut ProgramState) { /* stub */ }
+fn report_1_delete(state: &mut ProgramState) { /* stub */ }
+
+fn initiate_open_input(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_output(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_io(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_extend(state: &mut ProgramState) { /* stub */ }
+fn initiate_read(state: &mut ProgramState) { /* stub */ }
+fn initiate_write(state: &mut ProgramState) { /* stub */ }
+fn initiate_rewrite(state: &mut ProgramState) { /* stub */ }
+fn initiate_close(state: &mut ProgramState) { /* stub */ }
+fn initiate_delete(state: &mut ProgramState) { /* stub */ }
 
 /// Paragraph: DECLARATIVES
 fn p_declaratives(state: &mut ProgramState) {

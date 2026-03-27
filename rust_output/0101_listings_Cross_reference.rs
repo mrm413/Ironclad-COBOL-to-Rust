@@ -2,6 +2,7 @@
 // Source: .cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -79,7 +80,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct DateFromSys {
     /// DFSYS
-    pub dfsys: [Decimal; 3],
+    pub dfsys: Vec<Decimal>,
 }
 impl std::fmt::Display for DateFromSys {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -150,7 +151,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct UpsiByte {
     /// UPSI-BIT
-    pub upsi_bit: [FixedString<1>; 8],
+    pub upsi_bit: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for UpsiByte {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -285,7 +286,7 @@ pub struct ProgramState {
     /// WS: DATE-FROM-SYS (group)
     pub date_from_sys: FixedString<6>,
     /// WS: DFSYS
-    pub dfsys: [Decimal; 3],
+    pub dfsys: Vec<Decimal>,
     /// WS: HEADINGS-LINE (group)
     pub headings_line: FixedString<80>,
     /// WS: FILLER
@@ -325,7 +326,7 @@ pub struct ProgramState {
     /// WS: UPSI-BYTE (group)
     pub upsi_byte: FixedString<8>,
     /// WS: UPSI-BIT
-    pub upsi_bit: [FixedString<1>; 8],
+    pub upsi_bit: Vec<FixedString<1>>,
     /// WS: MESSAGE-LOG (group)
     pub message_log: FixedString<82>,
     /// WS: FILLER
@@ -392,6 +393,15 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub a_blank: FixedString<30>,
+    pub addnew: FixedString<30>,
+    pub b_blank: FixedString<30>,
+    pub change: FixedString<30>,
+    pub disply: FixedString<30>,
+    pub endjob: FixedString<30>,
+    pub endset: FixedString<30>,
+    pub remove: FixedString<30>,
 }
 
 
@@ -481,6 +491,11 @@ fn old_version_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE OLD-VERSION
+fn old_version_delete(state: &mut ProgramState) {
+    state._fs_old_version = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT NEW-VERSION
 fn new_version_open_input(state: &mut ProgramState) {
     let path = std::env::var("NEW_VERSION").unwrap_or("new_version.dat".to_string());
@@ -556,6 +571,11 @@ fn new_version_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE NEW-VERSION
+fn new_version_delete(state: &mut ProgramState) {
+    state._fs_new_version = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT PRT-VERSION
 fn prt_version_open_input(state: &mut ProgramState) {
     let path = std::env::var("PRT_VERSION").unwrap_or("prt_version.dat".to_string());
@@ -625,6 +645,11 @@ fn prt_version_close(state: &mut ProgramState) {
         Ok(()) => state._fs_prt_version = FileStatus::Success,
         Err(e) => state._fs_prt_version = e,
     }
+}
+
+/// DELETE PRT-VERSION
+fn prt_version_delete(state: &mut ProgramState) {
+    state._fs_prt_version = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT MODIFICATION
@@ -708,6 +733,11 @@ fn modification_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE MODIFICATION
+fn modification_delete(state: &mut ProgramState) {
+    state._fs_modification = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT COMMENTARY
 fn commentary_open_input(state: &mut ProgramState) {
     let path = std::env::var("COMMENTARY").unwrap_or("commentary.dat".to_string());
@@ -779,13 +809,18 @@ fn commentary_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE COMMENTARY
+fn commentary_delete(state: &mut ProgramState) {
+    state._fs_commentary = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: START-SECTION
 fn p_start_section(state: &mut ProgramState) {
     old_version_open_input(state);
     modification_open_input(state);
     // OUTPUT NEW-VERSION COMMENTARY
-    state.upsi_bit = format!("{}", "F").cobol_into();
-    state.upsi_bit = format!("{}", "F").cobol_into();
+    for _elem in state.upsi_bit.iter_mut() { *_elem = format!("{}", "F").cobol_into(); }
+    for _elem in state.upsi_bit.iter_mut() { *_elem = format!("{}", "F").cobol_into(); }
     // ACCEPT DATE-FROM-SYS
     state.year_run = format!("{:?}", state.dfsys).cobol_into();
     state.month_run = format!("{:?}", state.dfsys).cobol_into();
@@ -805,6 +840,11 @@ fn p_output_a_record(state: &mut ProgramState) {
     { let _a: f64 = format!("{}", state.output_count).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.output_count = format!("{}", _a + _b).cobol_into(); }
     state.new_number = format!("{}", state.output_count).cobol_into();
     new_version_write(state);
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_end_job(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

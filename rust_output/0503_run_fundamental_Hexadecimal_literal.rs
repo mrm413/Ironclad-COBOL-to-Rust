@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -35,7 +36,7 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     // >>IF CHARSET = 'EBCDIC' DISPLAY X"F1F2F3" >>ELSE DISPLAY X"313233" >>END-IF END-DISPLAY
-    // CALL 'dump' USING &mut state.x"000102"
+    // CALL 'dump' USING &mut state.x000102
     std::process::exit(0);
 }
 

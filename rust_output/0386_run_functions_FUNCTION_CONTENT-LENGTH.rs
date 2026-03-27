@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -41,9 +42,9 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_content_length(format!("{}", state.p))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_content_length(&format!("{}", state.p))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 0).trim() {
-        println!("{}{}{}", format!("{}", "CONTENT-LENGTH NULL wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "CONTENT-LENGTH NULL wrong: "), format!("{}", state.test_fld));
     }
     state.p = " ".to_string().cobol_into();
     // OF X MOVE FUNCTION CONTENT-LENGTH ( P ) TO TEST-FLD IF TEST-FLD NOT = 3 DISPLAY 'CONTENT-LENGTH z"abc" wrong: ' TEST-FLD END-DISPLAY END-IF STOP RUN

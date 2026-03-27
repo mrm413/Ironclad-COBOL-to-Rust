@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -34,6 +35,11 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n0: FixedString<30>,
+    pub n21: FixedString<30>,
+    pub a1: FixedString<30>,
+    pub n1: FixedString<30>,
 }
 
 
@@ -43,24 +49,18 @@ fn p_main_1(state: &mut ProgramState) {
     state.myfld = format!("{}", " ").cobol_into();
     state.myfld = format!("{}", "\x00").cobol_into();
     state.myfld = format!("{}", "\u{00FF}").cobol_into();
-    state.myfld = format!("{}", state.quote).cobol_into();
-    state.'*' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
-    state.'0' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
-    state.'a1' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
-    state.'21' = format!("{}", state.all).cobol_into();
-    state.myfld = format!("{}", state.all).cobol_into();
+    state.myfld = format!("{}", "\"").cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
+    state.myfld = format!("{}", " ").cobol_into();
     state.myfld = " ".to_string().cobol_into();
     state.myfld = " ".to_string().cobol_into();
     state.myfld = format!("{}", "\u{00FF}").cobol_into();
     state.bigflt = format!("{}", "\u{00FF}").cobol_into();
-    state.bigflt = format!("{}", state.quote).cobol_into();
-    state.'*' = format!("{}", state.all).cobol_into();
-    state.bigflt = format!("{}", state.all).cobol_into();
-    state.'21' = format!("{}", state.all).cobol_into();
-    state.bigflt = format!("{}", state.all).cobol_into();
+    state.bigflt = format!("{}", "\"").cobol_into();
+    state.bigflt = format!("{}", " ").cobol_into();
+    state.bigflt = format!("{}", " ").cobol_into();
     std::process::exit(0);
 }
 

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -32,18 +33,21 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n61: FixedString<30>,
+    pub x: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    // CALL ' SUB ' USING &mut state.'x'
-    state.myrtn = format!("{}", state.x'00').cobol_into();
-    // CALL 'MYRTN' USING &mut state.'y'
-    // CALL 'SUB' USING &mut state.'z'
-    // CALL 'S U B' USING &mut state.'a'
+    // CALL ' SUB ' USING &mut state.x
+    state.myrtn = format!("{}", "\\x00").cobol_into();
+    // CALL 'MYRTN' USING &mut state.y
+    // CALL 'SUB' USING &mut state.z
+    // CALL 'S U B' USING &mut state.a
     state.myrtn = format!("{}", " S U B").cobol_into();
-    // CALL 'MYRTN' USING &mut state.'b'
+    // CALL 'MYRTN' USING &mut state.b
     std::process::exit(0);
     // END PROGRAM PROG
     // IDENTIFICATION DIVISION
@@ -52,7 +56,7 @@ fn p__implicit_(state: &mut ProgramState) {
     // LINKAGE SECTION
     // 01 X PIC X
     // PROCEDURE DIVISION USING X
-    println!("{}{}{}", format!("{}", "SUB GOT "), format!("{}", state.x), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", "SUB GOT "), format!("{}", state.x));
     // END PROGRAM " SUB"
     // IDENTIFICATION DIVISION
     // PROGRAM-ID. "S U B"
@@ -60,7 +64,7 @@ fn p__implicit_(state: &mut ProgramState) {
     // LINKAGE SECTION
     // 01 X PIC X
     // PROCEDURE DIVISION USING X
-    println!("{}{}{}", format!("{}", "S U B  GOT "), format!("{}", state.x), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", "S U B  GOT "), format!("{}", state.x));
     // END PROGRAM "S U B"
 }
 

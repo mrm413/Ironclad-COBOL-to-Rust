@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct X {
     /// Y
-    pub y: [FixedString<1>; 3],
+    pub y: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for X {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -37,7 +38,7 @@ impl X {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G1 {
     /// X
-    pub x: [X; 2],
+    pub x: Vec<X>,
 }
 impl std::fmt::Display for G1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -66,7 +67,7 @@ pub struct ProgramState {
     /// WS: X (group)
     pub x: FixedString<3>,
     /// WS: Y
-    pub y: [FixedString<1>; 3],
+    pub y: Vec<FixedString<1>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -87,12 +88,12 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{:?}", state.x), format!("{}", state.end_display));
-    println!("{}{}", format!("{:?}", state.x), format!("{}", state.end_display));
-    println!("{}{}", format!("{:?}", state.x), format!("{}", state.end_display));
-    println!("{}{}", format!("{:?}", state.y), format!("{}", state.end_display));
-    println!("{}{}", format!("{:?}", state.y), format!("{}", state.end_display));
-    println!("{}{}", format!("{:?}", state.y), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x));
+    println!("{}", format!("{}", state.x));
+    println!("{}", format!("{}", state.x));
+    println!("{}", format!("{:?}", state.y));
+    println!("{}", format!("{:?}", state.y));
+    println!("{}", format!("{:?}", state.y));
     std::process::exit(0);
 }
 

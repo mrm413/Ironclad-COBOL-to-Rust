@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,6 +30,13 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub first_var: FixedString<30>,
+    pub second_var: FixedString<30>,
+    pub test_var1: FixedString<30>,
+    pub test_var2: FixedString<30>,
+    pub x: FixedString<30>,
+    pub y: FixedString<30>,
 }
 
 

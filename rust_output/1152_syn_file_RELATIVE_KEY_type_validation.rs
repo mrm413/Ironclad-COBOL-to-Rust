@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -45,7 +46,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct F3Key {
     /// FILE3-KEY
-    pub file3_key: [File3Key; 2],
+    pub file3_key: Vec<File3Key>,
 }
 impl std::fmt::Display for F3Key {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -212,6 +213,11 @@ fn file1_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE FILE1
+fn file1_delete(state: &mut ProgramState) {
+    state._fs_file1 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT FILE2
 fn file2_open_input(state: &mut ProgramState) {
     let path = std::env::var("FILE2").unwrap_or("file2.dat".to_string());
@@ -285,6 +291,11 @@ fn file2_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE FILE2
+fn file2_delete(state: &mut ProgramState) {
+    state._fs_file2 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT FILE3
 fn file3_open_input(state: &mut ProgramState) {
     let path = std::env::var("FILE3").unwrap_or("file3.dat".to_string());
@@ -356,6 +367,11 @@ fn file3_close(state: &mut ProgramState) {
         Ok(()) => state._fs_file3 = FileStatus::Success,
         Err(e) => state._fs_file3 = e,
     }
+}
+
+/// DELETE FILE3
+fn file3_delete(state: &mut ProgramState) {
+    state._fs_file3 = FileStatus::Success; // DELETE stub
 }
 
 /// OPEN INPUT FILE4
@@ -433,6 +449,11 @@ fn file4_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE FILE4
+fn file4_delete(state: &mut ProgramState) {
+    state._fs_file4 = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT FILE5
 fn file5_open_input(state: &mut ProgramState) {
     let path = std::env::var("FILE5").unwrap_or("file5.dat".to_string());
@@ -504,6 +525,11 @@ fn file5_close(state: &mut ProgramState) {
         Ok(()) => state._fs_file5 = FileStatus::Success,
         Err(e) => state._fs_file5 = e,
     }
+}
+
+/// DELETE FILE5
+fn file5_delete(state: &mut ProgramState) {
+    state._fs_file5 = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: _IMPLICIT_

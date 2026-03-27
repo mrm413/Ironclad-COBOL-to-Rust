@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -49,29 +50,32 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f1))).trim() != format!("{}", -999).trim() {
-        println!("{}{}", format!("{}", "Test 1 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f1))).trim() != format!("{}", -999).trim() {
+        println!("{}", format!("{}", "Test 1 fail"));
     }
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f2))).trim() != format!("{}", -9999).trim() {
-        println!("{}{}", format!("{}", "Test 2 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f2))).trim() != format!("{}", -9999).trim() {
+        println!("{}", format!("{}", "Test 2 fail"));
     }
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f3))).trim() != format!("{}", 0).trim() {
-        println!("{}{}", format!("{}", "Test 3 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f3))).trim() != format!("{}", 0).trim() {
+        println!("{}", format!("{}", "Test 3 fail"));
     }
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f4))).trim() != format!("{}", -99999.990000).trim() {
-        println!("{}{}", format!("{}", "Test 4 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f4))).trim() != format!("{}", -99999.990000).trim() {
+        println!("{}", format!("{}", "Test 4 fail"));
     }
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f5))).trim() != format!("{}", 0).trim() {
-        println!("{}{}", format!("{}", "Test 5 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f5))).trim() != format!("{}", 0).trim() {
+        println!("{}", format!("{}", "Test 5 fail"));
     }
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f6))).trim() != format!("{}", -128).trim() {
-        println!("{}{}", format!("{}", "Test 6 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f6))).trim() != format!("{}", -128).trim() {
+        println!("{}", format!("{}", "Test 6 fail"));
     }
-    if format!("{}", cobol_fn_lowest_algebraic(format!("{}", state.f7))).trim() != format!("{}", 0).trim() {
-        println!("{}{}", format!("{}", "Test 7 fail"), format!("{}", state.end_display));
+    if format!("{}", cobol_fn_lowest_algebraic(&format!("{}", state.f7))).trim() != format!("{}", 0).trim() {
+        println!("{}", format!("{}", "Test 7 fail"));
     }
     std::process::exit(0);
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_lowest_algebraic(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

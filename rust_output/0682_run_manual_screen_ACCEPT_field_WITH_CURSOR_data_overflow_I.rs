@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -45,10 +46,9 @@ impl ProgramState {
 
 /// Paragraph: TESTME
 fn p_testme(state: &mut ProgramState) {
-    state.environment = " ".to_string().cobol_into();
     // TO 'TRUE' SET ENVIRONMENT 'COB_SCREEN_ESC' TO 'TRUE' DISPLAY "If the cursor below is positioned at the 'E'" LINE 1 COLUMN 1
-    println!("{}{}{}{}{}", format!("{}", "(fifth column in field) below, then position it at"), format!("{}", state.line), format!("{}", 2), format!("{}", state.column), format!("{}", 1));
-    println!("{}{}{}{}{}", format!("{}", "the 'C' (third column) and press ENTER."), format!("{}", state.line), format!("{}", 3), format!("{}", state.column), format!("{}", 1));
+    println!("{}", format!("{}", "(fifth column in field) below, then position it at"));
+    println!("{}", format!("{}", "the 'C' (third column) and press ENTER."));
     state.ws_x_20 = format!("{}", "ABCDE     ").cobol_into();
     state.cur_pos = format!("{}", 8).cobol_into();
     // ACCEPT WS-X-20

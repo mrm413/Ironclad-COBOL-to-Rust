@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -247,6 +248,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub odd_record: FixedString<30>,
 }
 
 
@@ -345,6 +348,12 @@ fn flatfile_close(state: &mut ProgramState) {
     state.cust_stat = format!("{}", state._fs_flatfile).cobol_into();
 }
 
+/// DELETE FLATFILE
+fn flatfile_delete(state: &mut ProgramState) {
+    state._fs_flatfile = FileStatus::Success; // DELETE stub
+    state.cust_stat = format!("{}", state._fs_flatfile).cobol_into();
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     p_loadfile(state);
@@ -388,8 +397,10 @@ fn p__implicit_(state: &mut ProgramState) {
     }
     flatfile_close(state);
     flatfile_open_extend(state);
-    p_load_record(state);
-    // VARYING SUB FROM 1 BY 1 UNTIL SUB > 2 CLOSE FLATFILE
+    while !((format!("{}", state.sub).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 2).trim().parse::<f64>().unwrap_or(0.0))) {
+        p_load_record(state);
+    }
+    flatfile_close(state);
     flatfile_open_input(state);
     println!("{}{}", format!("{}", "List after extend Open Sts:"), format!("{}", state.cust_stat));
     while !((format!("{}", state.cust_stat).trim() != format!("{}", "00").trim())) {
@@ -415,8 +426,9 @@ fn p_read_record(state: &mut ProgramState) {
 fn p_loadfile(state: &mut ProgramState) {
     println!("{}", format!("{}", "Loading sample program data file."));
     flatfile_open_output(state);
-    p_load_record(state);
-    // VARYING SUB FROM 1 BY 1 UNTIL SUB > MAX-SUB
+    while !((format!("{}", state.sub).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.max_sub).trim().parse::<f64>().unwrap_or(0.0))) {
+        p_load_record(state);
+    }
     println!("{}", format!("{}", "Sample program data file load complete."));
     flatfile_close(state);
 }
@@ -446,6 +458,11 @@ fn p_load_record(state: &mut ProgramState) {
     if format!("{}", state.cust_stat).trim() != format!("{}", "00").trim() {
         println!("{}{}", format!("{}", "Write Error "), format!("{}", state.cust_stat));
     }
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

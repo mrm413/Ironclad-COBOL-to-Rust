@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.str = format!("{}", cobol_fn_formatted_datetime("YYYYMMDDThhmmss", 1, 45296)).cobol_into();
+    state.str = format!("{}", cobol_fn_formatted_datetime("YYYYMMDDThhmmss", &format!("{}", 1), &format!("{}", 45296), "0", "0")).cobol_into();
     if { let __v = format!("{}", state.str); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> "16010101T123456" DISPLAY "Test 1 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATETIME ( "YYYY-MM-DDThh:mm:ss" 1 45296 ) TO STR IF STR <> "1601-01-01T12:34:56" DISPLAY "Test 2 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATETIME ( "YYYYDDDThhmmss+hhmm" 1 45296 -754 ) TO STR IF STR <> "1601001T123456-1234" DISPLAY "Test 3 failed: " STR END-DISPLAY END-IF MOVE FUNCTION FORMATTED-DATETIME ( "YYYYDDDThhmmss+hhmm" 1 45296 ) TO STR IF STR <> "1601001T123456+0000" DISPLAY "Test 4 failed: " STR END-DISPLAY END-IF *> TEST UNDERFLOW TO NEXT DAY DUE TO OFFSET MOVE FUNCTION FORMATTED-DATETIME ( "YYYYDDDThhmmss.sssssssssZ" 150846 0 1 ) TO STR IF STR <> "2013365T235900.000000000Z" DISPLAY "Test 5 failed: " STR END-DISPLAY END-IF STOP RUN

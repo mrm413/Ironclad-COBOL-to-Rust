@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ pub struct ProgramState {
     /// WS: FILLER (group)
     pub filler_3: FixedString<80>,
     /// WS: DATA-FIELD
-    pub data_field: [FixedString<40>; 2],
+    pub data_field: Vec<FixedString<40>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -45,7 +46,7 @@ pub struct ProgramState {
 fn p_declaratives(state: &mut ProgramState) {
     // TEST-DEBUG SECTION
     // USE FOR DEBUGGING ON ALL REFERENCES OF DATA-FIELD
-    println!("{}{}{}", format!("{}", state.debug_item), format!("{}", "|"), format!("{}", state.end_display));
+    println!("{}{}", format!("{}", state.debug_item), format!("{}", "|"));
     // END DECLARATIVES
 }
 

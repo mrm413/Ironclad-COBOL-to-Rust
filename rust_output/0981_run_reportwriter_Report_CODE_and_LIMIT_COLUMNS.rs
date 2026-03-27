@@ -2,6 +2,7 @@
 // Source: PROGL.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -26,12 +27,16 @@ pub struct ProgramState {
     /// WS: FILLER (group)
     pub filler_1: FixedString<50>,
     /// WS: DIGS
-    pub digs: [FixedString<10>; 5],
+    pub digs: Vec<FixedString<10>>,
     // --- File handles ---
     /// File status for RP-FILE
     pub _fs_rp_file: FileStatus,
     /// File handle for RP-FILE
     pub _fh_rp_file: CobolFile,
+    pub _fs_rp: FileStatus,
+    pub _fh_rp: CobolFile,
+    pub _fs_initiate: FileStatus,
+    pub _fh_initiate: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -47,6 +52,12 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub mark: FixedString<30>,
+    pub mrk4: FixedString<30>,
+    pub num4a: FixedString<30>,
+    pub num4b: FixedString<30>,
+    pub nums: FixedString<30>,
 }
 
 
@@ -121,6 +132,31 @@ fn rp_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE RP-FILE
+fn rp_file_delete(state: &mut ProgramState) {
+    state._fs_rp_file = FileStatus::Success; // DELETE stub
+}
+
+fn rp_open_input(state: &mut ProgramState) { /* stub */ }
+fn rp_open_output(state: &mut ProgramState) { /* stub */ }
+fn rp_open_io(state: &mut ProgramState) { /* stub */ }
+fn rp_open_extend(state: &mut ProgramState) { /* stub */ }
+fn rp_read(state: &mut ProgramState) { /* stub */ }
+fn rp_write(state: &mut ProgramState) { /* stub */ }
+fn rp_rewrite(state: &mut ProgramState) { /* stub */ }
+fn rp_close(state: &mut ProgramState) { /* stub */ }
+fn rp_delete(state: &mut ProgramState) { /* stub */ }
+
+fn initiate_open_input(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_output(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_io(state: &mut ProgramState) { /* stub */ }
+fn initiate_open_extend(state: &mut ProgramState) { /* stub */ }
+fn initiate_read(state: &mut ProgramState) { /* stub */ }
+fn initiate_write(state: &mut ProgramState) { /* stub */ }
+fn initiate_rewrite(state: &mut ProgramState) { /* stub */ }
+fn initiate_close(state: &mut ProgramState) { /* stub */ }
+fn initiate_delete(state: &mut ProgramState) { /* stub */ }
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     rp_file_open_output(state);
@@ -138,6 +174,91 @@ fn p__implicit_(state: &mut ProgramState) {
     state.num4b = format!("{}", 403).cobol_into();
     state.mrk4 = format!("{}", "<4>").cobol_into();
     // GENERATE RP-DTL4 TERMINATE RP CLOSE RP-FILE STOP RUN
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_input(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_output(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_io(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_open_extend(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_read(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_write(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_close(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_file_delete(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_input(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_output(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_io(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_open_extend(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_read(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_write(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_rewrite(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_close(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph (safety net)
+fn p_delete(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

@@ -2,6 +2,7 @@
 // Source: PDTESTR.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -3050,1003 +3051,1003 @@ fn p_main(state: &mut ProgramState) {
 /// Paragraph: DO-CHECK
 fn p_do_check(state: &mut ProgramState) {
     { let _a: f64 = format!("{}", state.fld0001b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0001a).trim().parse().unwrap_or(0.0); state.fld0001b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0002b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0002a).trim().parse().unwrap_or(0.0); state.fld0002b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0003b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0003a).trim().parse().unwrap_or(0.0); state.fld0003b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0004b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0004a).trim().parse().unwrap_or(0.0); state.fld0004b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0005b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0005a).trim().parse().unwrap_or(0.0); state.fld0005b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0006b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0006a).trim().parse().unwrap_or(0.0); state.fld0006b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0007b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0007a).trim().parse().unwrap_or(0.0); state.fld0007b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0008b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0008a).trim().parse().unwrap_or(0.0); state.fld0008b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0009b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0009a).trim().parse().unwrap_or(0.0); state.fld0009b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0010b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0010a).trim().parse().unwrap_or(0.0); state.fld0010b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0011b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0011a).trim().parse().unwrap_or(0.0); state.fld0011b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0012b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0012a).trim().parse().unwrap_or(0.0); state.fld0012b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0013b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0013a).trim().parse().unwrap_or(0.0); state.fld0013b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0014b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0014a).trim().parse().unwrap_or(0.0); state.fld0014b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0015b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0015a).trim().parse().unwrap_or(0.0); state.fld0015b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0016b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0016a).trim().parse().unwrap_or(0.0); state.fld0016b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0017b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0017a).trim().parse().unwrap_or(0.0); state.fld0017b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0018b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0018a).trim().parse().unwrap_or(0.0); state.fld0018b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0019b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0019a).trim().parse().unwrap_or(0.0); state.fld0019b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0020b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0020a).trim().parse().unwrap_or(0.0); state.fld0020b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0021b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0021a).trim().parse().unwrap_or(0.0); state.fld0021b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0022b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0022a).trim().parse().unwrap_or(0.0); state.fld0022b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0023b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0023a).trim().parse().unwrap_or(0.0); state.fld0023b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0024b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0024a).trim().parse().unwrap_or(0.0); state.fld0024b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0025b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0025a).trim().parse().unwrap_or(0.0); state.fld0025b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0026b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0026a).trim().parse().unwrap_or(0.0); state.fld0026b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0027b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0027a).trim().parse().unwrap_or(0.0); state.fld0027b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0028b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0028a).trim().parse().unwrap_or(0.0); state.fld0028b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0029b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0029a).trim().parse().unwrap_or(0.0); state.fld0029b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0030b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0030a).trim().parse().unwrap_or(0.0); state.fld0030b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0031b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0031a).trim().parse().unwrap_or(0.0); state.fld0031b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0032b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0032a).trim().parse().unwrap_or(0.0); state.fld0032b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0033b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0033a).trim().parse().unwrap_or(0.0); state.fld0033b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0034b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0034a).trim().parse().unwrap_or(0.0); state.fld0034b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0035b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0035a).trim().parse().unwrap_or(0.0); state.fld0035b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0036b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0036a).trim().parse().unwrap_or(0.0); state.fld0036b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0037b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0037a).trim().parse().unwrap_or(0.0); state.fld0037b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0038b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0038a).trim().parse().unwrap_or(0.0); state.fld0038b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0039b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0039a).trim().parse().unwrap_or(0.0); state.fld0039b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0040b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0040a).trim().parse().unwrap_or(0.0); state.fld0040b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0041b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0041a).trim().parse().unwrap_or(0.0); state.fld0041b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0042b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0042a).trim().parse().unwrap_or(0.0); state.fld0042b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0043b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0043a).trim().parse().unwrap_or(0.0); state.fld0043b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0044b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0044a).trim().parse().unwrap_or(0.0); state.fld0044b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0045b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0045a).trim().parse().unwrap_or(0.0); state.fld0045b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0046b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0046a).trim().parse().unwrap_or(0.0); state.fld0046b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0047b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0047a).trim().parse().unwrap_or(0.0); state.fld0047b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0048b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0048a).trim().parse().unwrap_or(0.0); state.fld0048b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0049b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0049a).trim().parse().unwrap_or(0.0); state.fld0049b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0050b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0050a).trim().parse().unwrap_or(0.0); state.fld0050b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0051b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0051a).trim().parse().unwrap_or(0.0); state.fld0051b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0052b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0052a).trim().parse().unwrap_or(0.0); state.fld0052b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0053b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0053a).trim().parse().unwrap_or(0.0); state.fld0053b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0054b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0054a).trim().parse().unwrap_or(0.0); state.fld0054b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0055b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0055a).trim().parse().unwrap_or(0.0); state.fld0055b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0056b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0056a).trim().parse().unwrap_or(0.0); state.fld0056b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0057b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0057a).trim().parse().unwrap_or(0.0); state.fld0057b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0058b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0058a).trim().parse().unwrap_or(0.0); state.fld0058b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0059b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0059a).trim().parse().unwrap_or(0.0); state.fld0059b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0060b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0060a).trim().parse().unwrap_or(0.0); state.fld0060b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0061b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0061a).trim().parse().unwrap_or(0.0); state.fld0061b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0062b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0062a).trim().parse().unwrap_or(0.0); state.fld0062b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0063b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0063a).trim().parse().unwrap_or(0.0); state.fld0063b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0064b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0064a).trim().parse().unwrap_or(0.0); state.fld0064b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0065b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0065a).trim().parse().unwrap_or(0.0); state.fld0065b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0066b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0066a).trim().parse().unwrap_or(0.0); state.fld0066b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0067b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0067a).trim().parse().unwrap_or(0.0); state.fld0067b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0068b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0068a).trim().parse().unwrap_or(0.0); state.fld0068b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0069b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0069a).trim().parse().unwrap_or(0.0); state.fld0069b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0070b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0070a).trim().parse().unwrap_or(0.0); state.fld0070b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0071b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0071a).trim().parse().unwrap_or(0.0); state.fld0071b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0072b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0072a).trim().parse().unwrap_or(0.0); state.fld0072b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0073b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0073a).trim().parse().unwrap_or(0.0); state.fld0073b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0074b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0074a).trim().parse().unwrap_or(0.0); state.fld0074b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0075b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0075a).trim().parse().unwrap_or(0.0); state.fld0075b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0076b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0076a).trim().parse().unwrap_or(0.0); state.fld0076b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0077b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0077a).trim().parse().unwrap_or(0.0); state.fld0077b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0078b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0078a).trim().parse().unwrap_or(0.0); state.fld0078b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0079b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0079a).trim().parse().unwrap_or(0.0); state.fld0079b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0080b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0080a).trim().parse().unwrap_or(0.0); state.fld0080b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0081b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0081a).trim().parse().unwrap_or(0.0); state.fld0081b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0082b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0082a).trim().parse().unwrap_or(0.0); state.fld0082b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0083b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0083a).trim().parse().unwrap_or(0.0); state.fld0083b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0084b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0084a).trim().parse().unwrap_or(0.0); state.fld0084b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0085b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0085a).trim().parse().unwrap_or(0.0); state.fld0085b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0086b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0086a).trim().parse().unwrap_or(0.0); state.fld0086b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0087b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0087a).trim().parse().unwrap_or(0.0); state.fld0087b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0088b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0088a).trim().parse().unwrap_or(0.0); state.fld0088b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0089b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0089a).trim().parse().unwrap_or(0.0); state.fld0089b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0090b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0090a).trim().parse().unwrap_or(0.0); state.fld0090b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0091b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0091a).trim().parse().unwrap_or(0.0); state.fld0091b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0092b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0092a).trim().parse().unwrap_or(0.0); state.fld0092b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0093b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0093a).trim().parse().unwrap_or(0.0); state.fld0093b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0094b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0094a).trim().parse().unwrap_or(0.0); state.fld0094b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0095b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0095a).trim().parse().unwrap_or(0.0); state.fld0095b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0096b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0096a).trim().parse().unwrap_or(0.0); state.fld0096b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0097b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0097a).trim().parse().unwrap_or(0.0); state.fld0097b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0098b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0098a).trim().parse().unwrap_or(0.0); state.fld0098b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0099b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0099a).trim().parse().unwrap_or(0.0); state.fld0099b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0100b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0100a).trim().parse().unwrap_or(0.0); state.fld0100b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0101b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0101a).trim().parse().unwrap_or(0.0); state.fld0101b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0102b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0102a).trim().parse().unwrap_or(0.0); state.fld0102b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0103b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0103a).trim().parse().unwrap_or(0.0); state.fld0103b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0104b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0104a).trim().parse().unwrap_or(0.0); state.fld0104b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0105b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0105a).trim().parse().unwrap_or(0.0); state.fld0105b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0106b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0106a).trim().parse().unwrap_or(0.0); state.fld0106b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0107b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0107a).trim().parse().unwrap_or(0.0); state.fld0107b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0108b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0108a).trim().parse().unwrap_or(0.0); state.fld0108b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0109b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0109a).trim().parse().unwrap_or(0.0); state.fld0109b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0110b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0110a).trim().parse().unwrap_or(0.0); state.fld0110b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0111b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0111a).trim().parse().unwrap_or(0.0); state.fld0111b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0112b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0112a).trim().parse().unwrap_or(0.0); state.fld0112b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0113b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0113a).trim().parse().unwrap_or(0.0); state.fld0113b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0114b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0114a).trim().parse().unwrap_or(0.0); state.fld0114b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0115b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0115a).trim().parse().unwrap_or(0.0); state.fld0115b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0116b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0116a).trim().parse().unwrap_or(0.0); state.fld0116b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0117b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0117a).trim().parse().unwrap_or(0.0); state.fld0117b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0118b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0118a).trim().parse().unwrap_or(0.0); state.fld0118b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0119b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0119a).trim().parse().unwrap_or(0.0); state.fld0119b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0120b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0120a).trim().parse().unwrap_or(0.0); state.fld0120b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0121b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0121a).trim().parse().unwrap_or(0.0); state.fld0121b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0122b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0122a).trim().parse().unwrap_or(0.0); state.fld0122b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0123b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0123a).trim().parse().unwrap_or(0.0); state.fld0123b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0124b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0124a).trim().parse().unwrap_or(0.0); state.fld0124b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0125b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0125a).trim().parse().unwrap_or(0.0); state.fld0125b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0126b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0126a).trim().parse().unwrap_or(0.0); state.fld0126b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0127b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0127a).trim().parse().unwrap_or(0.0); state.fld0127b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0128b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0128a).trim().parse().unwrap_or(0.0); state.fld0128b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0129b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0129a).trim().parse().unwrap_or(0.0); state.fld0129b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0130b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0130a).trim().parse().unwrap_or(0.0); state.fld0130b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0131b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0131a).trim().parse().unwrap_or(0.0); state.fld0131b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0132b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0132a).trim().parse().unwrap_or(0.0); state.fld0132b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0133b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0133a).trim().parse().unwrap_or(0.0); state.fld0133b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0134b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0134a).trim().parse().unwrap_or(0.0); state.fld0134b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0135b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0135a).trim().parse().unwrap_or(0.0); state.fld0135b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0136b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0136a).trim().parse().unwrap_or(0.0); state.fld0136b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0137b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0137a).trim().parse().unwrap_or(0.0); state.fld0137b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0138b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0138a).trim().parse().unwrap_or(0.0); state.fld0138b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0139b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0139a).trim().parse().unwrap_or(0.0); state.fld0139b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0140b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0140a).trim().parse().unwrap_or(0.0); state.fld0140b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0141b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0141a).trim().parse().unwrap_or(0.0); state.fld0141b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0142b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0142a).trim().parse().unwrap_or(0.0); state.fld0142b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0143b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0143a).trim().parse().unwrap_or(0.0); state.fld0143b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0144b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0144a).trim().parse().unwrap_or(0.0); state.fld0144b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0145b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0145a).trim().parse().unwrap_or(0.0); state.fld0145b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0146b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0146a).trim().parse().unwrap_or(0.0); state.fld0146b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0147b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0147a).trim().parse().unwrap_or(0.0); state.fld0147b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0148b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0148a).trim().parse().unwrap_or(0.0); state.fld0148b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0149b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0149a).trim().parse().unwrap_or(0.0); state.fld0149b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0150b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0150a).trim().parse().unwrap_or(0.0); state.fld0150b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0151b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0151a).trim().parse().unwrap_or(0.0); state.fld0151b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0152b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0152a).trim().parse().unwrap_or(0.0); state.fld0152b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0153b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0153a).trim().parse().unwrap_or(0.0); state.fld0153b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0154b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0154a).trim().parse().unwrap_or(0.0); state.fld0154b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0155b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0155a).trim().parse().unwrap_or(0.0); state.fld0155b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0156b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0156a).trim().parse().unwrap_or(0.0); state.fld0156b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0157b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0157a).trim().parse().unwrap_or(0.0); state.fld0157b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0158b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0158a).trim().parse().unwrap_or(0.0); state.fld0158b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0159b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0159a).trim().parse().unwrap_or(0.0); state.fld0159b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0160b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0160a).trim().parse().unwrap_or(0.0); state.fld0160b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0161b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0161a).trim().parse().unwrap_or(0.0); state.fld0161b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0162b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0162a).trim().parse().unwrap_or(0.0); state.fld0162b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0163b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0163a).trim().parse().unwrap_or(0.0); state.fld0163b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0164b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0164a).trim().parse().unwrap_or(0.0); state.fld0164b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0165b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0165a).trim().parse().unwrap_or(0.0); state.fld0165b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0166b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0166a).trim().parse().unwrap_or(0.0); state.fld0166b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0167b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0167a).trim().parse().unwrap_or(0.0); state.fld0167b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0168b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0168a).trim().parse().unwrap_or(0.0); state.fld0168b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0169b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0169a).trim().parse().unwrap_or(0.0); state.fld0169b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0170b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0170a).trim().parse().unwrap_or(0.0); state.fld0170b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0171b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0171a).trim().parse().unwrap_or(0.0); state.fld0171b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0172b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0172a).trim().parse().unwrap_or(0.0); state.fld0172b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0173b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0173a).trim().parse().unwrap_or(0.0); state.fld0173b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0174b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0174a).trim().parse().unwrap_or(0.0); state.fld0174b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0175b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0175a).trim().parse().unwrap_or(0.0); state.fld0175b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0176b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0176a).trim().parse().unwrap_or(0.0); state.fld0176b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0177b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0177a).trim().parse().unwrap_or(0.0); state.fld0177b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0178b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0178a).trim().parse().unwrap_or(0.0); state.fld0178b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0179b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0179a).trim().parse().unwrap_or(0.0); state.fld0179b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0180b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0180a).trim().parse().unwrap_or(0.0); state.fld0180b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0181b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0181a).trim().parse().unwrap_or(0.0); state.fld0181b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0182b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0182a).trim().parse().unwrap_or(0.0); state.fld0182b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0183b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0183a).trim().parse().unwrap_or(0.0); state.fld0183b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0184b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0184a).trim().parse().unwrap_or(0.0); state.fld0184b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0185b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0185a).trim().parse().unwrap_or(0.0); state.fld0185b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0186b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0186a).trim().parse().unwrap_or(0.0); state.fld0186b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0187b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0187a).trim().parse().unwrap_or(0.0); state.fld0187b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0188b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0188a).trim().parse().unwrap_or(0.0); state.fld0188b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0189b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0189a).trim().parse().unwrap_or(0.0); state.fld0189b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0190b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0190a).trim().parse().unwrap_or(0.0); state.fld0190b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0191b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0191a).trim().parse().unwrap_or(0.0); state.fld0191b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0192b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0192a).trim().parse().unwrap_or(0.0); state.fld0192b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0193b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0193a).trim().parse().unwrap_or(0.0); state.fld0193b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0194b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0194a).trim().parse().unwrap_or(0.0); state.fld0194b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0195b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0195a).trim().parse().unwrap_or(0.0); state.fld0195b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0196b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0196a).trim().parse().unwrap_or(0.0); state.fld0196b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0197b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0197a).trim().parse().unwrap_or(0.0); state.fld0197b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0198b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0198a).trim().parse().unwrap_or(0.0); state.fld0198b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0199b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0199a).trim().parse().unwrap_or(0.0); state.fld0199b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0200b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0200a).trim().parse().unwrap_or(0.0); state.fld0200b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0201b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0201a).trim().parse().unwrap_or(0.0); state.fld0201b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0202b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0202a).trim().parse().unwrap_or(0.0); state.fld0202b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0203b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0203a).trim().parse().unwrap_or(0.0); state.fld0203b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0204b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0204a).trim().parse().unwrap_or(0.0); state.fld0204b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0205b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0205a).trim().parse().unwrap_or(0.0); state.fld0205b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0206b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0206a).trim().parse().unwrap_or(0.0); state.fld0206b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0207b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0207a).trim().parse().unwrap_or(0.0); state.fld0207b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0208b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0208a).trim().parse().unwrap_or(0.0); state.fld0208b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0209b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0209a).trim().parse().unwrap_or(0.0); state.fld0209b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0210b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0210a).trim().parse().unwrap_or(0.0); state.fld0210b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0211b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0211a).trim().parse().unwrap_or(0.0); state.fld0211b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0212b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0212a).trim().parse().unwrap_or(0.0); state.fld0212b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0213b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0213a).trim().parse().unwrap_or(0.0); state.fld0213b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0214b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0214a).trim().parse().unwrap_or(0.0); state.fld0214b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0215b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0215a).trim().parse().unwrap_or(0.0); state.fld0215b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0216b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0216a).trim().parse().unwrap_or(0.0); state.fld0216b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0217b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0217a).trim().parse().unwrap_or(0.0); state.fld0217b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0218b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0218a).trim().parse().unwrap_or(0.0); state.fld0218b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0219b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0219a).trim().parse().unwrap_or(0.0); state.fld0219b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0220b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0220a).trim().parse().unwrap_or(0.0); state.fld0220b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0221b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0221a).trim().parse().unwrap_or(0.0); state.fld0221b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0222b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0222a).trim().parse().unwrap_or(0.0); state.fld0222b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0223b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0223a).trim().parse().unwrap_or(0.0); state.fld0223b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0224b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0224a).trim().parse().unwrap_or(0.0); state.fld0224b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0225b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0225a).trim().parse().unwrap_or(0.0); state.fld0225b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0226b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0226a).trim().parse().unwrap_or(0.0); state.fld0226b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0227b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0227a).trim().parse().unwrap_or(0.0); state.fld0227b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0228b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0228a).trim().parse().unwrap_or(0.0); state.fld0228b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0229b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0229a).trim().parse().unwrap_or(0.0); state.fld0229b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0230b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0230a).trim().parse().unwrap_or(0.0); state.fld0230b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0231b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0231a).trim().parse().unwrap_or(0.0); state.fld0231b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0232b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0232a).trim().parse().unwrap_or(0.0); state.fld0232b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0233b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0233a).trim().parse().unwrap_or(0.0); state.fld0233b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0234b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0234a).trim().parse().unwrap_or(0.0); state.fld0234b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0235b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0235a).trim().parse().unwrap_or(0.0); state.fld0235b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0236b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0236a).trim().parse().unwrap_or(0.0); state.fld0236b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0237b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0237a).trim().parse().unwrap_or(0.0); state.fld0237b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0238b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0238a).trim().parse().unwrap_or(0.0); state.fld0238b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0239b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0239a).trim().parse().unwrap_or(0.0); state.fld0239b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0240b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0240a).trim().parse().unwrap_or(0.0); state.fld0240b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0241b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0241a).trim().parse().unwrap_or(0.0); state.fld0241b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0242b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0242a).trim().parse().unwrap_or(0.0); state.fld0242b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0243b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0243a).trim().parse().unwrap_or(0.0); state.fld0243b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0244b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0244a).trim().parse().unwrap_or(0.0); state.fld0244b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0245b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0245a).trim().parse().unwrap_or(0.0); state.fld0245b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0246b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0246a).trim().parse().unwrap_or(0.0); state.fld0246b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0247b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0247a).trim().parse().unwrap_or(0.0); state.fld0247b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0248b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0248a).trim().parse().unwrap_or(0.0); state.fld0248b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0249b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0249a).trim().parse().unwrap_or(0.0); state.fld0249b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0250b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0250a).trim().parse().unwrap_or(0.0); state.fld0250b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0251b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0251a).trim().parse().unwrap_or(0.0); state.fld0251b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0252b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0252a).trim().parse().unwrap_or(0.0); state.fld0252b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0253b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0253a).trim().parse().unwrap_or(0.0); state.fld0253b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0254b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0254a).trim().parse().unwrap_or(0.0); state.fld0254b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0255b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0255a).trim().parse().unwrap_or(0.0); state.fld0255b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0256b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0256a).trim().parse().unwrap_or(0.0); state.fld0256b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0257b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0257a).trim().parse().unwrap_or(0.0); state.fld0257b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0258b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0258a).trim().parse().unwrap_or(0.0); state.fld0258b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0259b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0259a).trim().parse().unwrap_or(0.0); state.fld0259b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0260b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0260a).trim().parse().unwrap_or(0.0); state.fld0260b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0261b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0261a).trim().parse().unwrap_or(0.0); state.fld0261b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0262b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0262a).trim().parse().unwrap_or(0.0); state.fld0262b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0263b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0263a).trim().parse().unwrap_or(0.0); state.fld0263b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0264b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0264a).trim().parse().unwrap_or(0.0); state.fld0264b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0265b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0265a).trim().parse().unwrap_or(0.0); state.fld0265b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0266b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0266a).trim().parse().unwrap_or(0.0); state.fld0266b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0267b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0267a).trim().parse().unwrap_or(0.0); state.fld0267b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0268b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0268a).trim().parse().unwrap_or(0.0); state.fld0268b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0269b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0269a).trim().parse().unwrap_or(0.0); state.fld0269b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0270b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0270a).trim().parse().unwrap_or(0.0); state.fld0270b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0271b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0271a).trim().parse().unwrap_or(0.0); state.fld0271b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0272b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0272a).trim().parse().unwrap_or(0.0); state.fld0272b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0273b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0273a).trim().parse().unwrap_or(0.0); state.fld0273b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0274b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0274a).trim().parse().unwrap_or(0.0); state.fld0274b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0275b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0275a).trim().parse().unwrap_or(0.0); state.fld0275b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0276b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0276a).trim().parse().unwrap_or(0.0); state.fld0276b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0277b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0277a).trim().parse().unwrap_or(0.0); state.fld0277b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0278b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0278a).trim().parse().unwrap_or(0.0); state.fld0278b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0279b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0279a).trim().parse().unwrap_or(0.0); state.fld0279b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0280b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0280a).trim().parse().unwrap_or(0.0); state.fld0280b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0281b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0281a).trim().parse().unwrap_or(0.0); state.fld0281b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0282b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0282a).trim().parse().unwrap_or(0.0); state.fld0282b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0283b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0283a).trim().parse().unwrap_or(0.0); state.fld0283b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0284b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0284a).trim().parse().unwrap_or(0.0); state.fld0284b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0285b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0285a).trim().parse().unwrap_or(0.0); state.fld0285b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0286b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0286a).trim().parse().unwrap_or(0.0); state.fld0286b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0287b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0287a).trim().parse().unwrap_or(0.0); state.fld0287b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0288b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0288a).trim().parse().unwrap_or(0.0); state.fld0288b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0289b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0289a).trim().parse().unwrap_or(0.0); state.fld0289b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0290b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0290a).trim().parse().unwrap_or(0.0); state.fld0290b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0291b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0291a).trim().parse().unwrap_or(0.0); state.fld0291b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0292b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0292a).trim().parse().unwrap_or(0.0); state.fld0292b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0293b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0293a).trim().parse().unwrap_or(0.0); state.fld0293b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0294b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0294a).trim().parse().unwrap_or(0.0); state.fld0294b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0295b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0295a).trim().parse().unwrap_or(0.0); state.fld0295b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0296b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0296a).trim().parse().unwrap_or(0.0); state.fld0296b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0297b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0297a).trim().parse().unwrap_or(0.0); state.fld0297b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0298b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0298a).trim().parse().unwrap_or(0.0); state.fld0298b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0299b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0299a).trim().parse().unwrap_or(0.0); state.fld0299b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0300b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0300a).trim().parse().unwrap_or(0.0); state.fld0300b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0301b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0301a).trim().parse().unwrap_or(0.0); state.fld0301b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0302b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0302a).trim().parse().unwrap_or(0.0); state.fld0302b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0303b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0303a).trim().parse().unwrap_or(0.0); state.fld0303b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0304b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0304a).trim().parse().unwrap_or(0.0); state.fld0304b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0305b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0305a).trim().parse().unwrap_or(0.0); state.fld0305b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0306b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0306a).trim().parse().unwrap_or(0.0); state.fld0306b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0307b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0307a).trim().parse().unwrap_or(0.0); state.fld0307b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0308b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0308a).trim().parse().unwrap_or(0.0); state.fld0308b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0309b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0309a).trim().parse().unwrap_or(0.0); state.fld0309b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0310b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0310a).trim().parse().unwrap_or(0.0); state.fld0310b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0311b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0311a).trim().parse().unwrap_or(0.0); state.fld0311b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0312b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0312a).trim().parse().unwrap_or(0.0); state.fld0312b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0313b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0313a).trim().parse().unwrap_or(0.0); state.fld0313b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0314b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0314a).trim().parse().unwrap_or(0.0); state.fld0314b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0315b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0315a).trim().parse().unwrap_or(0.0); state.fld0315b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0316b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0316a).trim().parse().unwrap_or(0.0); state.fld0316b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0317b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0317a).trim().parse().unwrap_or(0.0); state.fld0317b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0318b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0318a).trim().parse().unwrap_or(0.0); state.fld0318b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0319b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0319a).trim().parse().unwrap_or(0.0); state.fld0319b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0320b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0320a).trim().parse().unwrap_or(0.0); state.fld0320b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0321b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0321a).trim().parse().unwrap_or(0.0); state.fld0321b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0322b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0322a).trim().parse().unwrap_or(0.0); state.fld0322b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0323b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0323a).trim().parse().unwrap_or(0.0); state.fld0323b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0324b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0324a).trim().parse().unwrap_or(0.0); state.fld0324b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0325b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0325a).trim().parse().unwrap_or(0.0); state.fld0325b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0326b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0326a).trim().parse().unwrap_or(0.0); state.fld0326b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0327b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0327a).trim().parse().unwrap_or(0.0); state.fld0327b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0328b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0328a).trim().parse().unwrap_or(0.0); state.fld0328b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0329b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0329a).trim().parse().unwrap_or(0.0); state.fld0329b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0330b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0330a).trim().parse().unwrap_or(0.0); state.fld0330b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0331b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0331a).trim().parse().unwrap_or(0.0); state.fld0331b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0332b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0332a).trim().parse().unwrap_or(0.0); state.fld0332b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0333b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0333a).trim().parse().unwrap_or(0.0); state.fld0333b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0334b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0334a).trim().parse().unwrap_or(0.0); state.fld0334b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0335b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0335a).trim().parse().unwrap_or(0.0); state.fld0335b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0336b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0336a).trim().parse().unwrap_or(0.0); state.fld0336b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0337b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0337a).trim().parse().unwrap_or(0.0); state.fld0337b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0338b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0338a).trim().parse().unwrap_or(0.0); state.fld0338b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0339b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0339a).trim().parse().unwrap_or(0.0); state.fld0339b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0340b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0340a).trim().parse().unwrap_or(0.0); state.fld0340b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0341b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0341a).trim().parse().unwrap_or(0.0); state.fld0341b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0342b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0342a).trim().parse().unwrap_or(0.0); state.fld0342b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0343b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0343a).trim().parse().unwrap_or(0.0); state.fld0343b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0344b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0344a).trim().parse().unwrap_or(0.0); state.fld0344b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0345b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0345a).trim().parse().unwrap_or(0.0); state.fld0345b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0346b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0346a).trim().parse().unwrap_or(0.0); state.fld0346b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0347b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0347a).trim().parse().unwrap_or(0.0); state.fld0347b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0348b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0348a).trim().parse().unwrap_or(0.0); state.fld0348b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0349b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0349a).trim().parse().unwrap_or(0.0); state.fld0349b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0350b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0350a).trim().parse().unwrap_or(0.0); state.fld0350b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0351b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0351a).trim().parse().unwrap_or(0.0); state.fld0351b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0352b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0352a).trim().parse().unwrap_or(0.0); state.fld0352b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0353b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0353a).trim().parse().unwrap_or(0.0); state.fld0353b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0354b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0354a).trim().parse().unwrap_or(0.0); state.fld0354b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0355b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0355a).trim().parse().unwrap_or(0.0); state.fld0355b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0356b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0356a).trim().parse().unwrap_or(0.0); state.fld0356b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0357b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0357a).trim().parse().unwrap_or(0.0); state.fld0357b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0358b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0358a).trim().parse().unwrap_or(0.0); state.fld0358b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0359b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0359a).trim().parse().unwrap_or(0.0); state.fld0359b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0360b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0360a).trim().parse().unwrap_or(0.0); state.fld0360b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0361b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0361a).trim().parse().unwrap_or(0.0); state.fld0361b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0362b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0362a).trim().parse().unwrap_or(0.0); state.fld0362b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0363b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0363a).trim().parse().unwrap_or(0.0); state.fld0363b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0364b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0364a).trim().parse().unwrap_or(0.0); state.fld0364b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0365b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0365a).trim().parse().unwrap_or(0.0); state.fld0365b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0366b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0366a).trim().parse().unwrap_or(0.0); state.fld0366b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0367b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0367a).trim().parse().unwrap_or(0.0); state.fld0367b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0368b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0368a).trim().parse().unwrap_or(0.0); state.fld0368b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0369b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0369a).trim().parse().unwrap_or(0.0); state.fld0369b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0370b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0370a).trim().parse().unwrap_or(0.0); state.fld0370b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0371b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0371a).trim().parse().unwrap_or(0.0); state.fld0371b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0372b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0372a).trim().parse().unwrap_or(0.0); state.fld0372b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0373b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0373a).trim().parse().unwrap_or(0.0); state.fld0373b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0374b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0374a).trim().parse().unwrap_or(0.0); state.fld0374b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0375b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0375a).trim().parse().unwrap_or(0.0); state.fld0375b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0376b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0376a).trim().parse().unwrap_or(0.0); state.fld0376b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0377b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0377a).trim().parse().unwrap_or(0.0); state.fld0377b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0378b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0378a).trim().parse().unwrap_or(0.0); state.fld0378b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0379b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0379a).trim().parse().unwrap_or(0.0); state.fld0379b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0380b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0380a).trim().parse().unwrap_or(0.0); state.fld0380b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0381b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0381a).trim().parse().unwrap_or(0.0); state.fld0381b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0382b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0382a).trim().parse().unwrap_or(0.0); state.fld0382b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0383b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0383a).trim().parse().unwrap_or(0.0); state.fld0383b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0384b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0384a).trim().parse().unwrap_or(0.0); state.fld0384b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0385b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0385a).trim().parse().unwrap_or(0.0); state.fld0385b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0386b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0386a).trim().parse().unwrap_or(0.0); state.fld0386b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0387b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0387a).trim().parse().unwrap_or(0.0); state.fld0387b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0388b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0388a).trim().parse().unwrap_or(0.0); state.fld0388b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0389b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0389a).trim().parse().unwrap_or(0.0); state.fld0389b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0390b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0390a).trim().parse().unwrap_or(0.0); state.fld0390b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0391b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0391a).trim().parse().unwrap_or(0.0); state.fld0391b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0392b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0392a).trim().parse().unwrap_or(0.0); state.fld0392b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0393b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0393a).trim().parse().unwrap_or(0.0); state.fld0393b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0394b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0394a).trim().parse().unwrap_or(0.0); state.fld0394b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0395b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0395a).trim().parse().unwrap_or(0.0); state.fld0395b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0396b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0396a).trim().parse().unwrap_or(0.0); state.fld0396b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0397b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0397a).trim().parse().unwrap_or(0.0); state.fld0397b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0398b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0398a).trim().parse().unwrap_or(0.0); state.fld0398b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0399b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0399a).trim().parse().unwrap_or(0.0); state.fld0399b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0400b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0400a).trim().parse().unwrap_or(0.0); state.fld0400b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0401b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0401a).trim().parse().unwrap_or(0.0); state.fld0401b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0402b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0402a).trim().parse().unwrap_or(0.0); state.fld0402b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0403b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0403a).trim().parse().unwrap_or(0.0); state.fld0403b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0404b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0404a).trim().parse().unwrap_or(0.0); state.fld0404b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0405b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0405a).trim().parse().unwrap_or(0.0); state.fld0405b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0406b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0406a).trim().parse().unwrap_or(0.0); state.fld0406b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0407b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0407a).trim().parse().unwrap_or(0.0); state.fld0407b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0408b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0408a).trim().parse().unwrap_or(0.0); state.fld0408b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0409b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0409a).trim().parse().unwrap_or(0.0); state.fld0409b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0410b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0410a).trim().parse().unwrap_or(0.0); state.fld0410b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0411b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0411a).trim().parse().unwrap_or(0.0); state.fld0411b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0412b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0412a).trim().parse().unwrap_or(0.0); state.fld0412b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0413b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0413a).trim().parse().unwrap_or(0.0); state.fld0413b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0414b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0414a).trim().parse().unwrap_or(0.0); state.fld0414b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0415b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0415a).trim().parse().unwrap_or(0.0); state.fld0415b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0416b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0416a).trim().parse().unwrap_or(0.0); state.fld0416b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0417b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0417a).trim().parse().unwrap_or(0.0); state.fld0417b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0418b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0418a).trim().parse().unwrap_or(0.0); state.fld0418b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0419b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0419a).trim().parse().unwrap_or(0.0); state.fld0419b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0420b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0420a).trim().parse().unwrap_or(0.0); state.fld0420b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0421b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0421a).trim().parse().unwrap_or(0.0); state.fld0421b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0422b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0422a).trim().parse().unwrap_or(0.0); state.fld0422b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0423b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0423a).trim().parse().unwrap_or(0.0); state.fld0423b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0424b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0424a).trim().parse().unwrap_or(0.0); state.fld0424b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0425b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0425a).trim().parse().unwrap_or(0.0); state.fld0425b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0426b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0426a).trim().parse().unwrap_or(0.0); state.fld0426b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0427b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0427a).trim().parse().unwrap_or(0.0); state.fld0427b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0428b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0428a).trim().parse().unwrap_or(0.0); state.fld0428b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0429b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0429a).trim().parse().unwrap_or(0.0); state.fld0429b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0430b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0430a).trim().parse().unwrap_or(0.0); state.fld0430b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0431b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0431a).trim().parse().unwrap_or(0.0); state.fld0431b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0432b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0432a).trim().parse().unwrap_or(0.0); state.fld0432b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0433b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0433a).trim().parse().unwrap_or(0.0); state.fld0433b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0434b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0434a).trim().parse().unwrap_or(0.0); state.fld0434b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0435b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0435a).trim().parse().unwrap_or(0.0); state.fld0435b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0436b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0436a).trim().parse().unwrap_or(0.0); state.fld0436b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0437b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0437a).trim().parse().unwrap_or(0.0); state.fld0437b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0438b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0438a).trim().parse().unwrap_or(0.0); state.fld0438b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0439b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0439a).trim().parse().unwrap_or(0.0); state.fld0439b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0440b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0440a).trim().parse().unwrap_or(0.0); state.fld0440b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0441b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0441a).trim().parse().unwrap_or(0.0); state.fld0441b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0442b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0442a).trim().parse().unwrap_or(0.0); state.fld0442b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0443b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0443a).trim().parse().unwrap_or(0.0); state.fld0443b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0444b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0444a).trim().parse().unwrap_or(0.0); state.fld0444b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0445b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0445a).trim().parse().unwrap_or(0.0); state.fld0445b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0446b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0446a).trim().parse().unwrap_or(0.0); state.fld0446b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0447b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0447a).trim().parse().unwrap_or(0.0); state.fld0447b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0448b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0448a).trim().parse().unwrap_or(0.0); state.fld0448b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0449b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0449a).trim().parse().unwrap_or(0.0); state.fld0449b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0450b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0450a).trim().parse().unwrap_or(0.0); state.fld0450b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0451b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0451a).trim().parse().unwrap_or(0.0); state.fld0451b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0452b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0452a).trim().parse().unwrap_or(0.0); state.fld0452b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0453b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0453a).trim().parse().unwrap_or(0.0); state.fld0453b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0454b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0454a).trim().parse().unwrap_or(0.0); state.fld0454b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0455b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0455a).trim().parse().unwrap_or(0.0); state.fld0455b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0456b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0456a).trim().parse().unwrap_or(0.0); state.fld0456b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0457b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0457a).trim().parse().unwrap_or(0.0); state.fld0457b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0458b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0458a).trim().parse().unwrap_or(0.0); state.fld0458b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0459b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0459a).trim().parse().unwrap_or(0.0); state.fld0459b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0460b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0460a).trim().parse().unwrap_or(0.0); state.fld0460b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0461b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0461a).trim().parse().unwrap_or(0.0); state.fld0461b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0462b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0462a).trim().parse().unwrap_or(0.0); state.fld0462b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0463b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0463a).trim().parse().unwrap_or(0.0); state.fld0463b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0464b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0464a).trim().parse().unwrap_or(0.0); state.fld0464b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0465b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0465a).trim().parse().unwrap_or(0.0); state.fld0465b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0466b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0466a).trim().parse().unwrap_or(0.0); state.fld0466b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0467b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0467a).trim().parse().unwrap_or(0.0); state.fld0467b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0468b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0468a).trim().parse().unwrap_or(0.0); state.fld0468b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0469b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0469a).trim().parse().unwrap_or(0.0); state.fld0469b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0470b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0470a).trim().parse().unwrap_or(0.0); state.fld0470b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0471b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0471a).trim().parse().unwrap_or(0.0); state.fld0471b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0472b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0472a).trim().parse().unwrap_or(0.0); state.fld0472b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0473b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0473a).trim().parse().unwrap_or(0.0); state.fld0473b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0474b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0474a).trim().parse().unwrap_or(0.0); state.fld0474b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0475b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0475a).trim().parse().unwrap_or(0.0); state.fld0475b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0476b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0476a).trim().parse().unwrap_or(0.0); state.fld0476b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0477b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0477a).trim().parse().unwrap_or(0.0); state.fld0477b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0478b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0478a).trim().parse().unwrap_or(0.0); state.fld0478b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0479b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0479a).trim().parse().unwrap_or(0.0); state.fld0479b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0480b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0480a).trim().parse().unwrap_or(0.0); state.fld0480b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0481b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0481a).trim().parse().unwrap_or(0.0); state.fld0481b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0482b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0482a).trim().parse().unwrap_or(0.0); state.fld0482b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0483b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0483a).trim().parse().unwrap_or(0.0); state.fld0483b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0484b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0484a).trim().parse().unwrap_or(0.0); state.fld0484b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0485b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0485a).trim().parse().unwrap_or(0.0); state.fld0485b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0486b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0486a).trim().parse().unwrap_or(0.0); state.fld0486b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0487b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0487a).trim().parse().unwrap_or(0.0); state.fld0487b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0488b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0488a).trim().parse().unwrap_or(0.0); state.fld0488b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0489b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0489a).trim().parse().unwrap_or(0.0); state.fld0489b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0490b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0490a).trim().parse().unwrap_or(0.0); state.fld0490b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0491b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0491a).trim().parse().unwrap_or(0.0); state.fld0491b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     { let _a: f64 = format!("{}", state.fld0492b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0492a).trim().parse().unwrap_or(0.0); state.fld0492b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-TOWARD-ZERO
+    // MODE IS NEAREST-TOWARD-ZERO
     { let _a: f64 = format!("{}", state.fld0493b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0493a).trim().parse().unwrap_or(0.0); state.fld0493b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS PROHIBITED
+    // MODE IS PROHIBITED
     { let _a: f64 = format!("{}", state.fld0494b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0494a).trim().parse().unwrap_or(0.0); state.fld0494b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-GREATER
+    // MODE IS TOWARD-GREATER
     { let _a: f64 = format!("{}", state.fld0495b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0495a).trim().parse().unwrap_or(0.0); state.fld0495b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS TOWARD-LESSER
+    // MODE IS TOWARD-LESSER
     { let _a: f64 = format!("{}", state.fld0496b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0496a).trim().parse().unwrap_or(0.0); state.fld0496b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS TRUNCATION
+    // MODE IS TRUNCATION
     { let _a: f64 = format!("{}", state.fld0497b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0497a).trim().parse().unwrap_or(0.0); state.fld0497b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS AWAY-FROM-ZERO
+    // MODE IS AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0498b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0498a).trim().parse().unwrap_or(0.0); state.fld0498b = format!("{}", _a - _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-AWAY-FROM-ZERO
+    // MODE IS NEAREST-AWAY-FROM-ZERO
     { let _a: f64 = format!("{}", state.fld0499b).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.fld0499a).trim().parse().unwrap_or(0.0); state.fld0499b = format!("{}", _a + _b).cobol_into(); }
-    // ROUNDED MODE IS NEAREST-EVEN
+    // MODE IS NEAREST-EVEN
     if { let __v = format!("{}", state.fld0001b); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ( 1: ) NOT EQUAL XPC-FLD0001B DISPLAY 'FLD0001B ==> ' FLD0001B DISPLAY 'EXPECTED ==> ' XPC-FLD0001B

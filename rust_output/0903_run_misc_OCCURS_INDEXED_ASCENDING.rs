@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -46,7 +47,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct DbiRecordNamesr {
     /// DBI-RECORD-NAMES
-    pub dbi_record_names: [DbiRecordNames; 7],
+    pub dbi_record_names: Vec<DbiRecordNames>,
 }
 impl std::fmt::Display for DbiRecordNamesr {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -101,7 +102,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct DbxRecordNamesr {
     /// DBX-RECORD-NAMES
-    pub dbx_record_names: [DbxRecordNames; 7],
+    pub dbx_record_names: Vec<DbxRecordNames>,
 }
 impl std::fmt::Display for DbxRecordNamesr {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -198,6 +199,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub rec_name_idx: FixedString<30>,
 }
 
 
@@ -213,8 +216,12 @@ fn p_main(state: &mut ProgramState) {
 
 /// Paragraph: FINDIT
 fn p_findit(state: &mut ProgramState) {
-    // SEARCH DBI-RECORD-NAMES AT END DISPLAY 'A ' REC-NAME ' is invalid.' WHEN REC-NAME = DBI-RECORD-NAME ( REC-NAME-IDX ) DISPLAY 'A ' REC-NAME ' is code ' DBI-RECORD-CODE ( REC-NAME-IDX ) '.'
-    // SEARCH DBX-RECORD-NAMES AT END DISPLAY 'B ' REC-NAME ' is invalid.' WHEN REC-NAME = DBX-RECORD-NAME ( REC-NAME-DBX ) DISPLAY 'B ' REC-NAME ' is code ' DBX-RECORD-CODE ( REC-NAME-DBX ) '.'
+    // SEARCH DBI-RECORD-NAMES AT END
+    println!("{}{}{}", format!("{}", "A "), format!("{}", state.rec_name), format!("{}", " is invalid."));
+    // WHEN REC-NAME = DBI-RECORD-NAME ( REC-NAME-IDX ) DISPLAY 'A ' REC-NAME ' is code ' DBI-RECORD-CODE ( REC-NAME-IDX ) '.'
+    // SEARCH DBX-RECORD-NAMES AT END
+    println!("{}{}{}", format!("{}", "B "), format!("{}", state.rec_name), format!("{}", " is invalid."));
+    // WHEN REC-NAME = DBX-RECORD-NAME ( REC-NAME-DBX ) DISPLAY 'B ' REC-NAME ' is code ' DBX-RECORD-CODE ( REC-NAME-DBX ) '.'
 }
 
 fn main() {

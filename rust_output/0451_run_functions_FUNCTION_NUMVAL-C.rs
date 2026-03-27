@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -57,11 +58,11 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.n = format!("{}", cobol_fn_numval_c(format!("{}", state.x1), "%")).cobol_into();
+    state.n = format!("{}", cobol_fn_numval_c(&format!("{}", state.x1))).cobol_into();
     if format!("{}", state.n).trim() != format!("{}", -9876.123400).trim() {
         println!("{}{}{}{}", format!("{}", "X1 "), format!("{}", state.x1), format!("{}", " : "), format!("{}", state.n));
     }
-    state.n = format!("{}", cobol_fn_numval_c(format!("{}", state.x2), "%")).cobol_into();
+    state.n = format!("{}", cobol_fn_numval_c(&format!("{}", state.x2))).cobol_into();
     if format!("{}", state.n).trim() != format!("{}", -19876.123400).trim() {
         println!("{}{}{}{}", format!("{}", "X2 "), format!("{}", state.x2), format!("{}", " : "), format!("{}", state.n));
     } else {
@@ -69,23 +70,23 @@ fn p__implicit_(state: &mut ProgramState) {
         }
     }
     // <> FUNCTION NUMVAL ( X2B ) OR N <> FUNCTION NUMVAL ( X2C ) OR N <> FUNCTION NUMVAL ( X2D ) DISPLAY "NUMVAL not case-insensitive!"
-    state.n = format!("{}", cobol_fn_numval_c(format!("{}", state.x3), "%")).cobol_into();
+    state.n = format!("{}", cobol_fn_numval_c(&format!("{}", state.x3))).cobol_into();
     if format!("{}", state.n).trim() != format!("{}", -9876.123400).trim() {
         println!("{}{}{}{}", format!("{}", "X3 "), format!("{}", state.x3), format!("{}", " : "), format!("{}", state.n));
     }
-    state.n = format!("{}", cobol_fn_numval_c(format!("{}", state.x4), "%")).cobol_into();
+    state.n = format!("{}", cobol_fn_numval_c(&format!("{}", state.x4))).cobol_into();
     if format!("{}", state.n).trim() != format!("{}", 19876.123400).trim() {
         println!("{}{}{}{}", format!("{}", "X4 "), format!("{}", state.x4), format!("{}", " : "), format!("{}", state.n));
     }
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.bad1))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.bad1))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 AND N <> -19876.1234 DISPLAY "BAD1 '" BAD1 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.bad2))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.bad2))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 AND N <> 198756.1234 DISPLAY "BAD2 '" BAD2 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.bad3))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.bad3))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 AND N <> -198756 DISPLAY "BAD3 '" BAD3 "' : " N

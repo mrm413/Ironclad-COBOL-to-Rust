@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -328,31 +329,43 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub fcd__indexed_org: FixedString<30>,
+    pub fcd__version_number: FixedString<30>,
+    pub fcd_binary: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_filename_address: FixedString<30>,
+    pub fcd_key_length: FixedString<30>,
+    pub fcd_name_length: FixedString<30>,
+    pub fcd_organization: FixedString<30>,
+    pub fcd_record_address: FixedString<30>,
+    pub fcd_status_key_1: FixedString<30>,
+    pub fcd_version: FixedString<30>,
 }
 
 
 /// Paragraph: 0000-MAIN
-fn p_0000_main(state: &mut ProgramState) {
-    p_1000_open_file(state);
-    p_2000_read_record(state);
+fn p_n0000_main(state: &mut ProgramState) {
+    p_n1000_open_file(state);
+    p_n2000_read_record(state);
     println!("{}{}{}", format!("{}", "AFTER READ ------> "), format!("{}", state.record_area), format!("{}", "."));
     state.data_area = format!("{}", "1234567890").cobol_into();
-    p_3000_rewrite_record(state);
-    p_2000_read_record(state);
+    p_n3000_rewrite_record(state);
+    p_n2000_read_record(state);
     println!("{}{}{}", format!("{}", "AFTER WRITE -----> "), format!("{}", state.record_area), format!("{}", "."));
     state.data_area = format!("{}", " ").cobol_into();
-    p_3000_rewrite_record(state);
-    p_5000_close_file(state);
-    p_1000_open_file(state);
-    p_6000_start(state);
-    p_7000_read_previous(state);
+    p_n3000_rewrite_record(state);
+    p_n5000_close_file(state);
+    p_n1000_open_file(state);
+    p_n6000_start(state);
+    p_n7000_read_previous(state);
     println!("{}{}{}", format!("{}", "AFTER READ PREV -> "), format!("{}", state.record_area2), format!("{}", "."));
-    p_5000_close_file(state);
+    p_n5000_close_file(state);
     std::process::exit(0);
 }
 
 /// Paragraph: 1000-OPEN-FILE
-fn p_1000_open_file(state: &mut ProgramState) {
+fn p_n1000_open_file(state: &mut ProgramState) {
     state.file_name = format!("{}", "TEST1EXTFH").cobol_into();
     state.file_name_len = format!("{}", 10).cobol_into();
     state.fcd_version = format!("{}", state.fcd__version_number).cobol_into();
@@ -363,7 +376,7 @@ fn p_1000_open_file(state: &mut ProgramState) {
 }
 
 /// Paragraph: 1100-CALL-EXTFH
-fn p_1100_call_extfh(state: &mut ProgramState) {
+fn p_n1100_call_extfh(state: &mut ProgramState) {
     // CALL 'EXTFH' USING &mut state.action_code, &mut state.fcd_area
     if format!("{}", state.fcd_file_status).trim() != format!("{}", "00").trim() {
         state.op_x = format!("{}", state.cobol_op).cobol_into();
@@ -380,51 +393,51 @@ fn p_1100_call_extfh(state: &mut ProgramState) {
 }
 
 /// Paragraph: 2000-READ-RECORD
-fn p_2000_read_record(state: &mut ProgramState) {
+fn p_n2000_read_record(state: &mut ProgramState) {
     state.record_area = format!("{}", " ").cobol_into();
     state.prime_key = format!("{}", "RECORD-3").cobol_into();
     state.cobol_op = format!("{}", state.read_random_lock).cobol_into();
     state.fcd_record_address = " ".to_string().cobol_into();
     // OF RECORD-AREA
-    p_1100_call_extfh(state);
+    p_n1100_call_extfh(state);
 }
 
 /// Paragraph: 3000-REWRITE-RECORD
-fn p_3000_rewrite_record(state: &mut ProgramState) {
+fn p_n3000_rewrite_record(state: &mut ProgramState) {
     state.action_type = format!("{}", state.cobol_type).cobol_into();
     state.cobol_op = format!("{}", state.rewrite_record).cobol_into();
-    p_1100_call_extfh(state);
+    p_n1100_call_extfh(state);
 }
 
 /// Paragraph: 5000-CLOSE-FILE
-fn p_5000_close_file(state: &mut ProgramState) {
+fn p_n5000_close_file(state: &mut ProgramState) {
     state.action_type = format!("{}", state.cobol_type).cobol_into();
     state.cobol_op = format!("{}", state.close_file).cobol_into();
-    p_1100_call_extfh(state);
+    p_n1100_call_extfh(state);
 }
 
 /// Paragraph: 6000-START
-fn p_6000_start(state: &mut ProgramState) {
+fn p_n6000_start(state: &mut ProgramState) {
     state.fcd_record_address = " ".to_string().cobol_into();
     // OF RECORD-AREA
     state.fcd_key_length = format!("{}", 25).cobol_into();
     state.prime_key = format!("{}", "\u{00FF}").cobol_into();
     state.action_type = format!("{}", state.cobol_type).cobol_into();
     state.cobol_op = format!("{}", state.start_less).cobol_into();
-    p_1100_call_extfh(state);
+    p_n1100_call_extfh(state);
 }
 
 /// Paragraph: 7000-READ-PREVIOUS
-fn p_7000_read_previous(state: &mut ProgramState) {
+fn p_n7000_read_previous(state: &mut ProgramState) {
     state.action_type = format!("{}", state.cobol_type).cobol_into();
     state.cobol_op = format!("{}", state.read_previous).cobol_into();
     state.record_area2 = format!("{}", " ").cobol_into();
     state.fcd_record_address = " ".to_string().cobol_into();
     // OF RECORD-AREA2
-    p_1100_call_extfh(state);
+    p_n1100_call_extfh(state);
 }
 
 fn main() {
     let mut state = ProgramState::default();
-    p_0000_main(&mut state);
+    p_n0000_main(&mut state);
 }

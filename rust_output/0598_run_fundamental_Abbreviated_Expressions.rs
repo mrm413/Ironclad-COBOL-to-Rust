@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -52,12 +53,16 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub off_wrk_switch_1: FixedString<30>,
+    pub off_wrk_switch_2: FixedString<30>,
+    pub on_wrk_switch_1: FixedString<30>,
 }
 
 
 /// Paragraph: MAIN-LINE
 fn p_main_line(state: &mut ProgramState) {
-    if (format!("{}", state.fld9_7).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fld9_5).trim().parse::<f64>().unwrap_or(0.0)) && !(state.<) {
+    if (format!("{}", state.fld9_7).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fld9_5).trim().parse::<f64>().unwrap_or(0.0)) && !(true) {
     }
     // FLD9-0 OR FLD9-1 PERFORM PASS ELSE PERFORM FAIL
     if (format!("{}", state.fld9_7).trim() != format!("{}", state.fld9_5).trim()) || { let __v = format!("{}", state.fld9_1); __v.trim() != "" && __v.trim() != "0" } {
@@ -75,10 +80,10 @@ fn p_main_line(state: &mut ProgramState) {
     } else {
         p_fail(state);
     }
-    if !(((format!("{}", state.fld9_5).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fld9_7).trim().parse::<f64>().unwrap_or(0.0)) || { let __v = format!("{}", state.<); __v.trim() != "" && __v.trim() != "0" })) {
+    if !(((format!("{}", state.fld9_5).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", state.fld9_7).trim().parse::<f64>().unwrap_or(0.0)) || true)) {
     }
     // FLD9-1 ) PERFORM PASS ELSE PERFORM FAIL
-    if !((((format!("{}", state.fld9_7).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fld9_5).trim().parse::<f64>().unwrap_or(0.0)) && { let __v = format!("{}", state.fld9_2); __v.trim() != "" && __v.trim() != "0" }) && !(state.fld9_1))) {
+    if !((((format!("{}", state.fld9_7).trim().parse::<f64>().unwrap_or(0.0) <= format!("{}", state.fld9_5).trim().parse::<f64>().unwrap_or(0.0)) && { let __v = format!("{}", state.fld9_2); __v.trim() != "" && __v.trim() != "0" }) && !({ let __v = format!("{}", state.fld9_1); __v.trim() != "" && __v.trim() != "0" }))) {
         p_pass(state);
     } else {
         p_fail(state);
@@ -113,10 +118,10 @@ fn p_main_line(state: &mut ProgramState) {
     } else {
         p_fail(state);
     }
-    if (format!("{}", 5).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 1).trim().parse::<f64>().unwrap_or(0.0)) && { let __v = format!("{}", state.<); __v.trim() != "" && __v.trim() != "0" } {
+    if (format!("{}", 5).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 1).trim().parse::<f64>().unwrap_or(0.0)) && true {
     }
     // 3 OR 6 PERFORM PASS ELSE PERFORM FAIL
-    if { let __v = format!("{}", state.on_wrk_switch_1); __v.trim() != "" && __v.trim() != "0" } || (!(state.off_wrk_switch_2) && { let __v = format!("{}", state.off_wrk_switch_1); __v.trim() != "" && __v.trim() != "0" }) {
+    if { let __v = format!("{}", state.on_wrk_switch_1); __v.trim() != "" && __v.trim() != "0" } || (!({ let __v = format!("{}", state.off_wrk_switch_2); __v.trim() != "" && __v.trim() != "0" }) && { let __v = format!("{}", state.off_wrk_switch_1); __v.trim() != "" && __v.trim() != "0" }) {
         p_fail(state);
     } else {
         p_pass(state);

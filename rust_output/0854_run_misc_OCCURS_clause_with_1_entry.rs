@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct D2 {
     /// D2-ENTRY
-    pub d2_entry: [FixedString<3>; 1],
+    pub d2_entry: Vec<FixedString<3>>,
 }
 impl std::fmt::Display for D2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -69,7 +70,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct D2R {
     /// D2-R-ENTRY
-    pub d2_r_entry: [FixedString<3>; 1],
+    pub d2_r_entry: Vec<FixedString<3>>,
 }
 impl std::fmt::Display for D2R {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -102,7 +103,7 @@ pub struct ProgramState {
     /// WS: D2 (group)
     pub d2: FixedString<3>,
     /// WS: D2-ENTRY
-    pub d2_entry: [FixedString<3>; 1],
+    pub d2_entry: Vec<FixedString<3>>,
     /// WS: D1TOR (group)
     pub d1tor: FixedString<3>,
     /// WS: FILLER
@@ -120,7 +121,7 @@ pub struct ProgramState {
     /// WS: D2-R (group)
     pub d2_r: FixedString<3>,
     /// WS: D2-R-ENTRY
-    pub d2_r_entry: [FixedString<3>; 1],
+    pub d2_r_entry: Vec<FixedString<3>>,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -144,13 +145,13 @@ fn p__implicit_(state: &mut ProgramState) {
     if { let __v = format!("{}", state.d1_entry); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ( 1 ) NOT = "123" DISPLAY D1-ENTRY ( 1 )
-    if { let __v = format!("{}", state.d2_entry); __v.trim() != "" && __v.trim() != "0" } {
+    if { let __v = format!("{:?}", state.d2_entry); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ( 1 ) NOT = "ABC" DISPLAY D2-ENTRY ( 1 )
     if { let __v = format!("{}", state.d1_r_entry); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ( 1 ) NOT = "456" DISPLAY D1-R-ENTRY ( 1 )
-    if { let __v = format!("{}", state.d2_r_entry); __v.trim() != "" && __v.trim() != "0" } {
+    if { let __v = format!("{:?}", state.d2_r_entry); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ( 1 ) NOT = "DEF" DISPLAY D2-R-ENTRY ( 1 )
     std::process::exit(0);

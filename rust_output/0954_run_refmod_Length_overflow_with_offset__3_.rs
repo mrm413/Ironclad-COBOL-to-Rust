@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -39,7 +40,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    if (((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", 2).trim().parse::<f64>().unwrap_or(0.0)) && { let __v = format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 3).trim().parse::<i64>().unwrap_or(1), format!("{}", state.i).trim().parse::<i64>().unwrap_or(0))); __v.trim() != "" && __v.trim() != "0" })) {
+    if (((format!("{}", state.i).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", 2).trim().parse::<f64>().unwrap_or(0.0)) && { let __v = format!("{}", cobol_refmod(&format!("{}", state.x), format!("{}", 3).trim().parse::<usize>().unwrap_or(1), format!("{}", state.i).trim().parse::<usize>().unwrap_or(0))); __v.trim() != "" && __v.trim() != "0" })) {
     }
     // <> SPACES DISPLAY "1-" X(3:I) NO ADVANCING WHEN I < 2 WHEN X(3:I) <> SPACES DISPLAY "2-" X(3:I) NO ADVANCING END-EVALUATE STOP RUN
 }

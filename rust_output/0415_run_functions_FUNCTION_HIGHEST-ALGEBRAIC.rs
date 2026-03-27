@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -51,36 +52,39 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f1))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f1))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 999).trim() {
-        println!("{}{}{}", format!("{}", "Test 1 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 1 fail: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f2))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f2))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 9999).trim() {
-        println!("{}{}{}", format!("{}", "Test 2 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 2 fail: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f3))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f3))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 99.999000).trim() {
-        println!("{}{}{}", format!("{}", "Test 3 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 3 fail: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f4))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f4))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 99999.990000).trim() {
-        println!("{}{}{}", format!("{}", "Test 4 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 4 fail: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f5))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f5))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 99999.990000).trim() {
-        println!("{}{}{}", format!("{}", "Test 5 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 5 fail: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f6))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f6))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 127).trim() {
-        println!("{}{}{}", format!("{}", "Test 6 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 6 fail: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_highest_algebraic(format!("{}", state.f7))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_highest_algebraic(&format!("{}", state.f7))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", 255).trim() {
-        println!("{}{}{}", format!("{}", "Test 7 fail: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Test 7 fail: "), format!("{}", state.test_fld));
     }
     std::process::exit(0);
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_highest_algebraic(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

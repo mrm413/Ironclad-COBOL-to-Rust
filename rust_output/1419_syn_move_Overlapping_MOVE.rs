@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -66,7 +67,7 @@ pub struct ProgramState {
     /// WS: FILLER
     pub filler_2: FixedString<1>,
     /// WS: FIELD
-    pub field: [FixedString<2>; 7],
+    pub field: Vec<FixedString<2>>,
     /// WS: FILLER (group)
     pub filler_3: FixedString<1>,
     /// WS: FIELDO (group)
@@ -90,6 +91,18 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n132: FixedString<30>,
+    pub n11: FixedString<30>,
+    pub n1numvar: FixedString<30>,
+    pub n2: FixedString<30>,
+    pub n21: FixedString<30>,
+    pub n24: FixedString<30>,
+    pub n313: FixedString<30>,
+    pub n32: FixedString<30>,
+    pub n54: FixedString<30>,
+    pub n64: FixedString<30>,
+    pub numvar1: FixedString<30>,
 }
 
 
@@ -101,46 +114,46 @@ fn p__implicit_(state: &mut ProgramState) {
     state.field2_2 = format!("{}", state.field1_1).cobol_into();
     state.field2_1 = format!("{}", state.field1_2).cobol_into();
     state.field2_2 = format!("{}", state.field2_1).cobol_into();
-    state.field1_2 = format!("{}", cobol_refmod(&format!("{}", state.field2_1), format!("{}", 2).trim().parse::<i64>().unwrap_or(1), format!("{}", 5).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 2).trim().parse::<i64>().unwrap_or(1), format!("{}", 4).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 2).trim().parse::<i64>().unwrap_or(1), format!("{}", 4).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 1).trim().parse::<i64>().unwrap_or(1), format!("{}", state.numvar).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", state.numvar).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 3).trim().parse::<i64>().unwrap_or(1), format!("{}", 13).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 3).trim().parse::<i64>().unwrap_or(1), format!("{}", 13).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", state.const4).trim().parse::<i64>().unwrap_or(1), format!("{}", 2).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 6).trim().parse::<i64>().unwrap_or(1), format!("{}", 4).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 6).trim().parse::<i64>().unwrap_or(1), format!("{}", 4).trim().parse::<i64>().unwrap_or(0))).cobol_into();
+    state.field1_2 = format!("{}", cobol_refmod(&format!("{}", state.field2_1), format!("{}", 2).trim().parse::<usize>().unwrap_or(1), format!("{}", 5).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 2).trim().parse::<usize>().unwrap_or(1), format!("{}", 4).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 2).trim().parse::<usize>().unwrap_or(1), format!("{}", 4).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 1).trim().parse::<usize>().unwrap_or(1), format!("{}", state.numvar).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", state.numvar).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 3).trim().parse::<usize>().unwrap_or(1), format!("{}", 13).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 3).trim().parse::<usize>().unwrap_or(1), format!("{}", 13).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", state.const4).trim().parse::<usize>().unwrap_or(1), format!("{}", 2).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 6).trim().parse::<usize>().unwrap_or(1), format!("{}", 4).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.structure1 = format!("{}", cobol_refmod(&format!("{}", state.structure1), format!("{}", 6).trim().parse::<usize>().unwrap_or(1), format!("{}", 4).trim().parse::<usize>().unwrap_or(0))).cobol_into();
     state.structure1 = format!("{:?}", state.field).cobol_into();
     state.structure1 = format!("{:?}", state.field).cobol_into();
     state.numvar = format!("{:?}", state.field).cobol_into();
     state.structure1 = format!("{:?}", state.field).cobol_into();
     state.const4 = format!("{:?}", state.field).cobol_into();
     state.structure1 = format!("{:?}", state.field).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.const4 = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.const4 = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.const4 = format!("{:?}", state.fieldo).cobol_into();
-    state.const4 = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.numvar = format!("{:?}", state.fieldo).cobol_into();
-    state.fieldo = format!("{:?}", state.fieldo).cobol_into();
-    state.const4 = format!("{:?}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.const4 = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.const4 = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.const4 = format!("{}", state.fieldo).cobol_into();
+    state.const4 = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.numvar = format!("{}", state.fieldo).cobol_into();
+    state.fieldo = format!("{}", state.fieldo).cobol_into();
+    state.const4 = format!("{}", state.fieldo).cobol_into();
     std::process::exit(0);
 }
 

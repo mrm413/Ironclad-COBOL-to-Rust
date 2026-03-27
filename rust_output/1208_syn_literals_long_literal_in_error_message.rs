@@ -2,6 +2,7 @@
 // Source: TUTORIAL.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,26 +30,27 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n1cdefghijklmn0q: FixedString<30>,
+    pub n2cdefghijklmn0q: FixedString<30>,
+    pub n3cdefghijklmn0q: FixedString<30>,
+    pub n4cdefghijklmn0q: FixedString<30>,
+    pub n5cdefghijklmn0q: FixedString<30>,
+    pub n6cdefghijklmn0q: FixedString<30>,
+    pub n7cdefghijklmn0q: FixedString<30>,
+    pub n8cdefghijklmn0q: FixedString<30>,
+    pub n9cdefghijklmn0q: FixedString<30>,
+    pub n10cdefghijklmn0q: FixedString<30>,
+    pub n11cdefghijklmn0q: FixedString<30>,
+    pub n12cdefghijklmn0q: FixedString<30>,
+    pub n13cdefghijklmn0q: FixedString<30>,
+    pub n14cdefghijklmn0q: FixedString<30>,
+    pub n15cdefghijklmn0q: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.' 1  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 2  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 3  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 4  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 5  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 6  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 7  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 8  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.' 9  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.'10  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.'11  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.'12  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.'13  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.'14  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
-    state.'15  c d e f g h i j k l m n 0 q.' = format!("{}", "\x00").cobol_into();
 }
 
 fn main() {

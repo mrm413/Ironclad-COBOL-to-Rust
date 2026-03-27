@@ -2,36 +2,6 @@
 // Source: PROG3.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
-use cobol_runtime::FixedString;
-use cobol_runtime::Decimal;
-use cobol_runtime::string_ops::*;
-use cobol_runtime::chrono_shim::*;
-use cobol_runtime::CobolInto;
-use cobol_runtime::cobol_helpers::*;
-use cobol_runtime::define_record;
-
-
-#[derive(Default)]
-pub struct ProgramState {
-    // --- Special registers ---
-    /// RETURN-CODE special register
-    pub return_code: i32,
-    /// TALLY special register
-    pub tally: i32,
-    /// SORT-RETURN special register
-    pub sort_return: i32,
-    /// COB-CRT-STATUS special register
-    pub cob_crt_status: i32,
-    /// DEBUG-ITEM special register
-    pub debug_item: FixedString<80>,
-    /// NUMBER-OF-CALL-PARAMETERS special register
-    pub number_of_call_parameters: i32,
-    /// WHEN-COMPILED special register
-    pub when_compiled: FixedString<16>,
-}
-
-
-fn main() {
-    let mut state = ProgramState::default();
-}
+fn main() {}

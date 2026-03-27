@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -24,7 +25,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab1 {
     /// ROW1
-    pub row1: [Row1; 1],
+    pub row1: Vec<Row1>,
 }
 impl std::fmt::Display for Tab1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -57,7 +58,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab2 {
     /// ROW2
-    pub row2: [Row2; 1],
+    pub row2: Vec<Row2>,
 }
 impl std::fmt::Display for Tab2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -116,12 +117,36 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub tab_datak: FixedString<30>,
 }
 
 
 /// Paragraph: A
 fn p_a(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING K FROM 1 BY 1 UNTIL K > 4 MOVE K TO TAB1-NR ( K ) MOVE 'BLA' TO TAB-DATA(K) END-PERFORM SORT ROW1 PERFORM VARYING K FROM 1 BY 1 UNTIL K > 4 DISPLAY TAB1-NR(K) NO ADVANCING END-DISPLAY END-PERFORM MOVE TAB1 TO TAB2 SORT ROW2 PERFORM VARYING K FROM 1 BY 1 UNTIL K > 4 DISPLAY TAB2-NR(K) NO ADVANCING END-DISPLAY END-PERFORM STOP RUN
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        state.tab1_nr = format!("{}", state.k).cobol_into();
+        state.k = format!("{}", state.k).cobol_into();
+        state.tab_data = format!("{}", "BLA").cobol_into();
+    }
+    // SORT ROW1
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", state.tab1_nr));
+    }
+    state.tab2 = format!("{}", state.tab1).cobol_into();
+    // SORT ROW2
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", state.tab2_nr));
+    }
+    std::process::exit(0);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

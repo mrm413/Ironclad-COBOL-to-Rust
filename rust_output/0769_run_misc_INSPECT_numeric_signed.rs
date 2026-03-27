@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -60,42 +61,42 @@ pub struct ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T1 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T2 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T3 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T4 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T5 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T6 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T7 - "), format!("{}", state.cnt));
     }
     state.cnt = format!("{}", 0).cobol_into();
-    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL "1"")).cobol_into();
+    state.cnt = format!("{}", cobol_inspect_tallying_count("ALL \"1\"")).cobol_into();
     if format!("{}", state.cnt).trim() != format!("{}", 2).trim() {
         println!("{}{}", format!("{}", "T8 - "), format!("{}", state.cnt));
     }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,7 +38,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x));
     // CALL 'prog2' USING 
     // CALL 'prog3' USING 
     std::process::exit(0);
@@ -47,7 +48,7 @@ fn p__implicit_(state: &mut ProgramState) {
     // WORKING-STORAGE SECTION
     // 01 X PIC X(5) GLOBAL VALUE "prog2"
     // PROCEDURE DIVISION
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x));
     return;
     // END PROGRAM PROG2
     // IDENTIFICATION DIVISION
@@ -55,7 +56,7 @@ fn p__implicit_(state: &mut ProgramState) {
     // DATA DIVISION
     // WORKING-STORAGE SECTION
     // PROCEDURE DIVISION
-    println!("{}{}", format!("{}", state.x), format!("{}", state.end_display));
+    println!("{}", format!("{}", state.x));
     return;
     // END PROGRAM PROG3
     // END PROGRAM PROG

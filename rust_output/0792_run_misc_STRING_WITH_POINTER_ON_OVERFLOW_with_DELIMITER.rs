@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -48,7 +49,7 @@ fn p__implicit_(state: &mut ProgramState) {
         _result.push_str(&format!("{}", "STRING OVERFLOW"));
         state.err_str = _result.into(); }
     println!("{}", format!("{}", state.err_str));
-    println!("{}{}", format!("{}", "1 failed"), format!("{}", state.end_display));
+    println!("{}", format!("{}", "1 failed"));
     // NOT ON OVERFLOW DISPLAY '1 passed' END-DISPLAY END-STRING IF SIMPLE-STR NOT = 'data' DISPLAY 'STRING ERROR (1): "' SIMPLE-STR '"' END-DISPLAY END-IF MOVE SPACES TO SIMPLE-STR STRING 'data is too big here...' DELIMITED BY SIZE INTO SIMPLE-STR ON OVERFLOW DISPLAY '2 passed' END-DISPLAY NOT ON OVERFLOW DISPLAY '2 failed' END-DISPLAY MOVE SPACES TO ERR-STR STRING 'missing OVERFLOW' DELIMITED BY SIZE INTO ERR-STR END-STRING DISPLAY ERR-STR UPON SYSERR END-DISPLAY END-STRING IF SIMPLE-STR NOT = 'data is too big here' DISPLAY 'STRING ERROR (2): "' SIMPLE-STR '"' END-DISPLAY END-IF MOVE SPACES TO SIMPLE-STR UNSTRING 'data' INTO SIMPLE-STR ON OVERFLOW MOVE SPACES TO ERR-STR UNSTRING 'UNSTRING OVERFLOW' INTO ERR-STR END-UNSTRING DISPLAY ERR-STR UPON SYSERR END-DISPLAY DISPLAY '3 failed' END-DISPLAY NOT ON OVERFLOW DISPLAY '3 passed' END-DISPLAY END-UNSTRING IF SIMPLE-STR NOT = 'data' DISPLAY 'UNSTRING ERROR (1): "' SIMPLE-STR '"' END-DISPLAY END-IF MOVE SPACES TO SIMPLE-STR UNSTRING 'data is too big here...' INTO SIMPLE-STR ON OVERFLOW DISPLAY '4 passed' END-DISPLAY NOT ON OVERFLOW DISPLAY '4 failed' END-DISPLAY MOVE SPACES TO ERR-STR STRING 'missing OVERFLOW' DELIMITED BY SIZE INTO ERR-STR END-STRING DISPLAY ERR-STR UPON SYSERR END-DISPLAY END-UNSTRING IF SIMPLE-STR NOT = 'data is too big here' DISPLAY 'UNSTRING ERROR (2): "' SIMPLE-STR '"' END-DISPLAY END-IF STOP RUN
 }
 

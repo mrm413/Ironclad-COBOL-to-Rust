@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -125,6 +126,11 @@ fn go_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE GO-FILE
+fn go_file_delete(state: &mut ProgramState) {
+    state._fs_go_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT PERF-FILE
 fn perf_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("PERF_FILE").unwrap_or("perf_file.dat".to_string());
@@ -196,6 +202,11 @@ fn perf_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_perf_file = FileStatus::Success,
         Err(e) => state._fs_perf_file = e,
     }
+}
+
+/// DELETE PERF-FILE
+fn perf_file_delete(state: &mut ProgramState) {
+    state._fs_perf_file = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: DECLARATIVES

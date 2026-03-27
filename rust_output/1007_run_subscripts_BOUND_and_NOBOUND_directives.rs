@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct X {
     /// Y
-    pub y: [FixedString<1>; 5],
+    pub y: Vec<FixedString<1>>,
     /// Z
     pub z: FixedString<1>,
 }
@@ -43,7 +44,7 @@ pub struct ProgramState {
     /// WS: X (group)
     pub x: FixedString<6>,
     /// WS: Y
-    pub y: [FixedString<1>; 5],
+    pub y: Vec<FixedString<1>>,
     /// WS: Z
     pub z: FixedString<1>,
     /// WS: IDX

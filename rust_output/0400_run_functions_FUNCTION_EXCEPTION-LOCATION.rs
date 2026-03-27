@@ -2,6 +2,7 @@
 // Source: SUB.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -126,6 +127,12 @@ fn test_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_test_file = FileStatus::Success,
         Err(e) => state._fs_test_file = e,
     }
+    state.test_status = format!("{}", state._fs_test_file).cobol_into();
+}
+
+/// DELETE TEST-FILE
+fn test_file_delete(state: &mut ProgramState) {
+    state._fs_test_file = FileStatus::Success; // DELETE stub
     state.test_status = format!("{}", state._fs_test_file).cobol_into();
 }
 

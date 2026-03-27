@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -46,6 +47,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub success: FixedString<30>,
 }
 
 
@@ -55,7 +58,7 @@ impl ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}{}{}{}{}", format!("{}", "ignore this"), format!("{}", state.at), format!("{}", state.line), format!("{}", 4), format!("{}", state.col), format!("{}", 4));
+    println!("{}", format!("{}", "ignore this"));
     println!("{}", format!("{}", state.scr));
     // ACCEPT SUCCESS-FIELD
     if state.success() && (format!("{}", state.cob_crt_status).trim() == format!("{}", 0).trim()) {

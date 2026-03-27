@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G {
     /// TBL
-    pub tbl: [Tbl; 10],
+    pub tbl: Vec<Tbl>,
 }
 impl std::fmt::Display for G {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -78,7 +79,9 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     // SORT TBL ASCENDING KEY K
     state.kk = " ".to_string().cobol_into();
-    // SEARCH ALL TBL AT END DISPLAY KK " NOT FOUND" WHEN K ( I ) = KK CONTINUE END-SEARCH >IF EXPECT-ORDER = 'ASCII' IF I NOT = 3 >ELIF EXPECT-ORDER = 'EBCDIC' IF I NOT = 8 >END-IF DISPLAY "ERROR" END-DISPLAY STOP RUN
+    // SEARCH ALL TBL AT END
+    println!("{}{}", format!("{}", state.kk), format!("{}", " NOT FOUND"));
+    // WHEN K ( I ) = KK CONTINUE END-SEARCH >IF EXPECT-ORDER = 'ASCII' IF I NOT = 3 >ELIF EXPECT-ORDER = 'EBCDIC' IF I NOT = 8 >END-IF DISPLAY "ERROR" END-DISPLAY STOP RUN
 }
 
 fn main() {

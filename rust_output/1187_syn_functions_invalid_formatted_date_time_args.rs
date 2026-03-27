@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -43,21 +44,21 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}{}", format!("{}", cobol_fn_formatted_date("YYYYWWWD", 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_time("HHMMSS", 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_datetime("YYYYWWWDTHHMMSS", 1, 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_date(format!("{}", state.format_str), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_current_date(format!("{}", state.date_format))), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_current_date(format!("{}", state.time_format))), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_date(format!("{}", state.time_format), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_date(format!("{}", state.datetime_format), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_time(format!("{}", state.date_format), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_time(format!("{}", state.datetime_format), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_datetime(format!("{}", state.date_format), 1, 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_datetime(format!("{}", state.time_format), 1, 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_integer_of_formatted_date(format!("{}", state.time_format), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_seconds_from_formatted_time(format!("{}", state.date_format), 1)), format!("{}", state.end_display));
-    println!("{}{}", format!("{}", cobol_fn_formatted_time("hhmmss.ssssssssss", 1)), format!("{}", state.end_display));
+    println!("{}", format!("{}", cobol_fn_formatted_date("YYYYWWWD", &format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_formatted_time("HHMMSS", &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_datetime("YYYYWWWDTHHMMSS", &format!("{}", 1), &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_date(&format!("{}", state.format_str), &format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_formatted_current_date(&format!("{}", state.date_format))));
+    println!("{}", format!("{}", cobol_fn_formatted_current_date(&format!("{}", state.time_format))));
+    println!("{}", format!("{}", cobol_fn_formatted_date(&format!("{}", state.time_format), &format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_formatted_date(&format!("{}", state.datetime_format), &format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_formatted_time(&format!("{}", state.date_format), &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_time(&format!("{}", state.datetime_format), &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_datetime(&format!("{}", state.date_format), &format!("{}", 1), &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_formatted_datetime(&format!("{}", state.time_format), &format!("{}", 1), &format!("{}", 1), "0", "0")));
+    println!("{}", format!("{}", cobol_fn_integer_of_formatted_date(&format!("{}", state.time_format), &format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_seconds_from_formatted_time(&format!("{}", state.date_format), &format!("{}", 1))));
+    println!("{}", format!("{}", cobol_fn_formatted_time("hhmmss.ssssssssss", &format!("{}", 1), "0", "0")));
     std::process::exit(0);
 }
 

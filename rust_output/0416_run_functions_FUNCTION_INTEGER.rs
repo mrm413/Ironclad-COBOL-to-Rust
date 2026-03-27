@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -41,13 +42,13 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.test_fld = format!("{}", cobol_fn_integer(format!("{}", state.x))).cobol_into();
+    state.test_fld = format!("{}", cobol_fn_integer(&format!("{}", state.x))).cobol_into();
     if format!("{}", state.test_fld).trim() != format!("{}", -2).trim() {
-        println!("{}{}{}", format!("{}", "INTEGER ( X ) wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "INTEGER ( X ) wrong: "), format!("{}", state.test_fld));
     }
-    state.test_fld = format!("{}", cobol_fn_integer((format!("{}", format!("{}", state.y)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 71)).trim().parse::<f64>().unwrap_or(0.0)))).cobol_into();
-    if format!("{}", state.test_fld).trim() != format!("{}", 8462696833).trim() {
-        println!("{}{}{}", format!("{}", "INTEGER ( Y / 71 ) wrong: "), format!("{}", state.test_fld), format!("{}", state.end_display));
+    state.test_fld = format!("{}", cobol_fn_integer(&format!("{}", (format!("{}", format!("{}", state.y)).trim().parse::<f64>().unwrap_or(0.0) / format!("{}", format!("{}", 71)).trim().parse::<f64>().unwrap_or(0.0))))).cobol_into();
+    if format!("{}", state.test_fld).trim() != format!("{}", 8462696833i64).trim() {
+        println!("{}{}", format!("{}", "INTEGER ( Y / 71 ) wrong: "), format!("{}", state.test_fld));
     }
     std::process::exit(0);
 }

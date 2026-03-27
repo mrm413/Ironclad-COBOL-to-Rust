@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -24,7 +25,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Y {
     /// Y-REC
-    pub y_rec: [YRec; 5],
+    pub y_rec: Vec<YRec>,
 }
 impl std::fmt::Display for Y {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -59,7 +60,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G {
     /// G2
-    pub g2: [G2; 3],
+    pub g2: Vec<G2>,
 }
 impl std::fmt::Display for G {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -114,28 +115,27 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub g21: FixedString<30>,
+    pub g22: FixedString<30>,
+    pub g23: FixedString<30>,
+    pub x1: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state."a" = format!("{}", state.all).cobol_into();
-    state.g2 = format!("{}", state.all).cobol_into();
-    state."b" = format!("{}", state.all).cobol_into();
-    state.g2 = format!("{}", state.all).cobol_into();
-    state."c" = format!("{}", state.all).cobol_into();
-    state.g2 = format!("{}", state.all).cobol_into();
+    state.g2 = format!("{}", " ").cobol_into();
+    state.g2 = format!("{}", " ").cobol_into();
+    state.g2 = format!("{}", " ").cobol_into();
     state.y = format!("{}", " ").cobol_into();
     if format!("{}", state.g).trim() != format!("{}", "AAAAAAAAAAAAB0 0 0 0 0 BCCCCCCCCCCCC").trim() {
         println!("{}{}{}", format!("{}", "Test 1 failed: "), format!("{}", state.g), format!("{}", "."));
         println!("{}{}", format!("{}", "    should be: "), format!("{}", "AAAAAAAAAAAAB0 0 0 0 0 BCCCCCCCCCCCC."));
     }
-    state."a" = format!("{}", state.all).cobol_into();
-    state.g2 = format!("{}", state.all).cobol_into();
-    state."b" = format!("{}", state.all).cobol_into();
-    state.g2 = format!("{}", state.all).cobol_into();
-    state."c" = format!("{}", state.all).cobol_into();
-    state.g2 = format!("{}", state.all).cobol_into();
+    state.g2 = format!("{}", " ").cobol_into();
+    state.g2 = format!("{}", " ").cobol_into();
+    state.g2 = format!("{}", " ").cobol_into();
     state.x = format!("{}", 2).cobol_into();
     state.y = format!("{}", " ").cobol_into();
     if format!("{}", state.g).trim() != format!("{}", "2AAAAAAAAAAAB0 0 0 0 0 BCCCCCCCCCCCC").trim() {

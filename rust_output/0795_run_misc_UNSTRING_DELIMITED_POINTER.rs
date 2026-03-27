@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -45,16 +46,16 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     state.ws_lay_record = format!("{}", "        10  AF-RECORD-TYPE-SEQUENCE-04     PIC   9(05) COMP-3.").cobol_into();
     state.ws_pointer = format!("{}", 1).cobol_into();
-    p_0001_sub(state);
+    p_n0001_sub(state);
     if format!("{}", state.ws_pointer).trim() != format!("{}", 48).trim() {
         println!("{}{}", format!("{}", "Expected 48 - Got "), format!("{}", state.ws_pointer));
     }
     { let _a: f64 = format!("{}", state.ws_pointer).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 7).trim().parse().unwrap_or(0.0); state.ws_pointer = format!("{}", _a + _b).cobol_into(); }
-    p_0001_sub(state);
+    p_n0001_sub(state);
     if format!("{}", state.ws_pointer).trim() != format!("{}", 62).trim() {
         println!("{}{}", format!("{}", "Expected 62 - Got "), format!("{}", state.ws_pointer));
     }
-    p_0001_sub(state);
+    p_n0001_sub(state);
     if format!("{}", state.ws_pointer).trim() != format!("{}", 63).trim() {
         println!("{}{}", format!("{}", "Expected 63 - Got "), format!("{}", state.ws_pointer));
     }
@@ -62,10 +63,9 @@ fn p__implicit_(state: &mut ProgramState) {
 }
 
 /// Paragraph: 0001-SUB
-fn p_0001_sub(state: &mut ProgramState) {
+fn p_n0001_sub(state: &mut ProgramState) {
     { let _src = format!("{}", state.ws_lay_record); let _parts: Vec<&str> = _src.splitn(3, ' ').collect();
         if let Some(&p) = _parts.get(0) { state.ws_dummy = p.to_string().cobol_into(); }
-        if let Some(&p) = _parts.get(1) { state.delimiter = p.to_string().cobol_into(); }
         if let Some(&p) = _parts.get(2) { state.ws_keyword = p.to_string().cobol_into(); }
     }
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -222,25 +223,39 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n141: FixedString<30>,
+    pub n81: FixedString<30>,
+    pub fcd__version_number: FixedString<30>,
+    pub fcd_access_mode: FixedString<30>,
+    pub fcd_file_status: FixedString<30>,
+    pub fcd_filename_address: FixedString<30>,
+    pub fcd_name_length: FixedString<30>,
+    pub fcd_open_mode: FixedString<30>,
+    pub fcd_organization: FixedString<30>,
+    pub fcd_record_address: FixedString<30>,
+    pub fcd_recording_mode: FixedString<30>,
+    pub fcd_relative_key: FixedString<30>,
+    pub fcd_version: FixedString<30>,
 }
 
 
 /// Paragraph: A-000-MAIN
 fn p_a_000_main(state: &mut ProgramState) {
-    state.fh_action = format!("{}", state.x'fa01').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x01").cobol_into();
     p_a_100_open_file(state);
     state.record_area = format!("{}", " ").cobol_into();
     state.data_area1 = format!("{}", 0).cobol_into();
-    p_7(state);
+    p_n7(state);
     { let _a: f64 = format!("{}", state.data_area1).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.data_area1 = format!("{}", _a + _b).cobol_into(); }
     state.fcd_relative_key = format!("{}", state.data_area1).cobol_into();
     state.prime_key = format!("{}", "RECORD-1").cobol_into();
-    state.prime_key = format!("{}", cobol_refmod(&format!("{}", state.data_area1), format!("{}", 10).trim().parse::<i64>().unwrap_or(1), format!("{}", 1).trim().parse::<i64>().unwrap_or(0))).cobol_into();
-    state.fh_action = format!("{}", state.x'faf3').cobol_into();
+    state.prime_key = format!("{}", cobol_refmod(&format!("{}", state.data_area1), format!("{}", 10).trim().parse::<usize>().unwrap_or(1), format!("{}", 1).trim().parse::<usize>().unwrap_or(0))).cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\xF3").cobol_into();
     state.fcd_record_address = " ".to_string().cobol_into();
     // OF RECORD-AREA PERFORM A-200-CALL-EXTFH END-PERFORM
     p_a_600_close_file(state);
-    state.fh_action = format!("{}", state.x'fa02').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x02").cobol_into();
     p_a_100_open_file(state);
     state.fcd_relative_key = format!("{}", 3).cobol_into();
     p_a_700_update(state);
@@ -268,7 +283,7 @@ fn p_a_100_open_file(state: &mut ProgramState) {
 /// Paragraph: A-200-CALL-EXTFH
 fn p_a_200_call_extfh(state: &mut ProgramState) {
     // CALL 'EXTFH' USING &mut state.fh_action, &mut state.fcd_area
-    if (format!("{}", state.fcd_file_status).trim() != format!("{}", "00").trim()) && !(state.=) {
+    if (format!("{}", state.fcd_file_status).trim() != format!("{}", "00").trim()) && !(true) {
     }
     // '02' IF FCD-STATUS-KEY-1 = '9' DISPLAY "Operation: " FH-ACTION2 " FILE ERROR, STATUS: 9/" FCD-BINARY ELSE DISPLAY "Operation: " FH-ACTION2 " FILE ERROR, STATUS: " FCD-FILE-STATUS END-IF STOP RUN END-IF
 }
@@ -292,22 +307,22 @@ fn p_a_400_rewrite_record(state: &mut ProgramState) {
 
 /// Paragraph: A-600-CLOSE-FILE
 fn p_a_600_close_file(state: &mut ProgramState) {
-    state.fh_action = format!("{}", state.x'fa80').cobol_into();
+    state.fh_action = format!("{}", "\\xFA\\x80").cobol_into();
     p_a_200_call_extfh(state);
 }
 
 /// Paragraph: A-700-UPDATE
 fn p_a_700_update(state: &mut ProgramState) {
     p_a_300_read_record(state);
-    println!("{}{}{}{}{}{}", format!("{}", "READ    "), format!("{}", state.i), format!("{}", ": "), format!("{}", state.record_area), format!("{}", state.1:41), format!("{}", "."));
+    println!("{}{}{}{}{}{}", format!("{}", "READ    "), format!("{}", state.i), format!("{}", ": "), format!("{}", state.record_area), format!("{}", ""), format!("{}", "."));
     state.record_growth = format!("{}", "1234567890").cobol_into();
     p_a_400_rewrite_record(state);
     p_a_300_read_record(state);
-    println!("{}{}{}{}{}{}", format!("{}", "REWRITE "), format!("{}", state.i), format!("{}", ": "), format!("{}", state.record_area), format!("{}", state.1:41), format!("{}", "."));
+    println!("{}{}{}{}{}{}", format!("{}", "REWRITE "), format!("{}", state.i), format!("{}", ": "), format!("{}", state.record_area), format!("{}", ""), format!("{}", "."));
 }
 
 /// Stub for unresolved paragraph
-fn p_7(state: &mut ProgramState) {
+fn p_n7(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

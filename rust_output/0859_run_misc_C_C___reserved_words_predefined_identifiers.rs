@@ -2,6 +2,7 @@
 // Source: CALLEE.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -70,37 +71,40 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub r#extern: FixedString<30>,
+    pub r#static: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     // CONST DOUBLE FLOAT INT SHORT STRUCT BREAK LONG SWITCH VOID CASE ENUM GOTO REGISTER SIZEOF VOLATILE CHAR DO *>EXTERN *>STATIC UNION WHILE
-    if (((((((((((((((((((((format!("{}", state.r#const).trim() != format!("{}", "A").trim()) || (format!("{}", state.double).trim() != format!("{}", "B").trim())) || (format!("{}", state.float).trim() != format!("{}", "C").trim())) || (format!("{}", state.int).trim() != format!("{}", "D").trim())) || (format!("{}", state.short).trim() != format!("{}", "E").trim())) || (format!("{}", state.r#struct).trim() != format!("{}", "F").trim())) || (format!("{}", state.r#break).trim() != format!("{}", "G").trim())) || (format!("{}", state.long).trim() != format!("{}", "H").trim())) || (format!("{}", state.switch).trim() != format!("{}", "I").trim())) || (format!("{}", state.void).trim() != format!("{}", "J").trim())) || (format!("{}", state.case).trim() != format!("{}", "K").trim())) || (format!("{}", state.r#enum).trim() != format!("{}", "L").trim())) || (format!("{}", state.goto).trim() != format!("{}", "M").trim())) || (format!("{}", state.register).trim() != format!("{}", "N").trim())) || (format!("{}", state.sizeof).trim() != format!("{}", "O").trim())) || (format!("{}", state.volatile).trim() != format!("{}", "P").trim())) || (format!("{}", state.char).trim() != format!("{}", "Q").trim())) || (format!("{}", state.r#do).trim() != format!("{}", "R").trim())) || { let __v = format!("{}", state.*>(extern not = "s")); __v.trim() != "" && __v.trim() != "0" }) || { let __v = format!("{}", state.*>(static not = "t")); __v.trim() != "" && __v.trim() != "0" }) || (format!("{}", state.union).trim() != format!("{}", "U").trim())) || (format!("{}", state.r#while).trim() != format!("{}", "V").trim()) {
+    if (((((((((((((((((((((format!("{}", state.r#const).trim() != format!("{}", "A").trim()) || (format!("{}", state.double).trim() != format!("{}", "B").trim())) || (format!("{}", state.float).trim() != format!("{}", "C").trim())) || (format!("{}", state.int).trim() != format!("{}", "D").trim())) || (format!("{}", state.short).trim() != format!("{}", "E").trim())) || (format!("{}", state.r#struct).trim() != format!("{}", "F").trim())) || (format!("{}", state.r#break).trim() != format!("{}", "G").trim())) || (format!("{}", state.long).trim() != format!("{}", "H").trim())) || (format!("{}", state.switch).trim() != format!("{}", "I").trim())) || (format!("{}", state.void).trim() != format!("{}", "J").trim())) || (format!("{}", state.case).trim() != format!("{}", "K").trim())) || (format!("{}", state.r#enum).trim() != format!("{}", "L").trim())) || (format!("{}", state.goto).trim() != format!("{}", "M").trim())) || (format!("{}", state.register).trim() != format!("{}", "N").trim())) || (format!("{}", state.sizeof).trim() != format!("{}", "O").trim())) || (format!("{}", state.volatile).trim() != format!("{}", "P").trim())) || (format!("{}", state.char).trim() != format!("{}", "Q").trim())) || (format!("{}", state.r#do).trim() != format!("{}", "R").trim())) || true) || true) || (format!("{}", state.union).trim() != format!("{}", "U").trim())) || (format!("{}", state.r#while).trim() != format!("{}", "V").trim()) {
         println!("{}", format!("{}", "At least one var has wrong content!"));
     }
-    state.r#const = format!("{}", state.x'ff').cobol_into();
-    state.double = format!("{}", state.x'ff').cobol_into();
-    state.float = format!("{}", state.x'ff').cobol_into();
-    state.int = format!("{}", state.x'ff').cobol_into();
-    state.short = format!("{}", state.x'ff').cobol_into();
-    state.r#struct = format!("{}", state.x'ff').cobol_into();
-    state.r#break = format!("{}", state.x'ff').cobol_into();
-    state.long = format!("{}", state.x'ff').cobol_into();
-    state.switch = format!("{}", state.x'ff').cobol_into();
-    state.void = format!("{}", state.x'ff').cobol_into();
-    state.case = format!("{}", state.x'ff').cobol_into();
-    state.r#enum = format!("{}", state.x'ff').cobol_into();
-    state.goto = format!("{}", state.x'ff').cobol_into();
-    state.register = format!("{}", state.x'ff').cobol_into();
-    state.sizeof = format!("{}", state.x'ff').cobol_into();
-    state.volatile = format!("{}", state.x'ff').cobol_into();
-    state.char = format!("{}", state.x'ff').cobol_into();
-    state.r#do = format!("{}", state.x'ff').cobol_into();
-    state.*>extern = format!("{}", state.x'ff').cobol_into();
-    state.*>static = format!("{}", state.x'ff').cobol_into();
-    state.union = format!("{}", state.x'ff').cobol_into();
-    state.r#while = format!("{}", state.x'ff').cobol_into();
+    state.r#const = format!("{}", "\\xFF").cobol_into();
+    state.double = format!("{}", "\\xFF").cobol_into();
+    state.float = format!("{}", "\\xFF").cobol_into();
+    state.int = format!("{}", "\\xFF").cobol_into();
+    state.short = format!("{}", "\\xFF").cobol_into();
+    state.r#struct = format!("{}", "\\xFF").cobol_into();
+    state.r#break = format!("{}", "\\xFF").cobol_into();
+    state.long = format!("{}", "\\xFF").cobol_into();
+    state.switch = format!("{}", "\\xFF").cobol_into();
+    state.void = format!("{}", "\\xFF").cobol_into();
+    state.case = format!("{}", "\\xFF").cobol_into();
+    state.r#enum = format!("{}", "\\xFF").cobol_into();
+    state.goto = format!("{}", "\\xFF").cobol_into();
+    state.register = format!("{}", "\\xFF").cobol_into();
+    state.sizeof = format!("{}", "\\xFF").cobol_into();
+    state.volatile = format!("{}", "\\xFF").cobol_into();
+    state.char = format!("{}", "\\xFF").cobol_into();
+    state.r#do = format!("{}", "\\xFF").cobol_into();
+    state.r#extern = format!("{}", "\\xFF").cobol_into();
+    state.r#static = format!("{}", "\\xFF").cobol_into();
+    state.union = format!("{}", "\\xFF").cobol_into();
+    state.r#while = format!("{}", "\\xFF").cobol_into();
     return;
 }
 

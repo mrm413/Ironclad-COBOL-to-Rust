@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Vsized {
     /// FILLER-1
-    pub filler_1: [FixedString<1>; 0],
+    pub filler_1: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Vsized {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -73,7 +74,7 @@ pub struct ProgramState {
     /// WS: VSIZED (group)
     pub vsized: FixedString<1>,
     /// WS: FILLER
-    pub filler_1: [FixedString<1>; 0],
+    pub filler_1: Vec<FixedString<1>>,
     /// WS: N
     pub n: Decimal,
     // --- Special registers ---
@@ -96,39 +97,39 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.x1))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.x1))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> -9876.1234 DISPLAY "X1 '" X1 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.x2))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.x2))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> -19876.1234 DISPLAY "X2 '" X2 "' : " N ELSE IF N <> FUNCTION NUMVAL ( X2B ) OR N <> FUNCTION NUMVAL ( X2C ) OR N <> FUNCTION NUMVAL ( X2D ) DISPLAY "NUMVAL not case-insensitive!"
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.x3))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.x3))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> -42.324 DISPLAY "X3 '" X3 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.x4))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.x4))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 4232400 DISPLAY "X4 '" X4 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.x5))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.x5))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> .0043 DISPLAY "X5 '" X5 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.empt))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.empt))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 DISPLAY "EMPT '" EMPT "' :  " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.vsized))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.vsized))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 DISPLAY "VSIZED '" VSIZED "' :  " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.bad1))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.bad1))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 AND N <> -1.045 DISPLAY "BAD1 '" BAD1 "' : " N
-    state.n = format!("{}", cobol_fn_numval(format!("{}", state.bad2))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval(&format!("{}", state.bad2))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 AND N <> 10 DISPLAY "BAD2 '" BAD2 "' : " N

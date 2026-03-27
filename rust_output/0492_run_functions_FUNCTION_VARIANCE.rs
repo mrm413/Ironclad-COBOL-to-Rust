@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,11 +38,11 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.z = format!("{}", cobol_fn_variance(3, -14, 0, 8, -3)).cobol_into();
+    state.z = format!("{}", cobol_fn_variance(&cobol_fn_variance(&cobol_fn_variance(&cobol_fn_variance(&format!("{}", 3), &format!("{}", -14)), &format!("{}", 0)), &format!("{}", 8)), &format!("{}", -3))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 54.160000).trim() {
         println!("{}{}", format!("{}", "EXP 54.16 GOT "), format!("{}", state.z));
     }
-    state.z = format!("{}", cobol_fn_variance(4, 0, 5)).cobol_into();
+    state.z = format!("{}", cobol_fn_variance(&cobol_fn_variance(&format!("{}", 4), &format!("{}", 0)), &format!("{}", 5))).cobol_into();
     if format!("{}", state.z).trim() != format!("{}", 4.666667).trim() {
         println!("{}{}", format!("{}", "EXP 4.66666666 GOT "), format!("{}", state.z));
     }

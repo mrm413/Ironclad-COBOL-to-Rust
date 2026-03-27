@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab1 {
     /// ROW1
-    pub row1: [Row1; 1],
+    pub row1: Vec<Row1>,
 }
 impl std::fmt::Display for Tab1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -55,7 +56,7 @@ pub struct Tab2 {
     /// CNT2
     pub cnt2: u32,
     /// ROW2
-    pub row2: [Row2; 1],
+    pub row2: Vec<Row2>,
 }
 impl std::fmt::Display for Tab2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -96,7 +97,7 @@ pub struct Tab3 {
     /// CNT3
     pub cnt3: u32,
     /// ROW3
-    pub row3: [Row3; 1],
+    pub row3: Vec<Row3>,
 }
 impl std::fmt::Display for Tab3 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -169,12 +170,49 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub tab1_nrk: FixedString<30>,
+    pub tab2_nrk: FixedString<30>,
+    pub tab3_data1: FixedString<30>,
+    pub tab3_data10: FixedString<30>,
+    pub tab3_data3: FixedString<30>,
+    pub tab3_data4: FixedString<30>,
+    pub tab3_data5: FixedString<30>,
+    pub tab3_data6: FixedString<30>,
+    pub tab3_data7: FixedString<30>,
+    pub tab3_data8: FixedString<30>,
+    pub tab3_data9: FixedString<30>,
+    pub tab3_data21: FixedString<30>,
+    pub tab3_data210: FixedString<30>,
+    pub tab3_data22: FixedString<30>,
+    pub tab3_data23: FixedString<30>,
+    pub tab3_data24: FixedString<30>,
+    pub tab3_data25: FixedString<30>,
+    pub tab3_data26: FixedString<30>,
+    pub tab3_data27: FixedString<30>,
+    pub tab3_data28: FixedString<30>,
+    pub tab3_data29: FixedString<30>,
+    pub tab3_nr1: FixedString<30>,
+    pub tab3_nr10: FixedString<30>,
+    pub tab3_nr2: FixedString<30>,
+    pub tab3_nr3: FixedString<30>,
+    pub tab3_nr4: FixedString<30>,
+    pub tab3_nr5: FixedString<30>,
+    pub tab3_nr6: FixedString<30>,
+    pub tab3_nr7: FixedString<30>,
+    pub tab3_nr8: FixedString<30>,
+    pub tab3_nr9: FixedString<30>,
 }
 
 
 /// Paragraph: A
 fn p_a(state: &mut ProgramState) {
-    // PERFORM VARYING VARYING K FROM 1 BY 1 UNTIL K > 4 MOVE K TO TAB1-NR(K) TAB2-NR(K) END-PERFORM MOVE 1 TO TAB3-NR(1)
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        state.tab1_nr = format!("{}", state.k).cobol_into();
+        state.tab2_nr = format!("{}", state.k).cobol_into();
+    }
+    state.tab3_nr = format!("{}", 1).cobol_into();
     state.tab3_nr = format!("{}", 1).cobol_into();
     state.tab3_nr = format!("{}", 1).cobol_into();
     state.tab3_nr = format!("{}", 6).cobol_into();
@@ -204,7 +242,30 @@ fn p_a(state: &mut ProgramState) {
     state.tab3_data2 = format!("{}", "whole").cobol_into();
     state.tab3_data2 = format!("{}", "cow").cobol_into();
     state.tab3_data2 = format!("{}", "the").cobol_into();
-    // SORT ROW1 DESCENDING TAB1-NR SORT ROW2 DESCENDING TAB2-NR DISPLAY "SINGLE TABLE" END-DISPLAY PERFORM VARYING K FROM 1 BY 1 UNTIL K > 4 DISPLAY FUNCTION TRIM(TAB1-NR(K)) END-DISPLAY END-PERFORM DISPLAY "LOWER LEVEL TABLE" END-DISPLAY PERFORM VARYING K FROM 1 BY 1 UNTIL K > 4 DISPLAY FUNCTION TRIM(TAB2-NR(K)) END-DISPLAY END-PERFORM SORT ROW3 DESCENDING TAB3-NR ASCENDING TAB3-DATA DISPLAY "MULTY KEY SORT" END-DISPLAY PERFORM VARYING K FROM 1 BY 1 UNTIL K > 10 DISPLAY FUNCTION TRIM(ROW3(K)) END-DISPLAY END-PERFORM STOP RUN
+    // SORT ROW1 DESCENDING TAB1-NR
+    // SORT ROW2 DESCENDING TAB2-NR
+    println!("{}", format!("{}", "SINGLE TABLE"));
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", cobol_fn_trim(&format!("{}", state.tab1_nr))));
+    }
+    println!("{}", format!("{}", "LOWER LEVEL TABLE"));
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 4).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", cobol_fn_trim(&format!("{}", state.tab2_nr))));
+    }
+    // SORT ROW3 DESCENDING TAB3-NR ASCENDING TAB3-DATA
+    println!("{}", format!("{}", "MULTY KEY SORT"));
+    while !((format!("{}", state.k).trim().parse::<f64>().unwrap_or(0.0) > format!("{}", 10).trim().parse::<f64>().unwrap_or(0.0))) {
+        state.k = format!("{}", 1).cobol_into();
+        println!("{}", format!("{}", cobol_fn_trim(&format!("{}", state.row3))));
+    }
+    std::process::exit(0);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

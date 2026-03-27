@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -41,9 +42,6 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    { let _a: f64 = format!("{}", state.456).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 123).trim().parse().unwrap_or(0.0); state.456 = format!("{}", _a * _b).cobol_into(); }
-    { let _a: f64 = format!("{}", state."b").trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", "a").trim().parse().unwrap_or(0.0); state."b" = format!("{}", _a * _b).cobol_into(); }
-    { let _a: f64 = format!("{}", state."b").trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 123).trim().parse().unwrap_or(0.0); state."b" = format!("{}", _a * _b).cobol_into(); }
     { let _a: f64 = format!("{}", state.x_9).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.x_x).trim().parse().unwrap_or(0.0); state.x_9 = format!("{}", _a * _b).cobol_into(); }
     { let _a: f64 = format!("{}", state.x_09).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.x_9).trim().parse().unwrap_or(0.0); state.x_09 = format!("{}", _a * _b).cobol_into(); }
     { let _a: f64 = format!("{}", state.x_x).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.x_09).trim().parse().unwrap_or(0.0); state.x_x = format!("{}", _a * _b).cobol_into(); }

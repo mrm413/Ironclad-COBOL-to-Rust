@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -52,16 +53,19 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n22: FixedString<30>,
+    pub n31: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x = format!("{}", state.x"0000").cobol_into();
+    state.x = format!("{}", "\\x00\\x00").cobol_into();
     if { let __v = format!("{}", state.x_num); __v.trim() != "" && __v.trim() != "0" } {
     }
     // NUMERIC DISPLAY "low-value is numeric" UPON SYSERR
-    state.x = format!("{}", state.x"01").cobol_into();
+    state.x = format!("{}", "\\x01").cobol_into();
     if { let __v = format!("{}", state.x_num); __v.trim() != "" && __v.trim() != "0" } {
     }
     // NUMERIC DISPLAY "SOH is numeric" UPON SYSERR

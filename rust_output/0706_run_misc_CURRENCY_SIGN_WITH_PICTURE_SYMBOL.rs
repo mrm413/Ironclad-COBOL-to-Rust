@@ -2,6 +2,7 @@
 // Source: .cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,14 +37,15 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub invoice_amount: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.euros = format!("{}", 12.340000).cobol_into();
-    { let _a: f64 = format!("{}", state.1000).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", state.euros).trim().parse().unwrap_or(0.0); state.1000 = format!("{}", _a * _b).cobol_into(); }
-    // GIVING CENTS
+    state.cents = format!("{}", (format!("{}", format!("{}", state.euros)).trim().parse::<f64>().unwrap_or(0.0) * format!("{}", format!("{}", 1000)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
     println!("{}{}{}{}{}", format!("{}", "#"), format!("{}", state.euros), format!("{}", "# equal #"), format!("{}", state.cents), format!("{}", "#"));
     state.invoice_amount = format!("{}", 1500).cobol_into();
     println!("{}{}{}", format!("{}", "Invoice amount #1 is "), format!("{}", state.invoice_amount), format!("{}", "."));

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -14,7 +15,7 @@ use cobol_runtime::define_record;
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Tab {
     /// X
-    pub x: [FixedString<1>; 4],
+    pub x: Vec<FixedString<1>>,
 }
 impl std::fmt::Display for Tab {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -41,7 +42,7 @@ pub struct ProgramState {
     /// WS: TAB (group)
     pub tab: FixedString<4>,
     /// WS: X
-    pub x: [FixedString<1>; 4],
+    pub x: Vec<FixedString<1>>,
     /// WS: N
     pub n: u8,
     // --- Special registers ---
@@ -64,8 +65,8 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.x = format!("{}", "B").cobol_into();
-    if { let __v = format!("{}", state.x); __v.trim() != "" && __v.trim() != "0" } {
+    for _elem in state.x.iter_mut() { *_elem = format!("{}", "B").cobol_into(); }
+    if { let __v = format!("{:?}", state.x); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ( 6 ) NOT EQUAL TO "B" THEN DISPLAY "Got X (6) = " X ( 6 ) ", expected B" END-DISPLAY STOP RUN
 }

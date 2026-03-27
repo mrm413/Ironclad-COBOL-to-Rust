@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -56,9 +57,9 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct T01Detrec {
     /// T01-DETTAB
-    pub t01_dettab: [T01Dettab; 47],
+    pub t01_dettab: Vec<T01Dettab>,
     /// T02-DETTAB
-    pub t02_dettab: [T02Dettab; 33],
+    pub t02_dettab: Vec<T02Dettab>,
 }
 impl std::fmt::Display for T01Detrec {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -91,7 +92,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct T01Entry {
     /// T01-TAB
-    pub t01_tab: [T01Tab; 2200],
+    pub t01_tab: Vec<T01Tab>,
 }
 impl std::fmt::Display for T01Entry {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -124,7 +125,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct T01All {
     /// T01-REC
-    pub t01_rec: [T01Rec; 10],
+    pub t01_rec: Vec<T01Rec>,
 }
 impl std::fmt::Display for T01All {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -220,10 +221,8 @@ pub struct ProgramState {
 
 /// Paragraph: INIT-RTN
 fn p_init_rtn(state: &mut ProgramState) {
-    state.high_value = format!("{}", state.all).cobol_into();
-    state.t01_tab = format!("{}", state.all).cobol_into();
-    state.low_value = format!("{}", state.all).cobol_into();
-    state.t01_tab = format!("{}", state.all).cobol_into();
+    state.t01_tab = format!("{}", " ").cobol_into();
+    state.t01_tab = format!("{}", " ").cobol_into();
     state.t01_rec = format!("{}", " ").cobol_into();
     state.t01_rec = format!("{}", " ").cobol_into();
     state.t01_rec = format!("{}", " ").cobol_into();

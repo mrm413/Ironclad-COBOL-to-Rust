@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,15 +30,19 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub syntax: FixedString<30>,
+    pub hack: FixedString<30>,
+    pub highlighting: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}", format!("{}", state.b"101010"));
-    println!("{}{}{}{}{}", format!("{}", state.b"111111111111111111111111111111111111111111111111111 "), format!("{}", state.1111111111111" *> "), format!("{}", state.syntax), format!("{}", state.highlighting), format!("{}", state.hack));
-    println!("{}", format!("{}", state.b"23"));
-    println!("{}{}{}", format!("{}", state.b"111111111111111111111111111111111111111111111111111 "), format!("{}", 111111111111111108050195693358035273593302569451520.000000), format!("{}", "11111111111111111111111111111111111111111111111111"));
+    println!("{}", format!("{}", ""));
+    println!("{}{}{}{}{}", format!("{}", ""), format!("{}", ""), format!("{}", state.syntax), format!("{}", state.highlighting), format!("{}", state.hack));
+    println!("{}", format!("{}", ""));
+    println!("{}{}{}", format!("{}", ""), format!("{}", 111111111111111108050195693358035273593302569451520.000000), format!("{}", "11111111111111111111111111111111111111111111111111"));
     std::process::exit(0);
 }
 

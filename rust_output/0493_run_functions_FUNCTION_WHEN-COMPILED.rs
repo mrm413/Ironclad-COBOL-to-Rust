@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -60,6 +61,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n175: FixedString<30>,
 }
 
 
@@ -68,22 +71,22 @@ fn p__implicit_(state: &mut ProgramState) {
     // *> CHECK MILLENNIUM
     state.compiled_datetime = format!("{}", cobol_fn_when_compiled()).cobol_into();
     if format!("{}", state.millennium).trim() != format!("{}", "2").trim() {
-        println!("{}{}{}", format!("{}", "Millennium NOT OK: "), format!("{}", state.millennium), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Millennium NOT OK: "), format!("{}", state.millennium));
     }
     // *> CHECK TIMEZONE
     if format!("{}", state.timezone).trim() != format!("{}", cobol_fn_current_date()).trim() {
-        println!("{}{}{}", format!("{}", "Timezone NOT OK: "), format!("{}", state.timezone), format!("{}", state.end_display));
+        println!("{}{}", format!("{}", "Timezone NOT OK: "), format!("{}", state.timezone));
     }
     // *> CHECK DATE FORMAT
     state.compiled_date = cobol_inspect_converting(&format!("{}", state.compiled_date), "0123456789", "9999999999").cobol_into();
-    if format!("{}", state.compiled_date).trim() != format!("{}", state.all).trim() {
+    if format!("{}", state.compiled_date).trim() != format!("{}", " ").trim() {
     }
     // "9" DISPLAY "Date format NOT OK: " COMPILED-DATE END-DISPLAY END-IF
     // *> CHECK TIMEZONE FORMAT
     if format!("{}", state.timezone).trim() != format!("{}", "00000").trim() {
         state.timezone = cobol_inspect_converting(&format!("{}", state.timezone), "0123456789", "9999999999").cobol_into();
         if (format!("{}", state.timezone).trim() != format!("{}", "+9999").trim()) && (format!("{}", state.timezone).trim() != format!("{}", "-9999").trim()) {
-            println!("{}{}{}", format!("{}", "Timezone format NOT OK: "), format!("{}", state.timezone), format!("{}", state.end_display));
+            println!("{}{}", format!("{}", "Timezone format NOT OK: "), format!("{}", state.timezone));
         }
     }
     std::process::exit(0);

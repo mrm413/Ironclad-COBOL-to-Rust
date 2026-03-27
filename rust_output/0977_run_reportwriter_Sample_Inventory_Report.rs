@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -170,6 +171,11 @@ fn inv_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE INV-FILE
+fn inv_file_delete(state: &mut ProgramState) {
+    state._fs_inv_file = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT REPORT-FILE
 fn report_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("REPORT_FILE").unwrap_or("report_file.dat".to_string());
@@ -239,6 +245,11 @@ fn report_file_close(state: &mut ProgramState) {
         Ok(()) => state._fs_report_file = FileStatus::Success,
         Err(e) => state._fs_report_file = e,
     }
+}
+
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
 }
 
 /// Paragraph: A000-MAINLINE

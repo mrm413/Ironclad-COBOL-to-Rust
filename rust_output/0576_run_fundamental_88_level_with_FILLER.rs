@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -32,6 +33,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub x: FixedString<30>,
 }
 
 
@@ -42,11 +45,11 @@ impl ProgramState {
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     if state.x() {
-        println!("{}{}", format!("{}", "NOT OK"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "NOT OK"));
     }
     state.filler_1 = "X".to_string().cobol_into();
     if !(state.x()) {
-        println!("{}{}", format!("{}", "NOT OK"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "NOT OK"));
     }
     std::process::exit(0);
 }

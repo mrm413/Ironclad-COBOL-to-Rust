@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -32,6 +33,10 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub p1: FixedString<30>,
+    pub p2: FixedString<30>,
+    pub p3: FixedString<30>,
 }
 
 
@@ -48,14 +53,14 @@ fn p__implicit_(state: &mut ProgramState) {
     // 01 P2 USAGE BINARY-LONG
     // 01 P3 PIC X(8)
     // PROCEDURE DIVISION WITH C LINKAGE USING BY VALUE P1 P2 BY REFERENCE P3
-    if format!("{}", state.p1).trim() != format!("{}", state.address).trim() {
-        println!("{}{}", format!("{}", state.p1), format!("{}", state.end_display));
+    if format!("{}", state.p1).trim() != format!("{}", 0usize).trim() {
+        println!("{}", format!("{}", state.p1));
     }
     if format!("{}", state.p2).trim() != format!("{}", 42).trim() {
-        println!("{}{}", format!("{}", state.p2), format!("{}", state.end_display));
+        println!("{}", format!("{}", state.p2));
     }
     if format!("{}", state.p3).trim() != format!("{}", "CALLBACK").trim() {
-        println!("{}{}", format!("{}", state.p3), format!("{}", state.end_display));
+        println!("{}", format!("{}", state.p3));
     }
     return;
 }

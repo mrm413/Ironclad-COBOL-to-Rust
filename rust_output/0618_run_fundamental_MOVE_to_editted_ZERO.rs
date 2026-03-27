@@ -2,6 +2,7 @@
 // Source: MOVETOEDITEDZERO.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,13 +37,16 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub avoid: FixedString<30>,
+    pub default: FixedString<30>,
+    pub init: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     state.edit_1 = format!("{}", 111111).cobol_into();
-    state.*> = format!("{}", 111111).cobol_into();
     state.avoid = format!("{}", 111111).cobol_into();
     state.init = format!("{}", 111111).cobol_into();
     state.default = format!("{}", 111111).cobol_into();

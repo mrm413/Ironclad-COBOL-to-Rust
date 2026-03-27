@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -43,7 +44,7 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.xbyte = format!("{}", state.x"0d").cobol_into();
+    state.xbyte = format!("{}", "\\r").cobol_into();
     if { let __v = format!("{}", state.x); __v.trim() != "" && __v.trim() != "0" } {
     }
     // ALPHABETIC-LOWER DISPLAY "Fail - Not alphabetic lower" END-DISPLAY END-IF

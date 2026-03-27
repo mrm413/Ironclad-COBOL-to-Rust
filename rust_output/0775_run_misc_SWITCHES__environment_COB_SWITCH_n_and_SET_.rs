@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -29,6 +30,15 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub swit1: FixedString<30>,
+    pub swit1_on: FixedString<30>,
+    pub swit2: FixedString<30>,
+    pub swit2_on: FixedString<30>,
+    pub swit3_on: FixedString<30>,
+    pub swit31_on: FixedString<30>,
+    pub swit36_off: FixedString<30>,
+    pub swit4_off: FixedString<30>,
 }
 
 
@@ -49,7 +59,7 @@ fn p__implicit_(state: &mut ProgramState) {
     } else {
         println!("{}", format!("{}", " OFF"));
     }
-    if !(state.swit4_off) {
+    if !({ let __v = format!("{}", state.swit4_off); __v.trim() != "" && __v.trim() != "0" }) {
         println!("{}", format!("{}", " ON"));
     } else {
         println!("{}", format!("{}", " OFF"));
@@ -71,7 +81,7 @@ fn p__implicit_(state: &mut ProgramState) {
     } else {
         println!("{}", format!("{}", " OFF"));
     }
-    if !(state.swit36_off) {
+    if !({ let __v = format!("{}", state.swit36_off); __v.trim() != "" && __v.trim() != "0" }) {
         println!("{}", format!("{}", " ON"));
     } else {
         println!("{}", format!("{}", " OFF"));

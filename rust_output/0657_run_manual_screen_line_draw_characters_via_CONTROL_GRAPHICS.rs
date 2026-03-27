@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -52,6 +53,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub success: FixedString<30>,
 }
 
 
@@ -62,9 +65,9 @@ impl ProgramState {
 /// Paragraph: TESTME
 fn p_testme(state: &mut ProgramState) {
     state.lin = format!("{}", 2).cobol_into();
-    println!("{}{}{}{}{}{}", format!("{}", state.scr1), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2));
+    println!("{}", format!("{}", state.scr1));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}", format!("{}", state.scr2), format!("{}", state.at), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 2));
+    println!("{}", format!("{}", state.scr2));
     state.lin_start = format!("{}", 5).cobol_into();
     p_dspcol(state);
     state.lin_start = format!("{}", 12).cobol_into();
@@ -80,26 +83,26 @@ fn p_testme(state: &mut ProgramState) {
 /// Paragraph: DSPCOL
 fn p_dspcol(state: &mut ProgramState) {
     state.lin = format!("{}", state.lin_start).cobol_into();
-    println!("{}{}{}{}{}{}{}", format!("{}", "lqqqqwqqqqk"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 5), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "lqqqqwqqqqk"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "x    x    x"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 5), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "x    x    x"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "tqqqqnqqqqu"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 5), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "tqqqqnqqqqu"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "x    x    x"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 5), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "x    x    x"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "mqqqqvqqqqj"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 5), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "mqqqqvqqqqj"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
     state.lin = format!("{}", state.lin_start).cobol_into();
-    println!("{}{}{}{}{}{}{}", format!("{}", "LQQQQWQQQQK"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 20), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "LQQQQWQQQQK"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "X    X    X"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 20), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "X    X    X"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "TQQQQNQQQQU"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 20), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "TQQQQNQQQQU"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "X    X    X"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 20), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "X    X    X"));
     { let _a: f64 = format!("{}", state.lin).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.lin = format!("{}", _a + _b).cobol_into(); }
-    println!("{}{}{}{}{}{}{}", format!("{}", "MQQQQVQQQQJ"), format!("{}", state.line), format!("{}", state.lin), format!("{}", state.col), format!("{}", 20), format!("{}", state.control), format!("{}", state.graphcontrol));
+    println!("{}", format!("{}", "MQQQQVQQQQJ"));
     // ]
 }
 

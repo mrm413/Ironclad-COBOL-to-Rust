@@ -2,9 +2,15 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
+
+use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::fs::File;
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
+use cobol_runtime::FileStatus;
+use cobol_runtime::CobolFile;
 use cobol_runtime::string_ops::*;
 use cobol_runtime::chrono_shim::*;
 use cobol_runtime::CobolInto;
@@ -99,6 +105,10 @@ pub struct ProgramState {
     pub some_data: u8,
     /// WS: RED-DATA
     pub red_data: FixedString<1>,
+    pub _fs_stck_file: FileStatus,
+    pub _fh_stck_file: CobolFile,
+    pub _fs_chng_file: FileStatus,
+    pub _fh_chng_file: CobolFile,
     // --- Special registers ---
     /// RETURN-CODE special register
     pub return_code: i32,
@@ -114,6 +124,9 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub chng_file_ok: FixedString<30>,
+    pub stck_file_ok: FixedString<30>,
 }
 
 
@@ -121,6 +134,26 @@ impl ProgramState {
     pub fn stck_file_ok(&self) -> bool { format!("{}", self.stck_file_status).trim() == "00" }
     pub fn chng_file_ok(&self) -> bool { format!("{}", self.chng_file_status).trim() == "00" }
 }
+
+fn chng_file_open_input(state: &mut ProgramState) { /* stub */ }
+fn chng_file_open_output(state: &mut ProgramState) { /* stub */ }
+fn chng_file_open_io(state: &mut ProgramState) { /* stub */ }
+fn chng_file_open_extend(state: &mut ProgramState) { /* stub */ }
+fn chng_file_read(state: &mut ProgramState) { /* stub */ }
+fn chng_file_write(state: &mut ProgramState) { /* stub */ }
+fn chng_file_rewrite(state: &mut ProgramState) { /* stub */ }
+fn chng_file_close(state: &mut ProgramState) { /* stub */ }
+fn chng_file_delete(state: &mut ProgramState) { /* stub */ }
+
+fn stck_file_open_input(state: &mut ProgramState) { /* stub */ }
+fn stck_file_open_output(state: &mut ProgramState) { /* stub */ }
+fn stck_file_open_io(state: &mut ProgramState) { /* stub */ }
+fn stck_file_open_extend(state: &mut ProgramState) { /* stub */ }
+fn stck_file_read(state: &mut ProgramState) { /* stub */ }
+fn stck_file_write(state: &mut ProgramState) { /* stub */ }
+fn stck_file_rewrite(state: &mut ProgramState) { /* stub */ }
+fn stck_file_close(state: &mut ProgramState) { /* stub */ }
+fn stck_file_delete(state: &mut ProgramState) { /* stub */ }
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
@@ -140,17 +173,17 @@ fn p__implicit_(state: &mut ProgramState) {
 }
 
 /// Stub for unresolved paragraph
+fn p_initialisation(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
+}
+
+/// Stub for unresolved paragraph
 fn p_fatal_error(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 
 /// Stub for unresolved paragraph
 fn p_termination(state: &mut ProgramState) {
-    // TODO: paragraph not parsed — stub
-}
-
-/// Stub for unresolved paragraph
-fn p_initialisation(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

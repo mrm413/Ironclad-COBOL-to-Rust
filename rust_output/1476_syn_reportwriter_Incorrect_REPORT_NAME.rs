@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
@@ -98,6 +99,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub goforever: FixedString<30>,
 }
 
 
@@ -187,6 +190,11 @@ fn transaction_data_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE TRANSACTION-DATA
+fn transaction_data_delete(state: &mut ProgramState) {
+    state._fs_transaction_data = FileStatus::Success; // DELETE stub
+}
+
 /// OPEN INPUT REPORT-FILE
 fn report_file_open_input(state: &mut ProgramState) {
     let path = std::env::var("REPORT_FILE").unwrap_or("report_file.dat".to_string());
@@ -258,6 +266,11 @@ fn report_file_close(state: &mut ProgramState) {
     }
 }
 
+/// DELETE REPORT-FILE
+fn report_file_delete(state: &mut ProgramState) {
+    state._fs_report_file = FileStatus::Success; // DELETE stub
+}
+
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
     transaction_data_open_input(state);
@@ -274,6 +287,11 @@ fn p__implicit_(state: &mut ProgramState) {
     transaction_data_close(state);
     report_file_close(state);
     std::process::exit(0);
+}
+
+/// Stub for unresolved paragraph
+fn p__empty(state: &mut ProgramState) {
+    // TODO: paragraph not parsed — stub
 }
 
 fn main() {

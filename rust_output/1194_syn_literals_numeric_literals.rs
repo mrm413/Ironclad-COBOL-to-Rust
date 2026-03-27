@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -40,43 +41,43 @@ fn p__implicit_(state: &mut ProgramState) {
     // 00000000000000000000000000000000000000000000000000000000000 SECTION
     // 000000000000000000000000000000000000000000000000000000000000
     { let _a: f64 = format!("{}", state.counter).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.counter = format!("{}", _a + _b).cobol_into(); }
-    if (state.counter == 1) {
-        p_00000000000000000000000000000000000000000000000000000000000(state);
-    } else if (state.counter == 2) {
-        p_000000000000000000000000000000000000000000000000000000000000(state);
-    } else if (state.counter == 3) {
+    if (format!("{}", state.counter).trim() == format!("{}", 1).trim()) {
+        p_n00000000000000000000000000000000000000000000000000000000000(state);
+    } else if (format!("{}", state.counter).trim() == format!("{}", 2).trim()) {
+        p_n000000000000000000000000000000000000000000000000000000000000(state);
+    } else if (format!("{}", state.counter).trim() == format!("{}", 3).trim()) {
         state.counter = format!("{}", 0).cobol_into();
     }
     // 100000000000000000000000000000000000000000000000000000000001 SECTION
     // 20000000000000000000000000000000000000000000000000000000002
     { let _a: f64 = format!("{}", state.counter).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.counter = format!("{}", _a + _b).cobol_into(); }
-    if (state.counter == 1) {
-        p_100000000000000000000000000000000000000000000000000000000001(state);
-    } else if (state.counter == 2) {
-        p_20000000000000000000000000000000000000000000000000000000002(state);
-    } else if (state.counter == 3) {
+    if (format!("{}", state.counter).trim() == format!("{}", 1).trim()) {
+        p_n100000000000000000000000000000000000000000000000000000000001(state);
+    } else if (format!("{}", state.counter).trim() == format!("{}", 2).trim()) {
+        p_n20000000000000000000000000000000000000000000000000000000002(state);
+    } else if (format!("{}", state.counter).trim() == format!("{}", 3).trim()) {
         state.counter = format!("{}", 0).cobol_into();
     }
     std::process::exit(0);
 }
 
 /// Stub for unresolved paragraph
-fn p_100000000000000000000000000000000000000000000000000000000001(state: &mut ProgramState) {
+fn p_n00000000000000000000000000000000000000000000000000000000000(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 
 /// Stub for unresolved paragraph
-fn p_000000000000000000000000000000000000000000000000000000000000(state: &mut ProgramState) {
+fn p_n100000000000000000000000000000000000000000000000000000000001(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 
 /// Stub for unresolved paragraph
-fn p_20000000000000000000000000000000000000000000000000000000002(state: &mut ProgramState) {
+fn p_n20000000000000000000000000000000000000000000000000000000002(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 
 /// Stub for unresolved paragraph
-fn p_00000000000000000000000000000000000000000000000000000000000(state: &mut ProgramState) {
+fn p_n000000000000000000000000000000000000000000000000000000000000(state: &mut ProgramState) {
     // TODO: paragraph not parsed — stub
 }
 

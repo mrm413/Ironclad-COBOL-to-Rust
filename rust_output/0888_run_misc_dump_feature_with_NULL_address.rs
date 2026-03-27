@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -50,7 +51,7 @@ pub struct GrpX {
     /// FILLER-1
     pub filler_1: FixedString<3>,
     /// FLD-X
-    pub fld_x: [FldX; 10],
+    pub fld_x: Vec<FldX>,
     /// FILLER-2
     pub filler_2: FixedString<3>,
 }
@@ -89,7 +90,7 @@ pub struct Grp1 {
     /// FILLER-1
     pub filler_1: FixedString<3>,
     /// FLD-1
-    pub fld_1: [Fld1; 10],
+    pub fld_1: Vec<Fld1>,
     /// FILLER-2
     pub filler_2: FixedString<3>,
 }
@@ -164,7 +165,7 @@ pub struct Grp3 {
     /// FILLER-1
     pub filler_1: FixedString<3>,
     /// FLD-3
-    pub fld_3: [Fld3; 3],
+    pub fld_3: Vec<Fld3>,
     /// C5
     pub c5: Decimal,
 }
@@ -201,7 +202,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Fld5 {
     /// FLD-5-1
-    pub fld_5_1: [Fld51; 0],
+    pub fld_5_1: Vec<Fld51>,
 }
 impl std::fmt::Display for Fld5 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -252,7 +253,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct TableData {
     /// ROWS
-    pub rows: [Rows; 0],
+    pub rows: Vec<Rows>,
 }
 impl std::fmt::Display for TableData {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -412,17 +413,21 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n10103: FixedString<30>,
+    pub n5104: FixedString<30>,
+    pub n9102: FixedString<30>,
+    pub n9103: FixedString<30>,
+    pub tab_adr_ind: FixedString<30>,
 }
 
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state."*" = format!("{}", state.all).cobol_into();
-    state.grp_2 = format!("{}", state.all).cobol_into();
+    state.grp_2 = format!("{}", " ").cobol_into();
     state.fld_2 = format!("{}", " ").cobol_into();
     println!("{}{}", format!("{}", "GRP-2:"), format!("{}", state.grp_2));
-    state."*" = format!("{}", state.all).cobol_into();
-    state.grp_3 = format!("{}", state.all).cobol_into();
+    state.grp_3 = format!("{}", " ").cobol_into();
     state.grp_3 = format!("{}", " ").cobol_into();
     state.fld_3 = format!("{}", " ").cobol_into();
     state.fld_3 = format!("{}", " ").cobol_into();
@@ -430,14 +435,13 @@ fn p__implicit_(state: &mut ProgramState) {
     state.fld_3o_1 = format!("{}", " ").cobol_into();
     println!("{}{}", format!("{}", "GRP-3:"), format!("{}", state.grp_3));
     state.c5 = format!("{}", 7).cobol_into();
-    state."*" = format!("{}", state.all).cobol_into();
-    state.grp_5 = format!("{}", state.all).cobol_into();
+    state.grp_5 = format!("{}", " ").cobol_into();
     state.fld_5 = format!("{}", " ").cobol_into();
     println!("{}{}", format!("{}", "GRP-5:"), format!("{}", state.grp_5));
     state.grp_2a = format!("{}", " ").cobol_into();
     state.grp_2a = format!("{}", "Peek").cobol_into();
     state.grp_2a = format!("{}", "Boo").cobol_into();
-    state.grp_2a = format!("{}", state.x"fe99").cobol_into();
+    state.grp_2a = format!("{}", "\\xFE\\x99").cobol_into();
     state.grp_2a = format!("{}", "You").cobol_into();
     state.fld_5_4 = format!("{}", "$$").cobol_into();
     state.fld_1_x = format!("{}", "Something else!").cobol_into();

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -43,20 +44,23 @@ pub struct ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    state.n = format!("{}", cobol_fn_numval_f(format!("{}", state.x1))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval_f(&format!("{}", state.x1))).cobol_into();
     if format!("{}", state.n).trim() != format!("{}", -1234).trim() {
         println!("{}{}{}{}", format!("{}", "X1 "), format!("{}", state.x1), format!("{}", " : "), format!("{}", state.n));
     }
-    state.n = format!("{}", cobol_fn_numval_f(format!("{}", state.x2))).cobol_into();
-    if format!("{}", state.n).trim() != format!("{}", state..001234).trim() {
+    state.n = format!("{}", cobol_fn_numval_f(&format!("{}", state.x2))).cobol_into();
+    if format!("{}", state.n).trim() != format!("{}", 0.001234).trim() {
         println!("{}{}{}{}", format!("{}", "X2 "), format!("{}", state.x2), format!("{}", " : "), format!("{}", state.n));
     }
-    state.n = format!("{}", cobol_fn_numval_f(format!("{}", state.bad1))).cobol_into();
+    state.n = format!("{}", cobol_fn_numval_f(&format!("{}", state.bad1))).cobol_into();
     if { let __v = format!("{}", state.n); __v.trim() != "" && __v.trim() != "0" } {
     }
     // <> 0 DISPLAY "BAD1 '" BAD1 "' : " N
     std::process::exit(0);
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_numval_f(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

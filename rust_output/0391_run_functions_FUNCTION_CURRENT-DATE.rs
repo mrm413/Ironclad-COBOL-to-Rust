@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -82,6 +83,22 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub n0121: FixedString<30>,
+    pub valid_day: FixedString<30>,
+    pub valid_greenw: FixedString<30>,
+    pub valid_hour: FixedString<30>,
+    pub valid_hundsec: FixedString<30>,
+    pub valid_min: FixedString<30>,
+    pub valid_month: FixedString<30>,
+    pub valid_offset: FixedString<30>,
+    pub valid_offset2: FixedString<30>,
+    pub valid_sec: FixedString<30>,
+    pub valid_unset: FixedString<30>,
+    pub valid_year: FixedString<30>,
+    pub zero_greenw: FixedString<30>,
+    pub zero_offset: FixedString<30>,
+    pub zero_offset2: FixedString<30>,
 }
 
 
@@ -108,11 +125,11 @@ fn p__implicit_(state: &mut ProgramState) {
         _result.push_str(&format!("{}", cobol_fn_current_date()));
         state.test_fld = _result.into(); }
     if (!(state.valid_unset())) {
-        println!("{}{}", format!("{}", "FUNCTION result too long"), format!("{}", state.end_display));
+        println!("{}", format!("{}", "FUNCTION result too long"));
     } else if ((((((((((((state.valid_year() && state.valid_month()) && state.valid_day()) && state.valid_hour()) && state.valid_min()) && state.valid_sec()) && state.valid_hundsec()) && state.valid_greenw()) && state.valid_offset()) && state.valid_offset2()) && state.valid_unset()) && (!(state.zero_greenw()) || (state.zero_offset() && state.zero_offset2())))) {
         // CONTINUE
     } else {
-        println!("{}{}{}{}", format!("{}", "CURRENT-DATE with wrong format: "), format!("{}", state.test_fld), format!("{}", state.01:21), format!("{}", state.end_display));
+        println!("{}{}{}", format!("{}", "CURRENT-DATE with wrong format: "), format!("{}", state.test_fld), format!("{}", ""));
     }
     std::process::exit(0);
 }

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -36,6 +37,11 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub a_one: FixedString<30>,
+    pub a_two: FixedString<30>,
+    pub n0: FixedString<30>,
+    pub nm: FixedString<30>,
 }
 
 
@@ -46,9 +52,9 @@ impl ProgramState {
 
 /// Paragraph: _IMPLICIT_
 fn p__implicit_(state: &mut ProgramState) {
-    println!("{}", format!("{}", cobol_refmod(&format!("{}", state.n), format!("{}", state.n**0+).trim().parse::<i64>().unwrap_or(1), format!("{}", state.n).len() as i64)));
+    println!("{}", format!("{}", cobol_refmod(&format!("{}", state.n), format!("{}", state.n0).trim().parse::<usize>().unwrap_or(1), format!("{}", state.n).len())));
     println!("{}", format!("{}", "-"));
-    println!("{}", format!("{}", cobol_refmod(&format!("{}", state.n), format!("{}", state.n**m+).trim().parse::<i64>().unwrap_or(1), format!("{}", state.n).len() as i64)));
+    println!("{}", format!("{}", cobol_refmod(&format!("{}", state.n), format!("{}", state.nm).trim().parse::<usize>().unwrap_or(1), format!("{}", state.n).len())));
     if !(state.a_one()) && !(state.a_two()) {
         println!("{}", format!("{}", "succeeded"));
     } else {

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -13,7 +14,7 @@ use cobol_runtime::define_record;
 
 define_record! {
     /// .
-    pub struct . {
+    pub struct UnnamedGroup {
         /// X1
         pub x1: u8,
     }
@@ -24,7 +25,7 @@ define_record! {
 pub struct ProgramState {
     // --- WORKING-STORAGE SECTION ---
     /// WS: . (group)
-    pub .: FixedString<1>,
+    pub _empty: FixedString<1>,
     /// WS: X1
     pub x1: u8,
     // --- Special registers ---

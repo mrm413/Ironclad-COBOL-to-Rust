@@ -2,6 +2,7 @@
 // Source: .cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -37,6 +38,8 @@ pub struct ProgramState {
     pub number_of_call_parameters: i32,
     /// WHEN-COMPILED special register
     pub when_compiled: FixedString<16>,
+    // --- Stub fields (referenced but not declared) ---
+    pub ttl: FixedString<30>,
 }
 
 
@@ -44,11 +47,11 @@ pub struct ProgramState {
 fn p__implicit_(state: &mut ProgramState) {
     if format!("{}", state.arg).trim().parse::<f64>().unwrap_or(0.0) < format!("{}", 5).trim().parse::<f64>().unwrap_or(0.0) {
         state.num = format!("{}", (format!("{}", format!("{}", 1)).trim().parse::<f64>().unwrap_or(0.0) + format!("{}", format!("{}", state.arg)).trim().parse::<f64>().unwrap_or(0.0))).cobol_into();
-        state.ret = format!("{}", cobol_fn_foo(format!("{}", state.num))).cobol_into();
+        state.ret = format!("{}", cobol_fn_foo(&format!("{}", state.num))).cobol_into();
     } else {
         state.ret = format!("{}", state.arg).cobol_into();
     }
-    println!("{}{}{}{}{}{}{}", format!("{}", "Step: "), format!("{}", state.ttl), format!("{}", ", Arg: "), format!("{}", state.arg), format!("{}", ", Return: "), format!("{}", state.ret), format!("{}", state.end_display));
+    println!("{}{}{}{}{}{}", format!("{}", "Step: "), format!("{}", state.ttl), format!("{}", ", Arg: "), format!("{}", state.arg), format!("{}", ", Return: "), format!("{}", state.ret));
     { let _a: f64 = format!("{}", state.ttl).trim().parse().unwrap_or(0.0); let _b: f64 = format!("{}", 1).trim().parse().unwrap_or(0.0); state.ttl = format!("{}", _a + _b).cobol_into(); }
     return;
     // END FUNCTION FOO
@@ -57,6 +60,9 @@ fn p__implicit_(state: &mut ProgramState) {
     // ENVIRONMENT DIVISION
     // CONFIGURATION SECTION
 }
+
+/// Stub for user-defined COBOL function
+fn cobol_fn_foo(args: &str) -> String { args.to_string() }
 
 fn main() {
     let mut state = ProgramState::default();

@@ -2,6 +2,7 @@
 // Source: PROG.cbl
 // Do not edit manually. Regenerate from COBOL source.
 #![allow(unused_imports, unused_variables, dead_code, unused_parens, non_snake_case)]
+#![recursion_limit = "2048"]
 
 use cobol_runtime::FixedString;
 use cobol_runtime::Decimal;
@@ -22,7 +23,7 @@ define_record! {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G7 {
     /// G-8
-    pub g_8: [G8; 2],
+    pub g_8: Vec<G8>,
 }
 impl std::fmt::Display for G7 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -45,7 +46,7 @@ impl G7 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G6 {
     /// G-7
-    pub g_7: [G7; 2],
+    pub g_7: Vec<G7>,
 }
 impl std::fmt::Display for G6 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -68,7 +69,7 @@ impl G6 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G5 {
     /// G-6
-    pub g_6: [G6; 2],
+    pub g_6: Vec<G6>,
 }
 impl std::fmt::Display for G5 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -91,7 +92,7 @@ impl G5 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G4 {
     /// G-5
-    pub g_5: [G5; 2],
+    pub g_5: Vec<G5>,
 }
 impl std::fmt::Display for G4 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -114,7 +115,7 @@ impl G4 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G3 {
     /// G-4
-    pub g_4: [G4; 2],
+    pub g_4: Vec<G4>,
 }
 impl std::fmt::Display for G3 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -137,7 +138,7 @@ impl G3 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G2 {
     /// G-3
-    pub g_3: [G3; 2],
+    pub g_3: Vec<G3>,
 }
 impl std::fmt::Display for G2 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -160,7 +161,7 @@ impl G2 {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct G1 {
     /// G-2
-    pub g_2: [G2; 2],
+    pub g_2: Vec<G2>,
 }
 impl std::fmt::Display for G1 {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
