@@ -4,7 +4,7 @@
 
 This repository contains the **output** of the Ironclad transpilation system — not the system itself. Every file here was generated automatically from legacy COBOL source code and compiled as idiomatic Rust.
 
-Ironclad is a proprietary transpilation engine built by [Torsova LLC](https://lazarus-systems.com). The source code for Ironclad is not included in this repository.
+Ironclad is a proprietary transpilation engine built by [Torsova LLC](https://torsova.com). The source code for Ironclad is not included in this repository.
 
 ---
 
@@ -150,7 +150,7 @@ When Ironclad produces Rust output, the safety is **baked into the language**:
 
 This is where Rust separates from every other target language.
 
-**Day one**, any well-built transpiler can produce safe output. Lazarus (our C++17 transpiler) produces hardened C++17 with `FixedString<N>`, `SafeInt<T>`, and bounds-checked access. Day one, it's safe.
+**Day one**, any well-built transpiler can produce safe output. Torsova's C++17 transpiler produces hardened C++17 with `FixedString<N>`, `SafeInt<T>`, and bounds-checked access. Day one, it's safe.
 
 **Day two** is when a developer needs to add a feature, fix a bug, or optimize a hot path.
 
@@ -160,11 +160,11 @@ This is where Rust separates from every other target language.
 
 This isn't a matter of discipline. It's a matter of architecture. C++ trusts the programmer. Rust does not. Both are valid philosophies, but they have fundamentally different long-term maintenance profiles.
 
-### Ironclad vs. Lazarus
+### Ironclad (Rust) vs. Torsova C++17
 
-We build both. [Lazarus](https://github.com/mrm413/lazarus-cobol-showcase) produces hardened C++17. Ironclad produces idiomatic Rust. Same COBOL input, different target languages, different tradeoffs:
+We build both. [Torsova's C++17 transpiler](https://github.com/mrm413/lazarus-cobol-showcase) produces hardened C++17. Ironclad produces idiomatic Rust. Same COBOL input, different target languages, different tradeoffs:
 
-| | Lazarus (C++17) | Ironclad (Rust) |
+| | Torsova C++17 | Ironclad (Rust) |
 |---|---|---|
 | Pipeline stages | 6 (includes hardening) | 4 (no hardening needed) |
 | Safety model | Convention (wrappers) | Compiler-enforced |
@@ -173,7 +173,7 @@ We build both. [Lazarus](https://github.com/mrm413/lazarus-cobol-showcase) produ
 | Hiring pool | Larger (more C++ devs) | Smaller (growing fast) |
 | Regulatory acceptance | Established audit processes | Gaining recognition |
 
-The right tool depends on the constraints. If you're landing in existing C++ infrastructure, Lazarus is the pragmatic choice. If you can choose your stack, Ironclad and Rust are the safer long-term bet.
+The right tool depends on the constraints. If you're landing in existing C++ infrastructure, the C++17 transpiler is the pragmatic choice. If you can choose your stack, Ironclad and Rust are the safer long-term bet.
 
 ---
 
@@ -443,11 +443,11 @@ The GnuCOBOL 3.2 test suite covers the full breadth of the COBOL language:
 
 ## Built By
 
-**Torsova LLC** — [lazarus-systems.com](https://lazarus-systems.com)
+**Torsova LLC** — [torsova.com](https://torsova.com)
 
-Ironclad is part of a suite of legacy modernization tools including transpilers for COBOL (C++17 and Rust), HLASM, JCL, DFSORT, PL/I, REXX, Easytrieve, SAS, VB6, Stored Procedures, Crystal Reports, and Microsoft Access.
+Ironclad is part of Torsova's suite of legacy modernization tools including transpilers for COBOL (C++17 and Rust), HLASM, JCL, DFSORT, PL/I, REXX, Easytrieve, SAS, VB6, Stored Procedures, Crystal Reports, and Microsoft Access.
 
-See also: [Lazarus COBOL-to-C++17 Showcase](https://github.com/mrm413/lazarus-cobol-showcase) — the C++17 counterpart with 1,607/1,607 tests passing.
+See also: [Torsova COBOL-to-C++17 Showcase](https://github.com/mrm413/lazarus-cobol-showcase) — the C++17 counterpart with 1,607/1,607 tests passing.
 
 ---
 
@@ -457,4 +457,4 @@ Licensed under the [Apache License, Version 2.0](LICENSE).
 
 The original GnuCOBOL test programs are from the [GnuCOBOL project](https://gnucobol.sourceforge.io/).
 
-All modifications and additions -- including the Rust transpiled programs, build system, and test harness -- are Copyright 2025 Michael R. Mull / Lazarus Systems. See [NOTICE](NOTICE) for details.
+All modifications and additions -- including the Rust transpiled programs, build system, and test harness -- are Copyright 2025-2026 Michael R. Mull / Torsova LLC. See [NOTICE](NOTICE) for details.

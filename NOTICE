@@ -1,7 +1,7 @@
 Ironclad COBOL-to-Rust Transpiler Output
-Copyright 2025 Michael R. Mull / Lazarus Systems
+Copyright 2025-2026 Michael R. Mull / Torsova LLC
 
-This product includes software developed by Lazarus Systems (https://lazarus-systems.com).
+This product includes software developed by Torsova LLC (https://torsova.com).
 
 ================================================================================
 
@@ -15,9 +15,9 @@ Original Work:
 
 ================================================================================
 
-Modifications and Derivative Works by Michael R. Mull / Lazarus Systems:
+Modifications and Derivative Works by Michael R. Mull / Torsova LLC:
 
-  The following components are original works created by Lazarus Systems and
+  The following components are original works created by Torsova LLC and
   constitute Derivative Works under the Apache License 2.0:
 
   1. COBOL-to-Rust Transpilation
@@ -28,5 +28,5 @@ Modifications and Derivative Works by Michael R. Mull / Lazarus Systems:
   2. Build System and Test Harness
      - Cargo build configuration, test runner, and validation framework
 
-All modifications and additions listed above are Copyright 2025 Michael R. Mull /
-Lazarus Systems, licensed under the Apache License, Version 2.0.
+All modifications and additions listed above are Copyright 2025-2026 Michael R. Mull /
+Torsova LLC, licensed under the Apache License, Version 2.0.
