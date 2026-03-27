@@ -6,7 +6,9 @@ target/
 
 # Build artifacts
 _compile_tmp/
+_runtime_test/
 compile_results*.txt
+runtime_results*.txt
 error_details*.txt
 
 # OS files
