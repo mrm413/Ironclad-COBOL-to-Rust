@@ -61,20 +61,23 @@ Everything else passes. There is no soft pass — only byte-equal stdout, byte-e
 
 ## Reproducing the Result
 
-The Docker harness in this repo runs the parity validator end-to-end. It compiles every COBOL program with GnuCOBOL 3.x, transpiles + compiles every program with Ironclad's Rust output, runs both, and diffs the outputs byte for byte.
+The Docker harness in this repo runs the parity validator end-to-end. It compiles every COBOL program with GnuCOBOL 3.x, transpiles + compiles every program with Ironclad's Rust output, runs both, and diffs the outputs byte for byte. The harness streams a live color-coded log — green PASS ticks, red MISMATCH, yellow BUILD_FAIL_GNU — so you can watch every test result scroll past in real time.
 
 ```bash
-# Build the parity validator image
+# Build the parity validator image (one-time, ~10-15 min)
 docker build -t ironclad-parity -f Dockerfile.parity .
 
-# Full sweep — all 835 in-scope programs
-docker run --rm ironclad-parity
-
-# Filter to a single test category
-docker run --rm ironclad-parity bash parity_harness.sh --filter run_misc
+# Full sweep with live color stream — pass `-it` for the green-tick experience
+docker run --rm -it ironclad-parity
 
 # Quick check — first 50 programs
-docker run --rm ironclad-parity bash parity_harness.sh --quick 50
+docker run --rm -it ironclad-parity bash parity_harness.sh --quick 50
+
+# Filter to a single test category
+docker run --rm -it ironclad-parity bash parity_harness.sh --filter run_misc
+
+# Plain mode (no TTY, no color, still streams — for CI pipes)
+docker run --rm ironclad-parity
 ```
 
 Exit codes:

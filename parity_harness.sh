@@ -35,6 +35,19 @@ RUNTIME_DIR="cobol-runtime"
 WORK_DIR="_parity_work"
 RESULTS_DIR="parity_results"
 TIMEOUT_SECS=5
+
+# ── ANSI colors (auto-disabled if stdout isn't a TTY or NO_COLOR is set) ──
+if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
+    C_RESET=$'\033[0m'
+    C_BOLD=$'\033[1m'
+    C_GREEN=$'\033[32m'
+    C_RED=$'\033[31m'
+    C_YELLOW=$'\033[33m'
+    C_CYAN=$'\033[36m'
+    C_DIM=$'\033[2m'
+else
+    C_RESET=""; C_BOLD=""; C_GREEN=""; C_RED=""; C_YELLOW=""; C_CYAN=""; C_DIM=""
+fi
 # These categories are not standalone programs — listings test cobc's listing
 # output, configuration tests cobc's config handling, used_binaries probes the
 # cobc binary, and syn_* programs are intentionally invalid COBOL for testing
@@ -60,10 +73,10 @@ done
 
 # ─────────────────────────────────────────────────────────────────────────────
 # preflight
-echo "============================================================"
-echo "  Ironclad Federal Parity Validator"
-echo "  GnuCOBOL 3.2 ←→ Ironclad-transpiled Rust  (byte-for-byte)"
-echo "============================================================"
+echo "${C_BOLD}${C_CYAN}============================================================${C_RESET}"
+echo "${C_BOLD}  Ironclad Parity Validator${C_RESET}"
+echo "  ${C_DIM}GnuCOBOL 3.x  ←→  Ironclad-transpiled Rust   (byte-for-byte)${C_RESET}"
+echo "${C_BOLD}${C_CYAN}============================================================${C_RESET}"
 
 if ! command -v cobc >/dev/null 2>&1; then
     echo "ERROR: cobc not found. Install GnuCOBOL 3.x first."
@@ -165,7 +178,7 @@ for name in "${TESTS[@]}"; do
     if ! cobc -x -free -o "$gnu_exe" "$short_cob" >"$WORK_DIR/${idx}.gnu_err" 2>&1; then
         if ! cobc -x -fixed -frelax-syntax-checks -o "$gnu_exe" "$short_cob" >>"$WORK_DIR/${idx}.gnu_err" 2>&1; then
             BFAIL_GNU=$((BFAIL_GNU + 1))
-            echo "BUILD_FAIL_GNU   $name"
+            printf "${C_YELLOW}BUILD_FAIL_GNU${C_RESET}   %s\n" "$name"
             rm -f "$short_cob"
             continue
         fi
@@ -179,7 +192,7 @@ for name in "${TESTS[@]}"; do
             "$rs" -o "$iron_exe" \
             >"$WORK_DIR/${idx}.rust_err" 2>&1; then
         BFAIL_RUST=$((BFAIL_RUST + 1))
-        echo "BUILD_FAIL_RUST  $name"
+        printf "${C_RED}BUILD_FAIL_RUST${C_RESET}  %s\n" "$name"
         continue
     fi
 
@@ -192,22 +205,22 @@ for name in "${TESTS[@]}"; do
     # 124 = timeout exit code on Linux
     if [ "$gnu_rc" = "124" ] && [ "$iron_rc" = "124" ]; then
         TIMEOUT_BOTH=$((TIMEOUT_BOTH + 1))
-        echo "TIMEOUT_BOTH     $name  (interactive — same on both engines)"
+        printf "${C_CYAN}TIMEOUT_BOTH${C_RESET}     %s  ${C_DIM}(interactive — same on both engines)${C_RESET}\n" "$name"
         continue
     fi
     if [ "$gnu_rc" = "124" ] || [ "$iron_rc" = "124" ]; then
         RUN_ERR=$((RUN_ERR + 1))
-        echo "TIMEOUT_DIVERGE  $name  (gnu_rc=$gnu_rc iron_rc=$iron_rc)"
+        printf "${C_RED}TIMEOUT_DIVERGE${C_RESET}  %s  ${C_DIM}(gnu_rc=%s iron_rc=%s)${C_RESET}\n" "$name" "$gnu_rc" "$iron_rc"
         continue
     fi
 
     # ── byte-for-byte compare ──
     if [ "$gnu_out" = "$iron_out" ]; then
         PASS=$((PASS + 1))
-        echo "PASS             $name"
+        printf "${C_GREEN}PASS${C_RESET}             %s\n" "$name"
     else
         MISMATCH=$((MISMATCH + 1))
-        echo "MISMATCH         $name"
+        printf "${C_RED}${C_BOLD}MISMATCH${C_RESET}         %s\n" "$name"
         {
             echo "=== $name ==="
             echo "--- GnuCOBOL ---"
@@ -234,20 +247,20 @@ fi
 COMPILE_PCT=$(awk "BEGIN{printf \"%.1f\", $COMPILE_OK*100/$TOTAL}")
 
 echo
-echo "============================================================"
-echo "  PARITY VALIDATION SUMMARY"
-echo "============================================================"
-printf "  Compile rate:  %s%%  (%d / %d)  — Rust output compiles\n" "$COMPILE_PCT" "$COMPILE_OK" "$TOTAL"
+echo "${C_BOLD}============================================================${C_RESET}"
+echo "${C_BOLD}  PARITY VALIDATION SUMMARY${C_RESET}"
+echo "${C_BOLD}============================================================${C_RESET}"
+printf "  Compile rate:  ${C_BOLD}%s%%${C_RESET}  (%d / %d)  ${C_DIM}— Rust output compiles${C_RESET}\n" "$COMPILE_PCT" "$COMPILE_OK" "$TOTAL"
 printf "  Runtime rate:  ?     (%d ran, %d interactive timeouts)\n" "$RUNTIME_OK" "$TIMEOUT_BOTH"
-printf "  Parity rate:   %s%%  (%d / %d)  ← byte-for-byte vs GnuCOBOL\n" "$PARITY_PCT" "$PASS" "$PARITY_DENOM"
+printf "  Parity rate:   ${C_BOLD}${C_GREEN}%s%%${C_RESET}  (%d / %d)  ${C_DIM}← byte-for-byte vs GnuCOBOL${C_RESET}\n" "$PARITY_PCT" "$PASS" "$PARITY_DENOM"
 echo "------------------------------------------------------------"
-printf "  PASS              %4d\n" "$PASS"
-printf "  MISMATCH          %4d  (logic divergence — see $MISMATCH_LOG)\n" "$MISMATCH"
-printf "  BUILD_FAIL_GNU    %4d  (cobc rejected source)\n" "$BFAIL_GNU"
-printf "  BUILD_FAIL_RUST   %4d  (rustc rejected transpiled .rs)\n" "$BFAIL_RUST"
-printf "  TIMEOUT_BOTH      %4d  (interactive — both engines hung identically)\n" "$TIMEOUT_BOTH"
-printf "  TIMEOUT_DIVERGE   %4d  (one engine hung, other didn't — bug)\n" "$RUN_ERR"
-echo "============================================================"
+printf "  ${C_GREEN}PASS${C_RESET}              %4d\n" "$PASS"
+printf "  ${C_RED}MISMATCH${C_RESET}          %4d  ${C_DIM}(logic divergence — see $MISMATCH_LOG)${C_RESET}\n" "$MISMATCH"
+printf "  ${C_YELLOW}BUILD_FAIL_GNU${C_RESET}    %4d  ${C_DIM}(cobc rejected source)${C_RESET}\n" "$BFAIL_GNU"
+printf "  ${C_RED}BUILD_FAIL_RUST${C_RESET}   %4d  ${C_DIM}(rustc rejected transpiled .rs)${C_RESET}\n" "$BFAIL_RUST"
+printf "  ${C_CYAN}TIMEOUT_BOTH${C_RESET}      %4d  ${C_DIM}(interactive — both engines hung identically)${C_RESET}\n" "$TIMEOUT_BOTH"
+printf "  ${C_RED}TIMEOUT_DIVERGE${C_RESET}   %4d  ${C_DIM}(one engine hung, other didn't — bug)${C_RESET}\n" "$RUN_ERR"
+echo "${C_BOLD}============================================================${C_RESET}"
 
 if [ "$MISMATCH" -gt 0 ]; then
     echo
