@@ -1,0 +1,744 @@
+============================================================
+  Ironclad Federal Parity Validator
+  GnuCOBOL 3.2 ←→ Ironclad-transpiled Rust  (byte-for-byte)
+============================================================
+  cobc:  cobc (GnuCOBOL) 3.1.2.0
+  rustc: rustc 1.82.0 (f6e511eec 2024-10-15)
+
+  rlib:  libcobol_runtime-9982f29aa377cf7a.rlib
+
+[run] 953 program tests selected (592 non-program tests skipped: configuration/listings/syn_/used_binaries)
+------------------------------------------------------------
+[   1/953] PASS             0006_data_binary_BINARY__64bit_unsigned_compare
+[   2/953] MISMATCH         0007_data_binary_BINARY__64bit_unsigned_arithmetic_notrunc
+[   3/953] MISMATCH         0008_data_binary_BINARY__64bit_signed_negative_constant_range
+[   4/953] MISMATCH         0009_data_binary_COMP-4_Truncate
+[   5/953] MISMATCH         0010_data_binary_COMP-4_No_Truncate
+[   6/953] TIMEOUT_DIVERGE  0011_data_binary_MOVE_DISPLAY_to_BINARY  (gnu_rc=124 iron_rc=0)
+[   7/953] TIMEOUT_DIVERGE  0012_data_binary_MOVE_PACKED-DECIMAL_to_BINARY  (gnu_rc=124 iron_rc=0)
+[   8/953] TIMEOUT_DIVERGE  0013_data_binary_MOVE_BINARY_to_PACKED-DECIMAL  (gnu_rc=124 iron_rc=0)
+[   9/953] TIMEOUT_DIVERGE  0014_data_binary_MOVE_BINARY_to_BINARY  (gnu_rc=124 iron_rc=0)
+[  10/953] BUILD_FAIL_GNU   0015_data_binary_PPP_COMP-5
+[  11/953] TIMEOUT_DIVERGE  0016_data_binary_arithmetic_truncation_with_USAGE_BINARY  (gnu_rc=124 iron_rc=0)
+[  12/953] TIMEOUT_DIVERGE  0017_data_display_DISPLAY__Sign_ASCII  (gnu_rc=124 iron_rc=0)
+[  13/953] TIMEOUT_DIVERGE  0018_data_display_DISPLAY__Sign_ASCII__2_  (gnu_rc=124 iron_rc=0)
+[  14/953] TIMEOUT_DIVERGE  0019_data_display_DISPLAY__unsigned  (gnu_rc=124 iron_rc=0)
+[  15/953] TIMEOUT_DIVERGE  0020_data_display_MOVE_DISPLAY_to_DISPLAY  (gnu_rc=124 iron_rc=0)
+[  16/953] TIMEOUT_DIVERGE  0021_data_display_PPP_DISPLAY  (gnu_rc=124 iron_rc=0)
+[  17/953] TIMEOUT_DIVERGE  0022_data_display_arithmetic_truncation_with_USAGE_DISPLAY  (gnu_rc=124 iron_rc=0)
+[  18/953] TIMEOUT_DIVERGE  0023_data_display_DISPLAY__ADD_and_SUBTRACT_w_o_SIZE_ERROR  (gnu_rc=124 iron_rc=0)
+[  19/953] TIMEOUT_DIVERGE  0024_data_display_DISPLAY__ADD_and_SUBTRACT_w_o_SIZE_ERROR  (gnu_rc=124 iron_rc=0)
+[  20/953] TIMEOUT_DIVERGE  0025_data_display_DISPLAY__ADD_and_SUBTRACT__all_ROUNDED_MODEs  (gnu_rc=124 iron_rc=0)
+[  21/953] BUILD_FAIL_GNU   0026_data_display_DISPLAY__ADD_and_SUBTRACT__all_ROUNDED_MODEs
+[  22/953] TIMEOUT_DIVERGE  0027_data_packed_PACKED-DECIMAL_used_with_DISPLAY  (gnu_rc=124 iron_rc=0)
+[  23/953] TIMEOUT_DIVERGE  0028_data_packed_PACKED-DECIMAL_used_with_MOVE  (gnu_rc=124 iron_rc=0)
+[  24/953] TIMEOUT_DIVERGE  0029_data_packed_MOVE_PACKED-DECIMAL_to_PACKED-DECIMAL  (gnu_rc=124 iron_rc=0)
+[  25/953] TIMEOUT_DIVERGE  0030_data_packed_MOVE_PACKED-DECIMAL_to_DISPLAY  (gnu_rc=124 iron_rc=0)
+[  26/953] TIMEOUT_DIVERGE  0031_data_packed_MOVE_DISPLAY_to_PACKED-DECIMAL  (gnu_rc=124 iron_rc=0)
+[  27/953] TIMEOUT_DIVERGE  0032_data_packed_PACKED-DECIMAL_used_with_INITIALIZE  (gnu_rc=124 iron_rc=0)
+[  28/953] TIMEOUT_DIVERGE  0033_data_packed_PACKED-DECIMAL_arithmetic  (gnu_rc=124 iron_rc=0)
+[  29/953] TIMEOUT_DIVERGE  0034_data_packed_PACKED-DECIMAL_comparison  (gnu_rc=124 iron_rc=0)
+[  30/953] TIMEOUT_DIVERGE  0035_data_packed_PACKED-DECIMAL_numeric_test__1_  (gnu_rc=124 iron_rc=0)
+[  31/953] TIMEOUT_DIVERGE  0036_data_packed_PACKED-DECIMAL_numeric_test__2_  (gnu_rc=124 iron_rc=0)
+[  32/953] TIMEOUT_DIVERGE  0037_data_packed_COMP-6_used_with_DISPLAY  (gnu_rc=124 iron_rc=0)
+[  33/953] TIMEOUT_DIVERGE  0038_data_packed_COMP-6_used_with_MOVE  (gnu_rc=124 iron_rc=0)
+[  34/953] TIMEOUT_DIVERGE  0039_data_packed_COMP-6_arithmetic  (gnu_rc=124 iron_rc=0)
+[  35/953] TIMEOUT_DIVERGE  0040_data_packed_COMP-6_numeric  (gnu_rc=124 iron_rc=0)
+[  36/953] TIMEOUT_DIVERGE  0041_data_packed_COMP-6_comparison  (gnu_rc=124 iron_rc=0)
+[  37/953] TIMEOUT_DIVERGE  0042_data_packed_COMP-3_vs__COMP-6_-_BCD_comparison  (gnu_rc=124 iron_rc=0)
+[  38/953] TIMEOUT_DIVERGE  0043_data_packed_PPP_COMP-3  (gnu_rc=124 iron_rc=0)
+[  39/953] TIMEOUT_DIVERGE  0044_data_packed_PPP_COMP-6  (gnu_rc=124 iron_rc=0)
+[  40/953] TIMEOUT_DIVERGE  0045_data_packed_arithmetic_truncation_with_USAGE_PACKED-DECIMAL  (gnu_rc=124 iron_rc=0)
+[  41/953] BUILD_FAIL_GNU   0046_data_packed_MOVE_between_several_BCD_fields
+[  42/953] BUILD_FAIL_GNU   0047_data_packed_MOVE_between_several_BCD_fields
+[  43/953] BUILD_FAIL_GNU   0048_data_packed_BCD_ADD_and_SUBTRACT_w_o_SIZE_ERROR
+[  44/953] BUILD_FAIL_GNU   0049_data_packed_BCD_ADD_and_SUBTRACT_w_o_SIZE_ERROR
+[  45/953] BUILD_FAIL_GNU   0050_data_packed_BCD_ADD_and_SUBTRACT__all_ROUNDED_MODEs
+[  46/953] BUILD_FAIL_GNU   0051_data_packed_BCD_ADD_and_SUBTRACT__all_ROUNDED_MODEs
+[  47/953] TIMEOUT_DIVERGE  0052_data_pointer_POINTER__display  (gnu_rc=124 iron_rc=0)
+[  48/953] TIMEOUT_DIVERGE  0106_run_accept_ACCEPT_OMITTED__simple_  (gnu_rc=124 iron_rc=0)
+[  49/953] TIMEOUT_DIVERGE  0107_run_accept_ACCEPT_FROM_TIME___DATE___DAY___DAY-OF-WEEK__1_  (gnu_rc=124 iron_rc=0)
+[  50/953] BUILD_FAIL_GNU   0108_run_accept_ACCEPT_FROM_TIME___DATE___DAY___DAY-OF-WEEK__2_
+[  51/953] TIMEOUT_DIVERGE  0109_run_accept_ACCEPT_DATE___DAY_and_intrinsic_functions__1_  (gnu_rc=124 iron_rc=0)
+[  52/953] PASS             0110_run_accept_ACCEPT_OMITTED__SCREEN_
+[  53/953] BUILD_FAIL_GNU   0111_run_extensions_CALL_BY_CONTENT_binary_and_literal
+[  54/953] BUILD_FAIL_GNU   0112_run_extensions_Numeric_Boolean_literals
+[  55/953] BUILD_FAIL_GNU   0113_run_extensions_ACUCOBOL_literals
+[  56/953] BUILD_FAIL_GNU   0114_run_extensions_HP_COBOL_octal_literals
+[  57/953] BUILD_FAIL_GNU   0115_run_extensions_Hexadecimal_numeric_literals
+[  58/953] BUILD_FAIL_GNU   0116_run_extensions_Semi-parenthesized_condition
+[  59/953] BUILD_FAIL_GNU   0117_run_extensions_ADDRESS_OF
+[  60/953] BUILD_FAIL_GNU   0118_run_extensions_LENGTH_OF
+[  61/953] BUILD_FAIL_GNU   0119_run_extensions_SET_TO_SIZE_OF
+[  62/953] BUILD_FAIL_GNU   0120_run_extensions_WHEN-COMPILED
+[  63/953] BUILD_FAIL_GNU   0121_run_extensions_Complex_OCCURS_DEPENDING_ON__1_
+[  64/953] BUILD_FAIL_GNU   0122_run_extensions_Complex_OCCURS_DEPENDING_ON__2_
+[  65/953] BUILD_FAIL_GNU   0123_run_extensions_Complex_OCCURS_DEPENDING_ON__4_
+[  66/953] BUILD_FAIL_GNU   0124_run_extensions_Complex_OCCURS_DEPENDING_ON__6_
+[  67/953] BUILD_FAIL_GNU   0125_run_extensions_OCCURS_UNBOUNDED__1_
+[  68/953] BUILD_FAIL_GNU   0126_run_extensions_OCCURS_UNBOUNDED__2_
+[  69/953] BUILD_FAIL_GNU   0127_run_extensions_INITIALIZE_OCCURS_UNBOUNDED
+[  70/953] BUILD_FAIL_GNU   0128_run_extensions_INITIALIZE_OCCURS_ODOSLIDE
+[  71/953] BUILD_FAIL_GNU   0129_run_extensions_DEPENDING_ON_with_ODOSLIDE
+[  72/953] BUILD_FAIL_GNU   0130_run_extensions_DEPENDING_ON_with_ODOSLIDE_for_IBM
+[  73/953] BUILD_FAIL_GNU   0131_run_extensions_INITIALIZE_level_01_OCCURS
+[  74/953] BUILD_FAIL_GNU   0132_run_extensions_MOVE_of_non-integer_to_alphanumeric
+[  75/953] BUILD_FAIL_GNU   0133_run_extensions_CALL_USING_file-name
+[  76/953] BUILD_FAIL_GNU   0134_run_extensions_CALL_unusual_PROGRAM-ID_
+[  77/953] BUILD_FAIL_GNU   0135_run_extensions_CALL_unusual_PROGRAM-ID_
+[  78/953] BUILD_FAIL_GNU   0136_run_extensions_CALL_unusual_PROGRAM-ID_
+[  79/953] BUILD_FAIL_GNU   0137_run_extensions_CALL_unusual_PROGRAM-ID_
+[  80/953] BUILD_FAIL_GNU   0138_run_extensions_CALL_unusual_PROGRAM-ID_
+[  81/953] BUILD_FAIL_GNU   0139_run_extensions_CALL___GOBACK_with_LOCAL-STORAGE
+[  82/953] BUILD_FAIL_GNU   0140_run_extensions_CALL___GOBACK_with_LOCAL-STORAGE
+[  83/953] BUILD_FAIL_GNU   0141_run_extensions_CALL_BY_VALUE_alphanumeric_item
+[  84/953] BUILD_FAIL_GNU   0142_run_extensions_CALL_BY_VALUE_numeric_literal_with_SIZE_IS
+[  85/953] BUILD_FAIL_GNU   0143_run_extensions_CALL_BY_VALUE_to_C
+[  86/953] BUILD_FAIL_GNU   0144_run_extensions_Case-sensitive_PROGRAM-ID
+[  87/953] BUILD_FAIL_GNU   0145_run_extensions_Quoted_PROGRAM-ID
+[  88/953] BUILD_FAIL_GNU   0146_run_extensions_PROGRAM-ID_AS_clause
+[  89/953] BUILD_FAIL_GNU   0147_run_extensions_NUMBER-OF-CALL-PARAMETERS
+[  90/953] BUILD_FAIL_GNU   0148_run_extensions_NUMBER-OF-CALL-PARAMETERS
+[  91/953] BUILD_FAIL_GNU   0149_run_extensions_TALLY_register
+[  92/953] BUILD_FAIL_GNU   0150_run_extensions_Redefining_TALLY
+[  93/953] BUILD_FAIL_GNU   0151_run_extensions_PROCEDURE_DIVISION_USING_BY____
+[  94/953] BUILD_FAIL_GNU   0152_run_extensions_PROCEDURE_DIVISION_USING_BY____
+[  95/953] BUILD_FAIL_GNU   0153_run_extensions_PROCEDURE_DIVISION_CHAINING
+[  96/953] BUILD_FAIL_GNU   0154_run_extensions_PROCEDURE_DIVISION_CHAINING
+[  97/953] BUILD_FAIL_GNU   0155_run_extensions_PROCEDURE_DIVISION_CHAINING
+[  98/953] BUILD_FAIL_GNU   0156_run_extensions_PROCEDURE_DIVISION_CHAINING
+[  99/953] BUILD_FAIL_GNU   0157_run_extensions_PROCEDURE_DIVISION_CHAINING
+[ 100/953] BUILD_FAIL_GNU   0158_run_extensions_STOP_RUN_RETURNING_GIVING
+[ 101/953] BUILD_FAIL_GNU   0159_run_extensions_STOP_RUN_RETURNING_GIVING
+[ 102/953] BUILD_FAIL_GNU   0160_run_extensions_STOP_RUN_RETURNING_GIVING
+[ 103/953] BUILD_FAIL_GNU   0161_run_extensions_STOP_RUN_RETURNING_GIVING
+[ 104/953] BUILD_FAIL_GNU   0162_run_extensions_GOBACK_EXIT_PROGRAM_RETURNING_GIVING
+[ 105/953] BUILD_FAIL_GNU   0163_run_extensions_GOBACK_EXIT_PROGRAM_RETURNING_GIVING
+[ 106/953] BUILD_FAIL_GNU   0164_run_extensions_GOBACK_EXIT_PROGRAM_RETURNING_GIVING
+[ 107/953] BUILD_FAIL_GNU   0165_run_extensions_ENTRY
+[ 108/953] BUILD_FAIL_GNU   0166_run_extensions_ENTRY
+[ 109/953] BUILD_FAIL_GNU   0167_run_extensions_ASSIGN_to_KEYBOARD_DISPLAY
+[ 110/953] BUILD_FAIL_GNU   0168_run_extensions_SORT_ASSIGN_KEYBOARD_to_ASSIGN_DISPLAY
+[ 111/953] BUILD_FAIL_GNU   0169_run_extensions_Environment_Argument_variable
+[ 112/953] BUILD_FAIL_GNU   0170_run_extensions_78_Level__1_
+[ 113/953] BUILD_FAIL_GNU   0171_run_extensions_78_Level__2_
+[ 114/953] BUILD_FAIL_GNU   0172_run_extensions_78_Level__3_
+[ 115/953] BUILD_FAIL_GNU   0173_run_extensions_SWITCHES_with_non-standard_names
+[ 116/953] BUILD_FAIL_GNU   0174_run_extensions_Larger_REDEFINES_lengths
+[ 117/953] BUILD_FAIL_GNU   0175_run_extensions_REDEFINES__non-referenced_ambiguous_item
+[ 118/953] BUILD_FAIL_GNU   0176_run_extensions_Obsolete_2002_keywords_with_COBOL2014
+[ 119/953] BUILD_FAIL_GNU   0177_run_extensions_System_routine_with_wrong_number_of_parameters
+[ 120/953] BUILD_FAIL_GNU   0178_run_extensions_System_routine_with_wrong_number_of_parameters
+[ 121/953] BUILD_FAIL_GNU   0179_run_extensions_System_routine_C_NARG
+[ 122/953] BUILD_FAIL_GNU   0180_run_extensions_System_routine_C_NARG
+[ 123/953] BUILD_FAIL_GNU   0181_run_extensions_System_routine_C_NARG
+[ 124/953] BUILD_FAIL_GNU   0182_run_extensions_System_routine_C_PARAMSIZE
+[ 125/953] BUILD_FAIL_GNU   0183_run_extensions_System_routine_C_PARAMSIZE
+[ 126/953] BUILD_FAIL_GNU   0184_run_extensions_System_routine_C_CALLEDBY
+[ 127/953] BUILD_FAIL_GNU   0185_run_extensions_System_routine_C_CALLEDBY
+[ 128/953] BUILD_FAIL_GNU   0186_run_extensions_System_routine_C_JUSTIFY
+[ 129/953] BUILD_FAIL_GNU   0187_run_extensions_System_routine_C_PRINTABLE
+[ 130/953] BUILD_FAIL_GNU   0188_run_extensions_System_routine_C_MAKEDIR
+[ 131/953] BUILD_FAIL_GNU   0189_run_extensions_System_routine_C_GETPID
+[ 132/953] BUILD_FAIL_GNU   0190_run_extensions_System_routine_C_TOUPPER
+[ 133/953] BUILD_FAIL_GNU   0191_run_extensions_System_routine_C_TOLOWER
+[ 134/953] BUILD_FAIL_GNU   0192_run_extensions_System_routine_CBL_OR
+[ 135/953] BUILD_FAIL_GNU   0193_run_extensions_System_routine_CBL_NOR
+[ 136/953] BUILD_FAIL_GNU   0194_run_extensions_System_routine_CBL_AND
+[ 137/953] BUILD_FAIL_GNU   0195_run_extensions_System_routine_CBL_XOR
+[ 138/953] BUILD_FAIL_GNU   0196_run_extensions_System_routine_CBL_IMP
+[ 139/953] BUILD_FAIL_GNU   0197_run_extensions_System_routine_CBL_NIMP
+[ 140/953] BUILD_FAIL_GNU   0198_run_extensions_System_routine_CBL_NOT
+[ 141/953] BUILD_FAIL_GNU   0199_run_extensions_System_routine_CBL_EQ
+[ 142/953] BUILD_FAIL_GNU   0200_run_extensions_System_routine_CBL_GC_GETOPT
+[ 143/953] BUILD_FAIL_GNU   0201_run_extensions_System_routine_CBL_GC_GETOPT
+[ 144/953] BUILD_FAIL_GNU   0202_run_extensions_System_routine_CBL_GC_GETOPT
+[ 145/953] BUILD_FAIL_GNU   0203_run_extensions_System_routine_CBL_GC_GETOPT
+[ 146/953] BUILD_FAIL_GNU   0204_run_extensions_System_routine_CBL_GC_GETOPT
+[ 147/953] BUILD_FAIL_GNU   0205_run_extensions_System_routine_CBL_GC_FORK
+[ 148/953] BUILD_FAIL_GNU   0206_run_extensions_System_routine_CBL_GC_WAITPID
+[ 149/953] BUILD_FAIL_GNU   0207_run_extensions_System_routine_CBL_GC_HOSTED
+[ 150/953] BUILD_FAIL_GNU   0208_run_extensions_System_routine_SYSTEM__parameter_handling
+[ 151/953] BUILD_FAIL_GNU   0209_run_extensions_System_routine_CBL_EXIT_PROC
+[ 152/953] BUILD_FAIL_GNU   0210_run_extensions_System_routine_CBL_ERROR_PROC__1_
+[ 153/953] BUILD_FAIL_GNU   0211_run_extensions_System_routine_CBL_ERROR_PROC__2_
+[ 154/953] BUILD_FAIL_GNU   0212_run_extensions_CALL_own_PROGRAM-ID_and_RECURSIVE_attribute
+[ 155/953] BUILD_FAIL_GNU   0213_run_extensions_CALL_own_PROGRAM-ID_and_RECURSIVE_attribute
+[ 156/953] BUILD_FAIL_GNU   0214_run_extensions_DISPLAY_DIRECTIVE_and__DISPLAY
+[ 157/953] BUILD_FAIL_GNU   0215_run_extensions_Conditional___define_directives__1_
+[ 158/953] BUILD_FAIL_GNU   0216_run_extensions_Conditional___define_directives__2_
+[ 159/953] BUILD_FAIL_GNU   0217_run_extensions_Conditional___define_directives__4_
+[ 160/953] BUILD_FAIL_GNU   0218_run_extensions_Invalid_source_format
+[ 161/953] BUILD_FAIL_GNU   0219_run_extensions_Invalid_source_format
+[ 162/953] BUILD_FAIL_GNU   0220_run_extensions_Variable_format
+[ 163/953] BUILD_FAIL_GNU   0221_run_extensions_Variable_format
+[ 164/953] BUILD_FAIL_GNU   0222_run_extensions_COBOLX_format
+[ 165/953] BUILD_FAIL_GNU   0223_run_extensions_X_Open_free-form_format
+[ 166/953] BUILD_FAIL_GNU   0224_run_extensions_X_Open_free-form_format
+[ 167/953] BUILD_FAIL_GNU   0225_run_extensions_TERMINAL_format
+[ 168/953] BUILD_FAIL_GNU   0226_run_extensions_TERMINAL_format
+[ 169/953] BUILD_FAIL_GNU   0227_run_extensions_TERMINAL_format
+[ 170/953] BUILD_FAIL_GNU   0228_run_extensions_MF_FREE_format__X_Open_
+[ 171/953] BUILD_FAIL_GNU   0229_run_extensions_MF_FREE_format__X_Open_
+[ 172/953] BUILD_FAIL_GNU   0230_run_extensions_Binary_COMP-1__1_
+[ 173/953] BUILD_FAIL_GNU   0231_run_extensions_Binary_COMP-1__2_
+[ 174/953] BUILD_FAIL_GNU   0232_run_extensions_EXHIBIT_statement
+[ 175/953] BUILD_FAIL_GNU   0233_run_extensions_Bit_Operations
+[ 176/953] BUILD_FAIL_GNU   0234_run_extensions_Bit_Shift_Operations
+[ 177/953] BUILD_FAIL_GNU   0235_run_extensions_GCOS_floating-point_usages
+[ 178/953] BUILD_FAIL_GNU   0236_run_extensions_PICTURE_L__basic_
+[ 179/953] BUILD_FAIL_GNU   0237_run_extensions_PICTURE_L__under_over_shoot_
+[ 180/953] BUILD_FAIL_GNU   0238_run_extensions_PICTURE_L__under_over_shoot_
+[ 181/953] BUILD_FAIL_GNU   0239_run_extensions_PICTURE_L__MOVE_CORRESPONDING_
+[ 182/953] BUILD_FAIL_GNU   0240_run_extensions_PICTURE_L__OCCURS_____PIC_L_
+[ 183/953] BUILD_FAIL_GNU   0241_run_extensions_PICTURE_L__REDEFINES_
+[ 184/953] BUILD_FAIL_GNU   0242_run_extensions_INSPECT_TRAILING
+[ 185/953] BUILD_FAIL_GNU   0243_run_extensions_INSPECT_REPLACING_TRAILING_ZEROS_BY_SPACES
+[ 186/953] BUILD_FAIL_GNU   0244_run_extensions_INSPECT_REPLACING_complex
+[ 187/953] BUILD_FAIL_GNU   0245_run_extensions_EXAMINE_TALLYING
+[ 188/953] BUILD_FAIL_GNU   0246_run_extensions_EXAMINE_REPLACING
+[ 189/953] BUILD_FAIL_GNU   0247_run_extensions_GCOS_literals_with_EBCDIC_symbols__run_
+[ 190/953] BUILD_FAIL_GNU   0248_run_file_OPEN_EXTEND_and_CLOSE__SEQUENTIAL
+[ 191/953] BUILD_FAIL_GNU   0249_run_file_variable-length_SEQUENTIAL_data_integrity
+[ 192/953] BUILD_FAIL_GNU   0250_run_file_DELETE_FILE__SEQUENTIAL
+[ 193/953] BUILD_FAIL_GNU   0251_run_file_OUTPUT_on_SEQUENTIAL_file_to_missing_directory
+[ 194/953] BUILD_FAIL_GNU   0252_run_file_OPEN_EXTEND_and_CLOSE__INDEXED
+[ 195/953] BUILD_FAIL_GNU   0253_run_file_DELETE_FILE__INDEXED
+[ 196/953] BUILD_FAIL_GNU   0254_run_file_OUTPUT_on_INDEXED_file_to_missing_directory
+[ 197/953] BUILD_FAIL_GNU   0255_run_file_READ_INTO_data_item_AT-END_sequence
+[ 198/953] BUILD_FAIL_GNU   0256_run_file_First_READ_on_empty_SEQUENTIAL_INDEXED_file
+[ 199/953] BUILD_FAIL_GNU   0257_run_file_READ_NEXT_without_previous_START
+[ 200/953] BUILD_FAIL_GNU   0258_run_file_REWRITE_a_RELATIVE_file_with_RANDOM_access
+[ 201/953] BUILD_FAIL_GNU   0259_run_file_ASSIGN_DYNAMIC_and_EXTERNAL
+[ 202/953] BUILD_FAIL_GNU   0260_run_file_ASSIGN_EXTERNAL_parsing
+[ 203/953] BUILD_FAIL_GNU   0261_run_file_ASSIGN_directive
+[ 204/953] BUILD_FAIL_GNU   0262_run_file_ASSIGN_filename_expansion
+[ 205/953] BUILD_FAIL_GNU   0263_run_file_ASSIGN_filename_mapping
+[ 206/953] BUILD_FAIL_GNU   0264_run_file_ASSIGN_filename_mapping
+[ 207/953] BUILD_FAIL_GNU   0265_run_file_ASSIGN_filename_mapping
+[ 208/953] BUILD_FAIL_GNU   0266_run_file_ASSIGN_filename_mapping
+[ 209/953] BUILD_FAIL_GNU   0267_run_file_ASSIGN_with_COB_FILE_PATH
+[ 210/953] BUILD_FAIL_GNU   0268_run_file_ASSIGN_DYNAMIC_with_LOCAL-STORAGE_item
+[ 211/953] BUILD_FAIL_GNU   0269_run_file_ASSIGN_DYNAMIC_with_LOCAL-STORAGE_item__INITIAL
+[ 212/953] BUILD_FAIL_GNU   0270_run_file_ASSIGN_DYNAMIC_with_BASED_data_item
+[ 213/953] BUILD_FAIL_GNU   0271_run_file_ASSIGN_DYNAMIC_with_BASED_data_item
+[ 214/953] BUILD_FAIL_GNU   0272_run_file_ASSIGN_DYNAMIC_with_data_item_in_LINKAGE
+[ 215/953] BUILD_FAIL_GNU   0273_run_file_ASSIGN_DYNAMIC_with_data_item_in_LINKAGE
+[ 216/953] BUILD_FAIL_GNU   0274_run_file_ASSIGN_DYNAMIC_with_empty_data_item
+[ 217/953] BUILD_FAIL_GNU   0275_run_file_ASSIGN_DYNAMIC_with_unset_implicit_data_item
+[ 218/953] BUILD_FAIL_GNU   0276_run_file_INDEXED_file_key-name
+[ 219/953] BUILD_FAIL_GNU   0277_run_file_INDEXED_file_sparse_split_keys
+[ 220/953] BUILD_FAIL_GNU   0278_run_file_INDEXED_file_split_keys_WITH_DUPLICATES
+[ 221/953] BUILD_FAIL_GNU   0279_run_file_INDEXED_file_variable_length_record
+[ 222/953] BUILD_FAIL_GNU   0280_run_file_INDEXED_sample
+[ 223/953] BUILD_FAIL_GNU   0281_run_file_WRITE___REWRITE_FILE_name
+[ 224/953] BUILD_FAIL_GNU   0282_run_file_START_RELATIVE__1_
+[ 225/953] BUILD_FAIL_GNU   0283_run_file_START_RELATIVE__2_
+[ 226/953] BUILD_FAIL_GNU   0284_run_file_START_RELATIVE__3_
+[ 227/953] BUILD_FAIL_GNU   0285_run_file_READ_on_OPTIONAL_missing_RELATIVE___SEQUENTIAL
+[ 228/953] BUILD_FAIL_GNU   0286_run_file_READ_on_OPTIONAL_missing_INDEXED_file
+[ 229/953] BUILD_FAIL_GNU   0287_run_file_EXTERNAL_RELATIVE_file
+[ 230/953] BUILD_FAIL_GNU   0288_run_file_EXTERNAL_RELATIVE_file
+[ 231/953] BUILD_FAIL_GNU   0289_run_file_DECLARATIVES_procedure_referencing
+[ 232/953] BUILD_FAIL_GNU   0290_run_file_DECLARATIVES_procedure_referencing__multiple_
+[ 233/953] BUILD_FAIL_GNU   0291_run_file_System_routines_for_directories__1_
+[ 234/953] BUILD_FAIL_GNU   0292_run_file_System_routines_for_directories__2_
+[ 235/953] BUILD_FAIL_GNU   0293_run_file_System_routines_for_files
+[ 236/953] BUILD_FAIL_GNU   0294_run_file_System_routines_for_files
+[ 237/953] BUILD_FAIL_GNU   0295_run_file_System_routines_for_files_-_filename_mapping
+[ 238/953] BUILD_FAIL_GNU   0296_run_file_System_routine_CBL_COPY_FILE
+[ 239/953] BUILD_FAIL_GNU   0297_run_file_System_routine_CBL_COPY_FILE
+[ 240/953] BUILD_FAIL_GNU   0298_run_file_Default_file_external_name
+[ 241/953] BUILD_FAIL_GNU   0299_run_file_SEQUENTIAL_basic_I_O
+[ 242/953] BUILD_FAIL_GNU   0300_run_file_LINE_SEQUENTIAL_basic_I_O
+[ 243/953] BUILD_FAIL_GNU   0301_run_file_LINE_SEQUENTIAL_WRITE_AFTER
+[ 244/953] BUILD_FAIL_GNU   0302_run_file_LINE_SEQUENTIAL_record_truncation__1_
+[ 245/953] BUILD_FAIL_GNU   0303_run_file_LINE_SEQUENTIAL_record_truncation__1_
+[ 246/953] BUILD_FAIL_GNU   0304_run_file_LINE_SEQUENTIAL_record_truncation__2_
+[ 247/953] BUILD_FAIL_GNU   0305_run_file_LINAGE_and_LINAGE-COUNTER_sample
+[ 248/953] BUILD_FAIL_GNU   0306_run_file_EXTFH__LINAGE_and_LINAGE-COUNTER_sample
+[ 249/953] BUILD_FAIL_GNU   0307_run_file_SEQUENTIAL_file_I_O_with_variable_records
+[ 250/953] BUILD_FAIL_GNU   0308_run_file_LINE_SEQUENTIAL_file_I_O_with_variable_records
+[ 251/953] BUILD_FAIL_GNU   0309_run_file_SEQUENTIAL_file_REWRITE
+[ 252/953] BUILD_FAIL_GNU   0310_run_file_SEQUENTIAL_file_with_LOCK_MODE_EXCLUSIVE
+[ 253/953] BUILD_FAIL_GNU   0311_run_file_SEQUENTIAL_file_with_LOCK_MODE_EXCLUSIVE
+[ 254/953] BUILD_FAIL_GNU   0312_run_file_SEQUENTIAL_file_with_OPEN_WITH_LOCK
+[ 255/953] BUILD_FAIL_GNU   0313_run_file_SEQUENTIAL_file_with_SHARING_NO
+[ 256/953] BUILD_FAIL_GNU   0314_run_file_SEQUENTIAL_file_with_SHARING_READ_ONLY
+[ 257/953] BUILD_FAIL_GNU   0315_run_file_SEQUENTIAL_file_with_SHARING_READ_ONLY
+[ 258/953] BUILD_FAIL_GNU   0316_run_file_SEQUENTIAL_file_with_blocked_lock
+[ 259/953] BUILD_FAIL_GNU   0317_run_file_SEQUENTIAL_file_with_blocked_lock
+[ 260/953] BUILD_FAIL_GNU   0318_run_file_RELATIVE_SEQUENTIAL_basic_I_O
+[ 261/953] BUILD_FAIL_GNU   0319_run_file_RELATIVE_RANDOM_basic_I_O
+[ 262/953] BUILD_FAIL_GNU   0320_run_file_RELATIVE_SEQUENTIAL_with_variable_records
+[ 263/953] BUILD_FAIL_GNU   0321_run_file_INDEXED_SEQUENTIAL_basic_I_O
+[ 264/953] BUILD_FAIL_GNU   0322_run_file_INDEXED_SEQUENTIAL_with_variable_records
+[ 265/953] BUILD_FAIL_GNU   0323_run_file_INDEXED_file_with_LOCK_MODE_EXCLUSIVE
+[ 266/953] BUILD_FAIL_GNU   0324_run_file_INDEXED_file_with_LOCK_MODE_EXCLUSIVE
+[ 267/953] BUILD_FAIL_GNU   0325_run_file_INDEXED_file_with_OPEN_WITH_LOCK
+[ 268/953] BUILD_FAIL_GNU   0326_run_file_INDEXED_file_with_SHARING_NO
+[ 269/953] BUILD_FAIL_GNU   0327_run_file_INDEXED_file_with_SHARING_READ_ONLY
+[ 270/953] BUILD_FAIL_GNU   0328_run_file_INDEXED_file_with_SHARING_READ_ONLY
+[ 271/953] BUILD_FAIL_GNU   0329_run_file_INDEXED_file_with_blocked_lock
+[ 272/953] BUILD_FAIL_GNU   0330_run_file_INDEXED_file_with_blocked_lock
+[ 273/953] BUILD_FAIL_GNU   0331_run_file_INDEXED_file_with_LOCK_AUTOMATIC__1_
+[ 274/953] BUILD_FAIL_GNU   0332_run_file_INDEXED_file_with_LOCK_AUTOMATIC__1_
+[ 275/953] BUILD_FAIL_GNU   0333_run_file_INDEXED_file_with_LOCK_AUTOMATIC__2_
+[ 276/953] BUILD_FAIL_GNU   0334_run_file_INDEXED_file_with_LOCK_AUTOMATIC__2_
+[ 277/953] BUILD_FAIL_GNU   0335_run_file_INDEXED_file_with_LOCK_MANUAL
+[ 278/953] BUILD_FAIL_GNU   0336_run_file_INDEXED_file_with_LOCK_MANUAL
+[ 279/953] BUILD_FAIL_GNU   0337_run_file_START_INDEXED
+[ 280/953] BUILD_FAIL_GNU   0338_run_file_INDEXED_partial_keys
+[ 281/953] BUILD_FAIL_GNU   0339_run_file_INDEXED_undeclared_keys
+[ 282/953] BUILD_FAIL_GNU   0340_run_file_READ_INPUT_pipe___WRITE_OUTPUT_pipe
+[ 283/953] BUILD_FAIL_GNU   0341_run_file_EXTFH__using_ISAM_callback
+[ 284/953] BUILD_FAIL_GNU   0342_run_file_EXTFH__Indexed_with_FH--FCD
+[ 285/953] BUILD_FAIL_GNU   0343_run_file_EXTFH__SEQUENTIAL_files
+[ 286/953] TIMEOUT_DIVERGE  0344_run_file_EXTFH__LINE_SEQUENTIAL_files__direct_EXTFH  (gnu_rc=1 iron_rc=124)
+[ 287/953] TIMEOUT_DIVERGE  0345_run_file_EXTFH__LINE_SEQUENTIAL_files__2_  (gnu_rc=11 iron_rc=124)
+[ 288/953] TIMEOUT_DIVERGE  0346_run_file_EXTFH__FIXED_SEQUENTIAL  (gnu_rc=11 iron_rc=124)
+[ 289/953] TIMEOUT_DIVERGE  0347_run_file_EXTFH__operation_OP_GETINFO___QUERY-FILE  (gnu_rc=11 iron_rc=124)
+[ 290/953] BUILD_FAIL_GNU   0348_run_file_EXTFH__changing_record_address
+[ 291/953] TIMEOUT_DIVERGE  0349_run_file_EXTFH__changing_record_address  (gnu_rc=139 iron_rc=124)
+[ 292/953] TIMEOUT_DIVERGE  0350_run_file_EXTFH__INDEXED_with_multiple_keys  (gnu_rc=1 iron_rc=124)
+[ 293/953] BUILD_FAIL_GNU   0351_run_file_EXTFH__INDEXED_with_multiple_keys
+[ 294/953] TIMEOUT_DIVERGE  0352_run_file_EXTFH__RELATIVE_files  (gnu_rc=11 iron_rc=124)
+[ 295/953] TIMEOUT_DIVERGE  0353_run_file_EXTFH__reading_two_files_with_one_FCD  (gnu_rc=11 iron_rc=124)
+[ 296/953] BUILD_FAIL_GNU   0354_run_file_EXTFH__auto-conversion_FCD2__-__FCD3_on_32bit
+[ 297/953] BUILD_FAIL_GNU   0355_run_file_RELATIVE_Multi-Record
+[ 298/953] BUILD_FAIL_GNU   0356_run_file_INDEXED_File_READ_DELETE_READ
+[ 299/953] BUILD_FAIL_GNU   0357_run_file_TURN_EC-I-O
+[ 300/953] BUILD_FAIL_GNU   0358_run_file_LINE_SEQUENTIAL_REWRITE
+[ 301/953] BUILD_FAIL_GNU   0359_run_file_LINE_SEQUENTIAL_data
+[ 302/953] BUILD_FAIL_GNU   0360_run_file_Concatenated_Files
+[ 303/953] BUILD_FAIL_GNU   0361_run_file_File_SORT__SEQUENTIAL
+[ 304/953] BUILD_FAIL_GNU   0362_run_file_File_SORT__SEQUENTIAL_variable_records
+[ 305/953] BUILD_FAIL_GNU   0363_run_file_File_SORT__LINE_SEQUENTIAL
+[ 306/953] BUILD_FAIL_GNU   0364_run_file_File_SORT__LINE_SEQUENTIAL_same_file
+[ 307/953] BUILD_FAIL_GNU   0365_run_file_File_SORT__LINE_SEQUENTIAL_variable_records
+[ 308/953] BUILD_FAIL_GNU   0366_run_file_File_MERGE__LINE_SEQUENTIAL_variable_records
+[ 309/953] TIMEOUT_DIVERGE  0367_run_file_SORT_nonexistent_file  (gnu_rc=11 iron_rc=124)
+[ 310/953] BUILD_FAIL_GNU   0368_run_file_SORT_with_INPUT_OUTPUT_PROCEDUREs
+[ 311/953] BUILD_FAIL_GNU   0369_run_file_SORT_with_key1_ASCENDING__key2_DESCENDING
+[ 312/953] BUILD_FAIL_GNU   0370_run_file_Scope_of_FD_GLOBAL_in_nested_programs
+[ 313/953] BUILD_FAIL_GNU   0371_run_file_Scope_of_FD_GLOBAL_in_nested_programs
+[ 314/953] BUILD_FAIL_GNU   0372_run_file_OPEN___CLOSE_with_multiple_filenames
+[ 315/953] BUILD_FAIL_GNU   0373_run_file_OPEN___CLOSE_with_multiple_filenames
+[ 316/953] TIMEOUT_DIVERGE  0374_run_functions_FUNCTION_ABS  (gnu_rc=11 iron_rc=124)
+[ 317/953] TIMEOUT_DIVERGE  0375_run_functions_FUNCTION_ACOS  (gnu_rc=11 iron_rc=124)
+[ 318/953] TIMEOUT_DIVERGE  0376_run_functions_FUNCTION_ANNUITY  (gnu_rc=11 iron_rc=124)
+[ 319/953] TIMEOUT_DIVERGE  0377_run_functions_FUNCTION_ASIN  (gnu_rc=11 iron_rc=124)
+[ 320/953] TIMEOUT_DIVERGE  0378_run_functions_FUNCTION_ATAN  (gnu_rc=11 iron_rc=124)
+[ 321/953] TIMEOUT_DIVERGE  0379_run_functions_FUNCTION_BYTE-LENGTH  (gnu_rc=11 iron_rc=124)
+[ 322/953] TIMEOUT_DIVERGE  0380_run_functions_FUNCTION_CHAR  (gnu_rc=11 iron_rc=124)
+[ 323/953] TIMEOUT_DIVERGE  0381_run_functions_FUNCTION_COMBINED-DATETIME  (gnu_rc=11 iron_rc=124)
+[ 324/953] TIMEOUT_DIVERGE  0382_run_functions_FUNCTION_CONCAT___CONCATENATE  (gnu_rc=11 iron_rc=124)
+[ 325/953] TIMEOUT_DIVERGE  0383_run_functions_FUNCTION_CONCATENATE_with_reference_modding  (gnu_rc=11 iron_rc=124)
+[ 326/953] BUILD_FAIL_GNU   0384_run_functions_FUNCTION_BIT-OF_and_BIT-TO-CHAR
+[ 327/953] BUILD_FAIL_GNU   0385_run_functions_FUNCTION_HEX-OF_and_HEX-TO-CHAR
+[ 328/953] TIMEOUT_DIVERGE  0386_run_functions_FUNCTION_CONTENT-LENGTH  (gnu_rc=11 iron_rc=124)
+[ 329/953] TIMEOUT_DIVERGE  0387_run_functions_FUNCTION_CONTENT-OF  (gnu_rc=11 iron_rc=124)
+[ 330/953] TIMEOUT_DIVERGE  0388_run_functions_FUNCTION_as_CALL_parameter_BY_CONTENT  (gnu_rc=11 iron_rc=124)
+[ 331/953] TIMEOUT_DIVERGE  0389_run_functions_FUNCTION_COS  (gnu_rc=11 iron_rc=124)
+[ 332/953] TIMEOUT_DIVERGE  0390_run_functions_FUNCTION_CURRENCY-SYMBOL  (gnu_rc=11 iron_rc=124)
+[ 333/953] TIMEOUT_DIVERGE  0391_run_functions_FUNCTION_CURRENT-DATE  (gnu_rc=11 iron_rc=124)
+[ 334/953] TIMEOUT_DIVERGE  0392_run_functions_FUNCTION_DATE-OF-INTEGER  (gnu_rc=11 iron_rc=124)
+[ 335/953] TIMEOUT_DIVERGE  0393_run_functions_FUNCTION_DATE-TO-YYYYMMDD  (gnu_rc=11 iron_rc=124)
+[ 336/953] TIMEOUT_DIVERGE  0394_run_functions_FUNCTION_DAY-OF-INTEGER  (gnu_rc=11 iron_rc=124)
+[ 337/953] TIMEOUT_DIVERGE  0395_run_functions_FUNCTION_DAY-TO-YYYYDDD  (gnu_rc=11 iron_rc=124)
+[ 338/953] TIMEOUT_DIVERGE  0396_run_functions_FUNCTION_E  (gnu_rc=11 iron_rc=124)
+[ 339/953] TIMEOUT_DIVERGE  0397_run_functions_FUNCTION_EXCEPTION-FILE  (gnu_rc=11 iron_rc=124)
+[ 340/953] TIMEOUT_DIVERGE  0398_run_functions_FUNCTION_EXCEPTION-LOCATION  (gnu_rc=11 iron_rc=124)
+[ 341/953] TIMEOUT_DIVERGE  0399_run_functions_FUNCTION_EXCEPTION-LOCATION  (gnu_rc=1 iron_rc=124)
+[ 342/953] TIMEOUT_DIVERGE  0400_run_functions_FUNCTION_EXCEPTION-LOCATION  (gnu_rc=1 iron_rc=124)
+[ 343/953] TIMEOUT_DIVERGE  0401_run_functions_FUNCTION_EXCEPTION-STATEMENT  (gnu_rc=1 iron_rc=124)
+[ 344/953] TIMEOUT_DIVERGE  0402_run_functions_FUNCTION_EXCEPTION-STATUS  (gnu_rc=1 iron_rc=124)
+[ 345/953] TIMEOUT_DIVERGE  0403_run_functions_FUNCTION_EXP  (gnu_rc=1 iron_rc=124)
+[ 346/953] TIMEOUT_DIVERGE  0404_run_functions_FUNCTION_EXP10  (gnu_rc=1 iron_rc=124)
+[ 347/953] TIMEOUT_DIVERGE  0405_run_functions_FUNCTION_FACTORIAL  (gnu_rc=1 iron_rc=124)
+[ 348/953] TIMEOUT_DIVERGE  0406_run_functions_FUNCTION_FORMATTED-CURRENT-DATE  (gnu_rc=1 iron_rc=124)
+[ 349/953] TIMEOUT_DIVERGE  0407_run_functions_FUNCTION_FORMATTED-DATE  (gnu_rc=1 iron_rc=124)
+[ 350/953] TIMEOUT_DIVERGE  0408_run_functions_FUNCTION_FORMATTED-DATE_with_ref_modding  (gnu_rc=1 iron_rc=124)
+[ 351/953] TIMEOUT_DIVERGE  0409_run_functions_FUNCTION_FORMATTED-DATETIME  (gnu_rc=1 iron_rc=124)
+[ 352/953] TIMEOUT_DIVERGE  0410_run_functions_FUNCTION_FORMATTED-DATETIME_with_ref_modding  (gnu_rc=1 iron_rc=124)
+[ 353/953] TIMEOUT_DIVERGE  0411_run_functions_FUNCTION_FORMATTED-TIME  (gnu_rc=1 iron_rc=124)
+[ 354/953] TIMEOUT_DIVERGE  0412_run_functions_FUNCTION_FORMATTED-TIME_DP_COMMA  (gnu_rc=1 iron_rc=124)
+[ 355/953] TIMEOUT_DIVERGE  0413_run_functions_FUNCTION_FORMATTED-TIME_with_ref_modding  (gnu_rc=1 iron_rc=124)
+[ 356/953] TIMEOUT_DIVERGE  0414_run_functions_FUNCTION_FRACTION-PART  (gnu_rc=1 iron_rc=124)
+[ 357/953] TIMEOUT_DIVERGE  0415_run_functions_FUNCTION_HIGHEST-ALGEBRAIC  (gnu_rc=1 iron_rc=124)
+[ 358/953] TIMEOUT_DIVERGE  0416_run_functions_FUNCTION_INTEGER  (gnu_rc=1 iron_rc=124)
+[ 359/953] TIMEOUT_DIVERGE  0417_run_functions_FUNCTION_INTEGER-OF-DATE  (gnu_rc=1 iron_rc=124)
+[ 360/953] TIMEOUT_DIVERGE  0418_run_functions_FUNCTION_INTEGER-OF-DAY  (gnu_rc=1 iron_rc=124)
+[ 361/953] TIMEOUT_DIVERGE  0419_run_functions_FUNCTION_INTEGER-OF-FORMATTED-DATE  (gnu_rc=1 iron_rc=124)
+[ 362/953] TIMEOUT_DIVERGE  0420_run_functions_FUNCTION_INTEGER-PART  (gnu_rc=1 iron_rc=124)
+[ 363/953] TIMEOUT_DIVERGE  0421_run_functions_FUNCTION_LENGTH  (gnu_rc=1 iron_rc=124)
+[ 364/953] TIMEOUT_DIVERGE  0422_run_functions_FUNCTION_LOCALE-COMPARE  (gnu_rc=1 iron_rc=124)
+[ 365/953] TIMEOUT_DIVERGE  0423_run_functions_FUNCTION_LOCALE-DATE  (gnu_rc=1 iron_rc=124)
+[ 366/953] TIMEOUT_DIVERGE  0424_run_functions_FUNCTION_LOCALE-TIME  (gnu_rc=1 iron_rc=124)
+[ 367/953] TIMEOUT_DIVERGE  0425_run_functions_FUNCTION_LOCALE-TIME-FROM-SECONDS  (gnu_rc=1 iron_rc=124)
+[ 368/953] TIMEOUT_DIVERGE  0426_run_functions_FUNCTION_LOG  (gnu_rc=1 iron_rc=124)
+[ 369/953] TIMEOUT_DIVERGE  0427_run_functions_FUNCTION_LOG10  (gnu_rc=1 iron_rc=124)
+[ 370/953] TIMEOUT_DIVERGE  0428_run_functions_FUNCTION_LOWER-CASE  (gnu_rc=1 iron_rc=124)
+[ 371/953] TIMEOUT_DIVERGE  0429_run_functions_FUNCTION_LOWER-CASE_with_reference_modding  (gnu_rc=1 iron_rc=124)
+[ 372/953] TIMEOUT_DIVERGE  0430_run_functions_FUNCTION_LOWEST-ALGEBRAIC  (gnu_rc=1 iron_rc=124)
+[ 373/953] TIMEOUT_DIVERGE  0431_run_functions_FUNCTION_MAX  (gnu_rc=1 iron_rc=124)
+[ 374/953] TIMEOUT_DIVERGE  0432_run_functions_FUNCTION_MEAN  (gnu_rc=1 iron_rc=124)
+[ 375/953] TIMEOUT_DIVERGE  0433_run_functions_FUNCTION_MEDIAN  (gnu_rc=1 iron_rc=124)
+[ 376/953] TIMEOUT_DIVERGE  0434_run_functions_FUNCTION_MIDRANGE  (gnu_rc=1 iron_rc=124)
+[ 377/953] TIMEOUT_DIVERGE  0435_run_functions_FUNCTION_MIN  (gnu_rc=1 iron_rc=124)
+[ 378/953] TIMEOUT_DIVERGE  0436_run_functions_FUNCTION_MOD__valid_  (gnu_rc=1 iron_rc=124)
+[ 379/953] TIMEOUT_DIVERGE  0437_run_functions_FUNCTION_MOD__invalid_  (gnu_rc=1 iron_rc=124)
+[ 380/953] TIMEOUT_DIVERGE  0438_run_functions_FUNCTION_MODULE-CALLER-ID  (gnu_rc=1 iron_rc=124)
+[ 381/953] TIMEOUT_DIVERGE  0439_run_functions_FUNCTION_MODULE-CALLER-ID  (gnu_rc=1 iron_rc=124)
+[ 382/953] TIMEOUT_DIVERGE  0440_run_functions_FUNCTION_MODULE-DATE  (gnu_rc=1 iron_rc=124)
+[ 383/953] TIMEOUT_DIVERGE  0441_run_functions_FUNCTION_MODULE-FORMATTED-DATE  (gnu_rc=1 iron_rc=124)
+[ 384/953] TIMEOUT_DIVERGE  0442_run_functions_FUNCTION_MODULE-ID  (gnu_rc=1 iron_rc=124)
+[ 385/953] TIMEOUT_DIVERGE  0443_run_functions_FUNCTION_MODULE-PATH  (gnu_rc=1 iron_rc=124)
+[ 386/953] TIMEOUT_DIVERGE  0444_run_functions_FUNCTION_MODULE-SOURCE  (gnu_rc=1 iron_rc=124)
+[ 387/953] TIMEOUT_DIVERGE  0445_run_functions_FUNCTION_MODULE-TIME  (gnu_rc=1 iron_rc=124)
+[ 388/953] TIMEOUT_DIVERGE  0446_run_functions_FUNCTION_MONETARY-DECIMAL-POINT  (gnu_rc=1 iron_rc=124)
+[ 389/953] TIMEOUT_DIVERGE  0447_run_functions_FUNCTION_MONETARY-THOUSANDS-SEPARATOR  (gnu_rc=1 iron_rc=124)
+[ 390/953] TIMEOUT_DIVERGE  0448_run_functions_FUNCTION_NUMERIC-DECIMAL-POINT  (gnu_rc=1 iron_rc=124)
+[ 391/953] TIMEOUT_DIVERGE  0449_run_functions_FUNCTION_NUMERIC-THOUSANDS-SEPARATOR  (gnu_rc=1 iron_rc=124)
+[ 392/953] TIMEOUT_DIVERGE  0450_run_functions_FUNCTION_NUMVAL  (gnu_rc=1 iron_rc=124)
+[ 393/953] TIMEOUT_DIVERGE  0451_run_functions_FUNCTION_NUMVAL-C  (gnu_rc=1 iron_rc=124)
+[ 394/953] TIMEOUT_DIVERGE  0452_run_functions_FUNCTION_NUMVAL-C_DP_COMMA  (gnu_rc=1 iron_rc=124)
+[ 395/953] TIMEOUT_DIVERGE  0453_run_functions_FUNCTION_NUMVAL-F  (gnu_rc=1 iron_rc=124)
+[ 396/953] TIMEOUT_DIVERGE  0454_run_functions_FUNCTION_ORD  (gnu_rc=1 iron_rc=124)
+[ 397/953] TIMEOUT_DIVERGE  0455_run_functions_FUNCTION_ORD-MAX  (gnu_rc=1 iron_rc=124)
+[ 398/953] TIMEOUT_DIVERGE  0456_run_functions_FUNCTION_ORD-MIN  (gnu_rc=1 iron_rc=124)
+[ 399/953] TIMEOUT_DIVERGE  0457_run_functions_FUNCTION_PI  (gnu_rc=1 iron_rc=124)
+[ 400/953] TIMEOUT_DIVERGE  0458_run_functions_FUNCTION_PRESENT-VALUE  (gnu_rc=1 iron_rc=124)
+[ 401/953] TIMEOUT_DIVERGE  0459_run_functions_FUNCTION_RANDOM  (gnu_rc=1 iron_rc=124)
+[ 402/953] TIMEOUT_DIVERGE  0460_run_functions_FUNCTION_RANGE  (gnu_rc=1 iron_rc=124)
+[ 403/953] TIMEOUT_DIVERGE  0461_run_functions_FUNCTION_REM__valid_  (gnu_rc=1 iron_rc=124)
+[ 404/953] TIMEOUT_DIVERGE  0462_run_functions_FUNCTION_REM__invalid_  (gnu_rc=1 iron_rc=124)
+[ 405/953] TIMEOUT_DIVERGE  0463_run_functions_FUNCTION_REVERSE  (gnu_rc=1 iron_rc=124)
+[ 406/953] TIMEOUT_DIVERGE  0464_run_functions_FUNCTION_REVERSE_with_reference_modding  (gnu_rc=1 iron_rc=124)
+[ 407/953] TIMEOUT_DIVERGE  0465_run_functions_FUNCTION_SECONDS-FROM-FORMATTED-TIME  (gnu_rc=1 iron_rc=124)
+[ 408/953] TIMEOUT_DIVERGE  0466_run_functions_FUNCTION_SECONDS-PAST-MIDNIGHT  (gnu_rc=1 iron_rc=124)
+[ 409/953] TIMEOUT_DIVERGE  0467_run_functions_FUNCTION_SIGN  (gnu_rc=1 iron_rc=124)
+[ 410/953] TIMEOUT_DIVERGE  0468_run_functions_FUNCTION_SIN  (gnu_rc=1 iron_rc=124)
+[ 411/953] TIMEOUT_DIVERGE  0469_run_functions_FUNCTION_SQRT  (gnu_rc=1 iron_rc=124)
+[ 412/953] TIMEOUT_DIVERGE  0470_run_functions_FUNCTION_STANDARD-DEVIATION  (gnu_rc=1 iron_rc=124)
+[ 413/953] TIMEOUT_DIVERGE  0471_run_functions_FUNCTION_STORED-CHAR-LENGTH  (gnu_rc=1 iron_rc=124)
+[ 414/953] TIMEOUT_DIVERGE  0472_run_functions_FUNCTION_SUBSTITUTE  (gnu_rc=1 iron_rc=124)
+[ 415/953] TIMEOUT_DIVERGE  0473_run_functions_FUNCTION_SUBSTITUTE_with_reference_modding  (gnu_rc=1 iron_rc=124)
+[ 416/953] TIMEOUT_DIVERGE  0474_run_functions_FUNCTION_SUBSTITUTE-CASE  (gnu_rc=1 iron_rc=124)
+[ 417/953] TIMEOUT_DIVERGE  0475_run_functions_FUNCTION_SUBSTITUTE-CASE_with_reference_mod  (gnu_rc=1 iron_rc=124)
+[ 418/953] TIMEOUT_DIVERGE  0476_run_functions_FUNCTION_SUM  (gnu_rc=1 iron_rc=124)
+[ 419/953] TIMEOUT_DIVERGE  0477_run_functions_FUNCTION_TAN  (gnu_rc=1 iron_rc=124)
+[ 420/953] TIMEOUT_DIVERGE  0478_run_functions_FUNCTION_TEST-DATE-YYYYMMDD  (gnu_rc=1 iron_rc=124)
+[ 421/953] TIMEOUT_DIVERGE  0479_run_functions_FUNCTION_TEST-DAY-YYYYDDD  (gnu_rc=1 iron_rc=124)
+[ 422/953] TIMEOUT_DIVERGE  0480_run_functions_FUNCTION_TEST-FORMATTED-DATETIME_with_dates  (gnu_rc=1 iron_rc=124)
+[ 423/953] TIMEOUT_DIVERGE  0481_run_functions_FUNCTION_TEST-FORMATTED-DATETIME_with_times  (gnu_rc=1 iron_rc=124)
+[ 424/953] TIMEOUT_DIVERGE  0482_run_functions_FUNCTION_TEST-FORMATTED-DATETIME_with_datetimes  (gnu_rc=1 iron_rc=124)
+[ 425/953] TIMEOUT_DIVERGE  0483_run_functions_FUNCTION_TEST-FORMATTED-DATETIME_DP_COMMA  (gnu_rc=1 iron_rc=124)
+[ 426/953] TIMEOUT_DIVERGE  0484_run_functions_FUNCTION_TEST-NUMVAL  (gnu_rc=1 iron_rc=124)
+[ 427/953] TIMEOUT_DIVERGE  0485_run_functions_FUNCTION_TEST-NUMVAL-C  (gnu_rc=1 iron_rc=124)
+[ 428/953] TIMEOUT_DIVERGE  0486_run_functions_FUNCTION_TEST-NUMVAL-F  (gnu_rc=1 iron_rc=124)
+[ 429/953] TIMEOUT_DIVERGE  0487_run_functions_FUNCTION_TRIM  (gnu_rc=1 iron_rc=124)
+[ 430/953] TIMEOUT_DIVERGE  0488_run_functions_FUNCTION_TRIM_with_reference_modding  (gnu_rc=1 iron_rc=124)
+[ 431/953] TIMEOUT_DIVERGE  0489_run_functions_FUNCTION_TRIM_zero_length  (gnu_rc=1 iron_rc=124)
+[ 432/953] TIMEOUT_DIVERGE  0490_run_functions_FUNCTION_UPPER-CASE  (gnu_rc=1 iron_rc=124)
+[ 433/953] TIMEOUT_DIVERGE  0491_run_functions_FUNCTION_UPPER-CASE_with_reference_modding  (gnu_rc=1 iron_rc=124)
+[ 434/953] TIMEOUT_DIVERGE  0492_run_functions_FUNCTION_VARIANCE  (gnu_rc=1 iron_rc=124)
+[ 435/953] TIMEOUT_DIVERGE  0493_run_functions_FUNCTION_WHEN-COMPILED  (gnu_rc=1 iron_rc=124)
+[ 436/953] TIMEOUT_DIVERGE  0494_run_functions_FUNCTION_YEAR-TO-YYYY  (gnu_rc=1 iron_rc=124)
+[ 437/953] TIMEOUT_DIVERGE  0495_run_functions_Formatted_funcs_w__invalid_variable_format  (gnu_rc=1 iron_rc=124)
+[ 438/953] TIMEOUT_DIVERGE  0496_run_functions_FORMATTED-_DATE_TIME_with_SYSTEM-OFFSET  (gnu_rc=1 iron_rc=124)
+[ 439/953] BUILD_FAIL_GNU   0497_run_functions_Intrinsics_without_FUNCTION_keyword__1_
+[ 440/953] TIMEOUT_DIVERGE  0498_run_functions_UDF_in_COMPUTE  (gnu_rc=1 iron_rc=124)
+[ 441/953] BUILD_FAIL_GNU   0499_run_functions_UDF_replacing_intrinsic_function
+[ 442/953] TIMEOUT_DIVERGE  0500_run_functions_UDF_with_recursion  (gnu_rc=1 iron_rc=124)
+[ 443/953] TIMEOUT_DIVERGE  0501_run_fundamental_DISPLAY_literals  (gnu_rc=1 iron_rc=124)
+[ 444/953] TIMEOUT_DIVERGE  0502_run_fundamental_DISPLAY_literals__DECIMAL-POINT_is_COMMA  (gnu_rc=1 iron_rc=124)
+[ 445/953] TIMEOUT_DIVERGE  0503_run_fundamental_Hexadecimal_literal  (gnu_rc=1 iron_rc=124)
+[ 446/953] TIMEOUT_DIVERGE  0504_run_fundamental_DISPLAY_data_items_with_VALUE_clause  (gnu_rc=1 iron_rc=124)
+[ 447/953] TIMEOUT_DIVERGE  0505_run_fundamental_DISPLAY_data_items_with_MOVE_statement  (gnu_rc=1 iron_rc=124)
+[ 448/953] TIMEOUT_DIVERGE  0506_run_fundamental_MOVE_to_edited_item__1_  (gnu_rc=1 iron_rc=124)
+[ 449/953] TIMEOUT_DIVERGE  0507_run_fundamental_MOVE_to_edited_item__2_  (gnu_rc=1 iron_rc=124)
+[ 450/953] TIMEOUT_DIVERGE  0508_run_fundamental_MOVE_to_edited_item__3_  (gnu_rc=1 iron_rc=124)
+[ 451/953] TIMEOUT_DIVERGE  0509_run_fundamental_MOVE_to_item_with_simple_and_floating_insertion  (gnu_rc=1 iron_rc=124)
+[ 452/953] TIMEOUT_DIVERGE  0510_run_fundamental_MOVE_to_JUSTIFIED_item  (gnu_rc=1 iron_rc=124)
+[ 453/953] TIMEOUT_DIVERGE  0511_run_fundamental_MOVE_integer_literal_to_alphanumeric  (gnu_rc=1 iron_rc=124)
+[ 454/953] TIMEOUT_DIVERGE  0512_run_fundamental_Compare_FLOAT-LONG_with_floating-point_literal  (gnu_rc=1 iron_rc=124)
+[ 455/953] BUILD_FAIL_GNU   0513_run_fundamental_equality_of_FLOAT-SHORT___FLOAT-LONG
+[ 456/953] BUILD_FAIL_GNU   0514_run_fundamental_equality_of_FLOAT-SHORT___FLOAT-EXTENDED
+[ 457/953] TIMEOUT_DIVERGE  0515_run_fundamental_Overlapping_MOVE__GnuCOBOL_  (gnu_rc=1 iron_rc=124)
+[ 458/953] BUILD_FAIL_GNU   0516_run_fundamental_Overlapping_MOVE__GnuCOBOL_
+[ 459/953] TIMEOUT_DIVERGE  0517_run_fundamental_Overlapping_MOVE__GnuCOBOL_  (gnu_rc=1 iron_rc=124)
+[ 460/953] BUILD_FAIL_GNU   0518_run_fundamental_Overlapping_MOVE__IBM_
+[ 461/953] TIMEOUT_DIVERGE  0519_run_fundamental_ALPHABETIC_test  (gnu_rc=1 iron_rc=124)
+[ 462/953] TIMEOUT_DIVERGE  0520_run_fundamental_ALPHABETIC-UPPER_test  (gnu_rc=1 iron_rc=124)
+[ 463/953] TIMEOUT_DIVERGE  0521_run_fundamental_ALPHABETIC-LOWER_test  (gnu_rc=1 iron_rc=124)
+[ 464/953] TIMEOUT_DIVERGE  0522_run_fundamental_GLOBAL_at_same_level  (gnu_rc=1 iron_rc=124)
+[ 465/953] TIMEOUT_DIVERGE  0523_run_fundamental_GLOBAL_at_lower_level  (gnu_rc=1 iron_rc=124)
+[ 466/953] TIMEOUT_DIVERGE  0524_run_fundamental_GLOBAL_CONSTANT  (gnu_rc=1 iron_rc=124)
+[ 467/953] TIMEOUT_DIVERGE  0525_run_fundamental_GLOBAL_identifiers_from_ENVIRONMENT_DIVISION  (gnu_rc=1 iron_rc=124)
+[ 468/953] BUILD_FAIL_GNU   0526_run_fundamental_GLOBAL_REDEFINES
+[ 469/953] TIMEOUT_DIVERGE  0527_run_fundamental_function_with_variable-length_RETURNING_item  (gnu_rc=1 iron_rc=124)
+[ 470/953] TIMEOUT_DIVERGE  0528_run_fundamental_Entry_point_visibility__1_  (gnu_rc=1 iron_rc=124)
+[ 471/953] TIMEOUT_DIVERGE  0529_run_fundamental_Entry_point_visibility__1_  (gnu_rc=1 iron_rc=124)
+[ 472/953] TIMEOUT_DIVERGE  0530_run_fundamental_Entry_point_visibility__2_  (gnu_rc=1 iron_rc=124)
+[ 473/953] TIMEOUT_DIVERGE  0531_run_fundamental_Contained_program_visibility__1_  (gnu_rc=1 iron_rc=124)
+[ 474/953] TIMEOUT_DIVERGE  0532_run_fundamental_Contained_program_visibility__2_  (gnu_rc=1 iron_rc=124)
+[ 475/953] TIMEOUT_DIVERGE  0533_run_fundamental_Contained_program_visibility__3_  (gnu_rc=1 iron_rc=124)
+[ 476/953] TIMEOUT_DIVERGE  0534_run_fundamental_Contained_program_visibility__4_  (gnu_rc=1 iron_rc=124)
+[ 477/953] TIMEOUT_DIVERGE  0535_run_fundamental_CALL_alphanumeric_data-name  (gnu_rc=1 iron_rc=124)
+[ 478/953] TIMEOUT_DIVERGE  0536_run_fundamental_CALL_program-pointer  (gnu_rc=1 iron_rc=124)
+[ 479/953] BUILD_FAIL_GNU   0537_run_fundamental_CALL_CANCEL_SET_ADDRESS_program-prototype-name
+[ 480/953] TIMEOUT_DIVERGE  0538_run_fundamental_GLOBAL_FD__1_  (gnu_rc=1 iron_rc=124)
+[ 481/953] TIMEOUT_DIVERGE  0539_run_fundamental_GLOBAL_FD__2_  (gnu_rc=1 iron_rc=124)
+[ 482/953] TIMEOUT_DIVERGE  0540_run_fundamental_GLOBAL_FD__3_  (gnu_rc=1 iron_rc=124)
+[ 483/953] TIMEOUT_DIVERGE  0541_run_fundamental_GLOBAL_FD__4_  (gnu_rc=1 iron_rc=124)
+[ 484/953] TIMEOUT_DIVERGE  0542_run_fundamental_CANCEL_test__1_  (gnu_rc=1 iron_rc=124)
+[ 485/953] TIMEOUT_DIVERGE  0543_run_fundamental_CANCEL_test__2_  (gnu_rc=1 iron_rc=124)
+[ 486/953] TIMEOUT_DIVERGE  0544_run_fundamental_CANCEL_test__2_  (gnu_rc=1 iron_rc=124)
+[ 487/953] TIMEOUT_DIVERGE  0545_run_fundamental_CANCEL_test__3_  (gnu_rc=1 iron_rc=124)
+[ 488/953] TIMEOUT_DIVERGE  0546_run_fundamental_CANCEL_test__3_  (gnu_rc=1 iron_rc=124)
+[ 489/953] TIMEOUT_DIVERGE  0547_run_fundamental_Separate_sign_positions__1_  (gnu_rc=1 iron_rc=124)
+[ 490/953] TIMEOUT_DIVERGE  0548_run_fundamental_Separate_sign_positions__2_  (gnu_rc=1 iron_rc=124)
+[ 491/953] TIMEOUT_DIVERGE  0549_run_fundamental_Context_sensitive_words__1_  (gnu_rc=1 iron_rc=124)
+[ 492/953] TIMEOUT_DIVERGE  0550_run_fundamental_Context_sensitive_words__2_  (gnu_rc=1 iron_rc=124)
+[ 493/953] TIMEOUT_DIVERGE  0551_run_fundamental_Context_sensitive_words__3_  (gnu_rc=1 iron_rc=124)
+[ 494/953] TIMEOUT_DIVERGE  0552_run_fundamental_Context_sensitive_words__4_  (gnu_rc=1 iron_rc=124)
+[ 495/953] TIMEOUT_DIVERGE  0553_run_fundamental_Context_sensitive_words__5_  (gnu_rc=1 iron_rc=124)
+[ 496/953] TIMEOUT_DIVERGE  0554_run_fundamental_Context_sensitive_words__6_  (gnu_rc=1 iron_rc=124)
+[ 497/953] TIMEOUT_DIVERGE  0555_run_fundamental_Context_sensitive_words__7_  (gnu_rc=1 iron_rc=124)
+[ 498/953] TIMEOUT_DIVERGE  0556_run_fundamental_Context_sensitive_words__8_  (gnu_rc=1 iron_rc=124)
+[ 499/953] TIMEOUT_DIVERGE  0557_run_fundamental_ROUNDED_AWAY-FROM-ZERO  (gnu_rc=1 iron_rc=124)
+[ 500/953] TIMEOUT_DIVERGE  0558_run_fundamental_ROUNDED_NEAREST-AWAY-FROM-ZERO  (gnu_rc=1 iron_rc=124)
+[ 501/953] TIMEOUT_DIVERGE  0559_run_fundamental_ROUNDED_NEAREST-EVEN  (gnu_rc=1 iron_rc=124)
+[ 502/953] TIMEOUT_DIVERGE  0560_run_fundamental_ROUNDED_NEAREST-TOWARD-ZERO  (gnu_rc=1 iron_rc=124)
+[ 503/953] TIMEOUT_DIVERGE  0561_run_fundamental_ROUNDED_TOWARD-GREATER  (gnu_rc=1 iron_rc=124)
+[ 504/953] TIMEOUT_DIVERGE  0562_run_fundamental_ROUNDED_TOWARD-LESSER  (gnu_rc=1 iron_rc=124)
+[ 505/953] TIMEOUT_DIVERGE  0563_run_fundamental_ROUNDED_TRUNCATION  (gnu_rc=1 iron_rc=124)
+[ 506/953] TIMEOUT_DIVERGE  0564_run_fundamental_Numeric_operations__1_  (gnu_rc=1 iron_rc=124)
+[ 507/953] TIMEOUT_DIVERGE  0565_run_fundamental_Numeric_operations__2__DISPLAY  (gnu_rc=1 iron_rc=124)
+[ 508/953] TIMEOUT_DIVERGE  0566_run_fundamental_Numeric_operations__3__PACKED-DECIMAL  (gnu_rc=1 iron_rc=124)
+[ 509/953] TIMEOUT_DIVERGE  0567_run_fundamental_Numeric_operations__4__BINARY  (gnu_rc=1 iron_rc=124)
+[ 510/953] TIMEOUT_DIVERGE  0568_run_fundamental_Numeric_operations__5__COMP-5  (gnu_rc=1 iron_rc=124)
+[ 511/953] TIMEOUT_DIVERGE  0569_run_fundamental_Numeric_operations__6_  (gnu_rc=1 iron_rc=124)
+[ 512/953] TIMEOUT_DIVERGE  0570_run_fundamental_Numeric_operations__7_  (gnu_rc=1 iron_rc=124)
+[ 513/953] TIMEOUT_DIVERGE  0571_run_fundamental_Numeric_operations__8_  (gnu_rc=1 iron_rc=124)
+[ 514/953] TIMEOUT_DIVERGE  0572_run_fundamental_ADD_CORRESPONDING  (gnu_rc=1 iron_rc=124)
+[ 515/953] TIMEOUT_DIVERGE  0573_run_fundamental_ADD_CORRESPONDING_no_match  (gnu_rc=1 iron_rc=124)
+[ 516/953] TIMEOUT_DIVERGE  0574_run_fundamental_SYNC_in_OCCURS  (gnu_rc=1 iron_rc=124)
+[ 517/953] TIMEOUT_DIVERGE  0575_run_fundamental_88_level_with_THRU  (gnu_rc=1 iron_rc=124)
+[ 518/953] TIMEOUT_DIVERGE  0576_run_fundamental_88_level_with_FILLER  (gnu_rc=1 iron_rc=124)
+[ 519/953] TIMEOUT_DIVERGE  0577_run_fundamental_88_level_with_FALSE_IS_clause  (gnu_rc=1 iron_rc=124)
+[ 520/953] TIMEOUT_DIVERGE  0578_run_fundamental_BLANK_WHEN_ZERO  (gnu_rc=1 iron_rc=124)
+[ 521/953] TIMEOUT_DIVERGE  0579_run_fundamental_MULTIPLY_BY_literal_in_INITIAL_program  (gnu_rc=1 iron_rc=124)
+[ 522/953] TIMEOUT_DIVERGE  0580_run_fundamental_DIVIDE_complex  (gnu_rc=1 iron_rc=124)
+[ 523/953] TIMEOUT_BOTH     0581_run_fundamental_COMPUTE_with_decimal_constants  (interactive — same on both engines)
+[ 524/953] BUILD_FAIL_GNU   0582_run_fundamental_debugging_lines__not_active_
+[ 525/953] BUILD_FAIL_GNU   0583_run_fundamental_debugging_lines__WITH_DEBUGGING_MODE_
+[ 526/953] TIMEOUT_BOTH     0584_run_fundamental_debugging_lines__free_format__not_active_  (interactive — same on both engines)
+[ 527/953] TIMEOUT_BOTH     0585_run_fundamental_USE_FOR_DEBUGGING__no_DEBUGGING_MODE_  (interactive — same on both engines)
+[ 528/953] TIMEOUT_BOTH     0586_run_fundamental_USE_FOR_DEBUGGING__COB_SET_DEBUG_deactivated_  (interactive — same on both engines)
+[ 529/953] TIMEOUT_BOTH     0587_run_fundamental_USE_FOR_DEBUGGING_ON_ALL_PROCEDURES  (interactive — same on both engines)
+[ 530/953] TIMEOUT_BOTH     0588_run_fundamental_USE_FOR_DEBUGGING_ON_procedure  (interactive — same on both engines)
+[ 531/953] TIMEOUT_BOTH     0589_run_fundamental_USE_FOR_DEBUGGING__COB_SET_DEBUG_switched_  (interactive — same on both engines)
+[ 532/953] TIMEOUT_BOTH     0590_run_fundamental_USE_FOR_DEBUGGING__COB_SET_DEBUG_switched_  (interactive — same on both engines)
+[ 533/953] TIMEOUT_BOTH     0591_run_fundamental_USE_FOR_DEBUGGING__reference_within_DEBUGGING  (interactive — same on both engines)
+[ 534/953] TIMEOUT_BOTH     0592_run_fundamental_USE_FOR_DEBUGGING__time_of_execution  (interactive — same on both engines)
+[ 535/953] TIMEOUT_BOTH     0593_run_fundamental_USE_FOR_DEBUGGING__reference_with_OCCURS  (interactive — same on both engines)
+[ 536/953] BUILD_FAIL_GNU   0594_run_fundamental_USE_FOR_DEBUGGING__referencing_BASED_item
+[ 537/953] TIMEOUT_BOTH     0595_run_fundamental_USE_FOR_DEBUGGING_file  (interactive — same on both engines)
+[ 538/953] TIMEOUT_BOTH     0596_run_fundamental_Simple_Expressions_with_figurative_constants  (interactive — same on both engines)
+[ 539/953] TIMEOUT_BOTH     0597_run_fundamental_Expression_numeric_vs__DISPLAY  (interactive — same on both engines)
+[ 540/953] TIMEOUT_BOTH     0598_run_fundamental_Abbreviated_Expressions  (interactive — same on both engines)
+[ 541/953] TIMEOUT_BOTH     0599_run_fundamental_integer_arithmetic_on_floating-point_var  (interactive — same on both engines)
+[ 542/953] TIMEOUT_DIVERGE  0600_run_fundamental_TYPEDEF_application  (gnu_rc=1 iron_rc=124)
+[ 543/953] TIMEOUT_DIVERGE  0601_run_fundamental_TYPEDEF_application  (gnu_rc=1 iron_rc=124)
+[ 544/953] TIMEOUT_DIVERGE  0602_run_fundamental_Alphanumeric_VALUE_longer_than_PIC  (gnu_rc=1 iron_rc=124)
+[ 545/953] TIMEOUT_DIVERGE  0603_run_fundamental_DISPLAY_with_P_fields  (gnu_rc=1 iron_rc=124)
+[ 546/953] TIMEOUT_DIVERGE  0604_run_fundamental_DISPLAY_with_P_fields  (gnu_rc=1 iron_rc=124)
+[ 547/953] BUILD_FAIL_GNU   0605_run_fundamental_condition_IS_ZERO_AND
+[ 548/953] TIMEOUT_DIVERGE  0606_run_fundamental_abbreviated_conditions_with_multiple_words_operators  (gnu_rc=1 iron_rc=124)
+[ 549/953] BUILD_FAIL_GNU   0607_run_fundamental_abbreviated_conditions_with_multiple_words_operators
+[ 550/953] TIMEOUT_DIVERGE  0608_run_fundamental_MOVE_with_JUSTIFIED_clause  (gnu_rc=1 iron_rc=124)
+[ 551/953] TIMEOUT_DIVERGE  0609_run_fundamental_MOVE_with_PICTURE_P  (gnu_rc=1 iron_rc=124)
+[ 552/953] TIMEOUT_DIVERGE  0610_run_fundamental_MOVE_with_de-editting_to_USAGE_DISPLAY  (gnu_rc=1 iron_rc=124)
+[ 553/953] TIMEOUT_DIVERGE  0611_run_fundamental_MOVE_with_de-editting_to_DECIMAL_IS_COMMA  (gnu_rc=1 iron_rc=124)
+[ 554/953] TIMEOUT_DIVERGE  0612_run_fundamental_MOVE_with_de-editting_to_BINARY  (gnu_rc=1 iron_rc=124)
+[ 555/953] TIMEOUT_DIVERGE  0613_run_fundamental_MOVE_with_de-editting_to_COMP-3  (gnu_rc=1 iron_rc=124)
+[ 556/953] TIMEOUT_DIVERGE  0614_run_fundamental_MOVE_with_de-editting_to_COMP-5  (gnu_rc=1 iron_rc=124)
+[ 557/953] TIMEOUT_DIVERGE  0615_run_fundamental_MOVE_with_de-editting_to_NUMERIC_DISPLAY__2_  (gnu_rc=1 iron_rc=124)
+[ 558/953] TIMEOUT_DIVERGE  0616_run_fundamental_MOVE_misc__edited  (gnu_rc=1 iron_rc=124)
+[ 559/953] TIMEOUT_DIVERGE  0617_run_fundamental_MOVE_between_USAGEs  (gnu_rc=1 iron_rc=124)
+[ 560/953] TIMEOUT_DIVERGE  0618_run_fundamental_MOVE_to_editted_ZERO  (gnu_rc=1 iron_rc=124)
+[ 561/953] TIMEOUT_DIVERGE  0619_run_fundamental_SPECIAL-NAMES_CLASS  (gnu_rc=1 iron_rc=124)
+[ 562/953] TIMEOUT_DIVERGE  0620_run_initialize_INITIALIZE_group_entry_with_OCCURS  (gnu_rc=1 iron_rc=124)
+[ 563/953] TIMEOUT_DIVERGE  0621_run_initialize_INITIALIZE_OCCURS_with_numeric_edited  (gnu_rc=1 iron_rc=124)
+[ 564/953] TIMEOUT_DIVERGE  0622_run_initialize_INITIALIZE_OCCURS_with_SIGN_LEADING___TRAILING  (gnu_rc=1 iron_rc=124)
+[ 565/953] TIMEOUT_DIVERGE  0623_run_initialize_INITIALIZE_complex_group__1_  (gnu_rc=1 iron_rc=124)
+[ 566/953] TIMEOUT_DIVERGE  0624_run_initialize_INITIALIZE_complex_group__2_  (gnu_rc=1 iron_rc=124)
+[ 567/953] TIMEOUT_DIVERGE  0625_run_initialize_initial_value_for_group_item_with_VALUE  (gnu_rc=1 iron_rc=124)
+[ 568/953] TIMEOUT_DIVERGE  0626_run_initialize_Value_for_group_item_with_VALUE  (gnu_rc=1 iron_rc=124)
+[ 569/953] TIMEOUT_DIVERGE  0627_run_initialize_INITIALIZE_group_item  (gnu_rc=1 iron_rc=124)
+[ 570/953] TIMEOUT_DIVERGE  0628_run_initialize_INITIALIZE_group_item  (gnu_rc=1 iron_rc=124)
+[ 571/953] BUILD_FAIL_GNU   0629_run_initialize_INITIALIZE_group_item
+[ 572/953] TIMEOUT_DIVERGE  0630_run_initialize_INITIALIZE_with_REDEFINES  (gnu_rc=1 iron_rc=124)
+[ 573/953] TIMEOUT_DIVERGE  0631_run_initialize_INITIALIZE_with_FILLER  (gnu_rc=1 iron_rc=124)
+[ 574/953] TIMEOUT_DIVERGE  0632_run_initialize_INITIALIZE_of_EXTERNAL_data_items  (gnu_rc=1 iron_rc=124)
+[ 575/953] TIMEOUT_DIVERGE  0633_run_initialize_INITIALIZE_with_reference-modification  (gnu_rc=1 iron_rc=124)
+[ 576/953] TIMEOUT_DIVERGE  0634_run_initialize_INITIALIZE_big_table_with_VALUE  (gnu_rc=1 iron_rc=124)
+[ 577/953] BUILD_FAIL_GNU   0635_run_initialize_INITIALIZE_to_table-format_VALUES_ARE
+[ 578/953] TIMEOUT_DIVERGE  0636_run_manual_screen_LINE  (gnu_rc=1 iron_rc=124)
+[ 579/953] TIMEOUT_DIVERGE  0637_run_manual_screen_COLUMN__1_  (gnu_rc=1 iron_rc=124)
+[ 580/953] TIMEOUT_DIVERGE  0638_run_manual_screen_COLUMN__2_  (gnu_rc=1 iron_rc=124)
+[ 581/953] TIMEOUT_DIVERGE  0639_run_manual_screen_LINE_non-zero__COLUMN_zero  (gnu_rc=1 iron_rc=124)
+[ 582/953] TIMEOUT_DIVERGE  0640_run_manual_screen_LINE_zero__COLUMN_non-zero  (gnu_rc=1 iron_rc=124)
+[ 583/953] TIMEOUT_DIVERGE  0641_run_manual_screen_LINE_zero__COLUMN_zero  (gnu_rc=1 iron_rc=124)
+[ 584/953] TIMEOUT_DIVERGE  0642_run_manual_screen_DISPLAY_AT  (gnu_rc=1 iron_rc=124)
+[ 585/953] parity_harness.sh: line 189: warning: command substitution: ignored null byte in input
+TIMEOUT_DIVERGE  0643_run_manual_screen_DISPLAY_LOW-VALUES__one_statement_  (gnu_rc=1 iron_rc=124)
+[ 586/953] parity_harness.sh: line 189: warning: command substitution: ignored null byte in input
+TIMEOUT_DIVERGE  0644_run_manual_screen_DISPLAY_LOW-VALUES__two_statements_  (gnu_rc=1 iron_rc=124)
+[ 587/953] TIMEOUT_DIVERGE  0645_run_manual_screen_DISPLAY_SPACES  (gnu_rc=1 iron_rc=124)
+[ 588/953] TIMEOUT_DIVERGE  0646_run_manual_screen_DISPLAY_ALL_X_01_  (gnu_rc=1 iron_rc=124)
+[ 589/953] TIMEOUT_DIVERGE  0647_run_manual_screen_DISPLAY_ALL_X_02_  (gnu_rc=1 iron_rc=124)
+[ 590/953] TIMEOUT_DIVERGE  0648_run_manual_screen_DISPLAY_ALL_X_07_  (gnu_rc=1 iron_rc=124)
+[ 591/953] TIMEOUT_DIVERGE  0649_run_manual_screen_Screen_position_after_field_display  (gnu_rc=1 iron_rc=124)
+[ 592/953] TIMEOUT_DIVERGE  0650_run_manual_screen_Overridden_clauses__1_  (gnu_rc=1 iron_rc=124)
+[ 593/953] TIMEOUT_DIVERGE  0651_run_manual_screen_Overridden_clauses__2_  (gnu_rc=1 iron_rc=124)
+[ 594/953] TIMEOUT_DIVERGE  0652_run_manual_screen_AUTO  (gnu_rc=1 iron_rc=124)
+[ 595/953] TIMEOUT_DIVERGE  0653_run_manual_screen_SCREEN_BACKGROUND-___FOREGROUND-COLOUR  (gnu_rc=1 iron_rc=124)
+[ 596/953] TIMEOUT_DIVERGE  0654_run_manual_screen_SCREEN_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR  (gnu_rc=1 iron_rc=124)
+[ 597/953] TIMEOUT_DIVERGE  0655_run_manual_screen_field_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR  (gnu_rc=1 iron_rc=124)
+[ 598/953] BUILD_FAIL_GNU   0656_run_manual_screen_field_BACKGROUND-___FOREGROUND-COLOUR_via_CONTROL
+[ 599/953] BUILD_FAIL_GNU   0657_run_manual_screen_line_draw_characters_via_CONTROL_GRAPHICS
+[ 600/953] TIMEOUT_DIVERGE  0658_run_manual_screen_BEEP  (gnu_rc=1 iron_rc=124)
+[ 601/953] TIMEOUT_DIVERGE  0659_run_manual_screen_BLANK_LINE  (gnu_rc=1 iron_rc=124)
+[ 602/953] TIMEOUT_DIVERGE  0660_run_manual_screen_BLANK_SCREEN  (gnu_rc=1 iron_rc=124)
+[ 603/953] TIMEOUT_DIVERGE  0661_run_manual_screen_BLANK_ignored_in_ACCEPT  (gnu_rc=1 iron_rc=124)
+[ 604/953] TIMEOUT_DIVERGE  0662_run_manual_screen_BLINK  (gnu_rc=1 iron_rc=124)
+[ 605/953] TIMEOUT_DIVERGE  0663_run_manual_screen_ERASE_EOS  (gnu_rc=1 iron_rc=124)
+[ 606/953] TIMEOUT_DIVERGE  0664_run_manual_screen_ERASE_EOL  (gnu_rc=1 iron_rc=124)
+[ 607/953] TIMEOUT_DIVERGE  0665_run_manual_screen_ERASE_ignored_in_ACCEPT  (gnu_rc=1 iron_rc=124)
+[ 608/953] TIMEOUT_DIVERGE  0666_run_manual_screen_FULL_and_REQUIRED  (gnu_rc=1 iron_rc=124)
+[ 609/953] TIMEOUT_DIVERGE  0667_run_manual_screen_HIGHLIGHT  (gnu_rc=1 iron_rc=124)
+[ 610/953] TIMEOUT_DIVERGE  0668_run_manual_screen_INITIAL  (gnu_rc=1 iron_rc=124)
+[ 611/953] TIMEOUT_DIVERGE  0669_run_manual_screen_LEFTLINE  (gnu_rc=1 iron_rc=124)
+[ 612/953] TIMEOUT_DIVERGE  0670_run_manual_screen_LOWLIGHT  (gnu_rc=1 iron_rc=124)
+[ 613/953] TIMEOUT_DIVERGE  0671_run_manual_screen_OVERLINE  (gnu_rc=1 iron_rc=124)
+[ 614/953] TIMEOUT_DIVERGE  0672_run_manual_screen_REVERSE-VIDEO  (gnu_rc=1 iron_rc=124)
+[ 615/953] TIMEOUT_DIVERGE  0673_run_manual_screen_SECURE  (gnu_rc=1 iron_rc=124)
+[ 616/953] TIMEOUT_DIVERGE  0674_run_manual_screen_SIZE_with_items  (gnu_rc=1 iron_rc=124)
+[ 617/953] TIMEOUT_DIVERGE  0675_run_manual_screen_SIZE_with_figurative_constants  (gnu_rc=1 iron_rc=124)
+[ 618/953] TIMEOUT_DIVERGE  0676_run_manual_screen_UPDATE  (gnu_rc=1 iron_rc=124)
+[ 619/953] TIMEOUT_DIVERGE  0677_run_manual_screen_UNDERLINE  (gnu_rc=1 iron_rc=124)
+[ 620/953] TIMEOUT_DIVERGE  0678_run_manual_screen_SPECIAL-NAMES_CURSOR_phrase_6-digit_with_field  (gnu_rc=1 iron_rc=124)
+[ 621/953] TIMEOUT_DIVERGE  0679_run_manual_screen_SPECIAL-NAMES_CURSOR_phrase_4-digit_with_field  (gnu_rc=1 iron_rc=124)
+[ 622/953] TIMEOUT_DIVERGE  0680_run_manual_screen_ACCEPT_field_WITH_CURSOR_data-item  (gnu_rc=1 iron_rc=124)
+[ 623/953] TIMEOUT_DIVERGE  0681_run_manual_screen_ACCEPT_field_WITH_CURSOR_size_overflow  (gnu_rc=1 iron_rc=124)
+[ 624/953] TIMEOUT_DIVERGE  0682_run_manual_screen_ACCEPT_field_WITH_CURSOR_data_overflow_I  (gnu_rc=1 iron_rc=124)
+[ 625/953] TIMEOUT_DIVERGE  0683_run_manual_screen_ACCEPT_field_WITH_CURSOR_data_overflow_II  (gnu_rc=1 iron_rc=124)
+[ 626/953] TIMEOUT_DIVERGE  0684_run_manual_screen_ACCEPT_field_WITH_CURSOR_literal  (gnu_rc=1 iron_rc=124)
+[ 627/953] TIMEOUT_DIVERGE  0685_run_manual_screen_HOME_key  (gnu_rc=1 iron_rc=124)
+[ 628/953] TIMEOUT_DIVERGE  0686_run_manual_screen_END_key  (gnu_rc=1 iron_rc=124)
+[ 629/953] TIMEOUT_DIVERGE  0687_run_manual_screen_INSERT_key  (gnu_rc=1 iron_rc=124)
+[ 630/953] TIMEOUT_DIVERGE  0688_run_manual_screen_BACKSPACE_key  (gnu_rc=1 iron_rc=124)
+[ 631/953] TIMEOUT_DIVERGE  0689_run_manual_screen_DELETE_key  (gnu_rc=1 iron_rc=124)
+[ 632/953] TIMEOUT_DIVERGE  0690_run_manual_screen_ALT_DELETE_key  (gnu_rc=1 iron_rc=124)
+[ 633/953] TIMEOUT_DIVERGE  0691_run_manual_screen_ALT_LEFT-ARROW_key  (gnu_rc=1 iron_rc=124)
+[ 634/953] TIMEOUT_DIVERGE  0692_run_manual_screen_ALT_RIGHT-ARROW_key  (gnu_rc=1 iron_rc=124)
+[ 635/953] TIMEOUT_DIVERGE  0693_run_manual_screen_CURSOR_clause  (gnu_rc=1 iron_rc=124)
+[ 636/953] TIMEOUT_DIVERGE  0694_run_manual_screen_CURSOR_clause  (gnu_rc=1 iron_rc=124)
+[ 637/953] TIMEOUT_DIVERGE  0695_run_manual_screen_CRT_STATUS_clause  (gnu_rc=1 iron_rc=124)
+[ 638/953] TIMEOUT_DIVERGE  0696_run_manual_screen_CRT_STATUS_clause  (gnu_rc=1 iron_rc=124)
+[ 639/953] TIMEOUT_DIVERGE  0697_run_manual_screen_CRT_STATUS_clause  (gnu_rc=1 iron_rc=124)
+[ 640/953] BUILD_FAIL_GNU   0698_run_manual_screen_X_Open_CRT_STATUS_clause
+[ 641/953] TIMEOUT_DIVERGE  0699_run_misc_Comma_separator_without_space  (gnu_rc=1 iron_rc=124)
+[ 642/953] TIMEOUT_DIVERGE  0700_run_misc_DECIMAL-POINT_is_COMMA__1_  (gnu_rc=1 iron_rc=124)
+[ 643/953] TIMEOUT_DIVERGE  0701_run_misc_DECIMAL-POINT_is_COMMA__2_  (gnu_rc=1 iron_rc=124)
+[ 644/953] TIMEOUT_DIVERGE  0702_run_misc_DECIMAL-POINT_is_COMMA__3_  (gnu_rc=1 iron_rc=124)
+[ 645/953] TIMEOUT_DIVERGE  0703_run_misc_DECIMAL-POINT_is_COMMA__4_  (gnu_rc=1 iron_rc=124)
+[ 646/953] TIMEOUT_DIVERGE  0704_run_misc_DECIMAL-POINT_is_COMMA__5_  (gnu_rc=1 iron_rc=124)
+[ 647/953] TIMEOUT_DIVERGE  0705_run_misc_CURRENCY_SIGN  (gnu_rc=1 iron_rc=124)
+[ 648/953] BUILD_FAIL_GNU   0706_run_misc_CURRENCY_SIGN_WITH_PICTURE_SYMBOL
+[ 649/953] TIMEOUT_DIVERGE  0707_run_misc_LOCAL-STORAGE__1_  (gnu_rc=1 iron_rc=124)
+[ 650/953] TIMEOUT_DIVERGE  0708_run_misc_LOCAL-STORAGE__1_  (gnu_rc=1 iron_rc=124)
+[ 651/953] BUILD_FAIL_GNU   0709_run_misc_LOCAL-STORAGE__2_
+[ 652/953] TIMEOUT_DIVERGE  0710_run_misc_LOCAL-STORAGE__2_  (gnu_rc=1 iron_rc=124)
+[ 653/953] TIMEOUT_DIVERGE  0711_run_misc_LOCAL-STORAGE__2_  (gnu_rc=1 iron_rc=124)
+[ 654/953] TIMEOUT_DIVERGE  0712_run_misc_LOCAL-STORAGE__3_  (gnu_rc=1 iron_rc=124)
+[ 655/953] TIMEOUT_DIVERGE  0713_run_misc_LOCAL-STORAGE__3_  (gnu_rc=1 iron_rc=124)
+[ 656/953] TIMEOUT_DIVERGE  0714_run_misc_LOCAL-STORAGE__3_  (gnu_rc=1 iron_rc=124)
+[ 657/953] parity_harness.sh: line 187: warning: command substitution: ignored null byte in input
+TIMEOUT_DIVERGE  0715_run_misc_EXTERNAL_data_item  (gnu_rc=1 iron_rc=124)
+[ 658/953] TIMEOUT_DIVERGE  0716_run_misc_EXTERNAL_data_item  (gnu_rc=1 iron_rc=124)
+[ 659/953] parity_harness.sh: line 187: warning: command substitution: ignored null byte in input
+TIMEOUT_DIVERGE  0717_run_misc_EXTERNAL_AS_data_item  (gnu_rc=1 iron_rc=124)
+[ 660/953] TIMEOUT_DIVERGE  0718_run_misc_EXTERNAL_AS_data_item  (gnu_rc=1 iron_rc=124)
+[ 661/953] parity_harness.sh: line 187: warning: command substitution: ignored null byte in input
+TIMEOUT_DIVERGE  0719_run_misc_EXTERNAL_data_item_size_mismatch  (gnu_rc=1 iron_rc=124)
+[ 662/953] TIMEOUT_DIVERGE  0720_run_misc_EXTERNAL_data_item_size_mismatch  (gnu_rc=1 iron_rc=124)
+[ 663/953] TIMEOUT_DIVERGE  0721_run_misc_EXTERNAL_data_item_size_mismatch  (gnu_rc=1 iron_rc=124)
+[ 664/953] TIMEOUT_DIVERGE  0722_run_misc_MOVE_to_itself  (gnu_rc=1 iron_rc=124)
+[ 665/953] TIMEOUT_DIVERGE  0723_run_misc_MOVE_with_refmod  (gnu_rc=1 iron_rc=124)
+[ 666/953] TIMEOUT_DIVERGE  0724_run_misc_MOVE_with_refmod__variable_  (gnu_rc=1 iron_rc=124)
+[ 667/953] TIMEOUT_DIVERGE  0725_run_misc_MOVE_with_group_refmod  (gnu_rc=1 iron_rc=124)
+[ 668/953] TIMEOUT_DIVERGE  0726_run_misc_MOVE_indexes  (gnu_rc=1 iron_rc=124)
+[ 669/953] TIMEOUT_DIVERGE  0727_run_misc_MOVE_X_00_  (gnu_rc=1 iron_rc=124)
+[ 670/953] TIMEOUT_DIVERGE  0728_run_misc_MOVE_Z_literal_  (gnu_rc=1 iron_rc=124)
+[ 671/953] TIMEOUT_DIVERGE  0729_run_misc_Floating_continuation_indicator  (gnu_rc=1 iron_rc=124)
+[ 672/953] BUILD_FAIL_GNU   0730_run_misc_Fixed_continuation_indicator
+[ 673/953] TIMEOUT_DIVERGE  0731_run_misc_Concatenation_operator  (gnu_rc=1 iron_rc=124)
+[ 674/953] TIMEOUT_DIVERGE  0732_run_misc_SOURCE_FIXED_FREE_directives  (gnu_rc=1 iron_rc=124)
+[ 675/953] TIMEOUT_DIVERGE  0733_run_misc_TURN_directive  (gnu_rc=1 iron_rc=124)
+[ 676/953] TIMEOUT_DIVERGE  0734_run_misc_OCCURS_on_level_01  (gnu_rc=1 iron_rc=124)
+[ 677/953] TIMEOUT_DIVERGE  0735_run_misc_OCCURS_on_level_01  (gnu_rc=1 iron_rc=124)
+[ 678/953] TIMEOUT_DIVERGE  0736_run_misc_OCCURS_on_level_01  (gnu_rc=1 iron_rc=124)
+[ 679/953] TIMEOUT_DIVERGE  0737_run_misc_Class_check_with_reference-modification  (gnu_rc=1 iron_rc=124)
+[ 680/953] TIMEOUT_DIVERGE  0738_run_misc_Index_and_parenthesized_expression  (gnu_rc=1 iron_rc=124)
+[ 681/953] TIMEOUT_DIVERGE  0739_run_misc_Alphanumeric_and_binary_numeric  (gnu_rc=1 iron_rc=124)
+[ 682/953] TIMEOUT_DIVERGE  0740_run_misc_Non-numeric_data_in_numeric_items  (gnu_rc=1 iron_rc=124)
+[ 683/953] TIMEOUT_DIVERGE  0741_run_misc_Non-numeric_data_in_numeric_items  (gnu_rc=1 iron_rc=124)
+[ 684/953] TIMEOUT_DIVERGE  0742_run_misc_Dynamic_call_with_static_linking  (gnu_rc=1 iron_rc=124)
+[ 685/953] TIMEOUT_DIVERGE  0743_run_misc_Dynamic_call_with_static_linking  (gnu_rc=1 iron_rc=124)
+[ 686/953] BUILD_FAIL_GNU   0744_run_misc_Static_call_with_static_linking
+[ 687/953] TIMEOUT_DIVERGE  0745_run_misc_Dynamic_CALL_with_ON_EXCEPTION  (gnu_rc=1 iron_rc=124)
+[ 688/953] TIMEOUT_DIVERGE  0746_run_misc_Dynamic_CALL_with_ON_EXCEPTION  (gnu_rc=1 iron_rc=124)
+[ 689/953] TIMEOUT_DIVERGE  0747_run_misc_CALL_m1__CALL_m2__CALL_m1_  (gnu_rc=1 iron_rc=124)
+[ 690/953] TIMEOUT_DIVERGE  0748_run_misc_CALL_m1__CALL_m2__CALL_m1_  (gnu_rc=1 iron_rc=124)
+[ 691/953] TIMEOUT_DIVERGE  0749_run_misc_CALL_m1__CALL_m2__CALL_m1_  (gnu_rc=1 iron_rc=124)
+[ 692/953] TIMEOUT_DIVERGE  0750_run_misc_Recursive_CALL_of_RECURSIVE_program  (gnu_rc=1 iron_rc=124)
+[ 693/953] TIMEOUT_DIVERGE  0751_run_misc_Recursive_CALL_of_RECURSIVE_program  (gnu_rc=1 iron_rc=124)
+[ 694/953] TIMEOUT_DIVERGE  0752_run_misc_Recursive_CALL_of_RECURSIVE_program  (gnu_rc=1 iron_rc=124)
+[ 695/953] TIMEOUT_DIVERGE  0753_run_misc_Recursive_CALL_of_INITIAL_program  (gnu_rc=1 iron_rc=124)
+[ 696/953] TIMEOUT_DIVERGE  0754_run_misc_Recursive_CALL_of_INITIAL_program  (gnu_rc=1 iron_rc=124)
+[ 697/953] TIMEOUT_DIVERGE  0755_run_misc_Recursive_CALL_of_INITIAL_program  (gnu_rc=1 iron_rc=124)
+[ 698/953] TIMEOUT_DIVERGE  0756_run_misc_Recursive_CALL_with_RECURSIVE_assumed  (gnu_rc=1 iron_rc=124)
+[ 699/953] TIMEOUT_DIVERGE  0757_run_misc_Recursive_CALL_with_ON_EXCEPTION  (gnu_rc=1 iron_rc=124)
+[ 700/953] TIMEOUT_DIVERGE  0758_run_misc_Multiple_calls_of_INITIAL_program  (gnu_rc=1 iron_rc=124)
+[ 701/953] BUILD_FAIL_GNU   0759_run_misc_Multiple_calls_of_INITIAL_program
+[ 702/953] TIMEOUT_DIVERGE  0760_run_misc_CALL_binary_literal_parameter_LENGTH_OF  (gnu_rc=1 iron_rc=124)
+[ 703/953] TIMEOUT_DIVERGE  0761_run_misc_INSPECT_REPLACING_LEADING_ZEROS_BY_SPACES  (gnu_rc=1 iron_rc=124)
+[ 704/953] TIMEOUT_DIVERGE  0762_run_misc_INSPECT__no_repeat_conversion  (gnu_rc=1 iron_rc=124)
+[ 705/953] BUILD_FAIL_GNU   0763_run_misc_TRANSFORM_statement
+[ 706/953] TIMEOUT_DIVERGE  0764_run_misc_INSPECT_CONVERTING_alphabet  (gnu_rc=1 iron_rc=124)
+[ 707/953] TIMEOUT_DIVERGE  0765_run_misc_INSPECT_CONVERTING_TO_figurative_constant  (gnu_rc=1 iron_rc=124)
+[ 708/953] TIMEOUT_DIVERGE  0766_run_misc_INSPECT_CONVERTING_NULL  (gnu_rc=1 iron_rc=124)
+[ 709/953] TIMEOUT_DIVERGE  0767_run_misc_INSPECT_CONVERTING_TO_NULL  (gnu_rc=1 iron_rc=124)
+[ 710/953] TIMEOUT_DIVERGE  0768_run_misc_INSPECT_CONVERTING_complex  (gnu_rc=1 iron_rc=124)
+[ 711/953] TIMEOUT_DIVERGE  0769_run_misc_INSPECT_numeric_signed  (gnu_rc=1 iron_rc=124)
+[ 712/953] TIMEOUT_DIVERGE  0770_run_misc_INSPECT_TALLYING_BEFORE  (gnu_rc=1 iron_rc=124)
+[ 713/953] TIMEOUT_DIVERGE  0771_run_misc_INSPECT_TALLYING_AFTER  (gnu_rc=1 iron_rc=124)
+[ 714/953] TIMEOUT_DIVERGE  0772_run_misc_INSPECT_TALLYING_BEFORE_and_AFTER  (gnu_rc=1 iron_rc=124)
+[ 715/953] TIMEOUT_DIVERGE  0773_run_misc_INSPECT_TALLYING_REPLACING_BEFORE_and_AFTER  (gnu_rc=1 iron_rc=124)
+[ 716/953] TIMEOUT_DIVERGE  0774_run_misc_INSPECT_REPLACING_figurative_constant  (gnu_rc=1 iron_rc=124)
+[ 717/953] TIMEOUT_DIVERGE  0775_run_misc_SWITCHES__environment_COB_SWITCH_n_and_SET_  (gnu_rc=1 iron_rc=124)
+[ 718/953] TIMEOUT_DIVERGE  0776_run_misc_Nested_PERFORM  (gnu_rc=1 iron_rc=124)
+[ 719/953] TIMEOUT_DIVERGE  0777_run_misc_PERFORM_VARYING_BY_-0_2_decimal  (gnu_rc=1 iron_rc=124)
+[ 720/953] TIMEOUT_DIVERGE  0778_run_misc_PERFORM_VARYING_Float  (gnu_rc=1 iron_rc=124)
+[ 721/953] TIMEOUT_DIVERGE  0779_run_misc_PERFORM_VARYING_BY_phrase_omitted  (gnu_rc=1 iron_rc=124)
+[ 722/953] TIMEOUT_DIVERGE  0780_run_misc_EXIT_PERFORM  (gnu_rc=1 iron_rc=124)
+[ 723/953] TIMEOUT_DIVERGE  0781_run_misc_EXIT_PERFORM_CYCLE  (gnu_rc=1 iron_rc=124)
+[ 724/953] TIMEOUT_DIVERGE  0782_run_misc_EXIT_PARAGRAPH  (gnu_rc=1 iron_rc=124)
+[ 725/953] TIMEOUT_DIVERGE  0783_run_misc_EXIT_SECTION  (gnu_rc=1 iron_rc=124)
+[ 726/953] TIMEOUT_DIVERGE  0784_run_misc_implicit_GOBACK_at_end_of_PROCEDURE_DIVISION  (gnu_rc=1 iron_rc=124)
+[ 727/953] TIMEOUT_DIVERGE  0785_run_misc_PERFORM_FOREVER___PERFORM_UNTIL_EXIT  (gnu_rc=1 iron_rc=124)
+[ 728/953] 

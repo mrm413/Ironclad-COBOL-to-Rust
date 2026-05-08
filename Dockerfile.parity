@@ -1,0 +1,56 @@
+# =============================================================================
+#  Ironclad Federal Parity Validator — Docker image
+# =============================================================================
+#  Runs both engines side-by-side on every COBOL program in this repo:
+#     GnuCOBOL 3.x  →  cobc -x  →  reference exe
+#     Ironclad      →  rustc    →  transpiled exe
+#  Streams byte-for-byte parity results in real time.
+#
+#  Build:
+#     docker build -t ironclad-parity -f Dockerfile.parity .
+#
+#  Run (full 1545):
+#     docker run --rm ironclad-parity
+#
+#  Run (quick 50):
+#     docker run --rm ironclad-parity bash parity_harness.sh --quick 50
+#
+#  Run (filter):
+#     docker run --rm ironclad-parity bash parity_harness.sh --filter run_misc
+#
+#  Exit codes:
+#     0 = 100% parity
+#     1 = at least one MISMATCH (logic divergence)
+#     2 = at least one BUILD_FAIL_RUST (transpiled output didn't compile)
+#     3 = TIMEOUT_DIVERGE (one engine hung, other didn't)
+# =============================================================================
+
+FROM rust:1.82-slim-bookworm
+
+# GnuCOBOL 3.x is the reference compiler; coreutils provides `timeout`
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        gnucobol \
+        coreutils \
+        ca-certificates \
+        build-essential && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /ironclad
+
+# Runtime library (Rust crate the transpiled .rs files link against)
+COPY cobol-runtime/ cobol-runtime/
+
+# Pre-build the runtime in release mode so the per-test rustc step skips it
+RUN cd cobol-runtime && cargo build --release && cd ..
+
+# COBOL sources + transpiled Rust output (both already public in the repo)
+COPY cobol_source/ cobol_source/
+COPY rust_output/  rust_output/
+
+# Parity harness
+COPY parity_harness.sh .
+RUN chmod +x parity_harness.sh
+
+# Default: full sweep, skipping the runtime-build step (already done above)
+CMD ["bash", "parity_harness.sh", "--no-build"]
