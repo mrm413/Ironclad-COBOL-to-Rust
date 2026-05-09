@@ -1,0 +1,4 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog4.
+       PROCEDURE        DIVISION.
+           STOP RUN RETURNING 44.

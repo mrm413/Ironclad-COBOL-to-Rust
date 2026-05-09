@@ -1,0 +1,8 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog1.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       77  RET          PIC 99 USAGE DISPLAY.
+       PROCEDURE        DIVISION.
+           MOVE 11 TO RET
+           STOP RUN RETURNING RET.

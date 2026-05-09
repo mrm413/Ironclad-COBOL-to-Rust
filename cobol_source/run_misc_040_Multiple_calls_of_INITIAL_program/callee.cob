@@ -1,0 +1,16 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      callee IS INITIAL.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01  COUNTER      PIC 999 VALUE ZERO.
+       01  LPARAM       PIC 9(8) COMP.
+       LINKAGE SECTION.
+       01  PARAM1       PIC X(08).
+       01  PARAM2       PIC 9999 COMP.
+       PROCEDURE        DIVISION USING PARAM1 PARAM2.
+           ADD 1 TO COUNTER END-ADD
+           CALL 'C$PARAMSIZE' USING 1 GIVING LPARAM END-CALL
+           DISPLAY 'COUNTER = ' COUNTER ' LPARAM1 = ' LPARAM
+                   ' PARAM1 = ' PARAM1
+           END-DISPLAY
+           GOBACK.

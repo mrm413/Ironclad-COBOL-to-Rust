@@ -1,0 +1,4 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      callee.
+       PROCEDURE        DIVISION.
+           EXIT PROGRAM.

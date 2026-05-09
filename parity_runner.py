@@ -125,38 +125,13 @@ SKIP_TESTS = {
     # EC-SCREEN exception line/column — needs SCREEN context the harness can't replicate
     "run_misc_129_EC-SCREEN-LINE-NUMBER_and_-STARTING-COLUMN",
     "run_misc_130_LINE_COLUMN_0_exceptions",
-    # Screen tests that render differently in pyte+ptyprocess (Linux) vs pywinpty
-    # (Windows) — these pass in the project's main parity runner. The Linux PTY
-    # emulator reads BEEP / blank-erase / cursor-position / control-key tests
-    # slightly differently from how the goldens were captured on Windows.
-    "run_manual_screen_011_DISPLAY_ALL_X_02_",
-    "run_manual_screen_012_DISPLAY_ALL_X_07_",
-    "run_manual_screen_020_field_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR",
-    "run_manual_screen_023_BEEP",
-    "run_manual_screen_026_BLANK_ignored_in_ACCEPT",
-    "run_manual_screen_030_ERASE_ignored_in_ACCEPT",
-    "run_manual_screen_039_SIZE_with_items",
-    "run_manual_screen_040_SIZE_with_figurative_constants",
-    "run_manual_screen_043_SPECIAL-NAMES_CURSOR_phrase_6-digit_with_field",
-    "run_manual_screen_044_SPECIAL-NAMES_CURSOR_phrase_4-digit_with_field",
-    "run_manual_screen_045_ACCEPT_field_WITH_CURSOR_data-item",
-    "run_manual_screen_046_ACCEPT_field_WITH_CURSOR_size_overflow",
-    "run_manual_screen_047_ACCEPT_field_WITH_CURSOR_data_overflow_I",
-    "run_manual_screen_048_ACCEPT_field_WITH_CURSOR_data_overflow_II",
-    "run_manual_screen_050_HOME_key",
-    "run_manual_screen_051_END_key",
-    "run_manual_screen_052_INSERT_key",
-    "run_manual_screen_053_BACKSPACE_key",
-    "run_manual_screen_054_DELETE_key",
-    "run_manual_screen_055_ALT_DELETE_key",
-    "run_manual_screen_056_ALT_LEFT-ARROW_key",
-    "run_manual_screen_057_ALT_RIGHT-ARROW_key",
-    "run_manual_screen_058_CURSOR_clause",
-    "run_manual_screen_059_CRT_STATUS_clause",
-    "run_manual_screen_060_CRT_STATUS_clause",
-    "run_manual_screen_061_X_Open_CRT_STATUS_clause",
 }
-SKIP_PREFIXES = ("configuration_", "listings_", "used_binaries_", "syn_")
+SKIP_PREFIXES = ("listings_", "used_binaries_")
+# Note: this matches the project's main parity runner exactly:
+#   - listings_, used_binaries_ are the only prefix-skipped categories
+#   - syn_ tests are skipped ONLY when the expected output is trivially small
+#     (≤ 2 bytes — these are pure-syntax-validation tests with no real output)
+#   - configuration_, run_manual_screen_, run_*, data_*, etc. all run.
 
 # ── Output normalization (matches project's main parity runner) ──────────
 
@@ -366,8 +341,15 @@ def enumerate_tests(filter_str: str | None) -> tuple[list[str], int, int, int]:
         if name in SKIP_TESTS:
             skipped_arch += 1
             continue
-        if not (GOLDEN_DIR / f"{name}.expected").exists():
+        golden_path = GOLDEN_DIR / f"{name}.expected"
+        if not golden_path.exists():
             skipped_nogolden += 1
+            continue
+        # syn_* tests with trivial expected output (≤ 2 bytes) are pure
+        # syntax-validation tests — no real program output to compare. Match
+        # the production runner's behavior: skip only those, keep the rest.
+        if name.startswith("syn_") and golden_path.stat().st_size <= 2:
+            skipped_nonprog += 1
             continue
         tests.append(name)
     return tests, skipped_nonprog, skipped_arch, skipped_nogolden

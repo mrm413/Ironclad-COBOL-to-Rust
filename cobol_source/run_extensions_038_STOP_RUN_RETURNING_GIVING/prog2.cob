@@ -1,0 +1,8 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog2.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       77  RET          PIC 99 USAGE PACKED-DECIMAL.
+       PROCEDURE        DIVISION.
+           MOVE 22 TO RET
+           STOP RUN GIVING RET.

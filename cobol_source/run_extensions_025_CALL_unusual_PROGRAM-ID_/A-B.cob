@@ -1,0 +1,6 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      "A-B".
+       PROCEDURE        DIVISION.
+           DISPLAY "P3" NO ADVANCING
+           END-DISPLAY.
+           EXIT PROGRAM.
