@@ -1,687 +1,721 @@
 ============================================================
   Ironclad Parity Validator
-  GnuCOBOL 3.x  ←→  Ironclad-transpiled Rust   (byte-for-byte)
+  GnuCOBOL 3.x golden  ←→  Ironclad-transpiled Rust   (byte-for-byte)
 ============================================================
-  rustc: rustc 1.85.1 (4eb161250 2025-03-15)
+  rustc:    rustc 1.85.1 (4eb161250 2025-03-15)
+  emulator: pyte + ptyprocess (PTY for SCREEN tests)
 
   rlib:  libcobol_runtime-8f18d392bdb3809d.rlib
 
-[run] 660 in-scope program tests selected
-      (106 non-program + 38 architectural exclusions + 0 no-golden skipped)
+[run] 697 in-scope program tests selected
+      (50 non-program + 59 architectural exclusions + 0 no-golden skipped)
 ------------------------------------------------------------
-[   1/660] PASS             data_binary_000_BINARY__64bit_unsigned_compare
-[   2/660] PASS             data_binary_001_BINARY__64bit_unsigned_arithmetic_notrunc
-[   3/660] PASS             data_binary_002_BINARY__64bit_signed_negative_constant_range
-[   4/660] PASS             data_binary_003_COMP-4_Truncate
-[   5/660] PASS             data_binary_004_COMP-4_No_Truncate
-[   6/660] PASS             data_binary_005_MOVE_DISPLAY_to_BINARY
-[   7/660] PASS             data_binary_006_MOVE_PACKED-DECIMAL_to_BINARY
-[   8/660] PASS             data_binary_007_MOVE_BINARY_to_PACKED-DECIMAL
-[   9/660] PASS             data_binary_008_MOVE_BINARY_to_BINARY
-[  10/660] PASS             data_binary_009_PPP_COMP-5
-[  11/660] PASS             data_binary_010_arithmetic_truncation_with_USAGE_BINARY
-[  12/660] PASS             data_display_000_DISPLAY__Sign_ASCII
-[  13/660] PASS             data_display_001_DISPLAY__Sign_ASCII__2_
-[  14/660] PASS             data_display_002_DISPLAY__Sign_EBCDIC
-[  15/660] PASS             data_display_003_DISPLAY__unsigned
-[  16/660] PASS             data_display_004_MOVE_DISPLAY_to_DISPLAY
-[  17/660] PASS             data_display_005_PPP_DISPLAY
-[  18/660] PASS             data_display_006_arithmetic_truncation_with_USAGE_DISPLAY
-[  19/660] PASS             data_display_007_DISPLAY__ADD_and_SUBTRACT_w_o_SIZE_ERROR
-[  20/660] PASS             data_display_008_DISPLAY__ADD_and_SUBTRACT__all_ROUNDED_MODEs
-[  21/660] PASS             data_packed_000_PACKED-DECIMAL_used_with_DISPLAY
-[  22/660] PASS             data_packed_001_PACKED-DECIMAL_used_with_MOVE
-[  23/660] PASS             data_packed_002_MOVE_PACKED-DECIMAL_to_PACKED-DECIMAL
-[  24/660] PASS             data_packed_003_MOVE_PACKED-DECIMAL_to_DISPLAY
-[  25/660] PASS             data_packed_004_MOVE_DISPLAY_to_PACKED-DECIMAL
-[  26/660] PASS             data_packed_005_PACKED-DECIMAL_used_with_INITIALIZE
-[  27/660] PASS             data_packed_006_PACKED-DECIMAL_arithmetic
-[  28/660] PASS             data_packed_007_PACKED-DECIMAL_comparison
-[  29/660] PASS             data_packed_008_PACKED-DECIMAL_numeric_test__1_
-[  30/660] PASS             data_packed_009_PACKED-DECIMAL_numeric_test__2_
-[  31/660] PASS             data_packed_010_COMP-6_used_with_DISPLAY
-[  32/660] PASS             data_packed_011_COMP-6_used_with_MOVE
-[  33/660] PASS             data_packed_012_COMP-6_arithmetic
-[  34/660] PASS             data_packed_013_COMP-6_numeric
-[  35/660] PASS             data_packed_014_COMP-6_comparison
-[  36/660] PASS             data_packed_015_COMP-3_vs__COMP-6_-_BCD_comparison
-[  37/660] PASS             data_packed_017_PPP_COMP-6
-[  38/660] PASS             data_packed_018_arithmetic_truncation_with_USAGE_PACKED-DECIMAL
-[  39/660] PASS             data_packed_019_MOVE_between_several_BCD_fields
-[  40/660] PASS             data_packed_020_BCD_ADD_and_SUBTRACT_w_o_SIZE_ERROR
-[  41/660] PASS             data_packed_021_BCD_ADD_and_SUBTRACT__all_ROUNDED_MODEs
-[  42/660] PASS             run_accept_000_ACCEPT_OMITTED__simple_
-[  43/660] PASS             run_accept_001_ACCEPT_FROM_TIME___DATE___DAY___DAY-OF-WEEK__1_
-[  44/660] PASS             run_accept_003_ACCEPT_DATE___DAY_and_intrinsic_functions__1_
-[  45/660] PASS             run_accept_004_ACCEPT_DATE___DAY_and_intrinsic_functions__2_
-[  46/660] PASS             run_accept_005_ACCEPT_OMITTED__SCREEN_
-[  47/660] PASS             run_extensions_000_CALL_BY_CONTENT_binary_and_literal
-[  48/660] PASS             run_extensions_001_Numeric_Boolean_literals
-[  49/660] PASS             run_extensions_002_ACUCOBOL_literals
-[  50/660] PASS             run_extensions_003_HP_COBOL_octal_literals
-[  51/660] PASS             run_extensions_004_Hexadecimal_numeric_literals
-[  52/660] PASS             run_extensions_005_Semi-parenthesized_condition
-[  53/660] PASS             run_extensions_007_LENGTH_OF
-[  54/660] PASS             run_extensions_008_SET_TO_SIZE_OF
-[  55/660] PASS             run_extensions_009_WHEN-COMPILED
-[  56/660] PASS             run_extensions_010_Complex_OCCURS_DEPENDING_ON__1_
-[  57/660] PASS             run_extensions_011_Complex_OCCURS_DEPENDING_ON__2_
-[  58/660] PASS             run_extensions_012_Complex_OCCURS_DEPENDING_ON__3_
-[  59/660] PASS             run_extensions_013_Complex_OCCURS_DEPENDING_ON__4_
-[  60/660] PASS             run_extensions_014_Complex_OCCURS_DEPENDING_ON__5_
-[  61/660] PASS             run_extensions_015_Complex_OCCURS_DEPENDING_ON__6_
-[  62/660] PASS             run_extensions_019_INITIALIZE_OCCURS_ODOSLIDE
-[  63/660] PASS             run_extensions_020_DEPENDING_ON_with_ODOSLIDE
-[  64/660] PASS             run_extensions_021_DEPENDING_ON_with_ODOSLIDE_for_IBM
-[  65/660] PASS             run_extensions_022_INITIALIZE_level_01_OCCURS
-[  66/660] PASS             run_extensions_023_MOVE_of_non-integer_to_alphanumeric
-[  67/660] PASS             run_extensions_024_CALL_USING_file-name
-[  68/660] PASS             run_extensions_027_CALL_BY_VALUE_alphanumeric_item
-[  69/660] PASS             run_extensions_028_CALL_BY_VALUE_numeric_literal_with_SIZE_IS
-[  70/660] PASS             run_extensions_030_Case-sensitive_PROGRAM-ID
-[  71/660] PASS             run_extensions_031_Quoted_PROGRAM-ID
-[  72/660] PASS             run_extensions_032_PROGRAM-ID_AS_clause
-[  73/660] PASS             run_extensions_034_TALLY_register
-[  74/660] PASS             run_extensions_035_Redefining_TALLY
-[  75/660] PASS             run_extensions_037_PROCEDURE_DIVISION_CHAINING
-[  76/660] PASS             run_extensions_039_GOBACK_EXIT_PROGRAM_RETURNING_GIVING
-[  77/660] PASS             run_extensions_041_ASSIGN_to_KEYBOARD_DISPLAY
-[  78/660] PASS             run_extensions_042_SORT_ASSIGN_KEYBOARD_to_ASSIGN_DISPLAY
-[  79/660] PASS             run_extensions_043_Environment_Argument_variable
-[  80/660] PASS             run_extensions_044_78_Level__1_
-[  81/660] PASS             run_extensions_045_78_Level__2_
-[  82/660] PASS             run_extensions_046_78_Level__3_
-[  83/660] PASS             run_extensions_047_SWITCHES_with_non-standard_names
-[  84/660] PASS             run_extensions_048_Larger_REDEFINES_lengths
-[  85/660] PASS             run_extensions_049_REDEFINES__non-referenced_ambiguous_item
-[  86/660] PASS             run_extensions_050_Obsolete_2002_keywords_with_COBOL2014
-[  87/660] PASS             run_extensions_051_System_routine_with_wrong_number_of_parameters
-[  88/660] PASS             run_extensions_052_System_routine_C_NARG
-[  89/660] PASS             run_extensions_055_System_routine_C_JUSTIFY
-[  90/660] PASS             run_extensions_056_System_routine_C_PRINTABLE
-[  91/660] PASS             run_extensions_057_System_routine_C_MAKEDIR
-[  92/660] PASS             run_extensions_058_System_routine_C_GETPID
-[  93/660] PASS             run_extensions_059_System_routine_C_TOUPPER
-[  94/660] PASS             run_extensions_060_System_routine_C_TOLOWER
-[  95/660] PASS             run_extensions_061_System_routine_CBL_OR
-[  96/660] PASS             run_extensions_062_System_routine_CBL_NOR
-[  97/660] PASS             run_extensions_063_System_routine_CBL_AND
-[  98/660] PASS             run_extensions_064_System_routine_CBL_XOR
-[  99/660] PASS             run_extensions_065_System_routine_CBL_IMP
-[ 100/660] PASS             run_extensions_066_System_routine_CBL_NIMP
-[ 101/660] PASS             run_extensions_067_System_routine_CBL_NOT
-[ 102/660] PASS             run_extensions_068_System_routine_CBL_EQ
-[ 103/660] PASS             run_extensions_069_System_routine_CBL_GC_GETOPT
-[ 104/660] PASS             run_extensions_071_System_routine_CBL_GC_WAITPID
-[ 105/660] PASS             run_extensions_072_System_routine_CBL_GC_HOSTED
-[ 106/660] PASS             run_extensions_073_System_routine_SYSTEM__parameter_handling
-[ 107/660] PASS             run_extensions_074_System_routine_CBL_EXIT_PROC
-[ 108/660] PASS             run_extensions_075_System_routine_CBL_ERROR_PROC__1_
-[ 109/660] PASS             run_extensions_076_System_routine_CBL_ERROR_PROC__2_
-[ 110/660] PASS             run_extensions_077_CALL_own_PROGRAM-ID_and_RECURSIVE_attribute
-[ 111/660] PASS             run_extensions_078_DISPLAY_DIRECTIVE_and__DISPLAY
-[ 112/660] PASS             run_extensions_079_Conditional___define_directives__1_
-[ 113/660] PASS             run_extensions_080_Conditional___define_directives__2_
-[ 114/660] PASS             run_extensions_081_Conditional___define_directives__3_
-[ 115/660] PASS             run_extensions_082_Conditional___define_directives__4_
-[ 116/660] PASS             run_extensions_084_Variable_format
-[ 117/660] PASS             run_extensions_085_COBOLX_format
-[ 118/660] PASS             run_extensions_086_X_Open_free-form_format
-[ 119/660] PASS             run_extensions_087_TERMINAL_format
-[ 120/660] PASS             run_extensions_088_MF_FREE_format__X_Open_
-[ 121/660] PASS             run_extensions_089_Binary_COMP-1__1_
-[ 122/660] PASS             run_extensions_090_Binary_COMP-1__2_
-[ 123/660] PASS             run_extensions_091_EXHIBIT_statement
-[ 124/660] PASS             run_extensions_092_Bit_Operations
-[ 125/660] PASS             run_extensions_093_Bit_Shift_Operations
-[ 126/660] PASS             run_extensions_095_PICTURE_L__basic_
-[ 127/660] PASS             run_extensions_100_INSPECT_TRAILING
-[ 128/660] PASS             run_extensions_101_INSPECT_REPLACING_TRAILING_ZEROS_BY_SPACES
-[ 129/660] PASS             run_extensions_102_INSPECT_REPLACING_complex
-[ 130/660] PASS             run_extensions_103_EXAMINE_TALLYING
-[ 131/660] PASS             run_extensions_104_EXAMINE_REPLACING
-[ 132/660] PASS             run_extensions_105_GCOS_literals_with_EBCDIC_symbols__run_
-[ 133/660] PASS             run_file_000_OPEN_EXTEND_and_CLOSE__SEQUENTIAL
-[ 134/660] PASS             run_file_001_variable-length_SEQUENTIAL_data_integrity
-[ 135/660] PASS             run_file_002_DELETE_FILE__SEQUENTIAL
-[ 136/660] PASS             run_file_003_OUTPUT_on_SEQUENTIAL_file_to_missing_directory
-[ 137/660] PASS             run_file_004_OPEN_EXTEND_and_CLOSE__INDEXED
-[ 138/660] PASS             run_file_005_DELETE_FILE__INDEXED
-[ 139/660] PASS             run_file_006_OUTPUT_on_INDEXED_file_to_missing_directory
-[ 140/660] PASS             run_file_007_READ_INTO_data_item_AT-END_sequence
-[ 141/660] PASS             run_file_008_First_READ_on_empty_SEQUENTIAL_INDEXED_file
-[ 142/660] PASS             run_file_009_READ_NEXT_without_previous_START
-[ 143/660] PASS             run_file_010_REWRITE_a_RELATIVE_file_with_RANDOM_access
-[ 144/660] PASS             run_file_011_ASSIGN_DYNAMIC_and_EXTERNAL
-[ 145/660] PASS             run_file_012_ASSIGN_EXTERNAL_parsing
-[ 146/660] PASS             run_file_013_ASSIGN_directive
-[ 147/660] PASS             run_file_014_ASSIGN_filename_expansion
-[ 148/660] PASS             run_file_015_ASSIGN_filename_mapping
-[ 149/660] PASS             run_file_016_ASSIGN_with_COB_FILE_PATH
-[ 150/660] PASS             run_file_017_ASSIGN_DYNAMIC_with_LOCAL-STORAGE_item
-[ 151/660] PASS             run_file_018_ASSIGN_DYNAMIC_with_LOCAL-STORAGE_item__INITIAL
-[ 152/660] PASS             run_file_019_ASSIGN_DYNAMIC_with_BASED_data_item
-[ 153/660] PASS             run_file_021_ASSIGN_DYNAMIC_with_empty_data_item
-[ 154/660] PASS             run_file_022_ASSIGN_DYNAMIC_with_unset_implicit_data_item
-[ 155/660] PASS             run_file_023_INDEXED_file_key-name
-[ 156/660] PASS             run_file_024_INDEXED_file_sparse_split_keys
-[ 157/660] PASS             run_file_025_INDEXED_file_split_keys_WITH_DUPLICATES
-[ 158/660] PASS             run_file_026_INDEXED_file_variable_length_record
-[ 159/660] PASS             run_file_027_INDEXED_sample
-[ 160/660] PASS             run_file_028_WRITE___REWRITE_FILE_name
-[ 161/660] PASS             run_file_029_START_RELATIVE__1_
-[ 162/660] PASS             run_file_030_START_RELATIVE__2_
-[ 163/660] PASS             run_file_031_START_RELATIVE__3_
-[ 164/660] PASS             run_file_032_READ_on_OPTIONAL_missing_RELATIVE___SEQUENTIAL
-[ 165/660] PASS             run_file_033_READ_on_OPTIONAL_missing_INDEXED_file
-[ 166/660] PASS             run_file_034_EXTERNAL_RELATIVE_file
-[ 167/660] PASS             run_file_035_DECLARATIVES_procedure_referencing
-[ 168/660] PASS             run_file_036_DECLARATIVES_procedure_referencing__multiple_
-[ 169/660] PASS             run_file_037_System_routines_for_directories__1_
-[ 170/660] PASS             run_file_038_System_routines_for_directories__2_
-[ 171/660] PASS             run_file_039_System_routines_for_files
-[ 172/660] PASS             run_file_040_System_routines_for_files_-_filename_mapping
-[ 173/660] PASS             run_file_041_System_routine_CBL_COPY_FILE
-[ 174/660] PASS             run_file_042_Default_file_external_name
-[ 175/660] PASS             run_file_043_SEQUENTIAL_basic_I_O
-[ 176/660] PASS             run_file_044_LINE_SEQUENTIAL_basic_I_O
-[ 177/660] PASS             run_file_045_LINE_SEQUENTIAL_WRITE_AFTER
-[ 178/660] PASS             run_file_049_LINAGE_and_LINAGE-COUNTER_sample
-[ 179/660] PASS             run_file_050_EXTFH__LINAGE_and_LINAGE-COUNTER_sample
-[ 180/660] PASS             run_file_051_SEQUENTIAL_file_I_O_with_variable_records
-[ 181/660] PASS             run_file_052_LINE_SEQUENTIAL_file_I_O_with_variable_records
-[ 182/660] PASS             run_file_053_SEQUENTIAL_file_REWRITE
-[ 183/660] PASS             run_file_059_RELATIVE_SEQUENTIAL_basic_I_O
-[ 184/660] PASS             run_file_060_RELATIVE_RANDOM_basic_I_O
-[ 185/660] PASS             run_file_061_RELATIVE_SEQUENTIAL_with_variable_records
-[ 186/660] PASS             run_file_062_INDEXED_SEQUENTIAL_basic_I_O
-[ 187/660] PASS             run_file_072_START_INDEXED
-[ 188/660] PASS             run_file_073_INDEXED_partial_keys
-[ 189/660] PASS             run_file_074_INDEXED_undeclared_keys
-[ 190/660] PASS             run_file_075_READ_INPUT_pipe___WRITE_OUTPUT_pipe
-[ 191/660] PASS             run_file_076_EXTFH__using_ISAM_callback
-[ 192/660] PASS             run_file_080_EXTFH__LINE_SEQUENTIAL_files__2_
-[ 193/660] PASS             run_file_088_RELATIVE_Multi-Record
-[ 194/660] PASS             run_file_090_TURN_EC-I-O
-[ 195/660] PASS             run_file_091_LINE_SEQUENTIAL_REWRITE
-[ 196/660] PASS             run_file_093_Concatenated_Files
-[ 197/660] PASS             run_file_094_File_SORT__SEQUENTIAL
-[ 198/660] PASS             run_file_095_File_SORT__SEQUENTIAL_variable_records
-[ 199/660] PASS             run_file_096_File_SORT__LINE_SEQUENTIAL
-[ 200/660] PASS             run_file_097_File_SORT__LINE_SEQUENTIAL_same_file
-[ 201/660] PASS             run_file_098_File_SORT__LINE_SEQUENTIAL_variable_records
-[ 202/660] PASS             run_file_099_EXTFH__File_SORT__LINE_SEQUENTIAL_variable_records
-[ 203/660] PASS             run_file_100_File_MERGE__LINE_SEQUENTIAL_variable_records
-[ 204/660] PASS             run_file_101_SORT_nonexistent_file
-[ 205/660] PASS             run_file_102_SORT_with_INPUT_OUTPUT_PROCEDUREs
-[ 206/660] PASS             run_file_103_SORT_with_key1_ASCENDING__key2_DESCENDING
-[ 207/660] PASS             run_file_104_Scope_of_FD_GLOBAL_in_nested_programs
-[ 208/660] PASS             run_functions_000_FUNCTION_ABS
-[ 209/660] PASS             run_functions_001_FUNCTION_ACOS
-[ 210/660] PASS             run_functions_002_FUNCTION_ANNUITY
-[ 211/660] PASS             run_functions_003_FUNCTION_ASIN
-[ 212/660] PASS             run_functions_004_FUNCTION_ATAN
-[ 213/660] PASS             run_functions_005_FUNCTION_BYTE-LENGTH
-[ 214/660] PASS             run_functions_006_FUNCTION_CHAR
-[ 215/660] PASS             run_functions_007_FUNCTION_COMBINED-DATETIME
-[ 216/660] PASS             run_functions_008_FUNCTION_CONCAT___CONCATENATE
-[ 217/660] PASS             run_functions_009_FUNCTION_CONCATENATE_with_reference_modding
-[ 218/660] PASS             run_functions_010_FUNCTION_BIT-OF_and_BIT-TO-CHAR
-[ 219/660] PASS             run_functions_011_FUNCTION_HEX-OF_and_HEX-TO-CHAR
-[ 220/660] PASS             run_functions_012_FUNCTION_CONTENT-LENGTH
-[ 221/660] PASS             run_functions_013_FUNCTION_CONTENT-OF
-[ 222/660] PASS             run_functions_014_FUNCTION_as_CALL_parameter_BY_CONTENT
-[ 223/660] PASS             run_functions_015_FUNCTION_COS
-[ 224/660] PASS             run_functions_016_FUNCTION_CURRENCY-SYMBOL
-[ 225/660] PASS             run_functions_017_FUNCTION_CURRENT-DATE
-[ 226/660] PASS             run_functions_018_FUNCTION_DATE-OF-INTEGER
-[ 227/660] PASS             run_functions_019_FUNCTION_DATE-TO-YYYYMMDD
-[ 228/660] PASS             run_functions_020_FUNCTION_DAY-OF-INTEGER
-[ 229/660] PASS             run_functions_021_FUNCTION_DAY-TO-YYYYDDD
-[ 230/660] PASS             run_functions_022_FUNCTION_E
-[ 231/660] PASS             run_functions_023_FUNCTION_EXCEPTION-FILE
-[ 232/660] PASS             run_functions_024_FUNCTION_EXCEPTION-LOCATION
-[ 233/660] PASS             run_functions_025_FUNCTION_EXCEPTION-STATEMENT
-[ 234/660] PASS             run_functions_026_FUNCTION_EXCEPTION-STATUS
-[ 235/660] PASS             run_functions_027_FUNCTION_EXP
-[ 236/660] PASS             run_functions_028_FUNCTION_EXP10
-[ 237/660] PASS             run_functions_029_FUNCTION_FACTORIAL
-[ 238/660] PASS             run_functions_030_FUNCTION_FORMATTED-CURRENT-DATE
-[ 239/660] PASS             run_functions_031_FUNCTION_FORMATTED-DATE
-[ 240/660] PASS             run_functions_032_FUNCTION_FORMATTED-DATE_with_ref_modding
-[ 241/660] PASS             run_functions_033_FUNCTION_FORMATTED-DATETIME
-[ 242/660] PASS             run_functions_034_FUNCTION_FORMATTED-DATETIME_with_ref_modding
-[ 243/660] PASS             run_functions_035_FUNCTION_FORMATTED-TIME
-[ 244/660] PASS             run_functions_036_FUNCTION_FORMATTED-TIME_DP_COMMA
-[ 245/660] PASS             run_functions_037_FUNCTION_FORMATTED-TIME_with_ref_modding
-[ 246/660] PASS             run_functions_038_FUNCTION_FRACTION-PART
-[ 247/660] PASS             run_functions_039_FUNCTION_HIGHEST-ALGEBRAIC
-[ 248/660] PASS             run_functions_040_FUNCTION_INTEGER
-[ 249/660] PASS             run_functions_041_FUNCTION_INTEGER-OF-DATE
-[ 250/660] PASS             run_functions_042_FUNCTION_INTEGER-OF-DAY
-[ 251/660] PASS             run_functions_043_FUNCTION_INTEGER-OF-FORMATTED-DATE
-[ 252/660] PASS             run_functions_044_FUNCTION_INTEGER-PART
-[ 253/660] PASS             run_functions_045_FUNCTION_LENGTH
-[ 254/660] PASS             run_functions_046_FUNCTION_LOCALE-COMPARE
-[ 255/660] PASS             run_functions_047_FUNCTION_LOCALE-DATE
-[ 256/660] PASS             run_functions_048_FUNCTION_LOCALE-TIME
-[ 257/660] PASS             run_functions_049_FUNCTION_LOCALE-TIME-FROM-SECONDS
-[ 258/660] PASS             run_functions_050_FUNCTION_LOG
-[ 259/660] PASS             run_functions_051_FUNCTION_LOG10
-[ 260/660] PASS             run_functions_052_FUNCTION_LOWER-CASE
-[ 261/660] PASS             run_functions_053_FUNCTION_LOWER-CASE_with_reference_modding
-[ 262/660] PASS             run_functions_054_FUNCTION_LOWEST-ALGEBRAIC
-[ 263/660] PASS             run_functions_055_FUNCTION_MAX
-[ 264/660] PASS             run_functions_056_FUNCTION_MEAN
-[ 265/660] PASS             run_functions_057_FUNCTION_MEDIAN
-[ 266/660] PASS             run_functions_058_FUNCTION_MIDRANGE
-[ 267/660] PASS             run_functions_059_FUNCTION_MIN
-[ 268/660] PASS             run_functions_060_FUNCTION_MOD__valid_
-[ 269/660] PASS             run_functions_061_FUNCTION_MOD__invalid_
-[ 270/660] PASS             run_functions_062_FUNCTION_MODULE-CALLER-ID
-[ 271/660] PASS             run_functions_063_FUNCTION_MODULE-DATE
-[ 272/660] PASS             run_functions_064_FUNCTION_MODULE-FORMATTED-DATE
-[ 273/660] PASS             run_functions_065_FUNCTION_MODULE-ID
-[ 274/660] PASS             run_functions_066_FUNCTION_MODULE-PATH
-[ 275/660] PASS             run_functions_067_FUNCTION_MODULE-SOURCE
-[ 276/660] PASS             run_functions_068_FUNCTION_MODULE-TIME
-[ 277/660] PASS             run_functions_069_FUNCTION_MONETARY-DECIMAL-POINT
-[ 278/660] PASS             run_functions_070_FUNCTION_MONETARY-THOUSANDS-SEPARATOR
-[ 279/660] PASS             run_functions_071_FUNCTION_NUMERIC-DECIMAL-POINT
-[ 280/660] PASS             run_functions_072_FUNCTION_NUMERIC-THOUSANDS-SEPARATOR
-[ 281/660] PASS             run_functions_073_FUNCTION_NUMVAL
-[ 282/660] PASS             run_functions_074_FUNCTION_NUMVAL-C
-[ 283/660] PASS             run_functions_075_FUNCTION_NUMVAL-C_DP_COMMA
-[ 284/660] PASS             run_functions_076_FUNCTION_NUMVAL-F
-[ 285/660] PASS             run_functions_077_FUNCTION_ORD
-[ 286/660] PASS             run_functions_078_FUNCTION_ORD-MAX
-[ 287/660] PASS             run_functions_079_FUNCTION_ORD-MIN
-[ 288/660] PASS             run_functions_080_FUNCTION_PI
-[ 289/660] PASS             run_functions_081_FUNCTION_PRESENT-VALUE
-[ 290/660] PASS             run_functions_082_FUNCTION_RANDOM
-[ 291/660] PASS             run_functions_083_FUNCTION_RANGE
-[ 292/660] PASS             run_functions_084_FUNCTION_REM__valid_
-[ 293/660] PASS             run_functions_085_FUNCTION_REM__invalid_
-[ 294/660] PASS             run_functions_086_FUNCTION_REVERSE
-[ 295/660] PASS             run_functions_087_FUNCTION_REVERSE_with_reference_modding
-[ 296/660] PASS             run_functions_088_FUNCTION_SECONDS-FROM-FORMATTED-TIME
-[ 297/660] PASS             run_functions_089_FUNCTION_SECONDS-PAST-MIDNIGHT
-[ 298/660] PASS             run_functions_090_FUNCTION_SIGN
-[ 299/660] PASS             run_functions_091_FUNCTION_SIN
-[ 300/660] PASS             run_functions_092_FUNCTION_SQRT
-[ 301/660] PASS             run_functions_093_FUNCTION_STANDARD-DEVIATION
-[ 302/660] PASS             run_functions_094_FUNCTION_STORED-CHAR-LENGTH
-[ 303/660] PASS             run_functions_095_FUNCTION_SUBSTITUTE
-[ 304/660] PASS             run_functions_096_FUNCTION_SUBSTITUTE_with_reference_modding
-[ 305/660] PASS             run_functions_097_FUNCTION_SUBSTITUTE-CASE
-[ 306/660] PASS             run_functions_098_FUNCTION_SUBSTITUTE-CASE_with_reference_mod
-[ 307/660] PASS             run_functions_099_FUNCTION_SUM
-[ 308/660] PASS             run_functions_100_FUNCTION_TAN
-[ 309/660] PASS             run_functions_101_FUNCTION_TEST-DATE-YYYYMMDD
-[ 310/660] PASS             run_functions_102_FUNCTION_TEST-DAY-YYYYDDD
-[ 311/660] PASS             run_functions_103_FUNCTION_TEST-FORMATTED-DATETIME_with_dates
-[ 312/660] PASS             run_functions_104_FUNCTION_TEST-FORMATTED-DATETIME_with_times
-[ 313/660] PASS             run_functions_105_FUNCTION_TEST-FORMATTED-DATETIME_with_datetimes
-[ 314/660] PASS             run_functions_106_FUNCTION_TEST-FORMATTED-DATETIME_DP_COMMA
-[ 315/660] PASS             run_functions_107_FUNCTION_TEST-NUMVAL
-[ 316/660] PASS             run_functions_108_FUNCTION_TEST-NUMVAL-C
-[ 317/660] PASS             run_functions_109_FUNCTION_TEST-NUMVAL-F
-[ 318/660] PASS             run_functions_110_FUNCTION_TRIM
-[ 319/660] PASS             run_functions_111_FUNCTION_TRIM_with_reference_modding
-[ 320/660] PASS             run_functions_112_FUNCTION_TRIM_zero_length
-[ 321/660] PASS             run_functions_113_FUNCTION_UPPER-CASE
-[ 322/660] PASS             run_functions_114_FUNCTION_UPPER-CASE_with_reference_modding
-[ 323/660] PASS             run_functions_115_FUNCTION_VARIANCE
-[ 324/660] PASS             run_functions_116_FUNCTION_WHEN-COMPILED
-[ 325/660] PASS             run_functions_117_FUNCTION_YEAR-TO-YYYY
-[ 326/660] PASS             run_functions_118_Formatted_funcs_w__invalid_variable_format
-[ 327/660] PASS             run_functions_119_FORMATTED-_DATE_TIME_with_SYSTEM-OFFSET
-[ 328/660] PASS             run_functions_120_Intrinsics_without_FUNCTION_keyword__1_
-[ 329/660] PASS             run_functions_121_Intrinsics_without_FUNCTION_keyword__2_
-[ 330/660] PASS             run_functions_122_User-Defined_FUNCTION_with_without_parameter
-[ 331/660] PASS             run_functions_123_UDF_in_COMPUTE
-[ 332/660] PASS             run_functions_124_UDF_replacing_intrinsic_function
-[ 333/660] PASS             run_functions_125_UDF_with_recursion
-[ 334/660] PASS             run_fundamental_000_DISPLAY_literals
-[ 335/660] PASS             run_fundamental_001_DISPLAY_literals__DECIMAL-POINT_is_COMMA
-[ 336/660] PASS             run_fundamental_002_Hexadecimal_literal
-[ 337/660] PASS             run_fundamental_003_DISPLAY_data_items_with_VALUE_clause
-[ 338/660] PASS             run_fundamental_004_DISPLAY_data_items_with_MOVE_statement
-[ 339/660] PASS             run_fundamental_005_MOVE_to_edited_item__1_
-[ 340/660] PASS             run_fundamental_006_MOVE_to_edited_item__2_
-[ 341/660] PASS             run_fundamental_007_MOVE_to_edited_item__3_
-[ 342/660] PASS             run_fundamental_008_MOVE_to_item_with_simple_and_floating_insertion
-[ 343/660] PASS             run_fundamental_009_MOVE_to_JUSTIFIED_item
-[ 344/660] PASS             run_fundamental_010_MOVE_integer_literal_to_alphanumeric
-[ 345/660] PASS             run_fundamental_011_Compare_FLOAT-LONG_with_floating-point_literal
-[ 346/660] PASS             run_fundamental_012_equality_of_FLOAT-SHORT___FLOAT-LONG
-[ 347/660] PASS             run_fundamental_013_equality_of_FLOAT-SHORT___FLOAT-EXTENDED
-[ 348/660] PASS             run_fundamental_014_Overlapping_MOVE__GnuCOBOL_
-[ 349/660] PASS             run_fundamental_015_Overlapping_MOVE__IBM_
-[ 350/660] PASS             run_fundamental_016_ALPHABETIC_test
-[ 351/660] PASS             run_fundamental_017_ALPHABETIC-UPPER_test
-[ 352/660] PASS             run_fundamental_018_ALPHABETIC-LOWER_test
-[ 353/660] PASS             run_fundamental_019_GLOBAL_at_same_level
-[ 354/660] PASS             run_fundamental_020_GLOBAL_at_lower_level
-[ 355/660] PASS             run_fundamental_021_GLOBAL_CONSTANT
-[ 356/660] PASS             run_fundamental_022_GLOBAL_identifiers_from_ENVIRONMENT_DIVISION
-[ 357/660] PASS             run_fundamental_023_GLOBAL_REDEFINES
-[ 358/660] PASS             run_fundamental_025_Entry_point_visibility__1_
-[ 359/660] PASS             run_fundamental_026_Entry_point_visibility__2_
-[ 360/660] PASS             run_fundamental_027_Contained_program_visibility__1_
-[ 361/660] PASS             run_fundamental_028_Contained_program_visibility__2_
-[ 362/660] PASS             run_fundamental_029_Contained_program_visibility__3_
-[ 363/660] PASS             run_fundamental_030_Contained_program_visibility__4_
-[ 364/660] PASS             run_fundamental_031_CALL_alphanumeric_data-name
-[ 365/660] PASS             run_fundamental_032_CALL_program-pointer
-[ 366/660] PASS             run_fundamental_033_CALL_CANCEL_SET_ADDRESS_program-prototype-name
-[ 367/660] PASS             run_fundamental_034_GLOBAL_FD__1_
-[ 368/660] PASS             run_fundamental_035_GLOBAL_FD__2_
-[ 369/660] PASS             run_fundamental_036_GLOBAL_FD__3_
-[ 370/660] PASS             run_fundamental_037_GLOBAL_FD__4_
-[ 371/660] PASS             run_fundamental_038_CANCEL_test__1_
-[ 372/660] PASS             run_fundamental_039_CANCEL_test__2_
-[ 373/660] PASS             run_fundamental_040_CANCEL_test__3_
-[ 374/660] PASS             run_fundamental_041_Separate_sign_positions__1_
-[ 375/660] PASS             run_fundamental_042_Separate_sign_positions__2_
-[ 376/660] PASS             run_fundamental_043_Context_sensitive_words__1_
-[ 377/660] PASS             run_fundamental_044_Context_sensitive_words__2_
-[ 378/660] PASS             run_fundamental_045_Context_sensitive_words__3_
-[ 379/660] PASS             run_fundamental_046_Context_sensitive_words__4_
-[ 380/660] PASS             run_fundamental_047_Context_sensitive_words__5_
-[ 381/660] PASS             run_fundamental_048_Context_sensitive_words__6_
-[ 382/660] PASS             run_fundamental_049_Context_sensitive_words__7_
-[ 383/660] PASS             run_fundamental_050_Context_sensitive_words__8_
-[ 384/660] PASS             run_fundamental_051_ROUNDED_AWAY-FROM-ZERO
-[ 385/660] PASS             run_fundamental_052_ROUNDED_NEAREST-AWAY-FROM-ZERO
-[ 386/660] PASS             run_fundamental_053_ROUNDED_NEAREST-EVEN
-[ 387/660] PASS             run_fundamental_054_ROUNDED_NEAREST-TOWARD-ZERO
-[ 388/660] PASS             run_fundamental_055_ROUNDED_TOWARD-GREATER
-[ 389/660] PASS             run_fundamental_056_ROUNDED_TOWARD-LESSER
-[ 390/660] PASS             run_fundamental_057_ROUNDED_TRUNCATION
-[ 391/660] PASS             run_fundamental_058_Numeric_operations__1_
-[ 392/660] PASS             run_fundamental_059_Numeric_operations__2__DISPLAY
-[ 393/660] PASS             run_fundamental_061_Numeric_operations__4__BINARY
-[ 394/660] PASS             run_fundamental_062_Numeric_operations__5__COMP-5
-[ 395/660] PASS             run_fundamental_063_Numeric_operations__6_
-[ 396/660] PASS             run_fundamental_064_Numeric_operations__7_
-[ 397/660] PASS             run_fundamental_065_Numeric_operations__8_
-[ 398/660] PASS             run_fundamental_066_ADD_CORRESPONDING
-[ 399/660] PASS             run_fundamental_067_ADD_CORRESPONDING_no_match
-[ 400/660] PASS             run_fundamental_068_SYNC_in_OCCURS
-[ 401/660] PASS             run_fundamental_069_88_level_with_THRU
-[ 402/660] PASS             run_fundamental_070_88_level_with_FILLER
-[ 403/660] PASS             run_fundamental_071_88_level_with_FALSE_IS_clause
-[ 404/660] PASS             run_fundamental_072_BLANK_WHEN_ZERO
-[ 405/660] PASS             run_fundamental_073_MULTIPLY_BY_literal_in_INITIAL_program
-[ 406/660] PASS             run_fundamental_074_DIVIDE_complex
-[ 407/660] PASS             run_fundamental_075_COMPUTE_with_decimal_constants
-[ 408/660] PASS             run_fundamental_076_debugging_lines__not_active_
-[ 409/660] PASS             run_fundamental_077_debugging_lines__-fdebugging-line_
-[ 410/660] PASS             run_fundamental_078_debugging_lines__WITH_DEBUGGING_MODE_
-[ 411/660] PASS             run_fundamental_079_debugging_lines__free_format__not_active_
-[ 412/660] PASS             run_fundamental_080_debugging_lines__free_format__-fdebugging-line_
-[ 413/660] PASS             run_fundamental_081_USE_FOR_DEBUGGING__no_DEBUGGING_MODE_
-[ 414/660] PASS             run_fundamental_082_USE_FOR_DEBUGGING__COB_SET_DEBUG_deactivated_
-[ 415/660] PASS             run_fundamental_083_USE_FOR_DEBUGGING_ON_ALL_PROCEDURES
-[ 416/660] PASS             run_fundamental_084_USE_FOR_DEBUGGING_ON_procedure
-[ 417/660] PASS             run_fundamental_086_USE_FOR_DEBUGGING__reference_within_DEBUGGING
-[ 418/660] PASS             run_fundamental_087_USE_FOR_DEBUGGING__time_of_execution
-[ 419/660] PASS             run_fundamental_088_USE_FOR_DEBUGGING__reference_with_OCCURS
-[ 420/660] PASS             run_fundamental_089_USE_FOR_DEBUGGING__referencing_BASED_item
-[ 421/660] PASS             run_fundamental_090_USE_FOR_DEBUGGING_file
-[ 422/660] PASS             run_fundamental_091_Simple_Expressions_with_figurative_constants
-[ 423/660] PASS             run_fundamental_092_Expression_numeric_vs__DISPLAY
-[ 424/660] PASS             run_fundamental_093_Abbreviated_Expressions
-[ 425/660] PASS             run_fundamental_094_integer_arithmetic_on_floating-point_var
-[ 426/660] PASS             run_fundamental_096_Alphanumeric_VALUE_longer_than_PIC
-[ 427/660] PASS             run_fundamental_097_DISPLAY_with_P_fields
-[ 428/660] PASS             run_fundamental_098_condition_IS_ZERO_AND
-[ 429/660] PASS             run_fundamental_099_abbreviated_conditions_with_multiple_words_operato
-[ 430/660] PASS             run_fundamental_100_abbreviated_conditions_with_multiple_words_operato
-[ 431/660] PASS             run_fundamental_101_MOVE_with_JUSTIFIED_clause
-[ 432/660] PASS             run_fundamental_102_MOVE_with_PICTURE_P
-[ 433/660] PASS             run_fundamental_103_MOVE_with_de-editting_to_USAGE_DISPLAY
-[ 434/660] PASS             run_fundamental_104_MOVE_with_de-editting_to_DECIMAL_IS_COMMA
-[ 435/660] PASS             run_fundamental_105_MOVE_with_de-editting_to_BINARY
-[ 436/660] PASS             run_fundamental_106_MOVE_with_de-editting_to_COMP-3
-[ 437/660] PASS             run_fundamental_107_MOVE_with_de-editting_to_COMP-5
-[ 438/660] PASS             run_fundamental_108_MOVE_with_de-editting_to_NUMERIC_DISPLAY__2_
-[ 439/660] PASS             run_fundamental_109_MOVE_misc__edited
-[ 440/660] PASS             run_fundamental_110_MOVE_between_USAGEs
-[ 441/660] PASS             run_fundamental_111_MOVE_to_editted_ZERO
-[ 442/660] PASS             run_fundamental_112_SPECIAL-NAMES_CLASS
-[ 443/660] PASS             run_initialize_000_INITIALIZE_group_entry_with_OCCURS
-[ 444/660] PASS             run_initialize_001_INITIALIZE_OCCURS_with_numeric_edited
-[ 445/660] PASS             run_initialize_002_INITIALIZE_OCCURS_with_SIGN_LEADING___TRAILING
-[ 446/660] PASS             run_initialize_003_INITIALIZE_complex_group__1_
-[ 447/660] PASS             run_initialize_004_INITIALIZE_complex_group__2_
-[ 448/660] PASS             run_initialize_005_initial_value_for_group_item_with_VALUE
-[ 449/660] PASS             run_initialize_006_Value_for_group_item_with_VALUE
-[ 450/660] PASS             run_initialize_007_INITIALIZE_group_item
-[ 451/660] PASS             run_initialize_008_INITIALIZE_with_REDEFINES
-[ 452/660] PASS             run_initialize_009_INITIALIZE_with_FILLER
-[ 453/660] PASS             run_initialize_010_INITIALIZE_of_EXTERNAL_data_items
-[ 454/660] PASS             run_initialize_011_INITIALIZE_with_reference-modification
-[ 455/660] PASS             run_initialize_012_INITIALIZE_big_table_with_VALUE
-[ 456/660] PASS             run_initialize_013_INITIALIZE_to_table-format_VALUES_ARE
-[ 457/660] PASS             run_misc_000_Comma_separator_without_space
-[ 458/660] PASS             run_misc_001_DECIMAL-POINT_is_COMMA__1_
-[ 459/660] PASS             run_misc_002_DECIMAL-POINT_is_COMMA__2_
-[ 460/660] PASS             run_misc_003_DECIMAL-POINT_is_COMMA__3_
-[ 461/660] PASS             run_misc_004_DECIMAL-POINT_is_COMMA__4_
-[ 462/660] PASS             run_misc_005_DECIMAL-POINT_is_COMMA__5_
-[ 463/660] PASS             run_misc_006_CURRENCY_SIGN
-[ 464/660] PASS             run_misc_014_MOVE_to_itself
-[ 465/660] PASS             run_misc_015_MOVE_with_refmod
-[ 466/660] PASS             run_misc_016_MOVE_with_refmod__variable_
-[ 467/660] PASS             run_misc_017_MOVE_with_group_refmod
-[ 468/660] PASS             run_misc_018_MOVE_indexes
-[ 469/660] PASS             run_misc_019_MOVE_X_00_
-[ 470/660] PASS             run_misc_020_MOVE_Z_literal_
-[ 471/660] PASS             run_misc_021_Floating_continuation_indicator
-[ 472/660] PASS             run_misc_022_Fixed_continuation_indicator
-[ 473/660] PASS             run_misc_023_Concatenation_operator
-[ 474/660] PASS             run_misc_024_SOURCE_FIXED_FREE_directives
-[ 475/660] PASS             run_misc_025_TURN_directive
-[ 476/660] PASS             run_misc_026_OCCURS_on_level_01
-[ 477/660] PASS             run_misc_027_Class_check_with_reference-modification
-[ 478/660] PASS             run_misc_028_Index_and_parenthesized_expression
-[ 479/660] PASS             run_misc_029_Alphanumeric_and_binary_numeric
-[ 480/660] PASS             run_misc_030_Non-numeric_data_in_numeric_items
-[ 481/660] PASS             run_misc_041_CALL_binary_literal_parameter_LENGTH_OF
-[ 482/660] PASS             run_misc_042_INSPECT_REPLACING_LEADING_ZEROS_BY_SPACES
-[ 483/660] PASS             run_misc_043_INSPECT__no_repeat_conversion
-[ 484/660] PASS             run_misc_044_TRANSFORM_statement
-[ 485/660] PASS             run_misc_045_INSPECT_CONVERTING_alphabet
-[ 486/660] PASS             run_misc_046_INSPECT_CONVERTING_TO_figurative_constant
-[ 487/660] PASS             run_misc_047_INSPECT_CONVERTING_NULL
-[ 488/660] PASS             run_misc_048_INSPECT_CONVERTING_TO_NULL
-[ 489/660] PASS             run_misc_049_INSPECT_CONVERTING_complex
-[ 490/660] PASS             run_misc_050_INSPECT_numeric_signed
-[ 491/660] PASS             run_misc_051_INSPECT_TALLYING_BEFORE
-[ 492/660] PASS             run_misc_052_INSPECT_TALLYING_AFTER
-[ 493/660] PASS             run_misc_053_INSPECT_TALLYING_BEFORE_and_AFTER
-[ 494/660] PASS             run_misc_054_INSPECT_TALLYING_REPLACING_BEFORE_and_AFTER
-[ 495/660] PASS             run_misc_055_INSPECT_REPLACING_figurative_constant
-[ 496/660] PASS             run_misc_056_SWITCHES__environment_COB_SWITCH_n_and_SET_
-[ 497/660] PASS             run_misc_057_Nested_PERFORM
-[ 498/660] PASS             run_misc_058_PERFORM_VARYING_BY_-0_2_decimal
-[ 499/660] PASS             run_misc_059_PERFORM_VARYING_Float
-[ 500/660] PASS             run_misc_060_PERFORM_VARYING_BY_phrase_omitted
-[ 501/660] PASS             run_misc_061_EXIT_PERFORM
-[ 502/660] PASS             run_misc_062_EXIT_PERFORM_CYCLE
-[ 503/660] PASS             run_misc_063_EXIT_PARAGRAPH
-[ 504/660] PASS             run_misc_064_EXIT_SECTION
-[ 505/660] PASS             run_misc_065_implicit_GOBACK_at_end_of_PROCEDURE_DIVISION
-[ 506/660] PASS             run_misc_066_PERFORM_FOREVER___PERFORM_UNTIL_EXIT
-[ 507/660] PASS             run_misc_067_PERFORM_inline__1_
-[ 508/660] PASS             run_misc_068_PERFORM_inline__2_
-[ 509/660] PASS             run_misc_069_Non-overflow_after_overflow
-[ 510/660] PASS             run_misc_070_PERFORM_____CONTINUE
-[ 511/660] PASS             run_misc_071_STRING_with_subscript_reference
-[ 512/660] PASS             run_misc_072_STRING_WITH_POINTER_ON_OVERFLOW_with_DELIMITER
-[ 513/660] PASS             run_misc_073_UNSTRING_DELIMITED_ALL_LOW-VALUE
-[ 514/660] PASS             run_misc_074_UNSTRING_DELIMITED_ALL_SPACE-2
-[ 515/660] PASS             run_misc_075_UNSTRING_DELIMITED_POINTER
-[ 516/660] PASS             run_misc_076_UNSTRING_DELIMITER_IN
-[ 517/660] PASS             run_misc_077_UNSTRING_combined
-[ 518/660] PASS             run_misc_078_UNSTRING_with_FUNCTION___literal
-[ 519/660] PASS             run_misc_079_SORT__table
-[ 520/660] PASS             run_misc_080_SORT__table__2_
-[ 521/660] PASS             run_misc_081_SORT__table__3_
-[ 522/660] PASS             run_misc_082_SORT__table__toplevel_
-[ 523/660] PASS             run_misc_083_SORT__EBCDIC_table
-[ 524/660] PASS             run_misc_084_Alphanum_comparison_with_default_COLLATING_SEQUENC
-[ 525/660] PASS             run_misc_085_SORT__table_with_default_COLLATING_SEQUENCE
-[ 526/660] PASS             run_misc_086_JUSTIFIED_and_VALUE_clauses
-[ 527/660] PASS             run_misc_087_SEARCH_ALL__table_with_default_COLLATING_SEQUENCE
-[ 528/660] PASS             run_misc_088_PIC_ZZZ-__ZZZ_
-[ 529/660] PASS             run_misc_089_PERFORM_type_OSVS
-[ 530/660] PASS             run_misc_092_COB_PRE_LOAD_with_entry_points
-[ 531/660] PASS             run_misc_093_Lookup_ENTRY_from_main_executable
-[ 532/660] PASS             run_misc_095_ALLOCATE___FREE_with_BASED_item__1_
-[ 533/660] PASS             run_misc_096_ALLOCATE___FREE_with_BASED_item__2_
-[ 534/660] PASS             run_misc_097_ALLOCATE_CHARACTERS_INITIALIZED__TO_
-[ 535/660] PASS             run_misc_098_Initialized_value_with_defaultbyte
-[ 536/660] PASS             run_misc_104_CALL_C_with_callback__PROCEDURE_DIVISION_EXTERN
-[ 537/660] PASS             run_misc_105_CALL_C_with_callback__ENTRY-CONVENTION_EXTERN
-[ 538/660] PASS             run_misc_110_ANY_LENGTH__3_
-[ 539/660] PASS             run_misc_111_ANY_LENGTH__4_
-[ 540/660] PASS             run_misc_113_access_to_BASED_item_without_allocation
-[ 541/660] PASS             run_misc_115_STOP_RUN_WITH_NORMAL_STATUS
-[ 542/660] PASS             run_misc_116_STOP_RUN_WITH_ERROR_STATUS
-[ 543/660] PASS             run_misc_117_STOP_ERROR
-[ 544/660] PASS             run_misc_118_SYMBOLIC_clause
-[ 545/660] PASS             run_misc_119_OCCURS_clause_with_1_entry
-[ 546/660] PASS             run_misc_120_Computing_of_different_USAGEs_w_o_decimal_point
-[ 547/660] PASS             run_misc_121_Computing_of_different_USAGEs_w_-_decimal_point
-[ 548/660] PASS             run_misc_122_compilation-group_with_decimal
-[ 549/660] PASS             run_misc_124_PICTURE_with_Edit_mask
-[ 550/660] PASS             run_misc_125_PACKED-DECIMAL_in_PERFORM_VARYING
-[ 551/660] PASS             run_misc_126_POINTER
-[ 552/660] PASS             run_misc_128_ON_EXCEPTION_clause_of_DISPLAY
-[ 553/660] PASS             run_misc_131_SET_LAST_EXCEPTION_TO_OFF
-[ 554/660] PASS             run_misc_133_Figurative_constants_to_numeric_field
-[ 555/660] PASS             run_misc_134_MF_FIGURATIVE_to_NUMERIC
-[ 556/660] PASS             run_misc_138_Trace_feature_with_subroutine
-[ 557/660] PASS             run_misc_140_dump_feature_with_NULL_address
-[ 558/660] PASS             run_misc_141_CALL_with_program_prototypes
-[ 559/660] PASS             run_misc_142_REDEFINES_values_on_FILLER_and_INITIALIZE
-[ 560/660] PASS             run_misc_143_PICTURE_with_constant-name
-[ 561/660] PASS             run_misc_144_Quote_marks_in_comment_paragraphs
-[ 562/660] PASS             run_misc_145_Numeric_MOVE_with_without_-fbinary-truncate
-[ 563/660] PASS             run_misc_146_Alphanumeric_MOVE_with_truncation
-[ 564/660] PASS             run_misc_147_PROGRAM-ID___CALL_literal_variable_with_spaces
-[ 565/660] PASS             run_misc_148_PROGRAM-ID___CALL_with_hyphen_and_underscore
-[ 566/660] PASS             run_misc_149_CALL_with_directory
-[ 567/660] PASS             run_misc_150_C-API__param_based_
-[ 568/660] PASS             run_misc_151_C-API__field_based_
-[ 569/660] PASS             run_misc_152_OPTIONS_paragraph__DEFAULT_ROUNDED_MODE
-[ 570/660] PASS             run_misc_153_OCCURS_INDEXED_ASCENDING
-[ 571/660] PASS             run_misc_154_ZERO_unsigned_and_negative_binary_subscript
-[ 572/660] PASS             run_misc_155_Default_Arithmetic__1_
-[ 573/660] PASS             run_misc_156_Default_Arithmetic_Test__2_
-[ 574/660] PASS             run_misc_157_OSVS_Arithmetic__1_
-[ 575/660] PASS             run_misc_158_OSVS_Arithmetic_Test__2_
-[ 576/660] PASS             run_misc_159_SET_CONSTANT_directive
-[ 577/660] PASS             run_misc_160_DEFINE_OVERRIDE
-[ 578/660] PASS             run_misc_161_DEFINE_Defaults
-[ 579/660] PASS             run_misc_162_78_VALUE
-[ 580/660] PASS             run_misc_163_01_CONSTANT
-[ 581/660] PASS             run_misc_164_DISPLAY_UPON
-[ 582/660] PASS             run_misc_165_FLOAT-DECIMAL_w_o_SIZE_ERROR
-[ 583/660] PASS             run_misc_166_FLOAT-SHORT___FLOAT-LONG_w_o_SIZE_ERROR
-[ 584/660] PASS             run_misc_167_FLOAT-SHORT_with_SIZE_ERROR
-[ 585/660] PASS             run_misc_168_FLOAT-LONG_with_SIZE_ERROR
-[ 586/660] PASS             run_misc_169_EC-SIZE-ZERO-DIVIDE
-[ 587/660] PASS             run_misc_170_EC-SIZE-OVERFLOW
-[ 588/660] PASS             run_misc_171_Constant_Expressions
-[ 589/660] PASS             run_misc_172_ENTRY_FOR_GO_TO___GO_TO_ENTRY
-[ 590/660] PASS             run_misc_173_runtime_checks_within_conditions
-[ 591/660] PASS             run_misc_175_runtime_check__write_to_internal_storage__2_
-[ 592/660] PASS             run_misc_176_assorted_math
-[ 593/660] PASS             run_misc_177_compare_numeric_DISPLAY_SPACE_with_ZERO
-[ 594/660] PASS             run_ml_000_XML_GENERATE_general
-[ 595/660] PASS             run_ml_001_XML_GENERATE_SUPPRESS
-[ 596/660] PASS             run_ml_003_XML_GENERATE_record_selection
-[ 597/660] PASS             run_ml_004_XML_GENERATE_trimming
-[ 598/660] PASS             run_ml_005_XML_DPC-IN-DATA_directive
-[ 599/660] PASS             run_ml_006_XML_dpc-in-data_config_option
-[ 600/660] PASS             run_ml_007_JSON_GENERATE_general
-[ 601/660] PASS             run_ml_008_JSON_GENERATE_SUPPRESS
-[ 602/660] PASS             run_ml_009_JSON_GENERATE_exceptions
-[ 603/660] PASS             run_ml_010_JSON_GENERATE_record_selection
-[ 604/660] PASS             run_ml_011_JSON_GENERATE_trimming
-[ 605/660] PASS             run_ml_012_JSON_DPC-IN-DATA_directive
-[ 606/660] PASS             run_ml_013_JSON_dpc-in-data_config_option
-[ 607/660] PASS             run_refmod_000_Static_reference-modification
-[ 608/660] PASS             run_refmod_001_Dynamic_reference-modification
-[ 609/660] parity_harness.sh: line 289: warning: command substitution: ignored null byte in input
-parity_harness.sh: line 319: warning: command substitution: ignored null byte in input
-PASS             run_refmod_002_Offset_underflow
-[ 610/660] PASS             run_refmod_003_Offset_overflow
-[ 611/660] PASS             run_refmod_004_Length_underflow
-[ 612/660] PASS             run_refmod_005_Length_overflow
-[ 613/660] PASS             run_refmod_006_Length_overflow_with_offset__1_
-[ 614/660] PASS             run_refmod_007_Length_overflow_with_offset__2_
-[ 615/660] PASS             run_refmod_008_Length_overflow_with_offset__3_
-[ 616/660] PASS             run_refmod_009_enable___disable_ref-mod_check
-[ 617/660] PASS             run_refmod_010_MF_SSRANGE_and_NOSSRANGE_directives
-[ 618/660] PASS             run_reportwriter_000_Report_Line_Order
-[ 619/660] PASS             run_reportwriter_001_REPORT_COL_PLUS
-[ 620/660] PASS             run_reportwriter_002_Report_Overlapping_Fields
-[ 621/660] PASS             run_reportwriter_003_EMPTY_REPORT
-[ 622/660] PASS             run_reportwriter_004_PAGE_LIMIT_REPORT
-[ 623/660] PASS             run_reportwriter_005_PAGE_LIMIT_REPORT_2
-[ 624/660] PASS             run_reportwriter_006_Sample_Customer_Report
-[ 625/660] PASS             run_reportwriter_007_Sample_Charge_Report
-[ 626/660] PASS             run_reportwriter_008_Sample_Charge_Report_2
-[ 627/660] PASS             run_reportwriter_009_Sample_Charge_Report_3
-[ 628/660] PASS             run_reportwriter_010_Sample_Charge_Report_4
-[ 629/660] PASS             run_reportwriter_011_Sample_Payroll_Report
-[ 630/660] PASS             run_reportwriter_012_Sample_REPORT_with_RIGHT_CENTER
-[ 631/660] PASS             run_reportwriter_013_STUDENT_REPORT_with_INITIAL
-[ 632/660] PASS             run_reportwriter_014_ORDER_REPORT__Test_substring
-[ 633/660] PASS             run_reportwriter_015_Sample_Control_Break
-[ 634/660] PASS             run_reportwriter_016_Sample_Inventory_Report
-[ 635/660] PASS             run_reportwriter_017_Duplicate_Detail_Line
-[ 636/660] PASS             run_reportwriter_018_Report_with_OCCURS
-[ 637/660] PASS             run_reportwriter_020_Test_Report_dump_DECLARATIVES
-[ 638/660] PASS             run_reportwriter_021_Duplicate_INITIATE
-[ 639/660] PASS             run_reportwriter_022_Missing_INITIATE_and_GENERATE
-[ 640/660] PASS             run_reportwriter_023_Missing_INITIATE_and_TERMINATE
-[ 641/660] PASS             run_reportwriter_024_Next_Group_Next_Page
-[ 642/660] PASS             run_reportwriter_025_Report_PRESENT_AFTER
-[ 643/660] PASS             run_reportwriter_026_Varying_and_Nested_OCCURS
-[ 644/660] PASS             run_reportwriter_027_BEFORE_REPORTING
-[ 645/660] PASS             run_returncode_000_RETURN-CODE_moving
-[ 646/660] PASS             run_returncode_001_RETURN-CODE_passing
-[ 647/660] PASS             run_returncode_002_RETURN-CODE_nested
-[ 648/660] parity_harness.sh: line 289: warning: command substitution: ignored null byte in input
-parity_harness.sh: line 319: warning: command substitution: ignored null byte in input
-PASS             run_subscripts_000_Subscript_out_of_bounds
-[ 649/660] PASS             run_subscripts_001_Value_of_DEPENDING_ON_N_out_of_bounds
-[ 650/660] PASS             run_subscripts_002_Subscript_bounds_with_OCCURS_DEPENDING_ON__1_
-[ 651/660] PASS             run_subscripts_003_Subscript_bounds_with_OCCURS_DEPENDING_ON__2_
-[ 652/660] PASS             run_subscripts_004_Subscript_bounds_with_OCCURS_DEPENDING_ON__3_
-[ 653/660] PASS             run_subscripts_005_Subscript_by_arithmetic_expression
-[ 654/660] PASS             run_subscripts_006_length_of_ODO_w_-_reference-modification
-[ 655/660] PASS             run_subscripts_007_SEARCH_ALL_with_OCCURS_DEPENDING_ON
-[ 656/660] PASS             run_subscripts_008_enable___disable_subscript_check
-[ 657/660] PASS             run_subscripts_009_enable___disable_subscript_check_with_ODO
-[ 658/660] PASS             run_subscripts_010_BOUND_and_NOBOUND_directives
-[ 659/660] PASS             run_subscripts_011_SSRANGE_and_NOSSRANGE_directives
-[ 660/660] PASS             run_subscripts_012_CALL_with_OCCURS_DEPENDING_ON
+[   1/697] PASS             data_binary_000_BINARY__64bit_unsigned_compare  (both empty)
+[   2/697] PASS             data_binary_001_BINARY__64bit_unsigned_arithmetic_notrunc
+[   3/697] PASS             data_binary_002_BINARY__64bit_signed_negative_constant_range
+[   4/697] PASS             data_binary_003_COMP-4_Truncate
+[   5/697] PASS             data_binary_004_COMP-4_No_Truncate
+[   6/697] PASS             data_binary_005_MOVE_DISPLAY_to_BINARY  (both empty)
+[   7/697] PASS             data_binary_006_MOVE_PACKED-DECIMAL_to_BINARY  (both empty)
+[   8/697] PASS             data_binary_007_MOVE_BINARY_to_PACKED-DECIMAL  (both empty)
+[   9/697] PASS             data_binary_008_MOVE_BINARY_to_BINARY  (both empty)
+[  10/697] PASS             data_binary_009_PPP_COMP-5
+[  11/697] PASS             data_binary_010_arithmetic_truncation_with_USAGE_BINARY  (both empty)
+[  12/697] PASS             data_display_000_DISPLAY__Sign_ASCII
+[  13/697] PASS             data_display_001_DISPLAY__Sign_ASCII__2_
+[  14/697] PASS             data_display_002_DISPLAY__Sign_EBCDIC
+[  15/697] PASS             data_display_003_DISPLAY__unsigned
+[  16/697] PASS             data_display_004_MOVE_DISPLAY_to_DISPLAY  (both empty)
+[  17/697] PASS             data_display_005_PPP_DISPLAY
+[  18/697] PASS             data_display_006_arithmetic_truncation_with_USAGE_DISPLAY  (both empty)
+[  19/697] PASS             data_display_007_DISPLAY__ADD_and_SUBTRACT_w_o_SIZE_ERROR  (both empty)
+[  20/697] PASS             data_display_008_DISPLAY__ADD_and_SUBTRACT__all_ROUNDED_MODEs  (both empty)
+[  21/697] PASS             data_packed_000_PACKED-DECIMAL_used_with_DISPLAY
+[  22/697] PASS             data_packed_001_PACKED-DECIMAL_used_with_MOVE
+[  23/697] PASS             data_packed_002_MOVE_PACKED-DECIMAL_to_PACKED-DECIMAL  (both empty)
+[  24/697] PASS             data_packed_003_MOVE_PACKED-DECIMAL_to_DISPLAY  (both empty)
+[  25/697] PASS             data_packed_004_MOVE_DISPLAY_to_PACKED-DECIMAL  (both empty)
+[  26/697] PASS             data_packed_005_PACKED-DECIMAL_used_with_INITIALIZE
+[  27/697] PASS             data_packed_006_PACKED-DECIMAL_arithmetic  (both empty)
+[  28/697] PASS             data_packed_007_PACKED-DECIMAL_comparison  (both empty)
+[  29/697] PASS             data_packed_008_PACKED-DECIMAL_numeric_test__1_  (both empty)
+[  30/697] PASS             data_packed_009_PACKED-DECIMAL_numeric_test__2_
+[  31/697] PASS             data_packed_010_COMP-6_used_with_DISPLAY
+[  32/697] PASS             data_packed_011_COMP-6_used_with_MOVE  (both empty)
+[  33/697] PASS             data_packed_012_COMP-6_arithmetic  (both empty)
+[  34/697] PASS             data_packed_013_COMP-6_numeric  (both empty)
+[  35/697] PASS             data_packed_014_COMP-6_comparison  (both empty)
+[  36/697] PASS             data_packed_015_COMP-3_vs__COMP-6_-_BCD_comparison  (both empty)
+[  37/697] PASS             data_packed_017_PPP_COMP-6
+[  38/697] PASS             data_packed_018_arithmetic_truncation_with_USAGE_PACKED-DECIMAL  (both empty)
+[  39/697] PASS             data_packed_019_MOVE_between_several_BCD_fields  (both empty)
+[  40/697] PASS             data_packed_020_BCD_ADD_and_SUBTRACT_w_o_SIZE_ERROR  (both empty)
+[  41/697] PASS             data_packed_021_BCD_ADD_and_SUBTRACT__all_ROUNDED_MODEs  (both empty)
+[  42/697] PASS             run_accept_000_ACCEPT_OMITTED__simple_  (both empty)
+[  43/697] PASS             run_accept_001_ACCEPT_FROM_TIME___DATE___DAY___DAY-OF-WEEK__1_  (both empty)
+[  44/697] PASS             run_accept_003_ACCEPT_DATE___DAY_and_intrinsic_functions__1_  (both empty)
+[  45/697] PASS             run_accept_004_ACCEPT_DATE___DAY_and_intrinsic_functions__2_  (both empty)
+[  46/697] PASS             run_accept_005_ACCEPT_OMITTED__SCREEN_  (both empty)
+[  47/697] PASS             run_extensions_000_CALL_BY_CONTENT_binary_and_literal
+[  48/697] PASS             run_extensions_001_Numeric_Boolean_literals
+[  49/697] PASS             run_extensions_002_ACUCOBOL_literals
+[  50/697] PASS             run_extensions_003_HP_COBOL_octal_literals
+[  51/697] PASS             run_extensions_004_Hexadecimal_numeric_literals
+[  52/697] PASS             run_extensions_005_Semi-parenthesized_condition
+[  53/697] PASS             run_extensions_007_LENGTH_OF
+[  54/697] PASS             run_extensions_008_SET_TO_SIZE_OF  (both empty)
+[  55/697] PASS             run_extensions_009_WHEN-COMPILED  (both empty)
+[  56/697] PASS             run_extensions_010_Complex_OCCURS_DEPENDING_ON__1_
+[  57/697] PASS             run_extensions_011_Complex_OCCURS_DEPENDING_ON__2_
+[  58/697] PASS             run_extensions_012_Complex_OCCURS_DEPENDING_ON__3_
+[  59/697] PASS             run_extensions_013_Complex_OCCURS_DEPENDING_ON__4_
+[  60/697] PASS             run_extensions_014_Complex_OCCURS_DEPENDING_ON__5_
+[  61/697] PASS             run_extensions_015_Complex_OCCURS_DEPENDING_ON__6_  (both empty)
+[  62/697] PASS             run_extensions_019_INITIALIZE_OCCURS_ODOSLIDE
+[  63/697] PASS             run_extensions_020_DEPENDING_ON_with_ODOSLIDE
+[  64/697] PASS             run_extensions_021_DEPENDING_ON_with_ODOSLIDE_for_IBM
+[  65/697] PASS             run_extensions_022_INITIALIZE_level_01_OCCURS
+[  66/697] PASS             run_extensions_023_MOVE_of_non-integer_to_alphanumeric
+[  67/697] PASS             run_extensions_024_CALL_USING_file-name  (both empty)
+[  68/697] PASS             run_extensions_027_CALL_BY_VALUE_alphanumeric_item  (both empty)
+[  69/697] PASS             run_extensions_028_CALL_BY_VALUE_numeric_literal_with_SIZE_IS
+[  70/697] PASS             run_extensions_030_Case-sensitive_PROGRAM-ID  (both empty)
+[  71/697] PASS             run_extensions_031_Quoted_PROGRAM-ID  (both empty)
+[  72/697] PASS             run_extensions_032_PROGRAM-ID_AS_clause  (both empty)
+[  73/697] PASS             run_extensions_034_TALLY_register
+[  74/697] PASS             run_extensions_035_Redefining_TALLY
+[  75/697] PASS             run_extensions_037_PROCEDURE_DIVISION_CHAINING
+[  76/697] PASS             run_extensions_039_GOBACK_EXIT_PROGRAM_RETURNING_GIVING  (both empty)
+[  77/697] PASS             run_extensions_041_ASSIGN_to_KEYBOARD_DISPLAY  (both empty)
+[  78/697] PASS             run_extensions_042_SORT_ASSIGN_KEYBOARD_to_ASSIGN_DISPLAY  (both empty)
+[  79/697] PASS             run_extensions_043_Environment_Argument_variable
+[  80/697] PASS             run_extensions_044_78_Level__1_
+[  81/697] PASS             run_extensions_045_78_Level__2_
+[  82/697] PASS             run_extensions_046_78_Level__3_
+[  83/697] PASS             run_extensions_047_SWITCHES_with_non-standard_names
+[  84/697] PASS             run_extensions_048_Larger_REDEFINES_lengths  (both empty)
+[  85/697] PASS             run_extensions_049_REDEFINES__non-referenced_ambiguous_item  (both empty)
+[  86/697] PASS             run_extensions_050_Obsolete_2002_keywords_with_COBOL2014
+[  87/697] PASS             run_extensions_051_System_routine_with_wrong_number_of_parameters
+[  88/697] PASS             run_extensions_052_System_routine_C_NARG
+[  89/697] PASS             run_extensions_055_System_routine_C_JUSTIFY  (both empty)
+[  90/697] PASS             run_extensions_056_System_routine_C_PRINTABLE  (both empty)
+[  91/697] PASS             run_extensions_057_System_routine_C_MAKEDIR  (both empty)
+[  92/697] PASS             run_extensions_058_System_routine_C_GETPID  (both empty)
+[  93/697] PASS             run_extensions_059_System_routine_C_TOUPPER  (both empty)
+[  94/697] PASS             run_extensions_060_System_routine_C_TOLOWER  (both empty)
+[  95/697] PASS             run_extensions_061_System_routine_CBL_OR  (both empty)
+[  96/697] PASS             run_extensions_062_System_routine_CBL_NOR  (both empty)
+[  97/697] PASS             run_extensions_063_System_routine_CBL_AND  (both empty)
+[  98/697] PASS             run_extensions_064_System_routine_CBL_XOR  (both empty)
+[  99/697] PASS             run_extensions_065_System_routine_CBL_IMP  (both empty)
+[ 100/697] PASS             run_extensions_066_System_routine_CBL_NIMP  (both empty)
+[ 101/697] PASS             run_extensions_067_System_routine_CBL_NOT  (both empty)
+[ 102/697] PASS             run_extensions_068_System_routine_CBL_EQ  (both empty)
+[ 103/697] PASS             run_extensions_069_System_routine_CBL_GC_GETOPT
+[ 104/697] PASS             run_extensions_071_System_routine_CBL_GC_WAITPID
+[ 105/697] PASS             run_extensions_072_System_routine_CBL_GC_HOSTED  (both empty)
+[ 106/697] PASS             run_extensions_073_System_routine_SYSTEM__parameter_handling
+[ 107/697] PASS             run_extensions_074_System_routine_CBL_EXIT_PROC
+[ 108/697] PASS             run_extensions_075_System_routine_CBL_ERROR_PROC__1_
+[ 109/697] PASS             run_extensions_076_System_routine_CBL_ERROR_PROC__2_
+[ 110/697] PASS             run_extensions_077_CALL_own_PROGRAM-ID_and_RECURSIVE_attribute  (both empty)
+[ 111/697] PASS             run_extensions_078_DISPLAY_DIRECTIVE_and__DISPLAY  (both empty)
+[ 112/697] PASS             run_extensions_079_Conditional___define_directives__1_
+[ 113/697] PASS             run_extensions_080_Conditional___define_directives__2_
+[ 114/697] PASS             run_extensions_081_Conditional___define_directives__3_
+[ 115/697] PASS             run_extensions_082_Conditional___define_directives__4_
+[ 116/697] PASS             run_extensions_084_Variable_format
+[ 117/697] PASS             run_extensions_085_COBOLX_format
+[ 118/697] PASS             run_extensions_086_X_Open_free-form_format
+[ 119/697] PASS             run_extensions_087_TERMINAL_format
+[ 120/697] PASS             run_extensions_088_MF_FREE_format__X_Open_
+[ 121/697] PASS             run_extensions_089_Binary_COMP-1__1_
+[ 122/697] PASS             run_extensions_090_Binary_COMP-1__2_
+[ 123/697] PASS             run_extensions_091_EXHIBIT_statement
+[ 124/697] PASS             run_extensions_092_Bit_Operations
+[ 125/697] PASS             run_extensions_093_Bit_Shift_Operations
+[ 126/697] PASS             run_extensions_095_PICTURE_L__basic_  (both empty)
+[ 127/697] PASS             run_extensions_100_INSPECT_TRAILING  (both empty)
+[ 128/697] PASS             run_extensions_101_INSPECT_REPLACING_TRAILING_ZEROS_BY_SPACES  (both empty)
+[ 129/697] PASS             run_extensions_102_INSPECT_REPLACING_complex  (both empty)
+[ 130/697] PASS             run_extensions_103_EXAMINE_TALLYING  (both empty)
+[ 131/697] PASS             run_extensions_104_EXAMINE_REPLACING  (both empty)
+[ 132/697] PASS             run_extensions_105_GCOS_literals_with_EBCDIC_symbols__run_  (both empty)
+[ 133/697] PASS             run_file_000_OPEN_EXTEND_and_CLOSE__SEQUENTIAL
+[ 134/697] PASS             run_file_001_variable-length_SEQUENTIAL_data_integrity
+[ 135/697] PASS             run_file_002_DELETE_FILE__SEQUENTIAL  (both empty)
+[ 136/697] PASS             run_file_003_OUTPUT_on_SEQUENTIAL_file_to_missing_directory  (both empty)
+[ 137/697] PASS             run_file_004_OPEN_EXTEND_and_CLOSE__INDEXED
+[ 138/697] PASS             run_file_005_DELETE_FILE__INDEXED  (both empty)
+[ 139/697] PASS             run_file_006_OUTPUT_on_INDEXED_file_to_missing_directory  (both empty)
+[ 140/697] PASS             run_file_007_READ_INTO_data_item_AT-END_sequence  (both empty)
+[ 141/697] PASS             run_file_008_First_READ_on_empty_SEQUENTIAL_INDEXED_file  (both empty)
+[ 142/697] PASS             run_file_009_READ_NEXT_without_previous_START  (both empty)
+[ 143/697] PASS             run_file_010_REWRITE_a_RELATIVE_file_with_RANDOM_access  (both empty)
+[ 144/697] PASS             run_file_011_ASSIGN_DYNAMIC_and_EXTERNAL  (both empty)
+[ 145/697] PASS             run_file_012_ASSIGN_EXTERNAL_parsing  (both empty)
+[ 146/697] PASS             run_file_013_ASSIGN_directive  (both empty)
+[ 147/697] PASS             run_file_014_ASSIGN_filename_expansion  (both empty)
+[ 148/697] PASS             run_file_015_ASSIGN_filename_mapping  (both empty)
+[ 149/697] PASS             run_file_016_ASSIGN_with_COB_FILE_PATH  (both empty)
+[ 150/697] PASS             run_file_017_ASSIGN_DYNAMIC_with_LOCAL-STORAGE_item  (both empty)
+[ 151/697] PASS             run_file_018_ASSIGN_DYNAMIC_with_LOCAL-STORAGE_item__INITIAL  (both empty)
+[ 152/697] PASS             run_file_019_ASSIGN_DYNAMIC_with_BASED_data_item  (both empty)
+[ 153/697] PASS             run_file_021_ASSIGN_DYNAMIC_with_empty_data_item  (both empty)
+[ 154/697] PASS             run_file_022_ASSIGN_DYNAMIC_with_unset_implicit_data_item  (both empty)
+[ 155/697] PASS             run_file_023_INDEXED_file_key-name
+[ 156/697] PASS             run_file_024_INDEXED_file_sparse_split_keys
+[ 157/697] PASS             run_file_025_INDEXED_file_split_keys_WITH_DUPLICATES  (both empty)
+[ 158/697] PASS             run_file_026_INDEXED_file_variable_length_record
+[ 159/697] PASS             run_file_027_INDEXED_sample
+[ 160/697] PASS             run_file_028_WRITE___REWRITE_FILE_name
+[ 161/697] PASS             run_file_029_START_RELATIVE__1_  (both empty)
+[ 162/697] PASS             run_file_030_START_RELATIVE__2_  (both empty)
+[ 163/697] PASS             run_file_031_START_RELATIVE__3_  (both empty)
+[ 164/697] PASS             run_file_032_READ_on_OPTIONAL_missing_RELATIVE___SEQUENTIAL
+[ 165/697] PASS             run_file_033_READ_on_OPTIONAL_missing_INDEXED_file  (both empty)
+[ 166/697] PASS             run_file_034_EXTERNAL_RELATIVE_file  (both empty)
+[ 167/697] PASS             run_file_035_DECLARATIVES_procedure_referencing  (both empty)
+[ 168/697] PASS             run_file_036_DECLARATIVES_procedure_referencing__multiple_  (both empty)
+[ 169/697] PASS             run_file_037_System_routines_for_directories__1_  (both empty)
+[ 170/697] PASS             run_file_038_System_routines_for_directories__2_  (both empty)
+[ 171/697] PASS             run_file_039_System_routines_for_files  (both empty)
+[ 172/697] PASS             run_file_040_System_routines_for_files_-_filename_mapping
+[ 173/697] PASS             run_file_041_System_routine_CBL_COPY_FILE
+[ 174/697] PASS             run_file_042_Default_file_external_name  (both empty)
+[ 175/697] PASS             run_file_043_SEQUENTIAL_basic_I_O  (both empty)
+[ 176/697] PASS             run_file_044_LINE_SEQUENTIAL_basic_I_O  (both empty)
+[ 177/697] PASS             run_file_045_LINE_SEQUENTIAL_WRITE_AFTER  (both empty)
+[ 178/697] PASS             run_file_046_LINE_SEQUENTIAL_record_truncation__1_
+[ 179/697] PASS             run_file_047_LINE_SEQUENTIAL_record_truncation__2_
+[ 180/697] PASS             run_file_048_LINE_SEQUENTIAL_standard_record_overflow
+[ 181/697] PASS             run_file_049_LINAGE_and_LINAGE-COUNTER_sample
+[ 182/697] PASS             run_file_050_EXTFH__LINAGE_and_LINAGE-COUNTER_sample
+[ 183/697] PASS             run_file_051_SEQUENTIAL_file_I_O_with_variable_records
+[ 184/697] PASS             run_file_052_LINE_SEQUENTIAL_file_I_O_with_variable_records
+[ 185/697] PASS             run_file_053_SEQUENTIAL_file_REWRITE  (both empty)
+[ 186/697] PASS             run_file_059_RELATIVE_SEQUENTIAL_basic_I_O  (both empty)
+[ 187/697] PASS             run_file_060_RELATIVE_RANDOM_basic_I_O  (both empty)
+[ 188/697] PASS             run_file_061_RELATIVE_SEQUENTIAL_with_variable_records
+[ 189/697] PASS             run_file_062_INDEXED_SEQUENTIAL_basic_I_O  (both empty)
+[ 190/697] PASS             run_file_072_START_INDEXED  (both empty)
+[ 191/697] PASS             run_file_073_INDEXED_partial_keys  (both empty)
+[ 192/697] PASS             run_file_074_INDEXED_undeclared_keys  (both empty)
+[ 193/697] PASS             run_file_075_READ_INPUT_pipe___WRITE_OUTPUT_pipe
+[ 194/697] PASS             run_file_076_EXTFH__using_ISAM_callback
+[ 195/697] PASS             run_file_080_EXTFH__LINE_SEQUENTIAL_files__2_
+[ 196/697] PASS             run_file_088_RELATIVE_Multi-Record
+[ 197/697] PASS             run_file_090_TURN_EC-I-O
+[ 198/697] PASS             run_file_091_LINE_SEQUENTIAL_REWRITE
+[ 199/697] PASS             run_file_093_Concatenated_Files
+[ 200/697] PASS             run_file_094_File_SORT__SEQUENTIAL  (both empty)
+[ 201/697] PASS             run_file_095_File_SORT__SEQUENTIAL_variable_records  (both empty)
+[ 202/697] PASS             run_file_096_File_SORT__LINE_SEQUENTIAL  (both empty)
+[ 203/697] PASS             run_file_097_File_SORT__LINE_SEQUENTIAL_same_file  (both empty)
+[ 204/697] PASS             run_file_098_File_SORT__LINE_SEQUENTIAL_variable_records  (both empty)
+[ 205/697] PASS             run_file_099_EXTFH__File_SORT__LINE_SEQUENTIAL_variable_records  (both empty)
+[ 206/697] PASS             run_file_100_File_MERGE__LINE_SEQUENTIAL_variable_records  (both empty)
+[ 207/697] PASS             run_file_101_SORT_nonexistent_file  (both empty)
+[ 208/697] PASS             run_file_102_SORT_with_INPUT_OUTPUT_PROCEDUREs  (both empty)
+[ 209/697] PASS             run_file_103_SORT_with_key1_ASCENDING__key2_DESCENDING  (both empty)
+[ 210/697] PASS             run_file_104_Scope_of_FD_GLOBAL_in_nested_programs
+[ 211/697] PASS             run_functions_000_FUNCTION_ABS
+[ 212/697] PASS             run_functions_001_FUNCTION_ACOS  (both empty)
+[ 213/697] PASS             run_functions_002_FUNCTION_ANNUITY  (both empty)
+[ 214/697] PASS             run_functions_003_FUNCTION_ASIN  (both empty)
+[ 215/697] PASS             run_functions_004_FUNCTION_ATAN  (both empty)
+[ 216/697] PASS             run_functions_005_FUNCTION_BYTE-LENGTH  (both empty)
+[ 217/697] PASS             run_functions_006_FUNCTION_CHAR  (both empty)
+[ 218/697] PASS             run_functions_007_FUNCTION_COMBINED-DATETIME  (both empty)
+[ 219/697] PASS             run_functions_008_FUNCTION_CONCAT___CONCATENATE  (both empty)
+[ 220/697] PASS             run_functions_009_FUNCTION_CONCATENATE_with_reference_modding  (both empty)
+[ 221/697] PASS             run_functions_010_FUNCTION_BIT-OF_and_BIT-TO-CHAR  (both empty)
+[ 222/697] PASS             run_functions_011_FUNCTION_HEX-OF_and_HEX-TO-CHAR  (both empty)
+[ 223/697] PASS             run_functions_012_FUNCTION_CONTENT-LENGTH  (both empty)
+[ 224/697] PASS             run_functions_013_FUNCTION_CONTENT-OF  (both empty)
+[ 225/697] PASS             run_functions_014_FUNCTION_as_CALL_parameter_BY_CONTENT
+[ 226/697] PASS             run_functions_015_FUNCTION_COS  (both empty)
+[ 227/697] PASS             run_functions_016_FUNCTION_CURRENCY-SYMBOL
+[ 228/697] PASS             run_functions_017_FUNCTION_CURRENT-DATE  (both empty)
+[ 229/697] PASS             run_functions_018_FUNCTION_DATE-OF-INTEGER  (both empty)
+[ 230/697] PASS             run_functions_019_FUNCTION_DATE-TO-YYYYMMDD  (both empty)
+[ 231/697] PASS             run_functions_020_FUNCTION_DAY-OF-INTEGER  (both empty)
+[ 232/697] PASS             run_functions_021_FUNCTION_DAY-TO-YYYYDDD  (both empty)
+[ 233/697] PASS             run_functions_022_FUNCTION_E  (both empty)
+[ 234/697] PASS             run_functions_023_FUNCTION_EXCEPTION-FILE
+[ 235/697] PASS             run_functions_024_FUNCTION_EXCEPTION-LOCATION
+[ 236/697] PASS             run_functions_025_FUNCTION_EXCEPTION-STATEMENT
+[ 237/697] PASS             run_functions_026_FUNCTION_EXCEPTION-STATUS
+[ 238/697] PASS             run_functions_027_FUNCTION_EXP  (both empty)
+[ 239/697] PASS             run_functions_028_FUNCTION_EXP10  (both empty)
+[ 240/697] PASS             run_functions_029_FUNCTION_FACTORIAL  (both empty)
+[ 241/697] PASS             run_functions_030_FUNCTION_FORMATTED-CURRENT-DATE  (both empty)
+[ 242/697] PASS             run_functions_031_FUNCTION_FORMATTED-DATE  (both empty)
+[ 243/697] PASS             run_functions_032_FUNCTION_FORMATTED-DATE_with_ref_modding  (both empty)
+[ 244/697] PASS             run_functions_033_FUNCTION_FORMATTED-DATETIME  (both empty)
+[ 245/697] PASS             run_functions_034_FUNCTION_FORMATTED-DATETIME_with_ref_modding  (both empty)
+[ 246/697] PASS             run_functions_035_FUNCTION_FORMATTED-TIME
+[ 247/697] PASS             run_functions_036_FUNCTION_FORMATTED-TIME_DP_COMMA  (both empty)
+[ 248/697] PASS             run_functions_037_FUNCTION_FORMATTED-TIME_with_ref_modding  (both empty)
+[ 249/697] PASS             run_functions_038_FUNCTION_FRACTION-PART  (both empty)
+[ 250/697] PASS             run_functions_039_FUNCTION_HIGHEST-ALGEBRAIC  (both empty)
+[ 251/697] PASS             run_functions_040_FUNCTION_INTEGER  (both empty)
+[ 252/697] PASS             run_functions_041_FUNCTION_INTEGER-OF-DATE  (both empty)
+[ 253/697] PASS             run_functions_042_FUNCTION_INTEGER-OF-DAY  (both empty)
+[ 254/697] PASS             run_functions_043_FUNCTION_INTEGER-OF-FORMATTED-DATE  (both empty)
+[ 255/697] PASS             run_functions_044_FUNCTION_INTEGER-PART  (both empty)
+[ 256/697] PASS             run_functions_045_FUNCTION_LENGTH  (both empty)
+[ 257/697] PASS             run_functions_046_FUNCTION_LOCALE-COMPARE  (both empty)
+[ 258/697] PASS             run_functions_047_FUNCTION_LOCALE-DATE
+[ 259/697] PASS             run_functions_048_FUNCTION_LOCALE-TIME
+[ 260/697] PASS             run_functions_049_FUNCTION_LOCALE-TIME-FROM-SECONDS
+[ 261/697] PASS             run_functions_050_FUNCTION_LOG  (both empty)
+[ 262/697] PASS             run_functions_051_FUNCTION_LOG10  (both empty)
+[ 263/697] PASS             run_functions_052_FUNCTION_LOWER-CASE  (both empty)
+[ 264/697] PASS             run_functions_053_FUNCTION_LOWER-CASE_with_reference_modding  (both empty)
+[ 265/697] PASS             run_functions_054_FUNCTION_LOWEST-ALGEBRAIC  (both empty)
+[ 266/697] PASS             run_functions_055_FUNCTION_MAX
+[ 267/697] PASS             run_functions_056_FUNCTION_MEAN
+[ 268/697] PASS             run_functions_057_FUNCTION_MEDIAN
+[ 269/697] PASS             run_functions_058_FUNCTION_MIDRANGE
+[ 270/697] PASS             run_functions_059_FUNCTION_MIN
+[ 271/697] PASS             run_functions_060_FUNCTION_MOD__valid_  (both empty)
+[ 272/697] PASS             run_functions_061_FUNCTION_MOD__invalid_  (both empty)
+[ 273/697] PASS             run_functions_062_FUNCTION_MODULE-CALLER-ID
+[ 274/697] PASS             run_functions_063_FUNCTION_MODULE-DATE
+[ 275/697] PASS             run_functions_064_FUNCTION_MODULE-FORMATTED-DATE
+[ 276/697] PASS             run_functions_065_FUNCTION_MODULE-ID
+[ 277/697] PASS             run_functions_066_FUNCTION_MODULE-PATH
+[ 278/697] PASS             run_functions_067_FUNCTION_MODULE-SOURCE
+[ 279/697] PASS             run_functions_068_FUNCTION_MODULE-TIME
+[ 280/697] PASS             run_functions_069_FUNCTION_MONETARY-DECIMAL-POINT
+[ 281/697] PASS             run_functions_070_FUNCTION_MONETARY-THOUSANDS-SEPARATOR
+[ 282/697] PASS             run_functions_071_FUNCTION_NUMERIC-DECIMAL-POINT
+[ 283/697] PASS             run_functions_072_FUNCTION_NUMERIC-THOUSANDS-SEPARATOR
+[ 284/697] PASS             run_functions_073_FUNCTION_NUMVAL  (both empty)
+[ 285/697] PASS             run_functions_074_FUNCTION_NUMVAL-C  (both empty)
+[ 286/697] PASS             run_functions_075_FUNCTION_NUMVAL-C_DP_COMMA  (both empty)
+[ 287/697] PASS             run_functions_076_FUNCTION_NUMVAL-F  (both empty)
+[ 288/697] PASS             run_functions_077_FUNCTION_ORD
+[ 289/697] PASS             run_functions_078_FUNCTION_ORD-MAX
+[ 290/697] PASS             run_functions_079_FUNCTION_ORD-MIN
+[ 291/697] PASS             run_functions_080_FUNCTION_PI  (both empty)
+[ 292/697] PASS             run_functions_081_FUNCTION_PRESENT-VALUE
+[ 293/697] PASS             run_functions_082_FUNCTION_RANDOM  (both empty)
+[ 294/697] PASS             run_functions_083_FUNCTION_RANGE  (both empty)
+[ 295/697] PASS             run_functions_084_FUNCTION_REM__valid_  (both empty)
+[ 296/697] PASS             run_functions_085_FUNCTION_REM__invalid_  (both empty)
+[ 297/697] PASS             run_functions_086_FUNCTION_REVERSE  (both empty)
+[ 298/697] PASS             run_functions_087_FUNCTION_REVERSE_with_reference_modding  (both empty)
+[ 299/697] PASS             run_functions_088_FUNCTION_SECONDS-FROM-FORMATTED-TIME  (both empty)
+[ 300/697] PASS             run_functions_089_FUNCTION_SECONDS-PAST-MIDNIGHT  (both empty)
+[ 301/697] PASS             run_functions_090_FUNCTION_SIGN  (both empty)
+[ 302/697] PASS             run_functions_091_FUNCTION_SIN  (both empty)
+[ 303/697] PASS             run_functions_092_FUNCTION_SQRT  (both empty)
+[ 304/697] PASS             run_functions_093_FUNCTION_STANDARD-DEVIATION  (both empty)
+[ 305/697] PASS             run_functions_094_FUNCTION_STORED-CHAR-LENGTH  (both empty)
+[ 306/697] PASS             run_functions_095_FUNCTION_SUBSTITUTE  (both empty)
+[ 307/697] PASS             run_functions_096_FUNCTION_SUBSTITUTE_with_reference_modding  (both empty)
+[ 308/697] PASS             run_functions_097_FUNCTION_SUBSTITUTE-CASE  (both empty)
+[ 309/697] PASS             run_functions_098_FUNCTION_SUBSTITUTE-CASE_with_reference_mod  (both empty)
+[ 310/697] PASS             run_functions_099_FUNCTION_SUM  (both empty)
+[ 311/697] PASS             run_functions_100_FUNCTION_TAN  (both empty)
+[ 312/697] PASS             run_functions_101_FUNCTION_TEST-DATE-YYYYMMDD
+[ 313/697] PASS             run_functions_102_FUNCTION_TEST-DAY-YYYYDDD
+[ 314/697] PASS             run_functions_103_FUNCTION_TEST-FORMATTED-DATETIME_with_dates  (both empty)
+[ 315/697] PASS             run_functions_104_FUNCTION_TEST-FORMATTED-DATETIME_with_times  (both empty)
+[ 316/697] PASS             run_functions_105_FUNCTION_TEST-FORMATTED-DATETIME_with_datetimes  (both empty)
+[ 317/697] PASS             run_functions_106_FUNCTION_TEST-FORMATTED-DATETIME_DP_COMMA  (both empty)
+[ 318/697] PASS             run_functions_107_FUNCTION_TEST-NUMVAL  (both empty)
+[ 319/697] PASS             run_functions_108_FUNCTION_TEST-NUMVAL-C  (both empty)
+[ 320/697] PASS             run_functions_109_FUNCTION_TEST-NUMVAL-F  (both empty)
+[ 321/697] PASS             run_functions_110_FUNCTION_TRIM
+[ 322/697] PASS             run_functions_111_FUNCTION_TRIM_with_reference_modding
+[ 323/697] PASS             run_functions_112_FUNCTION_TRIM_zero_length
+[ 324/697] PASS             run_functions_113_FUNCTION_UPPER-CASE  (both empty)
+[ 325/697] PASS             run_functions_114_FUNCTION_UPPER-CASE_with_reference_modding  (both empty)
+[ 326/697] PASS             run_functions_115_FUNCTION_VARIANCE  (both empty)
+[ 327/697] PASS             run_functions_116_FUNCTION_WHEN-COMPILED  (both empty)
+[ 328/697] PASS             run_functions_117_FUNCTION_YEAR-TO-YYYY  (both empty)
+[ 329/697] PASS             run_functions_118_Formatted_funcs_w__invalid_variable_format
+[ 330/697] PASS             run_functions_119_FORMATTED-_DATE_TIME_with_SYSTEM-OFFSET  (both empty)
+[ 331/697] PASS             run_functions_120_Intrinsics_without_FUNCTION_keyword__1_  (both empty)
+[ 332/697] PASS             run_functions_121_Intrinsics_without_FUNCTION_keyword__2_  (both empty)
+[ 333/697] PASS             run_functions_122_User-Defined_FUNCTION_with_without_parameter  (both empty)
+[ 334/697] PASS             run_functions_123_UDF_in_COMPUTE
+[ 335/697] PASS             run_functions_124_UDF_replacing_intrinsic_function
+[ 336/697] PASS             run_functions_125_UDF_with_recursion
+[ 337/697] PASS             run_fundamental_000_DISPLAY_literals
+[ 338/697] PASS             run_fundamental_001_DISPLAY_literals__DECIMAL-POINT_is_COMMA
+[ 339/697] PASS             run_fundamental_002_Hexadecimal_literal
+[ 340/697] PASS             run_fundamental_003_DISPLAY_data_items_with_VALUE_clause
+[ 341/697] PASS             run_fundamental_004_DISPLAY_data_items_with_MOVE_statement
+[ 342/697] PASS             run_fundamental_005_MOVE_to_edited_item__1_
+[ 343/697] PASS             run_fundamental_006_MOVE_to_edited_item__2_
+[ 344/697] PASS             run_fundamental_007_MOVE_to_edited_item__3_  (both empty)
+[ 345/697] PASS             run_fundamental_008_MOVE_to_item_with_simple_and_floating_insertion
+[ 346/697] PASS             run_fundamental_009_MOVE_to_JUSTIFIED_item
+[ 347/697] PASS             run_fundamental_010_MOVE_integer_literal_to_alphanumeric
+[ 348/697] PASS             run_fundamental_011_Compare_FLOAT-LONG_with_floating-point_literal  (both empty)
+[ 349/697] PASS             run_fundamental_012_equality_of_FLOAT-SHORT___FLOAT-LONG  (both empty)
+[ 350/697] PASS             run_fundamental_013_equality_of_FLOAT-SHORT___FLOAT-EXTENDED  (both empty)
+[ 351/697] PASS             run_fundamental_014_Overlapping_MOVE__GnuCOBOL_
+[ 352/697] PASS             run_fundamental_015_Overlapping_MOVE__IBM_
+[ 353/697] PASS             run_fundamental_016_ALPHABETIC_test  (both empty)
+[ 354/697] PASS             run_fundamental_017_ALPHABETIC-UPPER_test  (both empty)
+[ 355/697] PASS             run_fundamental_018_ALPHABETIC-LOWER_test  (both empty)
+[ 356/697] PASS             run_fundamental_019_GLOBAL_at_same_level
+[ 357/697] PASS             run_fundamental_020_GLOBAL_at_lower_level
+[ 358/697] PASS             run_fundamental_021_GLOBAL_CONSTANT
+[ 359/697] PASS             run_fundamental_022_GLOBAL_identifiers_from_ENVIRONMENT_DIVISION
+[ 360/697] PASS             run_fundamental_023_GLOBAL_REDEFINES
+[ 361/697] PASS             run_fundamental_025_Entry_point_visibility__1_
+[ 362/697] PASS             run_fundamental_026_Entry_point_visibility__2_  (both empty)
+[ 363/697] PASS             run_fundamental_027_Contained_program_visibility__1_  (both empty)
+[ 364/697] PASS             run_fundamental_028_Contained_program_visibility__2_  (both empty)
+[ 365/697] PASS             run_fundamental_029_Contained_program_visibility__3_  (both empty)
+[ 366/697] PASS             run_fundamental_030_Contained_program_visibility__4_
+[ 367/697] PASS             run_fundamental_031_CALL_alphanumeric_data-name
+[ 368/697] PASS             run_fundamental_032_CALL_program-pointer
+[ 369/697] PASS             run_fundamental_033_CALL_CANCEL_SET_ADDRESS_program-prototype-name
+[ 370/697] PASS             run_fundamental_034_GLOBAL_FD__1_  (both empty)
+[ 371/697] PASS             run_fundamental_035_GLOBAL_FD__2_  (both empty)
+[ 372/697] PASS             run_fundamental_036_GLOBAL_FD__3_  (both empty)
+[ 373/697] PASS             run_fundamental_037_GLOBAL_FD__4_  (both empty)
+[ 374/697] PASS             run_fundamental_038_CANCEL_test__1_  (both empty)
+[ 375/697] PASS             run_fundamental_039_CANCEL_test__2_  (both empty)
+[ 376/697] PASS             run_fundamental_040_CANCEL_test__3_
+[ 377/697] PASS             run_fundamental_041_Separate_sign_positions__1_
+[ 378/697] PASS             run_fundamental_042_Separate_sign_positions__2_
+[ 379/697] PASS             run_fundamental_043_Context_sensitive_words__1_
+[ 380/697] PASS             run_fundamental_044_Context_sensitive_words__2_
+[ 381/697] PASS             run_fundamental_045_Context_sensitive_words__3_
+[ 382/697] PASS             run_fundamental_046_Context_sensitive_words__4_
+[ 383/697] PASS             run_fundamental_047_Context_sensitive_words__5_
+[ 384/697] PASS             run_fundamental_048_Context_sensitive_words__6_
+[ 385/697] PASS             run_fundamental_049_Context_sensitive_words__7_
+[ 386/697] PASS             run_fundamental_050_Context_sensitive_words__8_
+[ 387/697] PASS             run_fundamental_051_ROUNDED_AWAY-FROM-ZERO
+[ 388/697] PASS             run_fundamental_052_ROUNDED_NEAREST-AWAY-FROM-ZERO
+[ 389/697] PASS             run_fundamental_053_ROUNDED_NEAREST-EVEN
+[ 390/697] PASS             run_fundamental_054_ROUNDED_NEAREST-TOWARD-ZERO
+[ 391/697] PASS             run_fundamental_055_ROUNDED_TOWARD-GREATER
+[ 392/697] PASS             run_fundamental_056_ROUNDED_TOWARD-LESSER
+[ 393/697] PASS             run_fundamental_057_ROUNDED_TRUNCATION
+[ 394/697] PASS             run_fundamental_058_Numeric_operations__1_  (both empty)
+[ 395/697] PASS             run_fundamental_059_Numeric_operations__2__DISPLAY  (both empty)
+[ 396/697] PASS             run_fundamental_061_Numeric_operations__4__BINARY  (both empty)
+[ 397/697] PASS             run_fundamental_062_Numeric_operations__5__COMP-5  (both empty)
+[ 398/697] PASS             run_fundamental_063_Numeric_operations__6_  (both empty)
+[ 399/697] PASS             run_fundamental_064_Numeric_operations__7_  (both empty)
+[ 400/697] PASS             run_fundamental_065_Numeric_operations__8_  (both empty)
+[ 401/697] PASS             run_fundamental_066_ADD_CORRESPONDING  (both empty)
+[ 402/697] PASS             run_fundamental_067_ADD_CORRESPONDING_no_match  (both empty)
+[ 403/697] PASS             run_fundamental_068_SYNC_in_OCCURS
+[ 404/697] PASS             run_fundamental_069_88_level_with_THRU  (both empty)
+[ 405/697] PASS             run_fundamental_070_88_level_with_FILLER  (both empty)
+[ 406/697] PASS             run_fundamental_071_88_level_with_FALSE_IS_clause  (both empty)
+[ 407/697] PASS             run_fundamental_072_BLANK_WHEN_ZERO
+[ 408/697] PASS             run_fundamental_073_MULTIPLY_BY_literal_in_INITIAL_program  (both empty)
+[ 409/697] PASS             run_fundamental_074_DIVIDE_complex  (both empty)
+[ 410/697] PASS             run_fundamental_075_COMPUTE_with_decimal_constants  (both empty)
+[ 411/697] PASS             run_fundamental_076_debugging_lines__not_active_
+[ 412/697] PASS             run_fundamental_077_debugging_lines__-fdebugging-line_
+[ 413/697] PASS             run_fundamental_078_debugging_lines__WITH_DEBUGGING_MODE_
+[ 414/697] PASS             run_fundamental_079_debugging_lines__free_format__not_active_
+[ 415/697] PASS             run_fundamental_080_debugging_lines__free_format__-fdebugging-line_
+[ 416/697] PASS             run_fundamental_081_USE_FOR_DEBUGGING__no_DEBUGGING_MODE_
+[ 417/697] PASS             run_fundamental_082_USE_FOR_DEBUGGING__COB_SET_DEBUG_deactivated_
+[ 418/697] PASS             run_fundamental_083_USE_FOR_DEBUGGING_ON_ALL_PROCEDURES
+[ 419/697] PASS             run_fundamental_084_USE_FOR_DEBUGGING_ON_procedure
+[ 420/697] PASS             run_fundamental_086_USE_FOR_DEBUGGING__reference_within_DEBUGGING
+[ 421/697] PASS             run_fundamental_087_USE_FOR_DEBUGGING__time_of_execution
+[ 422/697] PASS             run_fundamental_088_USE_FOR_DEBUGGING__reference_with_OCCURS  (both empty)
+[ 423/697] PASS             run_fundamental_089_USE_FOR_DEBUGGING__referencing_BASED_item  (both empty)
+[ 424/697] PASS             run_fundamental_090_USE_FOR_DEBUGGING_file  (both empty)
+[ 425/697] PASS             run_fundamental_091_Simple_Expressions_with_figurative_constants  (both empty)
+[ 426/697] PASS             run_fundamental_092_Expression_numeric_vs__DISPLAY  (both empty)
+[ 427/697] PASS             run_fundamental_093_Abbreviated_Expressions
+[ 428/697] PASS             run_fundamental_094_integer_arithmetic_on_floating-point_var  (both empty)
+[ 429/697] PASS             run_fundamental_096_Alphanumeric_VALUE_longer_than_PIC  (both empty)
+[ 430/697] PASS             run_fundamental_097_DISPLAY_with_P_fields
+[ 431/697] PASS             run_fundamental_098_condition_IS_ZERO_AND
+[ 432/697] PASS             run_fundamental_099_abbreviated_conditions_with_multiple_words_operato
+[ 433/697] PASS             run_fundamental_100_abbreviated_conditions_with_multiple_words_operato  (both empty)
+[ 434/697] PASS             run_fundamental_101_MOVE_with_JUSTIFIED_clause  (both empty)
+[ 435/697] PASS             run_fundamental_102_MOVE_with_PICTURE_P  (both empty)
+[ 436/697] PASS             run_fundamental_103_MOVE_with_de-editting_to_USAGE_DISPLAY  (both empty)
+[ 437/697] PASS             run_fundamental_104_MOVE_with_de-editting_to_DECIMAL_IS_COMMA  (both empty)
+[ 438/697] PASS             run_fundamental_105_MOVE_with_de-editting_to_BINARY  (both empty)
+[ 439/697] PASS             run_fundamental_106_MOVE_with_de-editting_to_COMP-3  (both empty)
+[ 440/697] PASS             run_fundamental_107_MOVE_with_de-editting_to_COMP-5  (both empty)
+[ 441/697] PASS             run_fundamental_108_MOVE_with_de-editting_to_NUMERIC_DISPLAY__2_  (both empty)
+[ 442/697] PASS             run_fundamental_109_MOVE_misc__edited  (both empty)
+[ 443/697] PASS             run_fundamental_110_MOVE_between_USAGEs  (both empty)
+[ 444/697] PASS             run_fundamental_111_MOVE_to_editted_ZERO  (both empty)
+[ 445/697] PASS             run_fundamental_112_SPECIAL-NAMES_CLASS  (both empty)
+[ 446/697] PASS             run_initialize_000_INITIALIZE_group_entry_with_OCCURS  (both empty)
+[ 447/697] PASS             run_initialize_001_INITIALIZE_OCCURS_with_numeric_edited  (both empty)
+[ 448/697] PASS             run_initialize_002_INITIALIZE_OCCURS_with_SIGN_LEADING___TRAILING
+[ 449/697] PASS             run_initialize_003_INITIALIZE_complex_group__1_  (both empty)
+[ 450/697] PASS             run_initialize_004_INITIALIZE_complex_group__2_  (both empty)
+[ 451/697] PASS             run_initialize_005_initial_value_for_group_item_with_VALUE  (both empty)
+[ 452/697] PASS             run_initialize_006_Value_for_group_item_with_VALUE  (both empty)
+[ 453/697] PASS             run_initialize_007_INITIALIZE_group_item  (both empty)
+[ 454/697] PASS             run_initialize_008_INITIALIZE_with_REDEFINES  (both empty)
+[ 455/697] PASS             run_initialize_009_INITIALIZE_with_FILLER  (both empty)
+[ 456/697] PASS             run_initialize_010_INITIALIZE_of_EXTERNAL_data_items  (both empty)
+[ 457/697] PASS             run_initialize_011_INITIALIZE_with_reference-modification  (both empty)
+[ 458/697] PASS             run_initialize_012_INITIALIZE_big_table_with_VALUE  (both empty)
+[ 459/697] PASS             run_initialize_013_INITIALIZE_to_table-format_VALUES_ARE
+[ 460/697] PASS             run_manual_screen_000_LINE
+[ 461/697] PASS             run_manual_screen_001_COLUMN__1_
+[ 462/697] PASS             run_manual_screen_002_COLUMN__2_
+[ 463/697] PASS             run_manual_screen_003_LINE_non-zero__COLUMN_zero
+[ 464/697] PASS             run_manual_screen_004_LINE_zero__COLUMN_non-zero
+[ 465/697] PASS             run_manual_screen_005_LINE_zero__COLUMN_zero
+[ 466/697] PASS             run_manual_screen_006_DISPLAY_AT
+[ 467/697] PASS             run_manual_screen_007_DISPLAY_LOW-VALUES__one_statement_
+[ 468/697] PASS             run_manual_screen_008_DISPLAY_LOW-VALUES__two_statements_
+[ 469/697] PASS             run_manual_screen_009_DISPLAY_SPACES
+[ 470/697] PASS             run_manual_screen_010_DISPLAY_ALL_X_01_
+[ 471/697] PASS             run_manual_screen_013_Screen_position_after_field_display
+[ 472/697] PASS             run_manual_screen_014_Overridden_clauses__1_
+[ 473/697] PASS             run_manual_screen_015_Overridden_clauses__2_
+[ 474/697] PASS             run_manual_screen_016_AUTO
+[ 475/697] PASS             run_manual_screen_017_SCREEN_BACKGROUND-___FOREGROUND-COLOUR
+[ 476/697] PASS             run_manual_screen_018_SCREEN_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR
+[ 477/697] PASS             run_manual_screen_019_field_BACKGROUND-___FOREGROUND-COLOUR
+[ 478/697] PASS             run_manual_screen_024_BLANK_LINE
+[ 479/697] PASS             run_manual_screen_025_BLANK_SCREEN
+[ 480/697] PASS             run_manual_screen_027_BLINK
+[ 481/697] PASS             run_manual_screen_028_ERASE_EOS
+[ 482/697] PASS             run_manual_screen_029_ERASE_EOL
+[ 483/697] PASS             run_manual_screen_031_FULL_and_REQUIRED
+[ 484/697] PASS             run_manual_screen_032_HIGHLIGHT
+[ 485/697] PASS             run_manual_screen_033_INITIAL
+[ 486/697] PASS             run_manual_screen_034_LEFTLINE
+[ 487/697] PASS             run_manual_screen_035_LOWLIGHT
+[ 488/697] PASS             run_manual_screen_036_OVERLINE
+[ 489/697] PASS             run_manual_screen_037_REVERSE-VIDEO
+[ 490/697] PASS             run_manual_screen_038_SECURE
+[ 491/697] PASS             run_manual_screen_041_UPDATE
+[ 492/697] PASS             run_manual_screen_042_UNDERLINE
+[ 493/697] PASS             run_manual_screen_049_ACCEPT_field_WITH_CURSOR_literal
+[ 494/697] PASS             run_misc_000_Comma_separator_without_space
+[ 495/697] PASS             run_misc_001_DECIMAL-POINT_is_COMMA__1_
+[ 496/697] PASS             run_misc_002_DECIMAL-POINT_is_COMMA__2_
+[ 497/697] PASS             run_misc_003_DECIMAL-POINT_is_COMMA__3_
+[ 498/697] PASS             run_misc_004_DECIMAL-POINT_is_COMMA__4_
+[ 499/697] PASS             run_misc_005_DECIMAL-POINT_is_COMMA__5_
+[ 500/697] PASS             run_misc_006_CURRENCY_SIGN
+[ 501/697] PASS             run_misc_014_MOVE_to_itself  (both empty)
+[ 502/697] PASS             run_misc_015_MOVE_with_refmod  (both empty)
+[ 503/697] PASS             run_misc_016_MOVE_with_refmod__variable_  (both empty)
+[ 504/697] PASS             run_misc_017_MOVE_with_group_refmod  (both empty)
+[ 505/697] PASS             run_misc_018_MOVE_indexes  (both empty)
+[ 506/697] PASS             run_misc_019_MOVE_X_00_
+[ 507/697] PASS             run_misc_020_MOVE_Z_literal_
+[ 508/697] PASS             run_misc_021_Floating_continuation_indicator
+[ 509/697] PASS             run_misc_022_Fixed_continuation_indicator
+[ 510/697] PASS             run_misc_023_Concatenation_operator
+[ 511/697] PASS             run_misc_024_SOURCE_FIXED_FREE_directives
+[ 512/697] PASS             run_misc_025_TURN_directive
+[ 513/697] PASS             run_misc_026_OCCURS_on_level_01  (both empty)
+[ 514/697] PASS             run_misc_027_Class_check_with_reference-modification  (both empty)
+[ 515/697] PASS             run_misc_028_Index_and_parenthesized_expression
+[ 516/697] PASS             run_misc_029_Alphanumeric_and_binary_numeric  (both empty)
+[ 517/697] PASS             run_misc_030_Non-numeric_data_in_numeric_items
+[ 518/697] PASS             run_misc_041_CALL_binary_literal_parameter_LENGTH_OF
+[ 519/697] PASS             run_misc_042_INSPECT_REPLACING_LEADING_ZEROS_BY_SPACES  (both empty)
+[ 520/697] PASS             run_misc_043_INSPECT__no_repeat_conversion  (both empty)
+[ 521/697] PASS             run_misc_044_TRANSFORM_statement  (both empty)
+[ 522/697] PASS             run_misc_045_INSPECT_CONVERTING_alphabet
+[ 523/697] PASS             run_misc_046_INSPECT_CONVERTING_TO_figurative_constant  (both empty)
+[ 524/697] PASS             run_misc_047_INSPECT_CONVERTING_NULL  (both empty)
+[ 525/697] PASS             run_misc_048_INSPECT_CONVERTING_TO_NULL  (both empty)
+[ 526/697] PASS             run_misc_049_INSPECT_CONVERTING_complex  (both empty)
+[ 527/697] PASS             run_misc_050_INSPECT_numeric_signed  (both empty)
+[ 528/697] PASS             run_misc_051_INSPECT_TALLYING_BEFORE  (both empty)
+[ 529/697] PASS             run_misc_052_INSPECT_TALLYING_AFTER  (both empty)
+[ 530/697] PASS             run_misc_053_INSPECT_TALLYING_BEFORE_and_AFTER  (both empty)
+[ 531/697] PASS             run_misc_054_INSPECT_TALLYING_REPLACING_BEFORE_and_AFTER  (both empty)
+[ 532/697] PASS             run_misc_055_INSPECT_REPLACING_figurative_constant  (both empty)
+[ 533/697] PASS             run_misc_056_SWITCHES__environment_COB_SWITCH_n_and_SET_
+[ 534/697] PASS             run_misc_057_Nested_PERFORM
+[ 535/697] PASS             run_misc_058_PERFORM_VARYING_BY_-0_2_decimal
+[ 536/697] PASS             run_misc_059_PERFORM_VARYING_Float
+[ 537/697] PASS             run_misc_060_PERFORM_VARYING_BY_phrase_omitted
+[ 538/697] PASS             run_misc_061_EXIT_PERFORM
+[ 539/697] PASS             run_misc_062_EXIT_PERFORM_CYCLE
+[ 540/697] PASS             run_misc_063_EXIT_PARAGRAPH  (both empty)
+[ 541/697] PASS             run_misc_064_EXIT_SECTION  (both empty)
+[ 542/697] PASS             run_misc_065_implicit_GOBACK_at_end_of_PROCEDURE_DIVISION  (both empty)
+[ 543/697] PASS             run_misc_066_PERFORM_FOREVER___PERFORM_UNTIL_EXIT  (both empty)
+[ 544/697] PASS             run_misc_067_PERFORM_inline__1_  (both empty)
+[ 545/697] PASS             run_misc_068_PERFORM_inline__2_  (both empty)
+[ 546/697] PASS             run_misc_069_Non-overflow_after_overflow  (both empty)
+[ 547/697] PASS             run_misc_070_PERFORM_____CONTINUE  (both empty)
+[ 548/697] PASS             run_misc_071_STRING_with_subscript_reference  (both empty)
+[ 549/697] PASS             run_misc_072_STRING_WITH_POINTER_ON_OVERFLOW_with_DELIMITER  (both empty)
+[ 550/697] PASS             run_misc_073_UNSTRING_DELIMITED_ALL_LOW-VALUE  (both empty)
+[ 551/697] PASS             run_misc_074_UNSTRING_DELIMITED_ALL_SPACE-2  (both empty)
+[ 552/697] PASS             run_misc_075_UNSTRING_DELIMITED_POINTER  (both empty)
+[ 553/697] PASS             run_misc_076_UNSTRING_DELIMITER_IN  (both empty)
+[ 554/697] PASS             run_misc_077_UNSTRING_combined  (both empty)
+[ 555/697] PASS             run_misc_078_UNSTRING_with_FUNCTION___literal
+[ 556/697] PASS             run_misc_079_SORT__table  (both empty)
+[ 557/697] PASS             run_misc_080_SORT__table__2_
+[ 558/697] PASS             run_misc_081_SORT__table__3_
+[ 559/697] PASS             run_misc_082_SORT__table__toplevel_  (both empty)
+[ 560/697] PASS             run_misc_083_SORT__EBCDIC_table  (both empty)
+[ 561/697] PASS             run_misc_084_Alphanum_comparison_with_default_COLLATING_SEQUENC  (both empty)
+[ 562/697] PASS             run_misc_085_SORT__table_with_default_COLLATING_SEQUENCE  (both empty)
+[ 563/697] PASS             run_misc_086_JUSTIFIED_and_VALUE_clauses  (both empty)
+[ 564/697] PASS             run_misc_087_SEARCH_ALL__table_with_default_COLLATING_SEQUENCE  (both empty)
+[ 565/697] PASS             run_misc_088_PIC_ZZZ-__ZZZ_  (both empty)
+[ 566/697] PASS             run_misc_089_PERFORM_type_OSVS  (both empty)
+[ 567/697] PASS             run_misc_092_COB_PRE_LOAD_with_entry_points
+[ 568/697] PASS             run_misc_093_Lookup_ENTRY_from_main_executable
+[ 569/697] PASS             run_misc_095_ALLOCATE___FREE_with_BASED_item__1_  (both empty)
+[ 570/697] PASS             run_misc_096_ALLOCATE___FREE_with_BASED_item__2_  (both empty)
+[ 571/697] PASS             run_misc_097_ALLOCATE_CHARACTERS_INITIALIZED__TO_  (both empty)
+[ 572/697] PASS             run_misc_098_Initialized_value_with_defaultbyte  (both empty)
+[ 573/697] PASS             run_misc_104_CALL_C_with_callback__PROCEDURE_DIVISION_EXTERN  (both empty)
+[ 574/697] PASS             run_misc_105_CALL_C_with_callback__ENTRY-CONVENTION_EXTERN  (both empty)
+[ 575/697] PASS             run_misc_110_ANY_LENGTH__3_
+[ 576/697] PASS             run_misc_111_ANY_LENGTH__4_  (both empty)
+[ 577/697] PASS             run_misc_113_access_to_BASED_item_without_allocation  (both empty)
+[ 578/697] PASS             run_misc_115_STOP_RUN_WITH_NORMAL_STATUS  (both empty)
+[ 579/697] PASS             run_misc_116_STOP_RUN_WITH_ERROR_STATUS  (both empty)
+[ 580/697] PASS             run_misc_117_STOP_ERROR  (both empty)
+[ 581/697] PASS             run_misc_118_SYMBOLIC_clause  (both empty)
+[ 582/697] PASS             run_misc_119_OCCURS_clause_with_1_entry  (both empty)
+[ 583/697] PASS             run_misc_120_Computing_of_different_USAGEs_w_o_decimal_point  (both empty)
+[ 584/697] PASS             run_misc_121_Computing_of_different_USAGEs_w_-_decimal_point  (both empty)
+[ 585/697] PASS             run_misc_122_compilation-group_with_decimal  (both empty)
+[ 586/697] PASS             run_misc_124_PICTURE_with_Edit_mask
+[ 587/697] PASS             run_misc_125_PACKED-DECIMAL_in_PERFORM_VARYING
+[ 588/697] PASS             run_misc_126_POINTER  (both empty)
+[ 589/697] PASS             run_misc_128_ON_EXCEPTION_clause_of_DISPLAY  (both empty)
+[ 590/697] PASS             run_misc_131_SET_LAST_EXCEPTION_TO_OFF
+[ 591/697] PASS             run_misc_133_Figurative_constants_to_numeric_field
+[ 592/697] PASS             run_misc_134_MF_FIGURATIVE_to_NUMERIC
+[ 593/697] PASS             run_misc_138_Trace_feature_with_subroutine
+[ 594/697] PASS             run_misc_140_dump_feature_with_NULL_address
+[ 595/697] PASS             run_misc_141_CALL_with_program_prototypes
+[ 596/697] PASS             run_misc_142_REDEFINES_values_on_FILLER_and_INITIALIZE
+[ 597/697] PASS             run_misc_143_PICTURE_with_constant-name  (both empty)
+[ 598/697] PASS             run_misc_144_Quote_marks_in_comment_paragraphs
+[ 599/697] PASS             run_misc_145_Numeric_MOVE_with_without_-fbinary-truncate
+[ 600/697] PASS             run_misc_146_Alphanumeric_MOVE_with_truncation  (both empty)
+[ 601/697] PASS             run_misc_147_PROGRAM-ID___CALL_literal_variable_with_spaces
+[ 602/697] PASS             run_misc_148_PROGRAM-ID___CALL_with_hyphen_and_underscore
+[ 603/697] PASS             run_misc_149_CALL_with_directory
+[ 604/697] PASS             run_misc_150_C-API__param_based_
+[ 605/697] PASS             run_misc_151_C-API__field_based_
+[ 606/697] PASS             run_misc_152_OPTIONS_paragraph__DEFAULT_ROUNDED_MODE
+[ 607/697] PASS             run_misc_153_OCCURS_INDEXED_ASCENDING
+[ 608/697] PASS             run_misc_154_ZERO_unsigned_and_negative_binary_subscript
+[ 609/697] PASS             run_misc_155_Default_Arithmetic__1_
+[ 610/697] PASS             run_misc_156_Default_Arithmetic_Test__2_
+[ 611/697] PASS             run_misc_157_OSVS_Arithmetic__1_
+[ 612/697] PASS             run_misc_158_OSVS_Arithmetic_Test__2_
+[ 613/697] PASS             run_misc_159_SET_CONSTANT_directive
+[ 614/697] PASS             run_misc_160_DEFINE_OVERRIDE
+[ 615/697] PASS             run_misc_161_DEFINE_Defaults
+[ 616/697] PASS             run_misc_162_78_VALUE
+[ 617/697] PASS             run_misc_163_01_CONSTANT
+[ 618/697] PASS             run_misc_164_DISPLAY_UPON
+[ 619/697] PASS             run_misc_165_FLOAT-DECIMAL_w_o_SIZE_ERROR
+[ 620/697] PASS             run_misc_166_FLOAT-SHORT___FLOAT-LONG_w_o_SIZE_ERROR
+[ 621/697] PASS             run_misc_167_FLOAT-SHORT_with_SIZE_ERROR
+[ 622/697] PASS             run_misc_168_FLOAT-LONG_with_SIZE_ERROR
+[ 623/697] PASS             run_misc_169_EC-SIZE-ZERO-DIVIDE  (both empty)
+[ 624/697] PASS             run_misc_170_EC-SIZE-OVERFLOW  (both empty)
+[ 625/697] PASS             run_misc_171_Constant_Expressions
+[ 626/697] PASS             run_misc_172_ENTRY_FOR_GO_TO___GO_TO_ENTRY
+[ 627/697] PASS             run_misc_173_runtime_checks_within_conditions  (both empty)
+[ 628/697] PASS             run_misc_175_runtime_check__write_to_internal_storage__2_  (both empty)
+[ 629/697] PASS             run_misc_176_assorted_math
+[ 630/697] PASS             run_misc_177_compare_numeric_DISPLAY_SPACE_with_ZERO
+[ 631/697] PASS             run_ml_000_XML_GENERATE_general  (both empty)
+[ 632/697] PASS             run_ml_001_XML_GENERATE_SUPPRESS  (both empty)
+[ 633/697] PASS             run_ml_003_XML_GENERATE_record_selection  (both empty)
+[ 634/697] PASS             run_ml_004_XML_GENERATE_trimming  (both empty)
+[ 635/697] PASS             run_ml_005_XML_DPC-IN-DATA_directive  (both empty)
+[ 636/697] PASS             run_ml_006_XML_dpc-in-data_config_option
+[ 637/697] PASS             run_ml_007_JSON_GENERATE_general  (both empty)
+[ 638/697] PASS             run_ml_008_JSON_GENERATE_SUPPRESS  (both empty)
+[ 639/697] PASS             run_ml_009_JSON_GENERATE_exceptions  (both empty)
+[ 640/697] PASS             run_ml_010_JSON_GENERATE_record_selection  (both empty)
+[ 641/697] PASS             run_ml_011_JSON_GENERATE_trimming  (both empty)
+[ 642/697] PASS             run_ml_012_JSON_DPC-IN-DATA_directive  (both empty)
+[ 643/697] PASS             run_ml_013_JSON_dpc-in-data_config_option
+[ 644/697] PASS             run_refmod_000_Static_reference-modification
+[ 645/697] PASS             run_refmod_001_Dynamic_reference-modification
+[ 646/697] PASS             run_refmod_002_Offset_underflow  (both empty)
+[ 647/697] PASS             run_refmod_003_Offset_overflow
+[ 648/697] PASS             run_refmod_004_Length_underflow  (both empty)
+[ 649/697] PASS             run_refmod_005_Length_overflow
+[ 650/697] PASS             run_refmod_006_Length_overflow_with_offset__1_
+[ 651/697] PASS             run_refmod_007_Length_overflow_with_offset__2_
+[ 652/697] PASS             run_refmod_008_Length_overflow_with_offset__3_
+[ 653/697] PASS             run_refmod_009_enable___disable_ref-mod_check
+[ 654/697] PASS             run_refmod_010_MF_SSRANGE_and_NOSSRANGE_directives
+[ 655/697] PASS             run_reportwriter_000_Report_Line_Order  (both empty)
+[ 656/697] PASS             run_reportwriter_001_REPORT_COL_PLUS  (both empty)
+[ 657/697] PASS             run_reportwriter_002_Report_Overlapping_Fields  (both empty)
+[ 658/697] PASS             run_reportwriter_003_EMPTY_REPORT  (both empty)
+[ 659/697] PASS             run_reportwriter_004_PAGE_LIMIT_REPORT  (both empty)
+[ 660/697] PASS             run_reportwriter_005_PAGE_LIMIT_REPORT_2  (both empty)
+[ 661/697] PASS             run_reportwriter_006_Sample_Customer_Report  (both empty)
+[ 662/697] PASS             run_reportwriter_007_Sample_Charge_Report  (both empty)
+[ 663/697] PASS             run_reportwriter_008_Sample_Charge_Report_2  (both empty)
+[ 664/697] PASS             run_reportwriter_009_Sample_Charge_Report_3  (both empty)
+[ 665/697] PASS             run_reportwriter_010_Sample_Charge_Report_4  (both empty)
+[ 666/697] PASS             run_reportwriter_011_Sample_Payroll_Report  (both empty)
+[ 667/697] PASS             run_reportwriter_012_Sample_REPORT_with_RIGHT_CENTER  (both empty)
+[ 668/697] PASS             run_reportwriter_013_STUDENT_REPORT_with_INITIAL  (both empty)
+[ 669/697] PASS             run_reportwriter_014_ORDER_REPORT__Test_substring  (both empty)
+[ 670/697] PASS             run_reportwriter_015_Sample_Control_Break  (both empty)
+[ 671/697] PASS             run_reportwriter_016_Sample_Inventory_Report  (both empty)
+[ 672/697] PASS             run_reportwriter_017_Duplicate_Detail_Line  (both empty)
+[ 673/697] PASS             run_reportwriter_018_Report_with_OCCURS  (both empty)
+[ 674/697] PASS             run_reportwriter_020_Test_Report_dump_DECLARATIVES
+[ 675/697] PASS             run_reportwriter_021_Duplicate_INITIATE  (both empty)
+[ 676/697] PASS             run_reportwriter_022_Missing_INITIATE_and_GENERATE  (both empty)
+[ 677/697] PASS             run_reportwriter_023_Missing_INITIATE_and_TERMINATE  (both empty)
+[ 678/697] PASS             run_reportwriter_024_Next_Group_Next_Page  (both empty)
+[ 679/697] PASS             run_reportwriter_025_Report_PRESENT_AFTER
+[ 680/697] PASS             run_reportwriter_026_Varying_and_Nested_OCCURS
+[ 681/697] PASS             run_reportwriter_027_BEFORE_REPORTING
+[ 682/697] PASS             run_returncode_000_RETURN-CODE_moving  (both empty)
+[ 683/697] PASS             run_returncode_001_RETURN-CODE_passing  (both empty)
+[ 684/697] PASS             run_returncode_002_RETURN-CODE_nested  (both empty)
+[ 685/697] PASS             run_subscripts_000_Subscript_out_of_bounds  (both empty)
+[ 686/697] PASS             run_subscripts_001_Value_of_DEPENDING_ON_N_out_of_bounds
+[ 687/697] PASS             run_subscripts_002_Subscript_bounds_with_OCCURS_DEPENDING_ON__1_  (both empty)
+[ 688/697] PASS             run_subscripts_003_Subscript_bounds_with_OCCURS_DEPENDING_ON__2_  (both empty)
+[ 689/697] PASS             run_subscripts_004_Subscript_bounds_with_OCCURS_DEPENDING_ON__3_  (both empty)
+[ 690/697] PASS             run_subscripts_005_Subscript_by_arithmetic_expression  (both empty)
+[ 691/697] PASS             run_subscripts_006_length_of_ODO_w_-_reference-modification  (both empty)
+[ 692/697] PASS             run_subscripts_007_SEARCH_ALL_with_OCCURS_DEPENDING_ON
+[ 693/697] PASS             run_subscripts_008_enable___disable_subscript_check
+[ 694/697] PASS             run_subscripts_009_enable___disable_subscript_check_with_ODO  (both empty)
+[ 695/697] PASS             run_subscripts_010_BOUND_and_NOBOUND_directives  (both empty)
+[ 696/697] PASS             run_subscripts_011_SSRANGE_and_NOSSRANGE_directives
+[ 697/697] PASS             run_subscripts_012_CALL_with_OCCURS_DEPENDING_ON
 
 ============================================================
   PARITY VALIDATION SUMMARY
 ============================================================
-  Compile rate:  100.0%  (660 / 660)  — Rust output compiles
-  Parity rate:   100.0%  (660 / 660)  ← byte-for-byte vs reference
+  Compile rate:  100.0%  (697 / 697)  — Rust output compiles
+  Parity rate:   100.0%  (697 / 697)  ← byte-for-byte vs reference
 ------------------------------------------------------------
-  PASS               660
-  MISMATCH             0  (see parity_results/mismatches.txt)
-  BUILD_FAIL_RUST      0  (rustc rejected transpiled .rs)
-  TIMEOUT              0  (interactive — needs keyboard input)
+  PASS               697
+  MISMATCH             0  (see /ironclad/parity_results/mismatches.txt)
+  BUILD_FAIL_RUST      0
+  TIMEOUT              0
 ============================================================

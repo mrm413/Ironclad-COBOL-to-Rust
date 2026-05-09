@@ -1,0 +1,8 @@
+{
+  "inp_data": "Record 1................................X.......\nRecord 2.....................X\nRecord 3................................X...\n",
+  "_env": {
+    "COB_LS_SPLIT": "FALSE",
+    "DD_INFILE": "./inp_data",
+    "OUTFILE": "TEST-FILE"
+  }
+}

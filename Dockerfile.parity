@@ -1,40 +1,61 @@
 # =============================================================================
 #  Ironclad Federal Parity Validator — Docker image
 # =============================================================================
-#  Runs both engines side-by-side on every COBOL program in this repo:
-#     GnuCOBOL 3.x  →  cobc -x  →  reference exe
-#     Ironclad      →  rustc    →  transpiled exe
-#  Streams byte-for-byte parity results in real time.
+#  Runs every Ironclad-transpiled Rust binary against the captured GnuCOBOL
+#  golden output, byte-for-byte. Mirrors the project's main parity runner:
+#
+#     * Per-test cwd = test source dir (file I/O resolves)
+#     * _at_data.json fixture staging (data files + env vars)
+#     * Output normalization (CRLF, trailing whitespace, null bytes,
+#       screen-mode "end of program" trailer)
+#     * Cross-platform terminal emulator (pyte + ptyprocess) for SCREEN
+#       SECTION programs — same architecture as the Windows runner's pywinpty
+#     * Non-deterministic output masking (memory addresses)
+#
+#  Streams byte-for-byte parity results in real time with color tags.
 #
 #  Build:
 #     docker build -t ironclad-parity -f Dockerfile.parity .
 #
-#  Run (full 1545):
+#  Run with color (interactive TTY — green PASS / red MISMATCH ticks live):
+#     docker run --rm -it ironclad-parity
+#
+#  Quick check (first 50 programs):
+#     docker run --rm -it ironclad-parity python3 parity_runner.py --quick 50
+#
+#  Filter to a category:
+#     docker run --rm -it ironclad-parity python3 parity_runner.py --filter run_misc
+#
+#  Plain mode (no TTY, no color, still streams):
 #     docker run --rm ironclad-parity
-#
-#  Run (quick 50):
-#     docker run --rm ironclad-parity bash parity_harness.sh --quick 50
-#
-#  Run (filter):
-#     docker run --rm ironclad-parity bash parity_harness.sh --filter run_misc
 #
 #  Exit codes:
 #     0 = 100% parity
 #     1 = at least one MISMATCH (logic divergence)
 #     2 = at least one BUILD_FAIL_RUST (transpiled output didn't compile)
-#     3 = TIMEOUT_DIVERGE (one engine hung, other didn't)
+#     3 = at least one TIMEOUT (interactive program hit the time limit)
 # =============================================================================
 
 FROM rust:1.85-slim-bookworm
 
-# GnuCOBOL 3.x is the reference compiler; coreutils provides `timeout`
+# GnuCOBOL 3.x is available for `--live` reference-recompile mode (optional);
+# Python 3 + pyte + ptyprocess provide the cross-platform terminal emulator
+# that runs SCREEN SECTION programs against captured goldens.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         gnucobol \
         coreutils \
         ca-certificates \
-        build-essential && \
-    rm -rf /var/lib/apt/lists/*
+        build-essential \
+        python3 \
+        python3-pip \
+        && rm -rf /var/lib/apt/lists/*
+
+# Install pyte (VT100 emulator) + ptyprocess (Linux PTY) into system Python.
+# --break-system-packages is needed on Bookworm's PEP 668 Python.
+RUN pip3 install --no-cache-dir --break-system-packages \
+        pyte==0.8.2 \
+        ptyprocess==0.7.0
 
 WORKDIR /ironclad
 
@@ -44,15 +65,18 @@ COPY cobol-runtime/ cobol-runtime/
 # Pre-build the runtime in release mode so the per-test rustc step skips it
 RUN cd cobol-runtime && cargo build --release && cd ..
 
-# COBOL sources + transpiled Rust output + captured GnuCOBOL golden output
-# (all already public in the repo)
+# COBOL sources + transpiled Rust output + captured GnuCOBOL goldens
 COPY cobol_source/ cobol_source/
 COPY rust_output/  rust_output/
 COPY golden/       golden/
 
-# Parity harness
+# Python parity runner + vendored terminal emulator
+COPY parity_runner.py .
+COPY emulator.py     .
+
+# Bash harness kept as a fallback for `--live` cobc-compare mode
 COPY parity_harness.sh .
 RUN chmod +x parity_harness.sh
 
-# Default: full sweep, skipping the runtime-build step (already done above)
-CMD ["bash", "parity_harness.sh", "--no-build"]
+# Default: full sweep with the Python runner (skipping cobol-runtime rebuild)
+CMD ["python3", "parity_runner.py", "--no-build"]
