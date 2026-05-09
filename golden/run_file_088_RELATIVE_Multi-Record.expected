@@ -1,0 +1,34 @@
+Loading sample program data file.
+Sample program data file load complete.
+Initial Re-Read Open Sts:00
+Read2 ALP00000 #:00001 Trms:0010
+Read  BET00000 #:00002 Trms:0013
+Read2 GAM00000 #:00003 Trms:0075
+Read  DEL00000 #:00004 Trms:0010
+Read2 EPS00000 #:00005 Trms:0090
+Read  FOR00000 #:00006 Trms:0254
+Read Status: 10
+For Rewrite Open I-O Sts:00
+Read2 ALP00000 #:00001 Trms:0010
+REWRITE ALP00000 Sts 00 Trms:0011
+For Rewrite/Delete Open I-O Sts:00
+Read2 ALP00000 #:00001 Trms:0011
+REWRITE ALP00000 Sts 00 Trms:0012
+Read  BET00000 #:00002 Trms:0013
+DELETE BET00000 Sts 00
+Re-list Open Sts:00
+Read2 ALP00000 #:00001 Trms:0012
+Read2 GAM00000 #:00003 Trms:0075
+Read  DEL00000 #:00004 Trms:0010
+Read2 EPS00000 #:00005 Trms:0090
+Read  FOR00000 #:00006 Trms:0254
+Read Status: 10
+Re-list afer Extend Open Sts:00
+Read2 ALP00000 #:00001 Trms:0012
+Read2 GAM00000 #:00003 Trms:0075
+Read  DEL00000 #:00004 Trms:0010
+Read2 EPS00000 #:00005 Trms:0090
+Read  FOR00000 #:00006 Trms:0254
+Read2 ALP00000 #:00007 Trms:0010
+Read  BET00000 #:00008 Trms:0013
+Read Status: 10

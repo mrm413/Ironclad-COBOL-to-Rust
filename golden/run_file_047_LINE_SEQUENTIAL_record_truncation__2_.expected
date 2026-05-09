@@ -1,0 +1,9 @@
+ Read 1: STATUS IS 04 LENGTH IS 040
+       :Record 1................................:
+ Read 2: STATUS IS 00 LENGTH IS 030
+       :Record 2.....................X          :
+ Read 3: STATUS IS 04 LENGTH IS 040
+       :Record 3................................:
+ Read 4: STATUS IS 10 LENGTH IS 000
+Write 1: STATUS IS 00 LENGTH IS 009
+Write 2: STATUS IS 00 LENGTH IS 064

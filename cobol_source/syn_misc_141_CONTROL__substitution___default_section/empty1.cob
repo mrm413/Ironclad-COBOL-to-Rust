@@ -1,0 +1,12 @@
+CONTROL		DIVISION.
+       SUBSTITUTION	SECTION.
+           REPLACE "KO" BY "OK".
+       DEFAULT		SECTION.
+       IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      empty1.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01 VAR PIC X(2) VALUE "KO".
+       PROCEDURE        DIVISION.
+           DISPLAY VAR NO ADVANCING
+           STOP RUN.

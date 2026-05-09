@@ -1,0 +1,6 @@
+Program is starting
+Error (interal): DemoErrProc; S1; 20-
+                 CALL                           -
+                 EC-PROGRAM-NOT-FOUND           -
+Error-Message:   prog.cob:20: module 'Tilt' not found
+-*- Stop error routines here -*-

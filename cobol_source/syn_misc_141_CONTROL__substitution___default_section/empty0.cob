@@ -1,0 +1,9 @@
+CONTROL		DIVISION.
+       SUBSTITUTION	SECTION.
+       DEFAULT		SECTION.
+           ACCEPT ALTERNATE CONSOLE
+	   .
+       IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      empty0.
+       PROCEDURE        DIVISION.
+           STOP RUN.

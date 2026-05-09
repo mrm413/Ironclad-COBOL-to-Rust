@@ -1,0 +1,7 @@
+Enter "y" in the bottom field if:
+ * when the left field is full, the cursor automatically moves
+   to the next field.
+ * this does not happen with the other fields.
+ * the fields below are on one line and separated by a single column.
+_____ _____ _____
+Y

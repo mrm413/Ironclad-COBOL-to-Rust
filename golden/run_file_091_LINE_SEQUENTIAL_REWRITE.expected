@@ -1,0 +1,33 @@
+Loading sample program data file.
+Sample program data file load complete.
+Open Sts:00
+Read  ALP00000 Trms:08240
+Read  BET00000 Trms:00010
+Read  GAM00000 Trms:00013
+Read  DEL00000 Trms:65535
+Read  ALP00000 Trms:08240
+REWRITE ALP00000 Sts 44 Trms:00010
+Read  ALP00000 Trms:08240
+Read  BET00000 Trms:00010
+REWRITE BET00000 Sts 00 Trms:00011
+Read  GAM00000 Trms:00013
+Read EPS00000 Sts:00
+REWRITE EPS00000 Sts 00 Trms:08240
+List back Open Sts:00
+Read  ALP00000 Trms:08240
+Read  BET00000 Trms:00011
+Read  GAM00000 Trms:00013
+Read  DEL00000 Trms:65535
+Read  EPS00000 Trms:08240
+Read  FOR00000 Trms:00254
+Read Status: 10
+List after extend Open Sts:00
+Read  ALP00000 Trms:08240
+Read  BET00000 Trms:00011
+Read  GAM00000 Trms:00013
+Read  DEL00000 Trms:65535
+Read  EPS00000 Trms:08240
+Read  FOR00000 Trms:00254
+Read  ALP00000 Trms:08240
+Read  BET00000 Trms:00010
+Read Status: 10

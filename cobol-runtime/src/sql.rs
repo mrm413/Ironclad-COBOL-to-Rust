@@ -421,8 +421,6 @@ impl SqlContext {
     /// Execute raw SQL text with host variable substitution.
     /// For standalone mode, parses simple SQL and routes to the in-memory store.
     pub fn execute_sql(&mut self, sql: &str, host_vars: &HashMap<String, SqlValue>) {
-        let sql_upper = sql.trim().to_uppercase();
-
         // Substitute :HOST-VAR references with values
         let mut resolved = sql.to_string();
         for (var, val) in host_vars {
@@ -437,10 +435,7 @@ impl SqlContext {
             resolved = resolved.replace(&pattern, &replacement);
         }
 
-        // Route to appropriate handler
-        // All known SQL commands (INSERT, UPDATE, DELETE, SELECT, COMMIT, ROLLBACK)
-        // and unknown DDL are accepted in standalone mode.
-        let _ = &sql_upper; // acknowledge parsed SQL
+        // Route to appropriate handler — all statements accepted for stub runtime
         self.sqlca.set_ok();
     }
 }

@@ -1,0 +1,14 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01 X             PIC X(05).
+       01 Y             PIC 9(04) BINARY VALUE 7.
+       PROCEDURE        DIVISION.
+           DISPLAY X AT 0101 WITH SIZE    5 END-DISPLAY.
+           DISPLAY X AT 0101 WITH SIZE IS 6 END-DISPLAY.
+           DISPLAY X AT 0101 WITH SIZE IS Y END-DISPLAY.
+           DISPLAY X AT 0101      SIZE    5 END-DISPLAY.
+           DISPLAY X AT 0101      SIZE IS 6 END-DISPLAY.
+           DISPLAY X AT 0101      SIZE IS Y END-DISPLAY.
+           STOP RUN.

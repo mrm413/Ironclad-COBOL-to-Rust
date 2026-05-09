@@ -6,7 +6,6 @@ use std::collections::{HashMap, VecDeque};
 use std::io::{self, Write, BufRead, BufReader};
 use std::fs::{File, OpenOptions};
 
-
 // ── Response Codes ──────────────────────────────────────────────────
 
 /// CICS EIBRESP values (subset covering common conditions).
@@ -37,6 +36,8 @@ impl CicsResp {
 
 // ── CICS Context (one per task/transaction) ─────────────────────────
 
+type CicsProgram = fn(&mut CicsContext, &[u8]) -> Vec<u8>;
+
 pub struct CicsContext {
     /// EIBRESP after last command
     pub resp: i32,
@@ -56,8 +57,7 @@ pub struct CicsContext {
     browse_cursors: HashMap<u32, BrowseCursor>,
     next_browse_token: u32,
     /// Program dispatch table: program name → function pointer
-    #[allow(clippy::type_complexity)]
-    programs: HashMap<String, fn(&mut CicsContext, &[u8]) -> Vec<u8>>,
+    programs: HashMap<String, CicsProgram>,
     /// Condition handlers: condition name → action
     handlers: HashMap<String, ConditionAction>,
     /// Transaction journal for SYNCPOINT/ROLLBACK
@@ -69,16 +69,16 @@ pub struct CicsContext {
 }
 
 #[derive(Debug, Clone)]
-#[allow(dead_code)]
 enum ConditionAction {
     Label(String),    // GO TO label
     Ignore,           // HANDLE CONDITION ... IGNORE
+    #[allow(dead_code)]
     Default,          // Default system action
 }
 
-#[allow(dead_code)]
 struct BrowseCursor {
     reader: BufReader<File>,
+    #[allow(dead_code)]
     ridfld: String,
 }
 
@@ -125,7 +125,7 @@ impl CicsContext {
     }
 
     /// Register a program for LINK/XCTL dispatch.
-    pub fn register_program(&mut self, name: &str, func: fn(&mut CicsContext, &[u8]) -> Vec<u8>) {
+    pub fn register_program(&mut self, name: &str, func: CicsProgram) {
         self.programs.insert(name.to_uppercase(), func);
     }
 
@@ -199,7 +199,7 @@ impl CicsContext {
             Err(_) => { self.set_resp(CicsResp::NotOpen); return None; }
         };
         let reader = BufReader::new(file);
-        for line in reader.lines().map_while(Result::ok) {
+        for line in reader.lines().map_while(|l| l.ok()) {
             if let Some((key, data)) = line.split_once('\t') {
                 if key == ridfld {
                     self.set_resp(CicsResp::Normal);
@@ -466,6 +466,7 @@ impl CicsContext {
     pub fn check_handler(&self, condition: &str) -> Option<String> {
         match self.handlers.get(&condition.to_uppercase()) {
             Some(ConditionAction::Label(lbl)) => Some(lbl.clone()),
+            Some(ConditionAction::Ignore) => None,
             _ => None,
         }
     }
@@ -655,6 +656,293 @@ impl CicsContext {
             }
         }
     }
+}
+
+// ── V2 free-standing entrypoints (CobolRecord-based) ────────────────────
+//
+// Generated V2 Rust calls these directly: `cobol_runtime::cics::v2_send(record, &[...])`.
+// Each wrapper translates the option-list into context state, runs the
+// underlying CicsContext method, then writes EIBRESP/EIBRESP2 back to the
+// record so the COBOL code's EVALUATE TRUE / WHEN DFHRESP(NORMAL) chains
+// see correct values.
+//
+// Scope: print-trace-with-state. Real BMS map rendering, terminal screens,
+// program-to-program XCTL dispatch, and SQL execution are not implemented
+// here. The shim is enough to drive a CardDemo program through its happy
+// path — sign on, menu, list — proving the compiled .exe executes business
+// logic without crashing on EXEC CICS.
+
+use std::cell::RefCell;
+use crate::field::CobolRecord;
+
+thread_local! {
+    static V2_CTX: RefCell<CicsContext> = RefCell::new(CicsContext::new());
+}
+
+/// Look up an option value by key (case-insensitive).
+fn opt<'a>(options: &'a [(&str, Option<&str>)], key: &str) -> Option<&'a str> {
+    options.iter()
+        .find(|(k, _)| k.eq_ignore_ascii_case(key))
+        .and_then(|(_, v)| v.as_deref())
+}
+
+/// Check if an option key is present (with or without value).
+fn has_opt(options: &[(&str, Option<&str>)], key: &str) -> bool {
+    options.iter().any(|(k, _)| k.eq_ignore_ascii_case(key))
+}
+
+/// Resolve an option's value to a record field name (uppercase, no parens).
+/// Returns None if the value looks like a literal or constant.
+fn opt_field(options: &[(&str, Option<&str>)], key: &str) -> Option<String> {
+    let val = opt(options, key)?;
+    let cleaned = val.trim().trim_matches('\'').trim_matches('"');
+    // If it's a single bareword that doesn't start with a digit, treat as field name.
+    if cleaned.is_empty() { return None; }
+    if cleaned.chars().next().map_or(false, |c| c.is_ascii_digit()) { return None; }
+    if cleaned.split_whitespace().count() == 1 {
+        return Some(cleaned.to_uppercase());
+    }
+    None
+}
+
+/// Write EIBRESP / EIBRESP2 / WS-RESP-CD style fields if they exist on the record.
+fn write_resp(record: &mut CobolRecord, resp: i32, resp2: i32) {
+    for name in &["EIBRESP", "EIBRESP2"] {
+        if record.idx(name).is_some() {
+            let v = if *name == "EIBRESP" { resp } else { resp2 };
+            record.set_f64(name, v as f64);
+        }
+    }
+}
+
+fn write_user_resp(record: &mut CobolRecord, options: &[(&str, Option<&str>)], resp: i32, resp2: i32) {
+    if let Some(field) = opt_field(options, "RESP") {
+        if record.idx(&field).is_some() {
+            record.set_f64(&field, resp as f64);
+        }
+    }
+    if let Some(field) = opt_field(options, "RESP2") {
+        if record.idx(&field).is_some() {
+            record.set_f64(&field, resp2 as f64);
+        }
+    }
+    write_resp(record, resp, resp2);
+}
+
+/// EXEC CICS SEND [MAP|TEXT] [FROM] [ERASE]
+pub fn v2_send(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let kind = if has_opt(options, "MAP") { "MAP" }
+               else if has_opt(options, "TEXT") { "TEXT" }
+               else { "DATA" };
+    let map = opt(options, "MAP").unwrap_or("");
+    let from = opt_field(options, "FROM");
+    let preview = from.as_deref()
+        .and_then(|f| if record.idx(f).is_some() { Some(record.get_display(f)) } else { None })
+        .unwrap_or_default();
+    eprintln!("[CICS SEND] {} map={} from={} bytes={}",
+        kind, map, from.as_deref().unwrap_or("-"), preview.len());
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS RECEIVE MAP [INTO] — reads stdin line, splits CSV-style key=value pairs.
+pub fn v2_receive(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let map = opt(options, "MAP").unwrap_or("");
+    eprintln!("[CICS RECEIVE] map={} (stub — using defaults)", map);
+    // Stay deterministic for CI: don't actually read stdin. CardDemo programs
+    // typically check field-level "is empty" — leaving fields blank reaches
+    // the validation branches and exercises the logic flow.
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS RETURN [TRANSID(...)] [COMMAREA(...)]
+pub fn v2_return(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let transid = opt(options, "TRANSID").unwrap_or("");
+    eprintln!("[CICS RETURN] transid={}", transid);
+    write_user_resp(record, options, 0, 0);
+    let rc = record.get_f64("RETURN-CODE") as i32;
+    use std::io::Write;
+    let _ = std::io::stdout().flush();
+    std::process::exit(rc);
+}
+
+/// EXEC CICS XCTL PROGRAM(name) — transfer control. Stub: print + exit.
+pub fn v2_xctl(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let prog = opt(options, "PROGRAM").unwrap_or("");
+    eprintln!("[CICS XCTL] -> {}", prog);
+    write_user_resp(record, options, 0, 0);
+    use std::io::Write;
+    let _ = std::io::stdout().flush();
+    std::process::exit(0);
+}
+
+/// EXEC CICS LINK PROGRAM(name) — call subprogram. Stub: print + continue.
+pub fn v2_link(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let prog = opt(options, "PROGRAM").unwrap_or("");
+    eprintln!("[CICS LINK] -> {} (stub — returning success)", prog);
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS READ FILE(...) RIDFLD(...) INTO(...). Stub: NOTFND for unknown files.
+pub fn v2_read(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    let key_field = opt_field(options, "RIDFLD");
+    let key_val = key_field.as_ref()
+        .filter(|f| record.idx(f).is_some())
+        .map(|f| record.get_display(f))
+        .unwrap_or_default();
+    eprintln!("[CICS READ] file={} key={:?}", file, key_val);
+    // Default to NOTFND so the program takes the not-found branch.
+    write_user_resp(record, options, 13, 0);
+}
+
+/// EXEC CICS WRITE FILE(...) FROM(...) RIDFLD(...). Stub: success.
+pub fn v2_write(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS WRITE] file={}", file);
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS REWRITE FILE(...) FROM(...). Stub: success.
+pub fn v2_rewrite(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS REWRITE] file={}", file);
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS DELETE FILE(...) RIDFLD(...). Stub: success.
+pub fn v2_delete(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS DELETE] file={}", file);
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS STARTBR / READNEXT / READPREV / ENDBR — browse cursor stubs.
+pub fn v2_startbr(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS STARTBR] file={}", file);
+    write_user_resp(record, options, 0, 0);
+}
+pub fn v2_readnext(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS READNEXT] file={}", file);
+    // Return ENDFILE so browse loops terminate.
+    write_user_resp(record, options, 20, 0);
+}
+pub fn v2_readprev(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS READPREV] file={}", file);
+    write_user_resp(record, options, 20, 0);
+}
+pub fn v2_endbr(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let file = opt(options, "FILE").or(opt(options, "DATASET")).unwrap_or("");
+    eprintln!("[CICS ENDBR] file={}", file);
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS ASKTIME [ABSTIME(field)] — set ABSTIME field to current ms.
+pub fn v2_asktime(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    use std::time::SystemTime;
+    let ms = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH)
+        .map(|d| d.as_millis() as f64).unwrap_or(0.0);
+    if let Some(field) = opt_field(options, "ABSTIME") {
+        if record.idx(&field).is_some() {
+            record.set_f64(&field, ms);
+        }
+    }
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS FORMATTIME ABSTIME(...) [DATE/TIME/DATESEP/...]. Stub: write
+/// current local date/time strings to whichever target fields exist.
+pub fn v2_formattime(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    use crate::chrono_shim::Local;
+    let now = Local::now();
+    let date = now.format("%y%m%d").to_string();
+    let time = now.format("%H%M%S").to_string();
+    let yyyymmdd = now.format("%Y%m%d").to_string();
+    for (key, field) in [("DATE", &date), ("TIME", &time), ("YYYYMMDD", &yyyymmdd),
+                          ("MMDDYY", &date), ("DDMMYY", &date)] {
+        if let Some(name) = opt_field(options, key) {
+            if record.idx(&name).is_some() {
+                record.set_raw_string(&name, field);
+            }
+        }
+    }
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS HANDLE ABEND / CONDITION — register handler. Stub: no-op.
+pub fn v2_handle(_record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let label = opt(options, "LABEL").unwrap_or("");
+    eprintln!("[CICS HANDLE] {}{}",
+        if has_opt(options, "ABEND") { "ABEND " } else { "CONDITION " },
+        label);
+}
+
+/// EXEC CICS ABEND ABCODE(...).
+pub fn v2_abend(_record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let code = opt(options, "ABCODE").unwrap_or("ABEND");
+    eprintln!("[CICS ABEND] code={}", code);
+    use std::io::Write;
+    let _ = std::io::stdout().flush();
+    std::process::exit(1);
+}
+
+/// EXEC CICS ASSIGN — populate the named target field with environment data.
+pub fn v2_assign(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    for (key, target_opt) in options.iter() {
+        if let Some(target) = target_opt {
+            // Strip any extra whitespace; treat single-token target as field.
+            let field = target.trim().trim_matches('\'').trim_matches('"').to_uppercase();
+            if record.idx(&field).is_none() { continue; }
+            let val = match key.to_ascii_uppercase().as_str() {
+                "APPLID" => "IRONCLAD",
+                "USERID" => "DEMOUSER",
+                "SYSID"  => "IRC1",
+                "TRANID" | "TRNID" => "CC00",
+                "FACILITY" => "CONSOLE",
+                _ => continue,
+            };
+            record.set_raw_string(&field, val);
+        }
+    }
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS SYNCPOINT [ROLLBACK] — commit/rollback. Stub: no-op.
+pub fn v2_syncpoint(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    if has_opt(options, "ROLLBACK") {
+        eprintln!("[CICS SYNCPOINT ROLLBACK]");
+    } else {
+        eprintln!("[CICS SYNCPOINT]");
+    }
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS RETRIEVE — get TS data. Stub: not-found.
+pub fn v2_retrieve(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    eprintln!("[CICS RETRIEVE]");
+    write_user_resp(record, options, 13, 0);
+}
+
+/// EXEC CICS WRITEQ TS / TD — write to queue. Stub: success.
+pub fn v2_writeq(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    let queue = opt(options, "QUEUE").or(opt(options, "QNAME")).unwrap_or("");
+    eprintln!("[CICS WRITEQ] queue={}", queue);
+    write_user_resp(record, options, 0, 0);
+}
+
+/// EXEC CICS INQUIRE — environment query. Stub: success.
+pub fn v2_inquire(record: &mut CobolRecord, options: &[(&str, Option<&str>)]) {
+    eprintln!("[CICS INQUIRE]");
+    write_user_resp(record, options, 0, 0);
+}
+
+/// Dispatch unrecognized verbs to a print-trace + EIBRESP=NORMAL. Lets the
+/// program continue rather than miscompile.
+pub fn v2_unhandled(record: &mut CobolRecord, command: &str, options: &[(&str, Option<&str>)]) {
+    eprintln!("[CICS {}] (unhandled — stubbed) opts={:?}", command, options);
+    write_user_resp(record, options, 0, 0);
 }
 
 // ── Tests ───────────────────────────────────────────────────────────

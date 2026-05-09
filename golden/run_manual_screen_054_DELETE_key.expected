@@ -1,0 +1,6 @@
+Enter 'y' if each press of the DELETE key deletes
+the cursor character and moves the remaining
+characters one space to the left.  And the cursor
+does not move.
+yBCD
+Y

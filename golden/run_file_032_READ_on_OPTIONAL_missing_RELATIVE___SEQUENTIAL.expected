@@ -1,0 +1,8 @@
+R: OPEN INPUT on missing optional file = 05 OK
+S: OPEN INPUT on missing optional file = 05 OK
+R: 1st READ on missing optional file = 10 OK
+S: 1st READ on missing optional file = 10 OK
+R: 2nd READ on missing optional file = 46 OK
+S: 2nd READ on missing optional file = 46 OK
+R: 3rd READ on missing optional file = 46 OK
+S: 3rd READ on missing optional file = 46 OK

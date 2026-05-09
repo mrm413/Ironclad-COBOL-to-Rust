@@ -1,0 +1,41 @@
+delete file
+delete file done
+open
+open done
+start > tbw-key
+start > tbw-key inv
+read next
+read next 46
+write
+write done
+start >= tbw-alt
+start >= tbw-alt done
+start > tbw-key
+start > tbw-key done
+read next
+read next done
+read next
+read next end
+close
+close done
+delete file
+delete file done
+open
+open done
+start > tbw-key
+start > tbw-key inv
+read next
+read next 46
+write
+write done
+write
+write done
+start >= tbw-alt
+start >= tbw-alt done
+read next
+read next done
+rewrite
+rewrite done 00
+close
+close done
+Test completed

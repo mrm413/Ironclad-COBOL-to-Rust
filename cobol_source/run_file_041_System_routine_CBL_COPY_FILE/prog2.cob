@@ -1,0 +1,12 @@
+IDENTIFICATION DIVISION.
+        PROGRAM-ID. prog2.
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+        01 FILE1 PIC X(8) VALUE 'prog.cob'.
+        01 FILE2 PIC X(9) VALUE 'prog3.cob'.
+
+        PROCEDURE DIVISION.
+        CALL 'CBL_COPY_FILE' USING
+        FILE1 FILE2
+        END-CALL
+        STOP RUN.

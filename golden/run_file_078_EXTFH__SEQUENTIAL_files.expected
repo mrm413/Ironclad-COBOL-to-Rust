@@ -1,0 +1,81 @@
+EXFTH did OPEN_IN; Status=35; File now Closed
+Open Input when no file Sts:35
+EXFTH did OPEN_EXT; Status=35; File now Closed
+Open Extend when no file Sts:35
+EXFTH did CLOSE; Status=42; File now Closed
+Close when no open file Sts:42
+EXFTH did OPEN_OUT; Status=00; File now Open
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_EXT; Status=00; File now Open
+Open Extend when empty file Sts:00
+EXFTH did CLOSE; Status=00; File now Closed
+Loading sample data file.
+EXFTH did OPEN_OUT; Status=00; File now Open
+EXFTH did WRITE; Status=00
+EXFTH did WRITE; Status=00
+EXFTH did WRITE; Status=00
+EXFTH did WRITE; Status=00
+EXFTH did WRITE; Status=00
+EXFTH did WRITE; Status=00
+Sample data file load complete.
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_IN; Status=00; File now Open
+Open Sts:00
+EXFTH did READ_SEQ; Status=00
+Read ALP00000 Sts:00
+EXFTH did READ_SEQ; Status=00
+Read BET00000 Sts:00
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_IO; Status=00; File now Open
+EXFTH did READ_SEQ; Status=00
+Read ALP00000 Sts:00
+EXFTH did REWRITE; Status=00
+REWRITE ALP00000 Sts 00 Trms:0011
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_IO; Status=00; File now Open
+EXFTH did READ_SEQ; Status=00
+Read ALP00000 Sts:00
+EXFTH did REWRITE; Status=00
+REWRITE ALP00000 Sts 00 Trms:0012
+EXFTH did READ_SEQ; Status=00
+Read BET00000
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_IN; Status=00; File now Open
+Re-list File Open Sts:00
+EXFTH did READ_SEQ; Status=00
+Read  ALP00000 Trms:0012
+EXFTH did READ_SEQ; Status=00
+Read  BET00000 Trms:0013
+EXFTH did READ_SEQ; Status=00
+Read  GAM00000 Trms:0075
+EXFTH did READ_SEQ; Status=00
+Read  DEL00000 Trms:0010
+EXFTH did READ_SEQ; Status=00
+Read  EPS00000 Trms:0090
+EXFTH did READ_SEQ; Status=00
+Read  FOR00000 Trms:0254
+EXFTH did READ_SEQ; Status=10
+Read Status: 10
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_EXT; Status=00; File now Open
+EXFTH did WRITE; Status=00
+EXFTH did CLOSE; Status=00; File now Closed
+EXFTH did OPEN_IN; Status=00; File now Open
+List File afer EXTEND Open Sts:00
+EXFTH did READ_SEQ; Status=00
+Read  ALP00000 Trms:0012
+EXFTH did READ_SEQ; Status=00
+Read  BET00000 Trms:0013
+EXFTH did READ_SEQ; Status=00
+Read  GAM00000 Trms:0075
+EXFTH did READ_SEQ; Status=00
+Read  DEL00000 Trms:0010
+EXFTH did READ_SEQ; Status=00
+Read  EPS00000 Trms:0090
+EXFTH did READ_SEQ; Status=00
+Read  FOR00000 Trms:0254
+EXFTH did READ_SEQ; Status=00
+Read  BET00000 Trms:0013
+EXFTH did READ_SEQ; Status=10
+Read Status: 10
+EXFTH did CLOSE; Status=00; File now Closed

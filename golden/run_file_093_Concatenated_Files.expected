@@ -1,0 +1,2 @@
+OPEN I-O: file1+file2+file3                                Sts:35
+OPEN INPUT: file1&file2&file3                                Sts:35

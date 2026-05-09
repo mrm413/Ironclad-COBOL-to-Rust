@@ -1,0 +1,64 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+        01 INTEGER             PIC 9(4)   VALUE 1289 .
+        01 SIGNED-INTEGER      PIC S9(4)  VALUE -1289 .
+
+        01 ALPHA-FIELD         PIC X(4).
+
+        01 NON-INTEGER           PIC 9(2)V99   VALUE 12.89 .
+        01 NON-INTEGER-2         PIC 9(2)V99
+                                     USAGE BINARY VALUE 12.89 .
+        01 NON-INTEGER-3         PIC 9(2)V99
+                                      USAGE PACKED-DECIMAL VALUE 12.89 .
+        01 SIGNED-NON-INTEGER    PIC S9(2)V99   VALUE -12.89 .
+        01 SIGNED-NON-INTEGER-2  PIC S9(2)V99
+                                     USAGE BINARY VALUE -12.89 .
+        01 SIGNED-NON-INTEGER-3  PIC S9(2)V99
+                                     USAGE PACKED-DECIMAL VALUE -12.89 .
+
+       PROCEDURE        DIVISION.
+*     *    MOVE NON-INTEGER TO ALPHA-NUMERIC --> ignore Decimal Point!
+       S-01.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE INTEGER TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-02.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE SIGNED-INTEGER TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-03.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE NON-INTEGER TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-10.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE NON-INTEGER-2 TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-20.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE NON-INTEGER-3 TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-30.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE SIGNED-NON-INTEGER TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-40.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE SIGNED-NON-INTEGER-2 TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+       S-50.
+          MOVE SPACES TO ALPHA-FIELD.
+          MOVE SIGNED-NON-INTEGER-3 TO ALPHA-FIELD.
+          DISPLAY  ALPHA-FIELD NO ADVANCING
+          END-DISPLAY.
+
+          STOP RUN.

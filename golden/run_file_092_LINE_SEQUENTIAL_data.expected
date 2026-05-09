@@ -1,0 +1,11 @@
+MF Load data
+MF Open Sts: 00
+Read  ALP00000 Trms:0010
+Read  BET00000 Trms:0013
+Read  GAM00000 Trms:0003
+Read  DEL00000 Trms:0254
+Read Status: 10
+Std Open Sts: 00
+Read Status: 09
+Std Load data
+Error status 71 writing record ALP00000

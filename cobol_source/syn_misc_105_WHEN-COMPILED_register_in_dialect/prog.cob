@@ -1,0 +1,6 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+
+       PROCEDURE DIVISION.
+           DISPLAY WHEN-COMPILED
+           .

@@ -1,0 +1,6 @@
+Enter "y" if you see exactly three rows of quotes, zeroes and 'abc',
+8 characters long, all aligned.
+  """"""""
+  00000000
+  abcabcab
+y

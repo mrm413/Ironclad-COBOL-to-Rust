@@ -1,0 +1,73 @@
+Other Flags 32.
+File has 0003 keys.
+Key def  0112 bytes.
+File assigned is 'mytstisam'
+*** Dump FCD before changes
+Key1 has 001 parts, Offset 062 Flags 00 Comp 00 Sparse  .
+      Pos 000000000 Len 000000008
+Key2 has 002 parts, Offset 072 Flags 00 Comp 00 Sparse  .
+      Pos 000000109 Len 000000010
+      Pos 000000144 Len 000000008
+Key3 has 002 parts, Offset 092 Flags 00 Comp 00 Sparse  .
+      Pos 000000156 Len 000000008
+      Pos 000000164 Len 000000008
+*** Dump FCD after changes
+Key1 has 001 parts, Offset 062 Flags 00 Comp 00 Sparse  .
+      Pos 000000000 Len 000000008
+Key2 has 002 parts, Offset 072 Flags 64 Comp 00 Sparse  .
+      Pos 000000109 Len 000000010
+      Pos 000000144 Len 000000008
+Key3 has 002 parts, Offset 092 Flags 66 Comp 00 Sparse *.
+      Pos 000000156 Len 000000008
+      Pos 000000164 Len 000000008
+Loading sample file 'myextisam'
+Sample data file load complete.
+List sample file 'myextisam'
+Key: ALP00000 is ALPHA ELECTRICAL CO. LTD. Disk=2417    .
+Key: BET00000 is BETA SHOE MFG. INC.       Disk=8470    .
+Key: DEL00000 is DELTA LUGGAGE REPAIRS     Disk=********.
+Key: EPS00000 is EPSILON EQUIPMENT SUPPLY  Disk=********.
+Key: FOR00000 is FORTUNE COOKIE COMPANY    Disk=2417    .
+Key: GAM00000 is GAMMA X-RAY TECHNOLOGY    Disk=8417    .
+Key: GIB00000 is GIBRALTER LIFE INSURANCE  Disk=8417    .
+Key: H&J00000 is H & J PLUMBING SUPPLIES   Disk=********.
+Key: INC00000 is INCREMENTAL BACKUP CORP.  Disk=8417    .
+Key: JOH00000 is JOHNSON BOATING SUPPLIES  Disk=8417    .
+Key: KON00000 is KONFLAB PLASTIC PRODUCTS. Disk=8417    .
+Key: LEW00000 is LEWISTON GRAPHICS LTD.    Disk=********.
+Key: MOR00000 is MORNINGSIDE CARPENTRY.    Disk=8470    .
+Key: NEW00000 is NEW WAVE SURF SHOPS INC.  Disk=********.
+Key: OLD00000 is OLD TYME PIZZA MFG. CO.   Disk=8470    .
+Key: PRE00000 is PRESTIGE OFFICE FURNITURE Disk=8470    .
+Hit End of File after 16
+LIST SAMPLE FILE DESCENDING
+Key: PRE00000 is PRESTIGE OFFICE FURNITURE Disk=8470    .
+Key: OLD00000 is OLD TYME PIZZA MFG. CO.   Disk=8470    .
+Key: NEW00000 is NEW WAVE SURF SHOPS INC.  Disk=********.
+Key: MOR00000 is MORNINGSIDE CARPENTRY.    Disk=8470    .
+Key: LEW00000 is LEWISTON GRAPHICS LTD.    Disk=********.
+Key: KON00000 is KONFLAB PLASTIC PRODUCTS. Disk=8417    .
+Key: JOH00000 is JOHNSON BOATING SUPPLIES  Disk=8417    .
+Key: INC00000 is INCREMENTAL BACKUP CORP.  Disk=8417    .
+Key: H&J00000 is H & J PLUMBING SUPPLIES   Disk=********.
+Key: GIB00000 is GIBRALTER LIFE INSURANCE  Disk=8417    .
+Key: GAM00000 is GAMMA X-RAY TECHNOLOGY    Disk=8417    .
+Key: FOR00000 is FORTUNE COOKIE COMPANY    Disk=2417    .
+Key: EPS00000 is EPSILON EQUIPMENT SUPPLY  Disk=********.
+Key: DEL00000 is DELTA LUGGAGE REPAIRS     Disk=********.
+Key: BET00000 is BETA SHOE MFG. INC.       Disk=8470    .
+Key: ALP00000 is ALPHA ELECTRICAL CO. LTD. Disk=2417    .
+Hit End of File after 16
+LIST SAMPLE FILE BY KEY3
+Key: ALP00000 is ALPHA ELECTRICAL CO. LTD. Disk=2417    .
+Key: FOR00000 is FORTUNE COOKIE COMPANY    Disk=2417    .
+Key: GAM00000 is GAMMA X-RAY TECHNOLOGY    Disk=8417    .
+Key: GIB00000 is GIBRALTER LIFE INSURANCE  Disk=8417    .
+Key: INC00000 is INCREMENTAL BACKUP CORP.  Disk=8417    .
+Key: JOH00000 is JOHNSON BOATING SUPPLIES  Disk=8417    .
+Key: KON00000 is KONFLAB PLASTIC PRODUCTS. Disk=8417    .
+Key: BET00000 is BETA SHOE MFG. INC.       Disk=8470    .
+Key: MOR00000 is MORNINGSIDE CARPENTRY.    Disk=8470    .
+Key: OLD00000 is OLD TYME PIZZA MFG. CO.   Disk=8470    .
+Key: PRE00000 is PRESTIGE OFFICE FURNITURE Disk=8470    .
+Hit End of File after 11

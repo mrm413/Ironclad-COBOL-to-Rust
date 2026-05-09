@@ -22,7 +22,8 @@ pub enum DliFunc {
 }
 
 impl DliFunc {
-    pub fn parse_code(s: &str) -> Option<Self> {
+    #[allow(clippy::should_implement_trait)]
+    pub fn from_str(s: &str) -> Option<Self> {
         match s.trim().to_uppercase().as_str() {
             "GU"   => Some(Self::GU),
             "GN"   => Some(Self::GN),
@@ -223,7 +224,7 @@ impl DliContext {
             Err(_) => return Vec::new(),
         };
         BufReader::new(file).lines()
-            .map_while(Result::ok)
+            .map_while(|l| l.ok())
             .filter_map(|l| Segment::from_line(&l))
             .collect()
     }
@@ -261,10 +262,8 @@ impl DliContext {
         };
 
         // Copy found segment to io_area on successful read
-        if status.is_ok()
-            && matches!(func, DliFunc::GU | DliFunc::GN | DliFunc::GHU | DliFunc::GHN | DliFunc::GNP | DliFunc::GHNP)
-            && self.position > 0
-            && self.position <= self.segments.len()
+        if status.is_ok() && matches!(func, DliFunc::GU | DliFunc::GN | DliFunc::GHU | DliFunc::GHN | DliFunc::GNP | DliFunc::GHNP)
+            && self.position > 0 && self.position <= self.segments.len()
         {
             let seg = &self.segments[self.position - 1];
             io_area.name = seg.name.clone();

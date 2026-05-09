@@ -1,0 +1,25 @@
+'123-TRAILER             '
+Write SEQ 01, DEP-X = 02 & DEP-Y = 05, TSTREC len:053
+Group1: ' 1 2<>  ' len:008
+  Data: ' 1 2<>  01***Abcde. 344502***Abcde. 4556<>'
+Group2: ' 1 2<> ' len:007
+Write SEQ 02, DEP-X = 01 & DEP-Y = 02, TSTREC len:029
+Group1: ' 1<>  ' len:006
+  Data: ' 1<>  01***Ab. 3<>'
+Group2: ' 1<> ' len:005
+Write SEQ 03, DEP-X = 03 & DEP-Y = 03, TSTREC len:080
+Group1: ' 1 2 3<>  ' len:010
+  Data: ' 1 2 3<>  01***Abc. 34545656702***Abc. 45656767803***Abc. 567678789<>'
+Group2: ' 1 2 3<> ' len:009
+Write SEQ 04, DEP-X = 03 & DEP-Y = 10, TSTREC len:101
+Group1: ' 1 2 3<>  ' len:010
+  Data: ' 1 2 3<>  01***Abcdefghij. 34545656702***Abcdefghij. 45656767803***Abcdefghij. 567678789<>'
+Group2: ' 1 2 3<> ' len:009
+Read SEQ 01, DEP-X = 02 & DEP-Y = 05, TSTREC len:053
+  Data: ' 1 2<>  01***Abcde. 344502***Abcde. 4556<>'
+Read SEQ 02, DEP-X = 01 & DEP-Y = 02, TSTREC len:029
+  Data: ' 1<>  01***Ab. 3<>'
+Read SEQ 03, DEP-X = 03 & DEP-Y = 03, TSTREC len:080
+  Data: ' 1 2 3<>  01***Abc. 34545656702***Abc. 45656767803***Abc. 567678789<>'
+Read SEQ 04, DEP-X = 03 & DEP-Y = 10, TSTREC len:101
+  Data: ' 1 2 3<>  01***Abcdefghij. 34545656702***Abcdefghij. 45656767803***Abcdefghij. 567678789<>'

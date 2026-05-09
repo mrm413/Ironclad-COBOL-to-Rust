@@ -376,41 +376,38 @@ impl ReportContext {
 // ── Convenience functions (called by generated code) ────────────────
 
 /// Global report registry for generated programs.
-/// Uses LazyLock + Mutex for safe single-threaded access without `unsafe`.
-static REPORTS: std::sync::LazyLock<std::sync::Mutex<HashMap<String, ReportContext>>> =
-    std::sync::LazyLock::new(|| std::sync::Mutex::new(HashMap::new()));
+static mut REPORTS: Option<HashMap<String, ReportContext>> = None;
+
+fn reports() -> &'static mut HashMap<String, ReportContext> {
+    #[allow(static_mut_refs)]
+    unsafe {
+        REPORTS.get_or_insert_with(HashMap::new)
+    }
+}
 
 /// Register a report context (call during program init).
 pub fn register_report(ctx: ReportContext) {
-    if let Ok(mut map) = REPORTS.lock() {
-        map.insert(ctx.name.clone(), ctx);
-    }
+    reports().insert(ctx.name.clone(), ctx);
 }
 
 /// INITIATE report-name.
 pub fn report_initiate(name: &str) {
-    if let Ok(mut map) = REPORTS.lock() {
-        if let Some(ctx) = map.get_mut(&name.to_uppercase()) {
-            ctx.initiate();
-        }
+    if let Some(ctx) = reports().get_mut(&name.to_uppercase()) {
+        ctx.initiate();
     }
 }
 
 /// GENERATE report-group (detail line).
 pub fn report_generate(name: &str, fields: &[(&str, &str)]) {
-    if let Ok(mut map) = REPORTS.lock() {
-        if let Some(ctx) = map.get_mut(&name.to_uppercase()) {
-            ctx.generate(fields);
-        }
+    if let Some(ctx) = reports().get_mut(&name.to_uppercase()) {
+        ctx.generate(fields);
     }
 }
 
 /// TERMINATE report-name.
 pub fn report_terminate(name: &str) {
-    if let Ok(mut map) = REPORTS.lock() {
-        if let Some(ctx) = map.get_mut(&name.to_uppercase()) {
-            ctx.terminate();
-        }
+    if let Some(ctx) = reports().get_mut(&name.to_uppercase()) {
+        ctx.terminate();
     }
 }
 

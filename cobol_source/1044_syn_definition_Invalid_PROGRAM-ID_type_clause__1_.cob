@@ -1,4 +1,0 @@
-IDENTIFICATION   DIVISION.
-       PROGRAM-ID.      prog IS COMMON.
-       PROCEDURE        DIVISION.
-           STOP RUN.

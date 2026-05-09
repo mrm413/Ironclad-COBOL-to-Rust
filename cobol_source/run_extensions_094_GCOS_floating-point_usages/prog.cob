@@ -1,0 +1,22 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       01 FLOATS.
+         03 FLOAT-BINARY-32  USAGE COMPUTATIONAL-9  VALUE -4.2E+1.
+         03 FLOAT-BINARY-64  USAGE COMPUTATIONAL-10 VALUE 0.0.
+         03 FLOAT-BINARY-128 USAGE COMPUTATIONAL-15 VALUE 1.0.
+
+       PROCEDURE        DIVISION.
+           DISPLAY FLOAT-BINARY-32
+
+           DISPLAY FLOAT-BINARY-64
+           MOVE 9.899999999999E+304 TO FLOAT-BINARY-64
+           DISPLAY FLOAT-BINARY-64
+           ADD -1.111111111011E302 TO FLOAT-BINARY-64
+           DISPLAY FLOAT-BINARY-64
+
+        *> NOTE: FLOAT-BINARY-128 is only syntax-checked as support for
+        *> 128bit floating-point is still partial / "processor dependent"
+
+           STOP RUN.

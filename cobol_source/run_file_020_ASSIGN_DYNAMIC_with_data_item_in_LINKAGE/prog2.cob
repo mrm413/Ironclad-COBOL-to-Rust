@@ -1,0 +1,33 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog2.
+
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       PROCEDURE DIVISION.
+           CALL "TSTOPEN" USING OMITTED.
+           STOP RUN.
+           END PROGRAM prog2.
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. TSTOPEN.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT f ASSIGN s-path
+           ORGANIZATION SEQUENTIAL.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  f.
+       01  f-line PIC X(79).
+
+       LINKAGE SECTION.
+       01  s-path     PIC X(80).
+
+       PROCEDURE DIVISION USING OPTIONAL s-path.
+           OPEN OUTPUT f
+           GOBACK.
+       END PROGRAM TSTOPEN.

@@ -1,0 +1,16 @@
+IDENTIFICATION DIVISION.
+        PROGRAM-ID. prog2.
+
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+        01 STRUCTURE.
+            05 FIELD1 PIC X(5).
+            05 FIELD2 PIC X(10).
+
+        PROCEDURE DIVISION.
+           MOVE "Hallo" TO FIELD1.
+           MOVE "1234567890" TO FIELD2.
+
+           CALL "subprog" USING BY REFERENCE FIELD2 STRUCTURE.
+
+           STOP RUN.

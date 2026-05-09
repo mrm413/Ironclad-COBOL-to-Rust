@@ -1,0 +1,14 @@
+$SET NO-AREA-CHECK
+       IDENTIFICATION  DIVISION.
+       PROGRAM-ID.     prog.
+       DATA            DIVISION.
+       WORKING-STORAGE SECTION.
+       PROCEDURE       DIVISION.
+       MAIN-1 SECTION.
+       DISPLAY "SOMETHING".
+       $SET AREA-CHECK
+       MAIN-2 SECTION.
+           CONTINUE.
+       CONTINUE.
+       DISPLAY "SOMETHING ELSE"
+       STOP RUN.

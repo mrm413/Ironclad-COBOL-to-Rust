@@ -1,0 +1,11 @@
+CAT  is 'Cat '
+Yard is 'Cat & Dog '
+DIV1 is 33
+HUN  is 143
+HUN2 is 1855
+78 VALUE has simple left to right precedence.
+01 CONSTANT has normal operator precedence.
+CON3 is 23
+CON4 is 26 vs 3.141596 & -2.189 & +12
+CON6 is 18.
+My Dog's name is Piper;

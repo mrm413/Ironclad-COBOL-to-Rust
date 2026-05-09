@@ -1,0 +1,28 @@
+Read all 00b02 keys sequentially
+Reading: 00b02
+    12345679  00 b 02, some 12345679 data
+    97654321  00 b 02, some 97654321 data
+    12349765  00 b 02, some 12349765 data
+    97651234  00 b 02, some 97651234 data
+-----------------------------------------
+Read all alternate keys greater than 00a02
+Seeking >= 00a02
+    12345679  00 b 02, some 12345679 data
+    97654321  00 b 02, some 97654321 data
+    12349765  00 b 02, some 12349765 data
+    97651234  00 b 02, some 97651234 data
+    12345689  00 c 13, some 12345689 data
+    98654321  00 c 13, some 98654321 data
+    12349865  00 c 13, some 12349865 data
+    98651234  00 c 13, some 98651234 data
+-----------------------------------------
+Read all primary keys less than 87654321
+Prime < 87654321
+    87651234  00 a 01, some 87651234 data
+    12349865  00 c 13, some 12349865 data
+    12349765  00 b 02, some 12349765 data
+    12348765  00 a 01, some 12348765 data
+    12345689  00 c 13, some 12345689 data
+    12345679  00 b 02, some 12345679 data
+    12345678  00 a 01, some 12345678 data
+-----------------------------------------

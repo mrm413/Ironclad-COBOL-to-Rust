@@ -1,0 +1,33 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. prog.
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+          SELECT TEST-XML00 ASSIGN TO 'DATA' FILE STATUS ST-TEST.
+       DATA DIVISION.
+       FILE SECTION.
+       FD TEST-XML00 RECORD VARYING FROM 5 TO 500 CHARACTERS.
+       01 E-ENR                          PIC X(500).
+       WORKING-STORAGE SECTION.
+       01 ST-TEST  PIC X(2).
+       01 W-TYPE   PIC 9(03) VALUE ZERO.
+       01 EOF-TEST-XML   PIC 9(03) VALUE ZERO.
+       01 COUNT-PASS   PIC 9(02) VALUE ZERO.
+       PROCEDURE DIVISION.
+       DEBUT.
+           OPEN INPUT  TEST-XML00
+           IF ST-TEST (1:) NOT = "00"
+              DISPLAY "OPEN ERROR: " ST-TEST WITH NO ADVANCING
+              GOBACK.
+           INITIALIZE W-TYPE E-ENR
+           PERFORM UNTIL (EOF-TEST-XML = 1 OR (W-TYPE = 1 OR 2))
+               READ TEST-XML00 NEXT
+                   AT END
+                       MOVE 1 TO EOF-TEST-XML
+                   NOT AT END
+                   ADD 1 TO COUNT-PASS
+               END-READ
+           END-PERFORM
+           CLOSE TEST-XML00
+           DISPLAY COUNT-PASS
+       STOP RUN.

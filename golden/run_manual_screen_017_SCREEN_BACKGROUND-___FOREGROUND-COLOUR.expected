@@ -1,0 +1,11 @@
+Enter "y" if the text below matches the colour of the background/text.
+Note: the black text is on white background/the white background has black text
+to make the text visible.
+Black    Blue     Green    Cyan     Red      Magenta  Brown/Yellow    White
+Black    Blue     Green    Cyan     Red      Magenta  Brown/Yellow    White
+The following is the same as above, with "extended" attributes set;
+this should have the same effect as otherwise highlighted for the first line
+and blinking for the second one.
+Black    Blue     Green    Cyan     Red      Magenta  Brown/Yellow    White
+Black    Blue     Green    Cyan     Red      Magenta  Brown/Yellow    White
+Y

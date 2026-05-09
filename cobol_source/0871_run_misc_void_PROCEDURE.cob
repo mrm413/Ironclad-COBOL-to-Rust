@@ -1,7 +1,0 @@
-IDENTIFICATION   DIVISION.
-       PROGRAM-ID.      caller.
-       PROCEDURE        DIVISION.
-           CALL "callee" RETURNING OMITTED
-           END-CALL.
-           DISPLAY RETURN-CODE WITH NO ADVANCING
-           STOP RUN.

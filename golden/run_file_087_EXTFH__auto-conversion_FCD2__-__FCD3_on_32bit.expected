@@ -1,0 +1,15 @@
+FCD SIZE 00100.
+Writing TESTOUT   .
+EXTFH Status: 9/141
+FCD2 is missing value(s)!
+Listing TESTOUT   .
+00003:   1 :
+00003:   2 :
+00020:   3 Have a great day :
+00003:   4 :
+00020:   5 Have a great day :
+00003:   6 :
+00003:   7 :
+00018:   8 Enjoy the show :
+00003:   9 :
+00003:  10 :

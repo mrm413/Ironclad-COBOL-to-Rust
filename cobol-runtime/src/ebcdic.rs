@@ -1,12 +1,12 @@
-// EBCDIC CP037 (US/Canada) encoding support for mainframe COBOL transpilation.
-//
-// IBM mainframes use EBCDIC (Extended Binary Coded Decimal Interchange Code)
-// instead of ASCII. Key differences:
-//   - Space = 0x40 (not 0x20)
-//   - 'A' = 0xC1 (not 0x41)
-//   - Sort order: lowercase < uppercase < digits (opposite of ASCII)
-//   - Sign overpunch in zone bits for zoned decimal
-
+/// EBCDIC CP037 (US/Canada) encoding support for mainframe COBOL transpilation.
+///
+/// IBM mainframes use EBCDIC (Extended Binary Coded Decimal Interchange Code)
+/// instead of ASCII. Key differences:
+///   - Space = 0x40 (not 0x20)
+///   - 'A' = 0xC1 (not 0x41)
+///   - Sort order: lowercase < uppercase < digits (opposite of ASCII)
+///   - Sign overpunch in zone bits for zoned decimal
+///
 /// EBCDIC CP037 → ASCII translation table (256 bytes).
 /// Index = EBCDIC byte, Value = ASCII byte.
 pub const E2A: [u8; 256] = [
@@ -30,7 +30,7 @@ pub const E2A: [u8; 256] = [
     0xEC, 0xDF, 0x21, 0x24, 0x2A, 0x29, 0x3B, 0xAC, // 58-5F  (! $ * ) ;)
     // 0x60-0x6F
     0x2D, 0x2F, 0xC2, 0xC4, 0xC0, 0xC1, 0xC3, 0xC5, // 60-67  (- /)
-    0xC7, 0xD1, 0xA6, 0x2C, 0x25, 0x5F, 0x3E, 0x3F, // 68-6F  (, % _ > ?)
+    0xC7, 0xD1, 0x7C, 0x2C, 0x25, 0x5F, 0x3E, 0x3F, // 68-6F  (, % _ > ?)
     // 0x70-0x7F
     0xF8, 0xC9, 0xCA, 0xCB, 0xC8, 0xCD, 0xCE, 0xCF, // 70-77
     0xCC, 0x60, 0x3A, 0x23, 0x40, 0x27, 0x3D, 0x22, // 78-7F  (` : # @ ' = ")
@@ -177,7 +177,7 @@ pub fn ascii_compare_ebcdic_order(a: &str, b: &str) -> std::cmp::Ordering {
 }
 
 /// Encoding mode for the transpiled program.
-#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum EncodingMode {
     /// ASCII/UTF-8 — strings stored as ASCII, comparisons use ASCII order.
     /// Use for programs already converted to ASCII or running on open systems.

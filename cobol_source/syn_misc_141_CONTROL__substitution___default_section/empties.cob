@@ -1,0 +1,7 @@
+CONTROL		DIVISION.
+       SUBSTITUTION	SECTION.
+       DEFAULT		SECTION.
+       IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      empties.
+       PROCEDURE        DIVISION.
+           STOP RUN.

@@ -1,0 +1,16 @@
+IDENTIFICATION   DIVISION.
+       PROGRAM-ID.      prog.
+       DATA             DIVISION.
+       WORKING-STORAGE  SECTION.
+       PROCEDURE        DIVISION.
+       >>IF ACTIVATE DEFINED
+           DISPLAY "NOTOK" NO ADVANCING
+           END-DISPLAY
+       >>ELIF ACTIVATE2 DEFINED
+           DISPLAY "OK" NO ADVANCING
+           END-DISPLAY
+       >>ELSE
+           DISPLAY "NOTOK" NO ADVANCING
+           END-DISPLAY
+       >>END-IF
+           STOP RUN.

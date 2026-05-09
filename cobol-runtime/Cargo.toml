@@ -6,3 +6,9 @@ description = "Runtime types for Ironclad-generated Rust: FixedString, Decimal, 
 authors = ["Torsova LLC"]
 
 [dependencies]
+dashu = "0.4"
+rust_decimal = { version = "1", features = ["maths"] }
+
+[target.'cfg(unix)'.dependencies]
+# CBL_GC_FORK / CBL_GC_WAITPID: real fork/waitpid on Unix (Linux Docker, etc.)
+nix = { version = "0.27", features = ["process"] }

@@ -13,9 +13,32 @@ impl<const N: usize> FixedString<N> {
         Self { data: [b' '; N] }
     }
 
-    pub fn from_cobol_str(s: &str) -> Self {
+    #[allow(clippy::should_implement_trait)]
+    pub fn from_str(s: &str) -> Self {
         let mut data = [b' '; N];
         let bytes = s.as_bytes();
+        let copy_len = bytes.len().min(N);
+        data[..copy_len].copy_from_slice(&bytes[..copy_len]);
+        Self { data }
+    }
+
+    /// JUSTIFIED RIGHT: right-align short strings, truncate from LEFT for long strings.
+    pub fn from_str_right_justified(s: &str) -> Self {
+        let mut data = [b' '; N];
+        let bytes = s.as_bytes();
+        if bytes.len() <= N {
+            let start = N - bytes.len();
+            data[start..].copy_from_slice(bytes);
+        } else {
+            let skip = bytes.len() - N;
+            data.copy_from_slice(&bytes[skip..skip + N]);
+        }
+        Self { data }
+    }
+
+    /// Initialize from raw bytes (for hex literals with bytes >= 0x80)
+    pub fn from_bytes(bytes: &[u8]) -> Self {
+        let mut data = [b' '; N];
         let copy_len = bytes.len().min(N);
         data[..copy_len].copy_from_slice(&bytes[..copy_len]);
         Self { data }
@@ -77,43 +100,49 @@ impl<const N: usize> Default for FixedString<N> {
 
 impl<const N: usize> From<String> for FixedString<N> {
     fn from(s: String) -> Self {
-        Self::from_cobol_str(&s)
+        Self::from_str(&s)
     }
 }
 
 impl<const N: usize> From<&str> for FixedString<N> {
     fn from(s: &str) -> Self {
-        Self::from_cobol_str(s)
+        Self::from_str(s)
+    }
+}
+
+impl<const N: usize> From<FixedString<N>> for String {
+    fn from(fs: FixedString<N>) -> Self {
+        fs.as_str().to_owned()
     }
 }
 
 impl<const N: usize> From<std::borrow::Cow<'_, str>> for FixedString<N> {
     fn from(s: std::borrow::Cow<'_, str>) -> Self {
-        Self::from_cobol_str(&s)
+        Self::from_str(&s)
     }
 }
 
 impl<const N: usize> PartialEq<&str> for FixedString<N> {
     fn eq(&self, other: &&str) -> bool {
-        self.trimmed() == *other
+        cobol_str_eq(&self.data, other.as_bytes())
     }
 }
 
 impl<const N: usize> PartialEq<str> for FixedString<N> {
     fn eq(&self, other: &str) -> bool {
-        self.trimmed() == other
+        cobol_str_eq(&self.data, other.as_bytes())
     }
 }
 
 impl<const N: usize> PartialOrd<&str> for FixedString<N> {
     fn partial_cmp(&self, other: &&str) -> Option<std::cmp::Ordering> {
-        self.trimmed().partial_cmp(*other)
+        Some(cobol_str_cmp(&self.data, other.as_bytes()))
     }
 }
 
 impl<const N: usize> PartialOrd<str> for FixedString<N> {
     fn partial_cmp(&self, other: &str) -> Option<std::cmp::Ordering> {
-        self.trimmed().partial_cmp(other)
+        Some(cobol_str_cmp(&self.data, other.as_bytes()))
     }
 }
 
@@ -168,35 +197,35 @@ impl<const N: usize> PartialOrd<i64> for FixedString<N> {
 
 // From numeric types for FixedString
 impl<const N: usize> From<i32> for FixedString<N> {
-    fn from(n: i32) -> Self { Self::from_cobol_str(&n.to_string()) }
+    fn from(n: i32) -> Self { Self::from_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<i64> for FixedString<N> {
-    fn from(n: i64) -> Self { Self::from_cobol_str(&n.to_string()) }
+    fn from(n: i64) -> Self { Self::from_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<u32> for FixedString<N> {
-    fn from(n: u32) -> Self { Self::from_cobol_str(&n.to_string()) }
+    fn from(n: u32) -> Self { Self::from_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<u64> for FixedString<N> {
-    fn from(n: u64) -> Self { Self::from_cobol_str(&n.to_string()) }
+    fn from(n: u64) -> Self { Self::from_str(&n.to_string()) }
 }
 
 impl<const N: usize> From<f32> for FixedString<N> {
-    fn from(n: f32) -> Self { Self::from_cobol_str(&format!("{}", n)) }
+    fn from(n: f32) -> Self { Self::from_str(&format!("{}", n)) }
 }
 
 impl<const N: usize> From<f64> for FixedString<N> {
-    fn from(n: f64) -> Self { Self::from_cobol_str(&format!("{}", n)) }
+    fn from(n: f64) -> Self { Self::from_str(&format!("{}", n)) }
 }
 
 impl<const N: usize> From<usize> for FixedString<N> {
-    fn from(n: usize) -> Self { Self::from_cobol_str(&format!("{}", n)) }
+    fn from(n: usize) -> Self { Self::from_str(&format!("{}", n)) }
 }
 
 impl<const N: usize> From<bool> for FixedString<N> {
-    fn from(b: bool) -> Self { Self::from_cobol_str(if b { "1" } else { "0" }) }
+    fn from(b: bool) -> Self { Self::from_str(if b { "1" } else { "0" }) }
 }
 
 // PartialEq<usize> for FixedString (COBOL numeric string comparison)
@@ -213,16 +242,29 @@ impl<const N: usize> PartialEq<bool> for FixedString<N> {
     }
 }
 
+// Forward comparisons: FixedString == String
+impl<const N: usize> PartialEq<String> for FixedString<N> {
+    fn eq(&self, other: &String) -> bool {
+        cobol_str_eq(&self.data, other.as_bytes())
+    }
+}
+
+impl<const N: usize> PartialOrd<String> for FixedString<N> {
+    fn partial_cmp(&self, other: &String) -> Option<std::cmp::Ordering> {
+        Some(cobol_str_cmp(&self.data, other.as_bytes()))
+    }
+}
+
 // Reverse comparisons: &str/String == FixedString (COBOL allows comparison in either direction)
 impl<const N: usize> PartialEq<FixedString<N>> for &str {
     fn eq(&self, other: &FixedString<N>) -> bool {
-        *self == other.trimmed()
+        cobol_str_eq(self.as_bytes(), &other.data)
     }
 }
 
 impl<const N: usize> PartialEq<FixedString<N>> for str {
     fn eq(&self, other: &FixedString<N>) -> bool {
-        self == other.trimmed()
+        cobol_str_eq(self.as_bytes(), &other.data)
     }
 }
 
@@ -279,13 +321,13 @@ impl<const N: usize> PartialEq<FixedString<N>> for usize {
 impl<const N: usize> FixedString<N> {
     pub fn copy_from(other: &dyn std::fmt::Display) -> Self {
         let s = format!("{}", other);
-        Self::from_cobol_str(&s)
+        Self::from_str(&s)
     }
 }
 
 impl<const N: usize> fmt::Display for FixedString<N> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.trimmed())
+        write!(f, "{}", self.as_str())
     }
 }
 
@@ -307,20 +349,20 @@ mod tests {
 
     #[test]
     fn test_from_str_pads() {
-        let s: FixedString<10> = FixedString::from_cobol_str("HI");
+        let s: FixedString<10> = FixedString::from_str("HI");
         assert_eq!(s.as_str(), "HI        ");
         assert_eq!(s.trimmed(), "HI");
     }
 
     #[test]
     fn test_from_str_truncates() {
-        let s: FixedString<3> = FixedString::from_cobol_str("HELLO");
+        let s: FixedString<3> = FixedString::from_str("HELLO");
         assert_eq!(s.as_str(), "HEL");
     }
 
     #[test]
     fn test_substr() {
-        let s: FixedString<10> = FixedString::from_cobol_str("ABCDEFGHIJ");
+        let s: FixedString<10> = FixedString::from_str("ABCDEFGHIJ");
         assert_eq!(s.substr(2, 3), "CDE");
     }
 
@@ -335,27 +377,64 @@ mod tests {
 impl<const N: usize> std::ops::AddAssign<i32> for FixedString<N> {
     fn add_assign(&mut self, rhs: i32) {
         let val: i32 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_cobol_str(&format!("{}", val + rhs));
+        *self = FixedString::from_str(&format!("{}", val + rhs));
     }
 }
 
 impl<const N: usize> std::ops::SubAssign<i32> for FixedString<N> {
     fn sub_assign(&mut self, rhs: i32) {
         let val: i32 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_cobol_str(&format!("{}", val - rhs));
+        *self = FixedString::from_str(&format!("{}", val - rhs));
     }
 }
 
 impl<const N: usize> std::ops::AddAssign<i64> for FixedString<N> {
     fn add_assign(&mut self, rhs: i64) {
         let val: i64 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_cobol_str(&format!("{}", val + rhs));
+        *self = FixedString::from_str(&format!("{}", val + rhs));
     }
 }
 
 impl<const N: usize> std::ops::SubAssign<i64> for FixedString<N> {
     fn sub_assign(&mut self, rhs: i64) {
         let val: i64 = self.trimmed().parse().unwrap_or(0);
-        *self = FixedString::from_cobol_str(&format!("{}", val - rhs));
+        *self = FixedString::from_str(&format!("{}", val - rhs));
     }
+}
+
+impl<const N: usize> std::ops::AddAssign<u32> for FixedString<N> {
+    fn add_assign(&mut self, rhs: u32) {
+        *self += rhs as i64;
+    }
+}
+
+impl<const N: usize> std::ops::SubAssign<u32> for FixedString<N> {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self -= rhs as i64;
+    }
+}
+
+/// COBOL string comparison: pad shorter operand with spaces, compare byte-by-byte
+fn cobol_str_eq(a: &[u8], b: &[u8]) -> bool {
+    let max = a.len().max(b.len());
+    for i in 0..max {
+        let ba = if i < a.len() { a[i] } else { b' ' };
+        let bb = if i < b.len() { b[i] } else { b' ' };
+        if ba != bb { return false; }
+    }
+    true
+}
+
+/// COBOL string ordering: pad shorter operand with spaces, compare byte-by-byte
+fn cobol_str_cmp(a: &[u8], b: &[u8]) -> std::cmp::Ordering {
+    let max = a.len().max(b.len());
+    for i in 0..max {
+        let ba = if i < a.len() { a[i] } else { b' ' };
+        let bb = if i < b.len() { b[i] } else { b' ' };
+        match ba.cmp(&bb) {
+            std::cmp::Ordering::Equal => continue,
+            ord => return ord,
+        }
+    }
+    std::cmp::Ordering::Equal
 }

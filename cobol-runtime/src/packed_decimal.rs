@@ -54,6 +54,36 @@ impl<const N: usize> PackedDecimal<N> {
         bytes
     }
 
+    /// Create from a high-precision decimal string at the given scale.
+    /// Parses without going through f64, avoiding precision loss.
+    /// Scale is clamped to 18 (i64 limit). Internal value = integer * 10^scale + frac.
+    pub fn from_str_scaled(s: &str, scale: u8) -> Self {
+        let effective_scale = scale.min(18);
+        let trimmed = s.trim();
+        if trimmed.is_empty() { return Self::zero(); }
+        let negative = trimmed.starts_with('-');
+        let abs_s = if negative { &trimmed[1..] } else { trimmed };
+        let (int_part, frac_part) = if let Some(dot) = abs_s.find('.') {
+            (&abs_s[..dot], &abs_s[dot + 1..])
+        } else {
+            (abs_s, "")
+        };
+        let int_val: i64 = int_part.parse().unwrap_or(0);
+        let frac_str = if frac_part.len() >= effective_scale as usize {
+            &frac_part[..effective_scale as usize]
+        } else {
+            frac_part
+        };
+        let frac_val: i64 = if frac_str.is_empty() { 0 } else {
+            frac_str.parse().unwrap_or(0)
+        };
+        let pad = effective_scale as usize - frac_str.len();
+        let frac_scaled = frac_val * 10i64.pow(pad as u32);
+        let factor = 10i64.pow(effective_scale as u32);
+        let raw = int_val.saturating_mul(factor).saturating_add(frac_scaled);
+        Self { value: if negative { -raw } else { raw } }
+    }
+
     /// Create from display-format bytes (for file I/O field parsing).
     /// Parses ASCII digit bytes into the packed value.
     pub fn from_bytes(bytes: &[u8]) -> Self {
@@ -67,6 +97,12 @@ impl<const N: usize> PackedDecimal<N> {
     pub fn to_bytes(&self) -> Vec<u8> {
         let s = format!("{}", self.value);
         s.into_bytes()
+    }
+
+    /// Return display-format bytes as a slice-compatible Vec (alias for to_bytes).
+    /// Used by BIT-OF and similar intrinsic functions that need byte access.
+    pub fn as_bytes(&self) -> Vec<u8> {
+        self.to_bytes()
     }
 
     /// Decode from BCD bytes.
@@ -288,14 +324,14 @@ impl<const N: usize> From<PackedDecimal<N>> for u32 {
 // From PackedDecimal for FixedString (numeric display)
 impl<const N: usize, const M: usize> From<PackedDecimal<N>> for crate::FixedString<M> {
     fn from(d: PackedDecimal<N>) -> Self {
-        Self::from_cobol_str(&d.value.to_string())
+        Self::from_str(&d.value.to_string())
     }
 }
 
 // From Decimal for FixedString
 impl<const N: usize> From<crate::Decimal> for crate::FixedString<N> {
     fn from(d: crate::Decimal) -> Self {
-        Self::from_cobol_str(&format!("{}", d))
+        Self::from_str(&format!("{}", d))
     }
 }
 
@@ -407,9 +443,37 @@ impl<const N: usize> std::ops::SubAssign<f64> for PackedDecimal<N> {
     fn sub_assign(&mut self, rhs: f64) { self.value -= rhs.round() as i64; }
 }
 
+impl<const N: usize> PackedDecimal<N> {
+    /// Format with implied decimal point for XML/JSON GENERATE.
+    /// dec_digits=3, value=120 → "0.120"; dec_digits=0 falls back to integer display.
+    pub fn display_with_decimals(&self, dec_digits: usize) -> String {
+        if dec_digits == 0 {
+            return format!("{}", self);
+        }
+        let neg = self.value < 0;
+        let abs_val = self.value.unsigned_abs();
+        let min_width = dec_digits + 1;
+        let s = format!("{:0>width$}", abs_val, width = min_width);
+        let split_at = s.len() - dec_digits;
+        let (int_part, dec_part) = s.split_at(split_at);
+        let int_trimmed = int_part.trim_start_matches('0');
+        let int_trimmed = if int_trimmed.is_empty() { "0" } else { int_trimmed };
+        if neg {
+            format!("-{}.{}", int_trimmed, dec_part)
+        } else {
+            format!("{}.{}", int_trimmed, dec_part)
+        }
+    }
+}
+
 impl<const N: usize> fmt::Display for PackedDecimal<N> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.value)
+        // COBOL PIC 9(N) COMP-3: display with zero-padded N digits
+        if self.value < 0 {
+            write!(f, "-{:0>width$}", -self.value, width = N)
+        } else {
+            write!(f, "{:0>width$}", self.value, width = N)
+        }
     }
 }
 
@@ -473,6 +537,10 @@ mod tests {
     #[test]
     fn test_display() {
         let d: PackedDecimal<9> = PackedDecimal::new(42);
-        assert_eq!(format!("{}", d), "42");
+        assert_eq!(format!("{}", d), "000000042");
+        let d2: PackedDecimal<4> = PackedDecimal::new(1);
+        assert_eq!(format!("{}", d2), "0001");
+        let d3: PackedDecimal<4> = PackedDecimal::new(-5);
+        assert_eq!(format!("{}", d3), "-0005");
     }
 }

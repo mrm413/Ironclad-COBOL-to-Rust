@@ -1,6 +1,0 @@
-IDENTIFICATION   DIVISION.
-       PROGRAM-ID.      callee.
-       DATA             DIVISION.
-       PROCEDURE        DIVISION RETURNING OMITTED.
-           MOVE 43 TO RETURN-CODE
-           EXIT PROGRAM.

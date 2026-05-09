@@ -1,4 +1,0 @@
-IDENTIFICATION   DIVISION.
-       PROGRAM-ID.      prog3.
-       PROCEDURE        DIVISION.
-           STOP RUN GIVING 0.
