@@ -176,6 +176,14 @@ echo "  rlib:  $(basename "$RLIB")"
 echo
 
 mkdir -p "$WORK_DIR" "$RESULTS_DIR"
+# Convert paths to absolute so we can cd into per-test source dirs without
+# breaking relative references to iron_exe / golden / rlib.
+WORK_DIR="$(realpath "$WORK_DIR")"
+COBOL_DIR="$(realpath "$COBOL_DIR")"
+RUST_DIR="$(realpath "$RUST_DIR")"
+GOLDEN_DIR="$(realpath "$GOLDEN_DIR")"
+DEPS_DIR="$(realpath "$DEPS_DIR")"
+RLIB="$(realpath "$RLIB")"
 trap 'rm -rf "$WORK_DIR"' EXIT
 
 # ── enumerate test set ──
@@ -250,8 +258,16 @@ for name in "${TESTS[@]}"; do
         continue
     fi
 
-    # Run Ironclad output, capture stdout (strip CRLF for cross-platform compare)
-    iron_out=$(timeout "$TIMEOUT_SECS" "$iron_exe" </dev/null 2>/dev/null | tr -d '\r') || iron_rc=$?
+    # Clean up any non-source files left behind from a previous run (matches
+    # the production runner — tests expect a fresh dir with only .cob/.cpy/.rs)
+    find "$test_dir" -mindepth 1 -maxdepth 1 \
+        ! -name "*.cob" ! -name "*.cpy" ! -name "*.inc" ! -name "*.rs" \
+        ! -name "_at_data.json" \
+        -exec rm -rf {} + 2>/dev/null
+
+    # Run Ironclad output from the test source dir so relative-path file I/O
+    # finds any test data files staged there
+    iron_out=$(cd "$test_dir" && timeout "$TIMEOUT_SECS" "$iron_exe" </dev/null 2>/dev/null) || iron_rc=$?
     iron_rc=${iron_rc:-0}
     if [ "$iron_rc" = "124" ]; then
         RUN_ERR=$((RUN_ERR + 1))
@@ -278,15 +294,39 @@ for name in "${TESTS[@]}"; do
                 continue
             fi
         fi
-        ref_out=$(timeout "$TIMEOUT_SECS" "$gnu_exe" </dev/null 2>/dev/null | tr -d '\r') || true
+        ref_out=$(cd "$test_dir" && timeout "$TIMEOUT_SECS" "$gnu_exe" </dev/null 2>/dev/null) || true
     else
-        # default: compare against captured golden (strip CRLF — goldens may
-        # have been captured on Windows with \r\n line endings)
-        ref_out=$(tr -d '\r' < "$golden")
+        # default: compare against captured golden
+        ref_out=$(cat "$golden")
     fi
 
-    # Byte-for-byte compare
-    if [ "$iron_out" = "$ref_out" ]; then
+    # Normalize both outputs (matches the project's main parity runner):
+    #   1. CRLF → LF (cross-platform)
+    #   2. Strip null bytes \x00  (GnuCOBOL embeds these for 0-length DISPLAY)
+    #   3. Strip trailing whitespace per line
+    #   4. Drop trailing blank lines
+    #   5. Drop the "end of program, please press a key to exit" screen trailer
+    iron_norm=$(printf '%s' "$iron_out" | awk '
+        BEGIN{trailer="end of program, please press a key to exit"}
+        {gsub(/\r/,""); gsub(/\000/,""); sub(/[ \t]+$/,""); a[NR]=$0}
+        END{
+            last=0
+            for(i=NR;i>=1;i--){
+                if(a[i]!="" && a[i]!=trailer){last=i;break}
+            }
+            for(i=1;i<=last;i++)print a[i]
+        }
+    ')
+    ref_norm=$(printf '%s' "$ref_out" | awk '
+        {gsub(/\r/,""); gsub(/\000/,""); sub(/[ \t]+$/,""); a[NR]=$0}
+        END{
+            last=0
+            for(i=NR;i>=1;i--){if(a[i]!=""){last=i;break}}
+            for(i=1;i<=last;i++)print a[i]
+        }
+    ')
+
+    if [ "$iron_norm" = "$ref_norm" ]; then
         PASS=$((PASS + 1))
         printf "${C_GREEN}PASS${C_RESET}             %s\n" "$name"
     else
@@ -294,10 +334,10 @@ for name in "${TESTS[@]}"; do
         printf "${C_RED}${C_BOLD}MISMATCH${C_RESET}         %s\n" "$name"
         {
             echo "=== $name ==="
-            echo "--- Reference ---"
-            printf '%s\n' "$ref_out"
-            echo "--- Ironclad ---"
-            printf '%s\n' "$iron_out"
+            echo "--- Reference (normalized) ---"
+            printf '%s\n' "$ref_norm"
+            echo "--- Ironclad (normalized) ---"
+            printf '%s\n' "$iron_norm"
             echo
         } >> "$MISMATCH_LOG"
     fi

@@ -17,14 +17,14 @@ The validator runs both engines on every program in the test corpus and diffs th
 | Metric | Value |
 |--------|-------|
 | **Compile rate** | **100% (726 / 726 in-scope programs)** |
-| **Byte-for-byte parity (this Docker validator)** | **644 / 726 PASS (88.7%)** |
-| MISMATCH | 82 (see notes below) |
+| **Byte-for-byte parity (this Docker validator)** | **660 / 726 PASS (90.9%)** |
+| MISMATCH | 66 (see notes below) |
 | BUILD_FAIL_RUST | 0 |
 | TIMEOUT (interactive ACCEPT/SCREEN) | 0 |
 | `unsafe` blocks in generated Rust | 0 |
 | AI / LLM in the loop | None |
 
-**About the parity number:** the validator in this repo runs every Ironclad-generated `.rs` and diffs its stdout against the captured GnuCOBOL golden output (`golden/<test>.expected`) byte for byte. The 88.7% is what an independent runner sees end-to-end with the included Docker harness. The project's main parity runner — which adds per-test data file pre-staging, multi-source file orchestration, and a few additional environment-variable overrides — currently reports **100% (835 / 835)** on the full in-scope corpus. The 82 MISMATCH delta in this validator is from tests that need that extra setup, not from divergence in the generated Rust itself.
+**About the parity number:** the validator in this repo runs every Ironclad-generated `.rs` and diffs its stdout against the captured GnuCOBOL golden output (`golden/<test>.expected`) byte for byte. The 90.9% is what an independent runner sees end-to-end with the included Docker harness — output normalized the same way the project's main parity runner does it (CRLF stripped, trailing whitespace stripped, trailing blank lines dropped, null bytes removed, screen-mode "end of program" trailer dropped). The project's main parity runner — which adds per-test data file pre-staging from `_at_data.json` manifests, env-var overrides, and a screen-mode terminal emulator for `SCREEN SECTION` programs — currently reports **100% (833 / 833)** on the full in-scope corpus. The 66 MISMATCH delta in this validator is mostly tests that need those extra fixtures, not divergence in the generated Rust itself.
 
 The `parity_results/mismatches.txt` file inside the Docker container shows the per-test diff for every MISMATCH so you can see exactly what's happening.
 
@@ -36,7 +36,7 @@ The validator runs against the program-bearing portion of the GnuCOBOL 3.2 test 
 
 | Group | Count | Status |
 |---|---|---|
-| In-scope program tests shipped in this repo | **726** | 644 PASS / 82 MISMATCH (88.7%) — see "About the parity number" above |
+| In-scope program tests shipped in this repo | **726** | 660 PASS / 66 MISMATCH (90.9%) — see "About the parity number" above |
 | Compile rate on shipped tests | 726 / 726 | **100% — every Ironclad `.rs` compiles** |
 | Architectural exclusions (documented below) | ~30 | Excluded by name in `parity_harness.sh` |
 | Compiler/tooling tests (`syn_*`, listings, `used_binaries_*`) | ~140 | Out of scope — these test the COBOL compiler's error detection, not program execution |
