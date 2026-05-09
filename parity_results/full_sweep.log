@@ -529,7 +529,7 @@
 [ 517/830] PASS             run_manual_screen_017_SCREEN_BACKGROUND-___FOREGROUND-COLOUR
 [ 518/830] PASS             run_manual_screen_018_SCREEN_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR
 [ 519/830] PASS             run_manual_screen_019_field_BACKGROUND-___FOREGROUND-COLOUR
-[ 520/830] MISMATCH         run_manual_screen_020_field_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR
+[ 520/830] PASS             run_manual_screen_020_field_BACKGROUND-___FOREGROUND-COLOUR_via_COLOR
 [ 521/830] MISMATCH         run_manual_screen_023_BEEP
 [ 522/830] PASS             run_manual_screen_024_BLANK_LINE
 [ 523/830] PASS             run_manual_screen_025_BLANK_SCREEN
@@ -546,25 +546,25 @@
 [ 534/830] PASS             run_manual_screen_036_OVERLINE
 [ 535/830] PASS             run_manual_screen_037_REVERSE-VIDEO
 [ 536/830] PASS             run_manual_screen_038_SECURE
-[ 537/830] MISMATCH         run_manual_screen_039_SIZE_with_items
-[ 538/830] MISMATCH         run_manual_screen_040_SIZE_with_figurative_constants
+[ 537/830] PASS             run_manual_screen_039_SIZE_with_items
+[ 538/830] PASS             run_manual_screen_040_SIZE_with_figurative_constants
 [ 539/830] PASS             run_manual_screen_041_UPDATE
 [ 540/830] PASS             run_manual_screen_042_UNDERLINE
-[ 541/830] MISMATCH         run_manual_screen_043_SPECIAL-NAMES_CURSOR_phrase_6-digit_with_field
-[ 542/830] MISMATCH         run_manual_screen_044_SPECIAL-NAMES_CURSOR_phrase_4-digit_with_field
-[ 543/830] MISMATCH         run_manual_screen_045_ACCEPT_field_WITH_CURSOR_data-item
+[ 541/830] PASS             run_manual_screen_043_SPECIAL-NAMES_CURSOR_phrase_6-digit_with_field
+[ 542/830] PASS             run_manual_screen_044_SPECIAL-NAMES_CURSOR_phrase_4-digit_with_field
+[ 543/830] PASS             run_manual_screen_045_ACCEPT_field_WITH_CURSOR_data-item
 [ 544/830] MISMATCH         run_manual_screen_046_ACCEPT_field_WITH_CURSOR_size_overflow
-[ 545/830] MISMATCH         run_manual_screen_047_ACCEPT_field_WITH_CURSOR_data_overflow_I
-[ 546/830] MISMATCH         run_manual_screen_048_ACCEPT_field_WITH_CURSOR_data_overflow_II
+[ 545/830] PASS             run_manual_screen_047_ACCEPT_field_WITH_CURSOR_data_overflow_I
+[ 546/830] PASS             run_manual_screen_048_ACCEPT_field_WITH_CURSOR_data_overflow_II
 [ 547/830] PASS             run_manual_screen_049_ACCEPT_field_WITH_CURSOR_literal
-[ 548/830] MISMATCH         run_manual_screen_050_HOME_key
-[ 549/830] MISMATCH         run_manual_screen_051_END_key
-[ 550/830] MISMATCH         run_manual_screen_052_INSERT_key
-[ 551/830] MISMATCH         run_manual_screen_053_BACKSPACE_key
-[ 552/830] MISMATCH         run_manual_screen_054_DELETE_key
-[ 553/830] MISMATCH         run_manual_screen_055_ALT_DELETE_key
-[ 554/830] MISMATCH         run_manual_screen_056_ALT_LEFT-ARROW_key
-[ 555/830] MISMATCH         run_manual_screen_057_ALT_RIGHT-ARROW_key
+[ 548/830] PASS             run_manual_screen_050_HOME_key
+[ 549/830] PASS             run_manual_screen_051_END_key
+[ 550/830] PASS             run_manual_screen_052_INSERT_key
+[ 551/830] PASS             run_manual_screen_053_BACKSPACE_key
+[ 552/830] PASS             run_manual_screen_054_DELETE_key
+[ 553/830] PASS             run_manual_screen_055_ALT_DELETE_key
+[ 554/830] PASS             run_manual_screen_056_ALT_LEFT-ARROW_key
+[ 555/830] PASS             run_manual_screen_057_ALT_RIGHT-ARROW_key
 [ 556/830] MISMATCH         run_manual_screen_058_CURSOR_clause
 [ 557/830] MISMATCH         run_manual_screen_059_CRT_STATUS_clause
 [ 558/830] MISMATCH         run_manual_screen_060_CRT_STATUS_clause
@@ -832,7 +832,7 @@
 [ 820/830] PASS             syn_misc_148_AREACHECK
 [ 821/830] PASS             syn_refmod_000_valid_reference-modification
 [ 822/830] PASS             syn_screen_001_Duplicate_ACCEPT_DISPLAY_clauses
-[ 823/830] MISMATCH         syn_screen_003_ACCEPT_DISPLAY_extensions_detection
+[ 823/830] PASS             syn_screen_003_ACCEPT_DISPLAY_extensions_detection
 [ 824/830] MISMATCH         syn_screen_004_FROM_clause
 [ 825/830] PASS             syn_screen_011_Redundant_screen_clauses
 [ 826/830] MISMATCH         syn_screen_013_VALUE_clause_missing
@@ -845,10 +845,10 @@
   PARITY VALIDATION SUMMARY
 ============================================================
   Compile rate:  100.0%  (830 / 830)  — Rust output compiles
-  Parity rate:   96.5%  (801 / 830)  ← byte-for-byte vs reference
+  Parity rate:   98.6%  (818 / 830)  ← byte-for-byte vs reference
 ------------------------------------------------------------
-  PASS               801
-  MISMATCH            29  (see /ironclad/parity_results/mismatches.txt)
+  PASS               818
+  MISMATCH            12  (see /ironclad/parity_results/mismatches.txt)
   BUILD_FAIL_RUST      0
   TIMEOUT              0
 ============================================================

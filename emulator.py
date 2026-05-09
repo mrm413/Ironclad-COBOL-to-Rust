@@ -105,6 +105,16 @@ class TerminalEmulator:
             env=env,
             dimensions=(self.rows, self.cols)
         )
+        # Disable PTY echo on Linux (matches Windows pywinpty behavior — when
+        # we send a keystroke as scripted input, the COBOL program's screen
+        # output should reflect the program's response, not a literal echo of
+        # the input character pre-empting the program). Without this, ACCEPT
+        # tests render "Yy" where the goldens expect just "Y".
+        if sys.platform != "win32":
+            try:
+                self.process.setecho(False)
+            except Exception:
+                pass
 
         self._reader_thread = threading.Thread(
             target=self._read_output_loop,

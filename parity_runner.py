@@ -252,14 +252,17 @@ def run_simple(exe_path: Path, cwd: Path, timeout: float = 10.0,
         return 124, ""
 
 
-def run_terminal(exe_path: Path, cwd: Path, timeout: float = 12.0,
+def run_terminal(exe_path: Path, cwd: Path, timeout: float = 10.0,
                  env: dict[str, str] | None = None) -> tuple[int, str]:
     """Run a SCREEN SECTION program in a virtual terminal.
 
-    Uses the vendored emulator.py which mirrors the production runner's
-    peak-content capture algorithm — replays raw PTY output in chunks,
-    picks the chunk with the most non-empty rows (with anchoring to filter
-    transient flashes), and returns that chunk's display_text.
+    Mirrors the production runner's run_exe_terminal: start, wait for the
+    screen to stabilize, send "y\\r\\n" (the default response that satisfies
+    every "Enter \"y\" if you see..." prompt the GnuCOBOL screen suite uses),
+    wait for exit, then capture_peak. Most run_manual_screen_* tests exit
+    cleanly only after receiving that input — without it the program hangs
+    on ACCEPT and we capture a pre-input screen state that diverges from
+    the post-input golden.
     """
     if not HAS_EMULATOR:
         return run_simple(exe_path, cwd, timeout, env)
@@ -272,10 +275,26 @@ def run_terminal(exe_path: Path, cwd: Path, timeout: float = 12.0,
     emu = TerminalEmulator(rows=25, cols=80)
     try:
         emu.start([str(exe_path)], cwd=str(cwd), env=full_env, timeout=timeout)
-        # Wait for the program to either exit or fall silent (settle_time of
-        # silence after the last screen change). Production runner uses 0.5s
-        # for the SCREEN tests; same setting here.
-        emu.wait_for_stable(timeout=timeout, settle_time=0.5)
+        # Phase 1: wait for the initial prompt to render. Longer settle_time
+        # (1.0s) catches programs that pause briefly mid-write before
+        # finishing the prompt.
+        emu.wait_for_stable(timeout=4.0, settle_time=1.0)
+        # Phase 2: send the canonical "y" response + Enter (matches the
+        # production runner's default input). Programs that expect different
+        # input simply ignore "y" and the test still captures peak content.
+        time.sleep(0.5)
+        try:
+            emu.send_input("y")
+            emu.send_key("enter")
+        except Exception:
+            pass
+        # Phase 3: wait for the program to exit (or hit timeout). Capture_peak
+        # then picks the busiest chunk across the entire run, so it doesn't
+        # matter if extra trailer output appears after the prompt.
+        emu.wait_for_exit(timeout=timeout)
+        # Tail wait: even after exit signal, some output may still be in the
+        # PTY buffer. Sleep briefly to let the reader thread drain it.
+        time.sleep(0.3)
     except Exception as e:
         try:
             emu.close()

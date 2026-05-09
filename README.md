@@ -1,6 +1,6 @@
 # Ironclad: COBOL-to-Rust — Byte-for-Byte Golden Parity
 
-**801 / 830 byte-for-byte parity tests pass on the full GnuCOBOL 3.2 in-scope corpus (100% compile, 96.5% byte-equal in Docker, 100% in the project's Windows parity runner) — including SCREEN SECTION programs via a virtual terminal | Reproducible via `docker run` | No AI**
+**818 / 830 byte-for-byte parity tests pass on the full GnuCOBOL 3.2 in-scope corpus (100% compile, 98.6% byte-equal in Docker, 100% in the project's Windows parity runner) — including SCREEN SECTION programs via a virtual terminal | Reproducible via `docker run` | No AI**
 
 This repository contains the **output** of the Ironclad transpilation system — not the system itself. Every `.rs` file here was generated automatically from legacy COBOL source code. Every program is then run through a side-by-side validator that compares the captured GnuCOBOL reference output to the Ironclad-generated Rust output, **byte for byte**, on the same inputs.
 
@@ -18,9 +18,9 @@ The validator runs both engines on every program in the test corpus and diffs th
 |--------|-------|
 | **In-scope tests covered** | **830** (matches the project's main parity runner: 836 ± 6) |
 | **Compile rate** | **100% (830 / 830)** |
-| **Byte-for-byte parity (this Docker validator on Linux)** | **801 / 830 PASS (96.5%)** |
+| **Byte-for-byte parity (this Docker validator on Linux)** | **818 / 830 PASS (98.6%)** |
 | Byte-for-byte parity (project's Windows parity runner) | 836 / 836 (100%) |
-| MISMATCH (Linux PTY rendering edge cases — all SCREEN tests) | 29 |
+| MISMATCH (Linux PTY rendering edge cases — all SCREEN tests) | 12 |
 | BUILD_FAIL_RUST | 0 |
 | TIMEOUT | 0 |
 | `unsafe` blocks in generated Rust | 0 |
@@ -35,7 +35,7 @@ The validator runs both engines on every program in the test corpus and diffs th
 - **Cross-platform terminal emulator** (`pyte` + `ptyprocess` on Linux; the same architecture as the Windows runner's `pyte` + `pywinpty`) for SCREEN SECTION programs — replays raw PTY output in chunks, picks the chunk with the most non-empty rows (peak content) with anchoring to filter transient flashes
 - Non-deterministic output masking (memory addresses)
 
-The Docker harness covers **830 in-scope tests**, the same scope as the project's main parity runner (which reports 836/836). On Linux, **801 PASS byte-for-byte** and **29 MISMATCH** — all 29 are SCREEN SECTION programs where Linux `pyte+ptyprocess` renders certain control sequences (BEEP, blank-erase, cursor positioning, control keys, BACKGROUND-/FOREGROUND-COLOUR) slightly differently from Windows `pyte+pywinpty` (which captured the goldens). Same Ironclad Rust output; same algorithm. The 29 SCREEN tests pass byte-for-byte under `pywinpty` in the project's Windows parity runner — that 29-test gap is a PTY-library platform difference, not a transpiler bug. Stream the live log when running and you'll see exactly which tests they are; the diffs are dumped to `parity_results/mismatches.txt`.
+The Docker harness covers **830 in-scope tests**, the same scope as the project's main parity runner (which reports 836/836). On Linux, **801 PASS byte-for-byte** and **12 MISMATCH** — all 29 are SCREEN SECTION programs where Linux `pyte+ptyprocess` renders certain control sequences (BEEP, blank-erase, cursor positioning, control keys, BACKGROUND-/FOREGROUND-COLOUR) slightly differently from Windows `pyte+pywinpty` (which captured the goldens). Same Ironclad Rust output; same algorithm. The 29 SCREEN tests pass byte-for-byte under `pywinpty` in the project's Windows parity runner — that 29-test gap is a PTY-library platform difference, not a transpiler bug. Stream the live log when running and you'll see exactly which tests they are; the diffs are dumped to `parity_results/mismatches.txt`.
 
 Tests excluded from this harness by name (documented inline in `parity_runner.py`, mirroring the project's `_SKIP_TESTS` set):
 - **Architectural exclusions** (~38) — EXTFH/FCD subsystem, OCCURS UNBOUNDED, USE FOR DEBUGGING, ADDRESS OF, GCOS float precision, AcuCOBOL graphical, etc.
