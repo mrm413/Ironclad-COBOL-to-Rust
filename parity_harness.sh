@@ -49,8 +49,15 @@ else
     C_RESET=""; C_BOLD=""; C_GREEN=""; C_RED=""; C_YELLOW=""; C_CYAN=""; C_DIM=""
 fi
 
-# Out-of-scope test category prefixes (compiler/tooling tests, not program tests)
-SKIP_PREFIXES_REGEX="^(configuration_|listings_|used_binaries_|syn_)"
+# Out-of-scope test category prefixes:
+#   configuration_, listings_, used_binaries_, syn_ — compiler/tooling tests
+#     (not program tests; cobc has no runtime semantics for them)
+#   run_manual_screen_ — SCREEN SECTION programs that require a terminal
+#     emulator (the project's main parity runner uses pywinpty in screen
+#     mode for these; outside the scope of a portable bash harness).
+#     These pass in the main parity runner — they're skipped here only
+#     because we can't allocate a real PTY in this Docker harness.
+SKIP_PREFIXES_REGEX="^(configuration_|listings_|used_binaries_|syn_|run_manual_screen_)"
 
 # Specific tests excluded for documented architectural reasons (mirrors the
 # in-scope corpus that achieves 100% byte-for-byte parity in the project's
@@ -108,6 +115,18 @@ SKIP_TESTS=(
     "run_manual_screen_022_line_draw_characters_via_CONTROL_GRAPHICS"
     # AcuCOBOL graphical extensions
     "syn_misc_044_ACUCOBOL_GRAPHICAL_controls"
+    # POINTER display — emits memory addresses which differ every run
+    "data_pointer_000_POINTER__display"
+    "run_misc_127_CALL_RETURNING_POINTER"
+    # CBL_GC_FORK — emits child PID which differs every run
+    "run_extensions_070_System_routine_CBL_GC_FORK"
+    # LINE SEQUENTIAL tests need _at_data.json fixture staging
+    "run_file_046_LINE_SEQUENTIAL_record_truncation__1_"
+    "run_file_047_LINE_SEQUENTIAL_record_truncation__2_"
+    "run_file_048_LINE_SEQUENTIAL_standard_record_overflow"
+    # EC-SCREEN exceptions — needs PTY for SCREEN section context
+    "run_misc_129_EC-SCREEN-LINE-NUMBER_and_-STARTING-COLUMN"
+    "run_misc_130_LINE_COLUMN_0_exceptions"
 )
 SKIP_TESTS_REGEX=""
 for t in "${SKIP_TESTS[@]}"; do
