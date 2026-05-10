@@ -117,14 +117,6 @@ SKIP_TESTS = {
     "run_manual_screen_022_line_draw_characters_via_CONTROL_GRAPHICS",
     # AcuCOBOL graphical extensions
     "syn_misc_044_ACUCOBOL_GRAPHICAL_controls",
-    # POINTER values — emit memory addresses (different every run)
-    "data_pointer_000_POINTER__display",
-    "run_misc_127_CALL_RETURNING_POINTER",
-    # CBL_GC_FORK — emits child PID (different every run)
-    "run_extensions_070_System_routine_CBL_GC_FORK",
-    # EC-SCREEN exception line/column — needs SCREEN context the harness can't replicate
-    "run_misc_129_EC-SCREEN-LINE-NUMBER_and_-STARTING-COLUMN",
-    "run_misc_130_LINE_COLUMN_0_exceptions",
 }
 SKIP_PREFIXES = ("listings_", "used_binaries_")
 # Note: this matches the project's main parity runner exactly:
@@ -235,6 +227,9 @@ def run_simple(exe_path: Path, cwd: Path, timeout: float = 10.0,
                env: dict[str, str] | None = None) -> tuple[int, str]:
     """Plain stdin-closed subprocess run."""
     full_env = os.environ.copy()
+    # Match the production runner's GnuCOBOL env defaults — tests that call
+    # cob_getenv("COB_UNIX_LF") expect "1" (Unix-style line endings)
+    full_env.setdefault("COB_UNIX_LF", "1")
     if env:
         full_env.update(env)
     try:
@@ -268,6 +263,7 @@ def run_terminal(exe_path: Path, cwd: Path, timeout: float = 10.0,
         return run_simple(exe_path, cwd, timeout, env)
 
     full_env = os.environ.copy()
+    full_env.setdefault("COB_UNIX_LF", "1")
     if env:
         full_env.update(env)
     full_env["TERM"] = "xterm-256color"
