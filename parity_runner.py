@@ -302,7 +302,24 @@ def run_terminal(exe_path: Path, cwd: Path, timeout: float = 10.0,
             pass
         return 1, f"<emulator error: {e}>"
 
-    capture = emu.capture_peak()
+    # Use final-state capture (full raw fed at once) instead of capture_peak's
+    # chunked-replay. capture_peak with chunk_size=50 splits writes mid-string
+    # on Linux pyte and picks truncated snapshots. Final-state always has
+    # complete text. Production runner gets away with chunked replay because
+    # pywinpty buffers/delivers output differently on Windows.
+    import pyte as _pyte
+    _s = _pyte.Screen(emu.cols, emu.rows)
+    _st = _pyte.Stream(_s)
+    _st.feed(emu.raw_output)
+    from emulator import ScreenCapture as _SC
+    capture = _SC(
+        lines=list(_s.display),
+        cursor_row=_s.cursor.y,
+        cursor_col=_s.cursor.x,
+        timestamp=time.time(),
+        rows=emu.rows,
+        cols=emu.cols,
+    )
     try:
         emu.close()
     except Exception:
