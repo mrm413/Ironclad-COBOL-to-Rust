@@ -64,8 +64,12 @@ except ImportError:
     HAS_EMULATOR = False
 
 # ── Architectural exclusions (mirror of the project's _SKIP_TESTS set) ──
+# Synced 2026-05-14 to match the upstream parity runner.  WHEN-COMPILED,
+# ACCEPT FROM TIME/DATE, and listings_* are NO LONGER skipped — the parity
+# normalizer masks volatile timestamps and listings_* run as compile-time
+# diagnostic checks now.
 SKIP_TESTS = {
-    # EXTFH/FCD subsystem
+    # EXTFH/FCD subsystem — vendor External File Handler C-callback protocol
     "run_file_077_EXTFH__Indexed_with_FH--FCD",
     "run_file_078_EXTFH__SEQUENTIAL_files",
     "run_file_079_EXTFH__LINE_SEQUENTIAL_files__direct_EXTFH",
@@ -76,19 +80,13 @@ SKIP_TESTS = {
     "run_file_085_EXTFH__RELATIVE_files",
     "run_file_086_EXTFH__reading_two_files_with_one_FCD",
     "run_file_087_EXTFH__auto-conversion_FCD2__-__FCD3_on_32bit",
-    # USE FOR DEBUGGING
+    # USE FOR DEBUGGING — compiler debug shim
     "run_fundamental_085_USE_FOR_DEBUGGING__COB_SET_DEBUG_switched_",
-    # Trace/dump features (cobc runtime internals)
-    "run_misc_007_CURRENCY_SIGN",
-    "run_misc_007_CURRENCY_SIGN_WITH_PICTURE_SYMBOL",
+    # cobc runtime trace/dump features
     "run_misc_139_stack_and_dump_feature",
-    # WHEN-COMPILED — volatile timestamp differs every run
-    "syn_misc_105_WHEN-COMPILED_register_in_dialect",
     # CALL BY VALUE to C — C-interop FFI
     "run_extensions_029_CALL_BY_VALUE_to_C",
-    # ACCEPT FROM TIME/DATE — timing-dependent
-    "run_accept_002_ACCEPT_FROM_TIME___DATE___DAY___DAY-OF-WEEK__2_",
-    # OCCURS UNBOUNDED
+    # OCCURS UNBOUNDED — dynamic allocation subsystem
     "run_extensions_016_OCCURS_UNBOUNDED__1_",
     "run_extensions_017_OCCURS_UNBOUNDED__2_",
     "run_extensions_018_INITIALIZE_OCCURS_UNBOUNDED",
@@ -96,8 +94,10 @@ SKIP_TESTS = {
     "run_file_089_INDEXED_File_READ_DELETE_READ",
     # Variable-length RETURNING from user-defined function
     "run_fundamental_024_function_with_variable-length_RETURNING_item",
-    # XML GENERATE exceptions
+    # XML GENERATE exception subsystem
     "run_ml_002_XML_GENERATE_exceptions",
+    # Multi-char CURRENCY SIGN WITH PICTURE SYMBOL (single-char passes)
+    "run_misc_007_CURRENCY_SIGN_WITH_PICTURE_SYMBOL",
     # Variable-length INDEXED records
     "run_file_063_INDEXED_SEQUENTIAL_with_variable_records",
     # PPP COMP-3 P-factor scaling edge case
@@ -106,23 +106,26 @@ SKIP_TESTS = {
     "run_fundamental_060_Numeric_operations__3__PACKED-DECIMAL",
     # ASSIGN DYNAMIC with LINKAGE SECTION data item
     "run_file_020_ASSIGN_DYNAMIC_with_data_item_in_LINKAGE",
-    # LINE SEQUENTIAL multi-record terminator handling
+    # LINE SEQUENTIAL multi-record COB_LS_NULLS escape encoding
     "run_file_092_LINE_SEQUENTIAL_data",
-    # ADDRESS OF complex scenarios
+    # ADDRESS OF complex / BASED redirect deep semantics
     "run_extensions_006_ADDRESS_OF",
     # GCOS floating-point last-digit precision
     "run_extensions_094_GCOS_floating-point_usages",
     # Interactive ANSI line-draw / color CONTROL
     "run_manual_screen_021_field_BACKGROUND-___FOREGROUND-COLOUR_via_CONTROL",
     "run_manual_screen_022_line_draw_characters_via_CONTROL_GRAPHICS",
+    # CRT STATUS variant — interactive screen, no input piped
+    "run_manual_screen_062_CRT_STATUS_clause_2",
     # AcuCOBOL graphical extensions
     "syn_misc_044_ACUCOBOL_GRAPHICAL_controls",
 }
-SKIP_PREFIXES = ("listings_", "used_binaries_")
+SKIP_PREFIXES = ("used_binaries_",)
 # Note: this matches the project's main parity runner exactly:
-#   - listings_, used_binaries_ are the only prefix-skipped categories
+#   - used_binaries_ is the only prefix-skipped category now
 #   - syn_ tests are skipped ONLY when the expected output is trivially small
 #     (≤ 2 bytes — these are pure-syntax-validation tests with no real output)
+#   - listings_ tests now run as diagnostic checks (negative compile tests)
 #   - configuration_, run_manual_screen_, run_*, data_*, etc. all run.
 
 # ── Output normalization (matches project's main parity runner) ──────────

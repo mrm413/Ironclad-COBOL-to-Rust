@@ -525,7 +525,7 @@ impl CicsContext {
     // ── MASTER EXECUTE (dispatch any EXEC CICS command) ─────────────
 
     /// Execute a CICS command by name with options.
-    /// This is what rustify.rs emits calls to.
+    /// Generated code dispatches every EXEC CICS statement through this entry.
     pub fn execute(&mut self, command: &str, options: &[(&str, Option<&str>)]) -> Option<String> {
         let cmd = command.to_uppercase();
         let opt = |key: &str| -> Option<&str> {

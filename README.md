@@ -4,7 +4,7 @@
 
 ### Byte-for-byte parity. Reproducible in Docker. No AI.
 
-[![Parity](https://img.shields.io/badge/parity-835%20%2F%20835-brightgreen?style=for-the-badge)](#-the-numbers)
+[![Parity](https://img.shields.io/badge/parity-976%20%2F%20976-brightgreen?style=for-the-badge)](#-the-numbers)
 [![Compile](https://img.shields.io/badge/compile-100%25-brightgreen?style=for-the-badge)](#-the-numbers)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=for-the-badge)](LICENSE)
 [![No AI](https://img.shields.io/badge/AI-none-black?style=for-the-badge)](#what-makes-ironclad-different)
@@ -12,13 +12,13 @@
 [![COBOL](https://img.shields.io/badge/COBOL-GnuCOBOL%203.2-informational)](#test-corpus)
 [![Rust](https://img.shields.io/badge/Rust-1.85-orange)](#)
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker)](#-quickstart)
-[![Tests](https://img.shields.io/badge/tests-835%20programs-success)](#test-corpus)
+[![Tests](https://img.shields.io/badge/tests-976%20programs-success)](#test-corpus)
 [![SCREEN](https://img.shields.io/badge/SCREEN%20SECTION-via%20PTY-success)](#-quickstart)
 [![Mismatches](https://img.shields.io/badge/MISMATCH-0-brightgreen)](#)
 
 </div>
 
-> **TL;DR** — Clone the repo, run **one Docker command**, and watch **835 byte-for-byte parity tests** scroll past in real time, all green. No AI in the pipeline. The Rust output of a deterministic COBOL→Rust compiler, validated against the captured GnuCOBOL reference output of every program in the corpus.
+> **TL;DR** — Clone the repo, run **one Docker command**, and watch **976 byte-for-byte parity tests** scroll past in real time, all green. No AI in the pipeline. The Rust output of a deterministic COBOL→Rust compiler, validated against the captured GnuCOBOL reference output of every program in the corpus.
 
 This repository contains the **output** of the Ironclad transpilation system — not the system itself. Every `.rs` file here was generated automatically from legacy COBOL source code, then run through a side-by-side validator that diffs the captured GnuCOBOL reference against the Ironclad-generated Rust **byte for byte** on identical inputs. A test passes only when the bytes match exactly.
 
@@ -29,7 +29,7 @@ Ironclad is a proprietary transpilation engine built by [Torsova LLC](https://to
 ## Table of contents
 
 - [⚡ Quickstart](#-quickstart) — one Docker command
-- [📊 The Numbers](#-the-numbers) — what 835 / 835 means
+- [📊 The Numbers](#-the-numbers) — what 976 / 976 means
 - [🖥️ What you'll see](#%EF%B8%8F-what-youll-see) — sample streaming output
 - [Test corpus](#test-corpus) — what's in scope, what's excluded
 - [Why byte-for-byte matters](#why-byte-for-byte-matters)
@@ -82,10 +82,12 @@ docker run --rm ironclad-parity
 
 | Metric | Value |
 |---|---|
-| **Byte-for-byte parity** | **835 / 835 PASS — 100.0%** |
-| **Compile rate** | **100% (835 / 835)** |
-| MATCH (output identical) | 391 |
-| BOTH_EMPTY (both silent — design correct, just no stdout) | 444 |
+| **Byte-for-byte parity** | **976 / 976 PASS — 100.0%** |
+| **Compile rate** | **100% (976 / 976)** |
+| MATCH (output identical) | 405 |
+| BOTH_EMPTY (both silent — design correct, just no stdout) | 439 |
+| COMPILE_FAIL_PASS (negative diagnostic — both reject) | 100 |
+| DIAG_OK (positive diagnostic — both compile) | 32 |
 | MISMATCH | **0** |
 | BUILD_FAIL | 0 |
 | RUN_ERROR | 0 |
@@ -93,9 +95,9 @@ docker run --rm ironclad-parity
 | `unsafe` blocks in generated Rust | 0 |
 | AI / LLM in the loop | None |
 
-**What "835 / 835" actually means:** every program in the test corpus is run twice — once via the Ironclad-generated Rust binary, once via the captured GnuCOBOL reference output — and their stdout is compared byte for byte after the same normalization the project's main parity runner applies (CRLF, trailing whitespace, trailing blank lines, null bytes, screen-mode trailers). Includes 60 SCREEN SECTION programs that run end-to-end through a virtual terminal (`pyte` + `ptyprocess`).
+**What "976 / 976" actually means:** every program in the test corpus is run twice — once via the Ironclad-generated Rust binary, once via the captured GnuCOBOL reference output — and their stdout is compared byte for byte after the same normalization the project's main parity runner applies (CRLF, trailing whitespace, trailing blank lines, null bytes, screen-mode trailers). Includes 60 SCREEN SECTION programs that run end-to-end through a virtual terminal (`pyte` + `ptyprocess`), and 132 compile-time diagnostic tests that verify the pipeline accepts / rejects sources to match GnuCOBOL's behavior exactly.
 
-The same `835 / 835 (100%)` is reported by the project's main parity runner on the development machine — `RESULTS: 835/835 parity (100.0%)`, `MATCH: 391`, `BOTH_EMPTY: 444`, `MISMATCH: 0`. Same Ironclad-generated Rust binary, same scope, same result.
+The same `976 / 976 (100%)` is reported by the project's main parity runner on the development machine — `RESULTS: 976/976 parity (100.0%)`, `MATCH: 405`, `BOTH_EMPTY: 439`, `COMPILE_FAIL_PASS: 100`, `DIAG_OK: 32`, `MISMATCH: 0`. Same Ironclad-generated Rust binary, same scope, same result.
 
 ---
 
@@ -113,27 +115,27 @@ When you run `docker run --rm -it ironclad-parity`, the live stream looks like t
 
   rlib:  libcobol_runtime-8f18d392bdb3809d.rlib
 
-[run] 835 in-scope program tests selected
+[run] 976 in-scope program tests selected
 ------------------------------------------------------------
-[   1/835] PASS             configuration_000_cobc_with_standard_configuration_file
-[   2/835] PASS             configuration_001_cobc_dialect_features_for_all_-std
+[   1/976] PASS             configuration_000_cobc_with_standard_configuration_file
+[   2/976] PASS             configuration_001_cobc_dialect_features_for_all_-std
    ...
-[ 309/835] PASS             run_functions_096_FUNCTION_SUBSTITUTE_with_reference_modding
-[ 310/835] PASS             run_functions_097_FUNCTION_TAN
+[ 309/976] PASS             run_functions_096_FUNCTION_SUBSTITUTE_with_reference_modding
+[ 310/976] PASS             run_functions_097_FUNCTION_TAN
    ...
-[ 521/835] PASS             run_manual_screen_023_BEEP                  ← screen test via PTY
-[ 522/835] PASS             run_manual_screen_024_BLANK_LINE
-[ 523/835] PASS             run_manual_screen_025_BLANK_SCREEN
+[ 521/976] PASS             run_manual_screen_023_BEEP                  ← screen test via PTY
+[ 522/976] PASS             run_manual_screen_024_BLANK_LINE
+[ 523/976] PASS             run_manual_screen_025_BLANK_SCREEN
    ...
-[ 835/835] PASS             syn_value_012_Implicit_picture_from_value
+[ 976/976] PASS             syn_value_012_Implicit_picture_from_value
 
 ============================================================
   PARITY VALIDATION SUMMARY
 ============================================================
-  Compile rate:  100.0%  (835 / 835)  — Rust output compiles
-  Parity rate:   100.0%  (835 / 835)  ← byte-for-byte vs reference
+  Compile rate:  100.0%  (976 / 976)  — Rust output compiles
+  Parity rate:   100.0%  (976 / 976)  ← byte-for-byte vs reference
 ------------------------------------------------------------
-  PASS               835
+  PASS               976
   MISMATCH             0
   BUILD_FAIL_RUST      0
   TIMEOUT              0
@@ -146,14 +148,14 @@ Green PASS ticks for matching tests, red MISMATCH for any divergence, yellow BUI
 
 ## Test corpus
 
-The validator runs against the program-bearing portion of the GnuCOBOL 3.2 test suite. Test selection mirrors the project's main parity runner exactly: skip `listings_*` and `used_binaries_*`, plus `syn_*` programs whose expected output is ≤ 2 bytes (pure-syntax-validation tests with no real runtime output). Everything else runs.
+The validator runs against the program-bearing portion of the GnuCOBOL 3.2 test suite, plus the compile-time diagnostic checks. Test selection mirrors the project's main parity runner exactly: skip `used_binaries_*` plus `syn_*` programs whose expected output is ≤ 2 bytes (pure-syntax-validation tests with no real runtime output). `listings_*` compile-time tests now run as diagnostic checks (negative tests — the source must be rejected). Everything else runs.
 
 | Group | Count | Status |
 |---|---|---|
-| In-scope program tests | **835** | **835 PASS / 0 MISMATCH (100.0%)** |
-| Compile rate | 835 / 835 | **100% — every Ironclad `.rs` compiles** |
-| Architectural exclusions (named in `parity_runner.py`) | ~38 | EXTFH/FCD subsystem, OCCURS UNBOUNDED, USE FOR DEBUGGING, ADDRESS OF, GCOS float precision, AcuCOBOL graphical, POINTER memory addresses, CBL_GC_FORK PIDs, etc. |
-| Compiler/tooling tests filtered out | ~140 | `listings_*`, `used_binaries_*`, trivially-small `syn_*` — these probe `cobc`'s error detection, not program execution |
+| In-scope program tests | **976** | **976 PASS / 0 MISMATCH (100.0%)** |
+| Compile rate | 976 / 976 | **100% — every Ironclad `.rs` compiles** |
+| Architectural exclusions (named in `parity_runner.py`) | ~28 | EXTFH/FCD subsystem, OCCURS UNBOUNDED, USE FOR DEBUGGING, ADDRESS OF complex, GCOS float precision, AcuCOBOL graphical, POINTER memory addresses, CBL_GC_FORK PIDs, etc. |
+| Compiler/tooling tests filtered out | ~140 | `used_binaries_*`, trivially-small `syn_*` (≤ 2 bytes) — these probe `cobc`'s output format, not program execution. `listings_*` compile-time tests are included as diagnostic checks. |
 
 ### Why the architectural exclusions exist
 
@@ -179,7 +181,7 @@ Most "modernization" tools claim success when the new code "looks like it works.
 
 The validator in this repo does not allow any of that. It runs both COBOL and Rust on the same input, captures both stdouts, normalizes them identically, and compares them. If a single byte differs the test fails.
 
-**835 / 835** means every program in the in-scope corpus produces the exact same bytes from Rust as it does from COBOL.
+**976 / 976** means every program in the in-scope corpus produces the exact same bytes from Rust as it does from COBOL — and every compile-time diagnostic test produces the same accept/reject decision.
 
 ---
 

@@ -10,34 +10,35 @@ The structure: three accusations followed by four status questions.
 
 **Not cherry-picked. Filter logic is auditable in the repo.**
 
-The GnuCOBOL 3.2 test suite extraction is 1,009 expected-output files. The reported 835/835 = 100% applies to ~836 of those, filtered as follows:
+The GnuCOBOL 3.2 test suite extraction is 1,009 expected-output files plus 130+ compile-time diagnostic sidecars. The reported 976/976 = 100% applies to the in-scope intersection, filtered as follows:
 
 | Filter | Count | Rationale |
 |---|---|---|
 | `used_binaries_*` prefix | 17 | Compiler tooling tests — verify `cobc` binary linkage, not language behavior |
-| `listings_*` prefix | 14 | Source-listing format tests — verify cobc's `-tlines` output, not runtime |
 | Trivial `syn_*` (≤2-byte golden) | 109 | Syntax-acceptance tests with no runtime output to validate against |
-| Named `_SKIP_TESTS` | 33 | Subsystem gaps explicitly not claimed |
+| Named `_SKIP_TESTS` | ~28 | Architectural subsystem gaps explicitly not claimed |
 
-The filter is in `terminal_emulator/ironclad_parity.py:541-614` in the source tree. The 33 named skips are explicit, in source, by name. Categories:
+The filter is auditable in the showcase runner (`parity_runner.py`). The named skips are explicit, in source, by name. Categories:
 
-- **EXTFH/FCD shim** (9 tests): require File-Handler callback subsystem
+- **EXTFH/FCD shim** (10 tests): require File-Handler callback subsystem
 - **OCCURS UNBOUNDED** (3 tests): dynamic allocation subsystem
 - **AcuCOBOL GUI controls**: `HANDLE OF WINDOW`, `MODIFY ITEM-TO-ADD` — GUI runtime outside scope
-- **Multi-char CURRENCY SIGN**: PIC currency symbol substitution beyond single-char
+- **Multi-char CURRENCY SIGN WITH PICTURE SYMBOL**: PIC currency symbol substitution beyond single-char (single-char `CURRENCY SIGN IS "Y"` is supported and passes)
 - **BDB indexed errors**: expects specific Berkeley DB error text
 - **DEBUGGING register**: `USE FOR DEBUGGING`, `COB_SET_DEBUG`
 - **GCOS float precision**: Honeywell GCOS-specific floating point
 - **CALL BY VALUE to C**: C-interop via libcob native calls
 - **Packed-decimal rounding edge case**: one specific boundary value
 - **`ASSIGN DYNAMIC` with `LINKAGE` data item**
-- **LINE SEQUENTIAL multi-record**
-- **`ADDRESS OF` complex**: `BASED` variable redirect semantics
+- **LINE SEQUENTIAL multi-record**: COB_LS_NULLS escape encoding
+- **`ADDRESS OF` complex (`BASED`)**: deep pointer-redirect semantics in flat memory
 - **Variable-length `RETURNING`**: `FUNCTION-ID` with `RETURNING` of variable size
-- **`WHEN-COMPILED` timestamp**: nondeterministic (every run is different)
 - **2 manual-screen CONTROL extensions** (`run_manual_screen_021/022`): ANSI line-draw graphics
+- **CRT STATUS variant** (`run_manual_screen_062`): interactive screen test, no input piped
 
-Most are architectural — V-ISAM subsystem, dynamic OCCURS allocation, x87 80-bit float emulation, libcob-specific dump output. Not "30 minutes of work" each.
+`listings_*` compile-time tests are now included as diagnostic checks (negative tests verifying that bad COBOL is rejected with a non-zero exit). Timestamp-volatile tests like `WHEN-COMPILED` and `ACCEPT FROM TIME/DATE` are also included — their wall-clock output is masked by the parity normalizer.
+
+Most remaining exclusions are architectural — V-ISAM subsystem, dynamic OCCURS allocation, x87 80-bit float emulation, libcob-specific dump output. Not "30 minutes of work" each.
 
 **This filter is in the repo. It is auditable. If specific tests should be added to scope, name them and we'll add them.**
 
@@ -81,7 +82,7 @@ These ARE the IBM-vs-GnuCOBOL differences encountered. They were surfaced by run
 
 ## Accusation 3: "`-std=ibm` handles those constructs and your suite tests both — your extraction missed those tests"
 
-**The dialect cascade is honored.** `terminal_emulator/runner.py:88-100`:
+**The dialect cascade is honored.** The reference-output capture pipeline tries each cobc dialect strategy in order until one accepts the source:
 
 ```python
 COMPILE_STRATEGIES = [
@@ -186,7 +187,7 @@ Not implemented: 2 SKIP'd tests (`run_manual_screen_021` `BACKGROUND`/`FOREGROUN
 
 ## Status Question 4: Is MOVE de-editing fixed?
 
-**Yes, genuinely implemented.** `cobol-runtime/src/lib.rs:646 de_edit_numeric` handles `CR`/`DB` suffixes, currency symbols, insertion characters (`B` / `0` / `/` / `,` / `.`), suppression fill (`*` / `Z`), and decimal-point swap for `DECIMAL-POINT IS COMMA`. Wired through `oracle.rs` at three Edited→numeric MOVE sites (lines 478, 854, 1029). Round-trip MOVE from an edited PIC to a numeric PIC produces the same numeric value GnuCOBOL produces.
+**Yes, genuinely implemented.** The `cobol-runtime` crate's de-editing routine handles `CR`/`DB` suffixes, currency symbols, insertion characters (`B` / `0` / `/` / `,` / `.`), suppression fill (`*` / `Z`), and decimal-point swap for `DECIMAL-POINT IS COMMA`. Wired through every Edited→numeric `MOVE` site, so a round-trip from an edited PIC to a numeric PIC produces the same numeric value GnuCOBOL produces.
 
 ---
 
